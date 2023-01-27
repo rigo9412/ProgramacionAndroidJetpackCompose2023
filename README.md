@@ -25,11 +25,11 @@
 	- Que es Jeckpack Compose
 	- Como funciona jeckpack Compose
 	- Anotaciones Compose y Preview
-	- 	Layouts
-		- 		Modifier
-		- 		Row
-		- 		Column
-		- 		ConstraintLayout
+	- Layouts
+		- Modifier
+		- Row
+		- Column
+		- ConstraintLayout
 	- Manejo de Estados
 		- Remember
 		- RememberSaveable
