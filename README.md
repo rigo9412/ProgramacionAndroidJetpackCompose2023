@@ -86,7 +86,8 @@ Parcial 3 :Ejercicios 20% | Proyecto Final 70% | Portafolio de evidencias 10%
 	- Test de Unitarios
 
 **Parcial 3**
-
+- WorkManager (Tareas en segundo plano)
+- Notificaciones
 - Base de datos 
 	- Room
 - Conexión con hardware
