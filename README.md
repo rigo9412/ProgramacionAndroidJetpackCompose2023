@@ -1,7 +1,7 @@
 # ProgramacionAndroidJeckpackCompose2023
 ### Android Jeckpack Compose Referencias
 
-[Documentacion Ofical](https://developer.android.com/jetpack/compose?hl=es-419 "Documentacion Ofical")
+[Documentacion Ofical](https://developer.android.com/jetpack/compose?hl=es-419 "Documentacion Oficial")
 
 
 # Temario Enero-Junio 2023
