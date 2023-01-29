@@ -1,4 +1,4 @@
-# ProgramacionAndroidJeckpackCompose2023
+# Programación Android Jeckpack Compose Enero-Junio 2023
 ### Android Jeckpack Compose Referencias
 
 [Documentacion Oficial](https://developer.android.com/jetpack/compose?hl=es-419 "Documentacion Oficial")
