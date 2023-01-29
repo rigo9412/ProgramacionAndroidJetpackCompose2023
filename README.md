@@ -13,7 +13,6 @@ Parcial 3 :Ejercicios 20% | Proyecto Final 70% | Portafolio de evidencias 10%
 	- Mockups en digital
 	- Casos de uso en texto y diagrama**
 	- Publicación en la Play Store
-	-
 	
 - Caracteristicas minimas de la applicación
 	- Conexión con webservices
