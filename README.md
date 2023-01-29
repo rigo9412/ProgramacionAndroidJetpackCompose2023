@@ -9,15 +9,15 @@
 
 **Parcial 1**
 
-- Introducción a kotiln
+- Introducción a Kotlin
 	- 	Variables
 	- 	Ciclos
 	- 	Condicionales
 	- 	Funciones
 	- 	Clases
 - Introduccion a Jeckpack Compose
-	- Instalacion Android Studio
-	- Creacion de Hola Mundo
+	- Instalación Android Studio
+	- Creación de Hola Mundo
 		- Estructura de un proyecto
 		- Crear un Emulador
 		- Ejecutar a un teléfono Real
@@ -33,12 +33,12 @@
 	- Manejo de Estados
 		- Remember
 		- RememberSaveable
-	- Temas,Colores,Shapes
+	- Temas,Colores,Recursos
 
 
 
 **Parcial 2**
-- Componentes Basicos
+- Componentes Básicos
 	- TextField
 	- Boton
 	- Image
@@ -57,7 +57,7 @@
 	- BottomBar
 	- FloatingActionButton
 	- ModalDrawer
-- Navegacion
+- Navegación
 - Arquitectura MVVM
 	- View Model
 	- Live Data
@@ -71,11 +71,11 @@
 
 - Base de datos 
 	- Room
-- Conexción con hardware
-	- Camara
-	- Microfono
+- Conexión con hardware
+	- Cámara
+	- Micrófono
 	- GPS
-- Prefencias del usuario
+- Preferencias del usuario
 - Conexión con Web Services
 - Injección de dependencias
 - Animaciones
