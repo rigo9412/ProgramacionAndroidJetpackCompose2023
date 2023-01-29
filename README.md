@@ -4,9 +4,14 @@
 [Documentacion Oficial](https://developer.android.com/jetpack/compose?hl=es-419 "Documentacion Oficial")
 
 # Evaluaciones 
-Parcial 1 y 2 : Ejercicios 50% | Examen 40% | Portafolio de evidencias 10%
+Parcial       | Ejercicios |  Evaluación | Portafolio de evidencias
+------------- | -------------
+ 1er  |  50% | Examen 40% |  10%
+ 2do  |  50% | Examen 40% |  10%
+ 3ro  |  20% | Proyecto Final 70% |  10%
 
-Parcial 3 :Ejercicios 20% | Proyecto Final 70% | Portafolio de evidencias 10%
+
+
 
 - Proyecto final
 	- Descripción de proyecto en Readme en el repositorio
