@@ -6,7 +6,7 @@
 # Evaluaciones 
 Parcial 1 y 2 : Ejercicios 50% | Examen 40% | Portafolio de evidencias 10%
 
-Parcial 3 :Ejercicios 20% | Proyecto Final 70% | Portafolio de evidencias 10%|
+Parcial 3 :Ejercicios 20% | Proyecto Final 70% | Portafolio de evidencias 10%
 
 - Proyecto final
 	- Descripción de proyecto en Readme en el repositorio
