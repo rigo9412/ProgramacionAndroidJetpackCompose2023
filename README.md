@@ -3,9 +3,33 @@
 
 [Documentacion Oficial](https://developer.android.com/jetpack/compose?hl=es-419 "Documentacion Oficial")
 
+# Evaluaciones 
+Parcial 1 y 2
+Ejercicios 60%
+Examen 40%
+
+Parcial 3
+
+Ejercicios 20%
+Proyecto Final 80%
+
+- Proyecto final
+	- Descripción de proyecto en Readme en el repositorio
+	- Mockups en digital
+	- Casos de uso en texto y diagrama**
+	- Publicación en la Play Store
+	-
+	
+- Caracteristicas minimas de la applicación
+	- Conexión con webservices
+	- Base de datos local
+	- Internalización (Inglés y español)
+	- Interacción con el hardware del teléfono (GPS, Camara, Acelerómetro,sensor de huellas, etc.)
+	- Pruebas unitarias (al menos las criticas)**	
+
+
 
 # Temario Enero-Junio 2023
-
 
 **Parcial 1**
 
