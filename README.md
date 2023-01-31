@@ -108,6 +108,3 @@ Parcial       | Ejercicios |  Evaluación | Portafolio de evidencias
 - Conexión con Web Services
 - Injección de dependencias
 - Animaciones
-
-
-# 19100140
