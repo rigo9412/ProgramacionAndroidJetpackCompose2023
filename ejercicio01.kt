@@ -1,8 +1,5 @@
 //Elaborar una función que reciba una cadena de texto y la invierta.
-/**
- * You can edit, run, and share this code.
- * play.kotlinlang.org
- */
+
 fun main() {
     stringInvert("Hello, world!!!")
 }
