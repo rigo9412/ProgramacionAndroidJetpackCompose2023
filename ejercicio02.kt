@@ -10,8 +10,11 @@ fun CamelString(str1 : String?) : String?{
     if(str1 == null) {
         return "nulo"
     }
-    var strCounter = 0
+    var strCounter = 1
     var convertedString = ""
+
+    convertedString += str1[0].lowercase();
+
     while(strCounter < str1.length){
         if(str1[strCounter] == ' ' || str1[strCounter] == '-'  || str1[strCounter] == '_'){
             if(str1[strCounter + 1].isLetter()){
@@ -27,6 +30,5 @@ fun CamelString(str1 : String?) : String?{
             strCounter += 1
         }
     }
-    convertedString = convertedString.replaceFirstChar{it.lowercase()}
     return convertedString
 }
