@@ -10,7 +10,7 @@ fun camelCase(string: String?) {
     return
     var i = 0
     var x = ""
-    var list = string.lowercase().split(' ','_','-')
+    var list = string.lowercase().split('_','-',' ')
     while (i < list.count())
     {
         x = x + list[i].replaceFirstChar { 
