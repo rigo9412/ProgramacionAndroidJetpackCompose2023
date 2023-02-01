@@ -11,12 +11,12 @@ fun main()
 
 fun ToCamelCase(valor : String) : String
 {
-    var cadmat = valor.split(" ")
+    var cadmat = valor.split(" ","-","_")
     var priCad = cadmat[0].lowercase()
     var camelCase = priCad
     for (i in 1..(cadmat.lastIndex) )
     {
-        camelCase=camelCase + cadmat[i].capitalize()
+        camelCase=camelCase + cadmat[i].lowercase().capitalize()
     }
     return camelCase
 }
