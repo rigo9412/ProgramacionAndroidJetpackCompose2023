@@ -2,31 +2,25 @@
 //Ejemplo : "Esto es una Cadena" -> "estoEsUnaCadena"
 
 fun main(){
-    println(camelCase("Hello World !!"))
-    println(camelCase("Esto es una Cadena"))
+    println(camelCase("Hola     MUNdo-Kotlin_Android-Jet_Pack"))
 }
 
-fun camelCase(str1 : String?) : String?{
-    if(str1 == null) {
-        return "nulo"
-    }
-    var strCounter = 0
-    var convertedString = "";
-    while(strCounter < str1.length)
+fun camelCase(string: String?) {
+    if(string == null) 
+    return
+    var i = 0
+    var x = ""
+    var list = string.lowercase().split(' ','_','-')
+    while (i < list.count())
     {
-        if(str1[strCounter] == ' ')
-        {
-            convertedString = convertedString + str1[strCounter+1].uppercase()
-            strCounter += 2;
-            continue
+        x = x + list[i].replaceFirstChar { 
+            it.uppercase() 
         }
-        else
-        {
-            convertedString = convertedString + str1[strCounter]
-            strCounter += 1
-        }
+        i++
     }
-    convertedString = convertedString.replaceFirstChar{it.lowercase()
-    }
-    return convertedString
+    println(x.replaceFirstChar 
+            { 
+                it.lowercase() 
+            }
+           )
 }
