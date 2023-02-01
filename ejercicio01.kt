@@ -14,9 +14,8 @@ fun stringInvert(value: String? = "default") {
 
 fun strInvert(value: String? = "default"){
     if(value == null) return;
- 
-    var i = value.lastIndex;
-	while( i >= 0 ){
+    
+	while( value.lastIndex >= 0 ){
         print(value[i])
         i = i-1
     }
