@@ -3,12 +3,12 @@
  */
 
 fun main() {
-    camelCase("Esto es una Cadena")
+    camelCase("Hola     MUNdo-Kotlin_Android-Jet_Pack")
 }
 
 fun camelCase(cadena: String?) {
     if(cadena == null) return
-    var lista = cadena.split(" ")
+    var lista = cadena.lowercase().split(' ','_','-')
     var index = 0
     var up = ""
     while (index < lista.count()){
