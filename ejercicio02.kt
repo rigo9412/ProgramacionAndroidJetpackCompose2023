@@ -5,7 +5,7 @@ fun camelCase(palabra: String) :String {
     while(cont < palabra.length) {
         var letra = palabra.get(cont)
         
-        if(letra != ' ' && letra != '-' && letra != '_') {
+        if(letra != ' ' && letra != '-' && letra != '_' && letra != '.' && letra != ',') {
            if(bandera) { //Es la primera
                camel += letra.toUpperCase()
            } else { //Es mayuscula
