@@ -1,5 +1,5 @@
 fun main(){
-    convertir("hola como estas")
+    convertir("Hola como estas")
 }
 
 fun convertir(texto: String){
