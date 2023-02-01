@@ -11,16 +11,16 @@ fun CamelString(str1 : String?) : String?{
     }
     
     var strCounter = 0
-    var convertedString = "";
+    var convertedString = ""
 
     while(strCounter < str1.length){
-        if(str1[strCounter] == ' '){
+        if(str1[strCounter] == ' ' || str1[strCounter] == '-'  || str1[strCounter] == '_'){
             convertedString = convertedString + str1[strCounter+1].uppercase()
-            strCounter += 2;
+            strCounter += 2
             continue
         }
         else{
-            convertedString = convertedString + str1[strCounter]
+            convertedString = convertedString + str1[strCounter].lowercase()
             strCounter += 1
         }
     }
