@@ -6,11 +6,11 @@ fun main() {
 fun camelcaseTest(cadena: String) : String {
     
     val cadenaTestLow = cadena.lowercase().split(' ','-','_')
-    var index = 1
+    var i = 1
     var cadenaTestUp = cadenaTestLow[0]
-    while (index < cadenaTestLow.count()){
-        cadenaTestUp = cadenaTestUp + cadenaTestLow[index].replaceFirstChar {it.uppercase()}
-        index++
+    while (i < cadenaTestLow.count()){
+        cadenaTestUp = cadenaTestUp + cadenaTestLow[i].replaceFirstChar {it.uppercase()}
+        i++
     }
     return(cadenaTestUp)
 }
