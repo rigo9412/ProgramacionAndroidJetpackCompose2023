@@ -9,8 +9,8 @@ fun main() {
 fun camelCase(cadena: String?) {
     if(cadena == null) return
     var lista = cadena.lowercase().split(' ','_','-')
-    var index = 0
-    var up = ""
+    var index = 1
+    var up = lista[0]
     while (index < lista.count()){
         up = up + lista[index].replaceFirstChar { it.uppercase() }
         index++
