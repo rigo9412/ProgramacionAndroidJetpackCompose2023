@@ -1,5 +1,5 @@
 fun camelCase(cadena: String): String {
-    return cadena.lowercase().split("\\s|_|-|,|.".toRegex()).joinToString(separator = "") { p -> p.replaceFirstChar { it.uppercase() } }.replaceFirstChar { it.lowercase() }
+    return cadena.lowercase().split("\\s|_|-|,|.|;".toRegex()).joinToString(separator = "") { p -> p.replaceFirstChar { it.uppercase() } }.replaceFirstChar { it.lowercase() }
 }
 
 fun main(){
