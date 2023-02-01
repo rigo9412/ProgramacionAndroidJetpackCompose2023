@@ -1,6 +1,7 @@
 fun main() {
     val cadenaTest = "Hola     MUNdo-Kotlin_Android-Jet_Pack"
-    camelcaseTest(cadenaTest)
+    print(camelcaseTest(cadenaTest))
+    
 }
 fun camelcaseTest(cadena: String) : String {
     
