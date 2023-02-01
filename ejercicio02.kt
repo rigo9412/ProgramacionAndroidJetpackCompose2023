@@ -1,12 +1,12 @@
 //Elaborar una función que convierta un texto de camelCase 
 
 fun main() {
-    convertirCamelCase("Una Cadena Escrita")
+    convertirCamelCase("Hola     MUNdo-Kotlin_Android-Jet_Pack")
 }
 
 fun convertirCamelCase(texto:String?){
     if(texto==null) return;
-    var cadena=texto.split(" ")
+    var cadena=texto.split(" ","_","-")
     var conversion=""
     for (i in cadena.indices) {
         if(i==0){
