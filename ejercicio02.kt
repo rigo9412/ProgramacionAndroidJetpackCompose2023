@@ -2,13 +2,13 @@
 // Ejemplo : "Esto es una Cadena" -> "estoEsUnaCadena"
 
 fun main() {
-    println(stringConvertCamelCase("Esto es una nueva cadena"))
+    println(stringConvertCamelCase("Hola     MUNdo-Kotlin_Android-Jet_Pack"))
 }
 
 fun stringConvertCamelCase(miCadena: String): String?{
 
     var cadenaCamelCase = "" 
-    val palabras = miCadena.split("\\s".toRegex()).toTypedArray() //Guardamos las palabras en un arreglo
+    val palabras = miCadena.split("\\s|_|-".toRegex()).toTypedArray() //Guardamos las palabras en un arreglo
     //println(palabras.contentToString())
 
     val palabraSinMayuscula = palabras.first() //Obtenemos la primera palabra que no debe ser en mayusculas
@@ -21,7 +21,7 @@ fun stringConvertCamelCase(miCadena: String): String?{
     cadenaCamelCase = cadenaCamelCase + palabraSinMayuscula.toLowerCase() 
 
     for(palabra in palabrasConMayuscula){ 
-        cadenaCamelCase = cadenaCamelCase + palabra.capitalize() //Agregamos todas las palabras que van en mayusculas
+        cadenaCamelCase = cadenaCamelCase + (palabra.toLowerCase()).capitalize() //Agregamos todas las palabras que van en mayusculas
     }
     return(cadenaCamelCase)
 }
