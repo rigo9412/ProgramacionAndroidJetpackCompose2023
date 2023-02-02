@@ -2,16 +2,15 @@
  */
 
 fun main() {
-   print(contarLetras("?Hol4 MunDO 4Andr01d K0TTTlin+ ++-"))
+   print("Cantidad de letras: " + contarLetras("?Hol4 MunDO 4Andr01d K0TTTlin+ ++-"))
 }
 
-fun contarLetras(palabra: String): Map<Char, Int> {
-    val letras = mutableMapOf<Char, Int>()
+
+fun contarLetras(palabra: String): Int{
+    var letras= 0
     for (char in palabra) {
-        if(char.isLetter()){
-            if (letras.containsKey(char)) {
-                letras[char] = letras[char]!! + 1
-            } else {letras[char] = 1}
+        if(char.isLetter()) {
+            letras++
         }
     }
     return letras
