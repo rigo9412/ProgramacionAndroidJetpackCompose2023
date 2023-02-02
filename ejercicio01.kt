@@ -8,8 +8,10 @@
 //     invertidostr("Hello, world!!!")
 //     invertidostr(null)
 //     invertidostr()
-    var str = "Rene_Alexis_salinas_a"
+    var str = "Rene Alexis salinas a"
     print(str.lowercase().CamelStr())
+    // str.lowercase()
+    // print(str.replace(" ","").uppercase().decapitalize())
  }
 
 // fun invertidostr(value: String? = "default"){
@@ -22,12 +24,13 @@
 // Elaborar una función que convierta un texto de camelCase 
 // Ejemplo : "Esto es una Cadena" -> "estoEsUnaCadena"
 
-val cadena = "_[a-zA-Z]".toRegex()
+val cadena = "\\s+[a-zA-Z]".toRegex()
 
 fun String.CamelStr(): String {
     return cadena.replace(this) { 
-        it.value.replace("_","")
+        it.value.replace(" ","")
             .uppercase() 
     }
     
 }
+
