@@ -1,4 +1,5 @@
-/*Elaborar una función que reciba un texto y cuente el número de letras que contiene.
+/*Elaborar una función que reciba un texto y cuente cuantas veces aparece una letra en el texto (solo letras).
+ * Ejemplo a=5, o=40. 
  */
 import java.text.Normalizer;
 
