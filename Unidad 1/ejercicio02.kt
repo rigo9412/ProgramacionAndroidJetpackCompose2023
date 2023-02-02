@@ -1,38 +1,42 @@
 fun main(){
-    convertir("Hola como estas")
+    print(convertir("Hola     MUNdo-Kotlin_Android-Jet_Pack"))
 }
 
-fun convertir(texto: String){
-    if(texto.contains(" "))
+fun convertir(texto: String): String{   
+    val letras: CharArray = texto.toCharArray()
+    var camel : String = ""
+    var n = texto.length - 1
+    var i = 0
+    while (i<=n)
     {
-        //print("tiene espacios en blanco")
-        val letras: CharArray = texto.toCharArray()
-        var n = texto.length - 1
-        var i = 0
-        var str : String
-        while (i<=n)
+        if(letras[i].isUpperCase() && i==0)
         {
-            if(i==0)
-            {
-                str = letras[i].toString()
-                print(str.lowercase())
-                i++
-                continue
-            }
-            else if (letras[i] == ' ')
-            {
-                i++
-                str = letras[i].toString()
-                print(str.uppercase())
-                i++
-                continue
-            }
-            print(letras[i])
-            i++            
+            camel = camel + letras[i].lowercase()
+            i++
+            continue
         }
+        if(letras[i].isUpperCase())
+        {
+            camel = camel + letras[i]
+            i++
+            while(letras[i].isUpperCase())
+            {
+                camel = camel + letras[i].lowercase()
+                i++
+            }
+            continue
+        }
+        if(letras[i].isLowerCase())
+        {
+            camel = camel + letras[i]
+            i++
+            continue
+        }
+        if(letras[i] == '-' || letras[i] == '_' || letras[i] == ' ')
+        {
+            i++
+            continue
+        }         
     }
-    else
-    {
-        print("no tiene espacios en blanco")
-    }
+    return camel
 }
