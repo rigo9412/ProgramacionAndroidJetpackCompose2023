@@ -1,3 +1,5 @@
+// Elaborar una funcion que reciba un texto y cuente el numero de letras que contiene
+
 fun main() {
     contar("Perro")
 }
