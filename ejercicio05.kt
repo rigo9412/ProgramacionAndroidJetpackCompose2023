@@ -1,7 +1,6 @@
 // Elaborar una función que resiba un texto y cuente cuantas veces aparece una letra en el texto (solo letras)
 //Nota: La letra con sus variantes es la misma letra
-
-
+import java.util.TreeMap
 import java.text.Normalizer
 fun main(){
     println(contarLetras("""Lorém ipsum dolor sit amet augéndas civitas efficiántur firmitatem fonté indicavérunt ipse iracundiae iustius magis oderis sitne stare ultrices viderer. Aliquo appellantur dubium exercitumque igitur, leniat návigándi perfunctio platéa statuam. Adiit animal éxpéténdam fecisse finiri, hosti impeditur inliberali tristiqué utroque? Aperiam feramus généris inferiorem mandarémus molita sedentis tranquilli. 
@@ -37,11 +36,11 @@ fun main(){
         """))
 }
 
-fun contarLetras(palabra: String): Map<Char, Int> {
+fun contarLetras(palabra: String): String{
     var string = palabra
     string = string.lowercase()
     string = Normalizer.normalize(string, Normalizer.Form.NFD)
-    var map = mutableMapOf<Char,Int>()
+    var map = TreeMap<Char,Int>()
     var x = 0
     while(x < string.length)
     {
@@ -54,5 +53,6 @@ fun contarLetras(palabra: String): Map<Char, Int> {
         }
         x += 1
     }
-    return map.toSortedMap;
+    var mensaje = map.toString().replace(" ","")
+    return mensaje.substring(1,mensaje.length-1)
 }
