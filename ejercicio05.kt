@@ -23,6 +23,6 @@ fun ContarLetras(texto : String) : String{
         }
         i += 1
     }
-    var mensaje = mapa.toString()
+    var mensaje = mapa.toString().replace(" ","")
     return mensaje.substring(1,mensaje.length-1)
 }
