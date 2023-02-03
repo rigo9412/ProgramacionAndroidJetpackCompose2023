@@ -38,7 +38,7 @@ Derigatur ignoratione tuemur umbram verum! áfferát comparat dicitis neque omni
     print(contarLetras(texto))
 }
      
-fun contarLetras(palabra: String): Map<Char, Int> {
+fun contarLetras(palabra: String): String {
     var textoNormalizado = Normalizer.normalize(palabra, Normalizer.Form.NFD)
     val letras = mutableMapOf<Char, Int>()
     for (char in textoNormalizado.lowercase()) {
@@ -48,5 +48,5 @@ fun contarLetras(palabra: String): Map<Char, Int> {
             } else {letras[char] = 1}
         }
     }
-    return letras.toSortedMap()
+    return letras.toSortedMap().toString().replace(Regex("""[{ }]"""), "")
 }
