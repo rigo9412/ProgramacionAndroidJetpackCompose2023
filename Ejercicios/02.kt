@@ -1,3 +1,6 @@
+////EJERCICIO 2
+////Elaborar una función que convierta un texto de camelCase
+
 fun camelCase(palabra: String) :String {        
     var camel:String = ""
     var cont = 1    
