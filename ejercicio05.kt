@@ -82,12 +82,13 @@ fun contarAparicionLetra(texto:String): String{
         	else -> letra[l] = count + 1
     	}
     }
-  	val sortedMap: MutableMap<Char, Int> = LinkedHashMap()
+  	 val sortedMap: MutableMap<Char, Int> = LinkedHashMap()
     letra.keys.sorted().forEach { sortedMap[it] = letra[it]!! }
     var datos =sortedMap.toString()
-    var remplazar = datos.replace("{","")
+   
+   
+      var remplazar = datos.replace("{","")
     var remplazar2 = remplazar.replace("}","")
-   return (remplazar2)
-    
-    
+    var remplazar3 = remplazar2.replace(" ","".trim())
+   return (remplazar3)
 }
