@@ -53,6 +53,6 @@ fun contarLetras(palabra: String): String{
         }
         x += 1
     }
-    var mensaje = map.toString().replace(" ","")
-    return mensaje.substring(1,mensaje.length-1)
+    var texto = map.toString().replace(" ","")
+    return texto.substring(1,texto.length-1)
 }
