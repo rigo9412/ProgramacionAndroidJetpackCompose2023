@@ -122,6 +122,7 @@ fun contar(value: String):String{
     println("Ordenada:\n$letrasIndividuales\n")
     i=0
 
+    var resultado:String=""
     var repetido:Int=0
     for (letraIndividual in letrasIndividuales)//volvemos a recorrer preguntando si aparece en nuestra oracion
     {
@@ -132,9 +133,9 @@ fun contar(value: String):String{
                 repetido++
             }
         }
-
-        return("'$letraIndividual' = $repetido ,")//imprimimos
+        resultado+="'$letraIndividual' = $repetido ,"
         repetido=0
-
     }
+    println(resultado)
+    return resultado
 }
