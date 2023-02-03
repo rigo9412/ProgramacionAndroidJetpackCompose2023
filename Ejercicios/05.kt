@@ -87,5 +87,5 @@ fun calcularNumeroLetras(cad: String):String {
         cont++
     }
         
-    return map.toSortedMap().toString().replace("{", "").replace("}", "")
+    return map.toSortedMap().toString().replace("{", "").replace("}", "").replace(" ", "")
 }
