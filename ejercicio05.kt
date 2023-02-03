@@ -24,5 +24,5 @@ fun contarLetras(palabra: String): Map<Char, Int> {
         }
         x += 1
     }
-    return map;
+    return map.toSortedMap;
 }
