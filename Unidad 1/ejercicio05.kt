@@ -133,9 +133,10 @@ fun contar(value: String):String{
                 repetido++
             }
         }
-        resultado+="'$letraIndividual' = $repetido ,"
+        resultado+="$letraIndividual=$repetido ,"
         repetido=0
     }
+    resultado=resultado.dropLast(2)
     println(resultado)
     return resultado
 }
