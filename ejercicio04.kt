@@ -7,7 +7,7 @@ fun calcularDescuento(subTotal: String,descuento:String): String?{
     
     var sub = subTotal.toDouble() 
     var des = descuento.toDouble()
-    var total = sub - (sub * (des / 100)) //aplicamos el descuento    
+    var total = sub - (sub * (des / 100))   
     return total.toString() 
   
    
