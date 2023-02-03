@@ -1,8 +1,8 @@
 // Elaborar una función que reciba un texto y cuente el número de letras que contiene
-fun contarLetras(cadena: String): Int {
-    return cadena.replace("\\s|,|[.]|;|[0-9]".toRegex(), "").length
+fun contarLetras(str: String): Int {
+    return str.filter { it.isLetter() }.length
 }
 
 fun main() {
-    println(contarLetras("ABC DEF GHI 9"))
+    println(contarLetras("Hol4 MunDO 4Andr01d K0TTTlin+ ++-"))
 }
