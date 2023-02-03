@@ -1,3 +1,4 @@
+//NOTA, programa hecho IntelliJ 
 fun main() {
 
     println("Ingrese texto a desglosar:")
@@ -6,20 +7,19 @@ fun main() {
 
 fun contar(value: String){
 
-    var x=value.split("")
+    var (x)=value.partition {it.isLetter()}
+    //Preguntamos que no haya "blancos", ni espacios con esta funcion
+
     var letras: Int=0
-    val letrasOriginales:MutableList<String> = mutableListOf()
-    val letrasIndividuales:MutableList<String> = mutableListOf()
+    val letrasOriginales:MutableList<Char> = mutableListOf()
+    val letrasIndividuales:MutableList<Char> = mutableListOf()
     //Lista mutable arriba,
     //para agregarle cosas despues
 
-    //Recorremos nuestro texto hecho split
+    //Recorremos nuestro texto hecho arreglo
     for (letra in x){
-        //Preguntamos que no haya "blancos", ni espacios
-        if (letra!=""&& letra!=" ") {
-            letrasOriginales.add(letra)
+        letrasOriginales.add(letra)
             letras++
-        }
     }
 
 
