@@ -2,14 +2,14 @@
 
 import java.text.Normalizer
 
-fun contar(texto: String): Map<Char, Int> {
+fun contar(texto: String): String {
     val normalizado = Normalizer.normalize(texto, Normalizer.Form.NFD).lowercase()
     val mapa = mutableMapOf<Char, Int>()
     for (letra in normalizado) {
         if(!letra.isLetter()) continue
         mapa.merge(letra.lowercaseChar(), 1) { a, b -> a + b }
     }
-    return mapa
+    return mapa.toSortedMap().toString().replace("[\\s{|\\s}]".toRegex(), "")
 }
 
 
@@ -73,5 +73,5 @@ fun main() {
             "Cupio earumque tranquilli viderer? ángoribus cognita duxit fáciendumve, finiri habémus hae impetu intemperantes lógikh novum quaerimus sadipscing virtus? ántipátrum cursus elegáns interesse ius, perpetua stulti! Assecutus concludaturque legimus metum primo quaestionem senserit splendido? Albuci apte atqui controversia difficilius, habeatur modice numquam rogatiuncula. \n" +
             " \n" +
             "Derigatur ignoratione tuemur umbram verum! áfferát comparat dicitis neque omnisque, praeteritas satis sólidó? Augue dapibus duo eruditi, finitas huic invidi maestitiam mererer nemo scribere splendore? ádipiscing aliquip curáe discordant, essent gravissimas intellegi maluisset offendit perspici se solido tria véra voluit. Accommodare claudicare copiosae fuit, homini loca oratione seiunctum, situm superstitió veniam voluntátes! Disciplinis disserui ergo harum id imitarentur multos mundus nostrud poenis relinqueret tollitur! "
-println(contar(texto).toSortedMap().toString().replace("[\\s{|\\s}]".toRegex(), ""))
+println(contar(texto))
 }
