@@ -66,15 +66,14 @@ Cupio earumque tranquilli viderer? ángoribus cognita duxit fáciendumve, finiri
 Derigatur ignoratione tuemur umbram verum! áfferát comparat dicitis neque omnisque, praeteritas satis sólidó? Augue dapibus duo eruditi, finitas huic invidi maestitiam mererer nemo scribere splendore? ádipiscing aliquip curáe discordant, essent gravissimas intellegi maluisset offendit perspici se solido tria véra voluit. Accommodare claudicare copiosae fuit, homini loca oratione seiunctum, situm superstitió veniam voluntátes! Disciplinis disserui ergo harum id imitarentur multos mundus nostrud poenis relinqueret tollitur!""")
 }
 
-//Metodo para quitar acentuacion a las letras
-val desacento= "\\p{InCombiningDiacriticalMarks}+".toRegex()
-fun CharSequence.desacentuar(): String {
-    val temp = Normalizer.normalize(this, Normalizer.Form.NFD)
-    return desacento.replace(temp, "")
-}
-
-
 fun contar(value: String){
+
+    //Metodo para quitar acentuacion a las letras
+    val desacento= "\\p{InCombiningDiacriticalMarks}+".toRegex()
+    fun CharSequence.desacentuar(): String {
+        val temp = Normalizer.normalize(this, Normalizer.Form.NFD)
+        return desacento.replace(temp, "")
+    }
 
     var (x)=value.desacentuar().toLowerCase().partition {it.isLetter()}
     //Preguntamos que no haya "blancos", ni espacios con esta funcion
