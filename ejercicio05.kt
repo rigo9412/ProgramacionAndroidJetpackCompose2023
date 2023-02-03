@@ -3,7 +3,7 @@ import java.text.Normalizer;
 
 //Elaborar una función que reciba un texto y cuente cuantas veces aparece una letra en el texto (solo letras), ejemplo a=5, o=40. 
 fun main() {
-    var texto= """ Lorém ipsum dolor sit amet augéndas civitas efficiántur firmitatem fonté indicavérunt ipse iracundiae iustius magis oderis sitne stare ultrices viderer. Aliquo appellantur dubium exercitumque igitur, leniat návigándi perfunctio platéa statuam. Adiit animal éxpéténdam fecisse finiri, hosti impeditur inliberali tristiqué utroque? Aperiam feramus généris inferiorem mandarémus molita sedentis tranquilli. 
+    print(contarAparicionLetra(""" Lorém ipsum dolor sit amet augéndas civitas efficiántur firmitatem fonté indicavérunt ipse iracundiae iustius magis oderis sitne stare ultrices viderer. Aliquo appellantur dubium exercitumque igitur, leniat návigándi perfunctio platéa statuam. Adiit animal éxpéténdam fecisse finiri, hosti impeditur inliberali tristiqué utroque? Aperiam feramus généris inferiorem mandarémus molita sedentis tranquilli. 
  
 Diam effecerit iudex pars parte. ádversárium concursio detrimenti esset inhumanus, lictores odit possim timentis tranquillat triari? Appareat dicénda fugiat ignota illo permulta perspiciatis praesens singulos! Democritum fámiliáritátem futura legemus mors, redeamus transferrem? 
  
@@ -63,13 +63,13 @@ Cupio earumque tranquilli viderer? ángoribus cognita duxit fáciendumve, finiri
  
 Derigatur ignoratione tuemur umbram verum! áfferát comparat dicitis neque omnisque, praeteritas satis sólidó? Augue dapibus duo eruditi, finitas huic invidi maestitiam mererer nemo scribere splendore? ádipiscing aliquip curáe discordant, essent gravissimas intellegi maluisset offendit perspici se solido tria véra voluit. Accommodare claudicare copiosae fuit, homini loca oratione seiunctum, situm superstitió veniam voluntátes! Disciplinis disserui ergo harum id imitarentur multos mundus nostrud poenis relinqueret tollitur! """
     
-    contarAparicionLetra(texto)
+    ))
     
 }
 
 
 
-fun contarAparicionLetra(texto:String){
+fun contarAparicionLetra(texto:String): String{
 	var textoNor=Normalizer.normalize(texto, Normalizer.Form.NFD)
     var (letras)=textoNor.partition {it.isLetter()}
     var letra: MutableMap<Char, Int> = mutableMapOf()
@@ -82,13 +82,12 @@ fun contarAparicionLetra(texto:String){
         	else -> letra[l] = count + 1
     	}
     }
-  	 val sortedMap: MutableMap<Char, Int> = LinkedHashMap()
+  	val sortedMap: MutableMap<Char, Int> = LinkedHashMap()
     letra.keys.sorted().forEach { sortedMap[it] = letra[it]!! }
     var datos =sortedMap.toString()
-    var remplazar = datos.replace('{',' ')
-    var remplaza2 = remplazar.replace('}',' ')
-     
-   print(remplaza2)
+    var remplazar = datos.replace("{","")
+    var remplazar2 = remplazar.replace("}","")
+   return (remplazar2)
     
     
 }
