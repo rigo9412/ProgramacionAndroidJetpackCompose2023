@@ -1,5 +1,5 @@
-
 import java.text.Normalizer;
+
 
 //Elaborar una función que reciba un texto y cuente cuantas veces aparece una letra en el texto (solo letras), ejemplo a=5, o=40. 
 fun main() {
@@ -82,8 +82,13 @@ fun contarAparicionLetra(texto:String){
         	else -> letra[l] = count + 1
     	}
     }
-  	
-   print(letra)
+  	 val sortedMap: MutableMap<Char, Int> = LinkedHashMap()
+    letra.keys.sorted().forEach { sortedMap[it] = letra[it]!! }
+    var datos =sortedMap.toString()
+    var remplazar = datos.replace('{',' ')
+    var remplaza2 = remplazar.replace('}',' ')
+     
+   print(remplaza2)
     
     
 }
