@@ -83,7 +83,7 @@ fun contarAparicionLetra(texto:String){
     	}
     }
   	
-    letra.forEach { (k, v) -> println("$k -> $v") }
+   print(letra)
     
     
 }
