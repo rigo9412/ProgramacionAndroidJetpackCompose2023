@@ -66,7 +66,7 @@ Cupio earumque tranquilli viderer? ángoribus cognita duxit fáciendumve, finiri
 Derigatur ignoratione tuemur umbram verum! áfferát comparat dicitis neque omnisque, praeteritas satis sólidó? Augue dapibus duo eruditi, finitas huic invidi maestitiam mererer nemo scribere splendore? ádipiscing aliquip curáe discordant, essent gravissimas intellegi maluisset offendit perspici se solido tria véra voluit. Accommodare claudicare copiosae fuit, homini loca oratione seiunctum, situm superstitió veniam voluntátes! Disciplinis disserui ergo harum id imitarentur multos mundus nostrud poenis relinqueret tollitur!""")
 }
 
-fun contar(value: String){
+fun contar(value: String):String{
 
     //Metodo para quitar acentuacion a las letras
     val desacento= "\\p{InCombiningDiacriticalMarks}+".toRegex()
@@ -87,7 +87,7 @@ fun contar(value: String){
     //Recorremos nuestro texto hecho arreglo
     for (letra in x){
         letrasOriginales.add(letra)
-            letras++
+        letras++
     }
 
 
@@ -127,12 +127,13 @@ fun contar(value: String){
     {
         for(letraOriginal in letrasOriginales)
         {
-             if (letraIndividual==letraOriginal)
-             {
-              repetido++
-             }
+            if (letraIndividual==letraOriginal)
+            {
+                repetido++
+            }
         }
-        print("'$letraIndividual' = $repetido ,")//imprimimos
+
+        return("'$letraIndividual' = $repetido ,")//imprimimos
         repetido=0
 
     }
