@@ -1,13 +1,23 @@
 //NOTA, programa hecho IntelliJ 
+import java.text.Normalizer
+
 fun main() {
 
     println("Ingrese texto a desglosar:")
     contar(readLine().toString())
 }
 
+//Metodo para quitar acentuacion a las letras
+val desacento= "\\p{InCombiningDiacriticalMarks}+".toRegex()
+fun CharSequence.desacentuar(): String {
+    val temp = Normalizer.normalize(this, Normalizer.Form.NFD)
+    return desacento.replace(temp, "")
+}
+
+
 fun contar(value: String){
 
-    var (x)=value.partition {it.isLetter()}
+    var (x)=value.desacentuar().toLowerCase().partition {it.isLetter()}
     //Preguntamos que no haya "blancos", ni espacios con esta funcion
 
     var letras: Int=0
@@ -61,7 +71,7 @@ fun contar(value: String){
               repetido++
              }
         }
-        println("La letra '$letraIndividual' se repitio $repetido")//imprimimos
+        println("'$letraIndividual' = $repetido")//imprimimos
         repetido=0
 
     }
