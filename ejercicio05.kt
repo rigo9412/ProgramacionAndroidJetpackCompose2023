@@ -9,18 +9,16 @@ fun main(){
 fun ContarLetras(texto : String) : String{
     var cadena = texto
     cadena = Normalizer.normalize(cadena, Normalizer.Form.NFD)
-    cadena = cadena.lowercase()
 
     var mapa = mutableMapOf<Char,Int>()
     var i = 0
     while(i < cadena.length){
         if(cadena[i].isLetter()){
-            mapa.merge(cadena[i],1) {
+            mapa.merge(cadena[i].lowercaseChar(),1) {
                 old, value -> old+value
             }
         }
         i += 1
     }
-    var mensaje = mapa.toSortedMap().toString().replace(" ","")
-    return mensaje.substring(1,mensaje.length-1)
+    return mapa.toSortedMap().toString().replace("[\\s{|\\s}]".toRegex(), "")
 }
