@@ -1,4 +1,3 @@
-import java.util.TreeMap
 import java.text.Normalizer
 
 fun main(){
@@ -41,16 +40,16 @@ fun countLetters(texto : String) : String {
     letrasNormal = Normalizer.normalize(letrasNormal, Normalizer.Form.NFD)
     letrasNormal = letrasNormal.lowercase()
 
-    var treeLetras = TreeMap<Char, Int>()
+    var mapLetras = mutableMapOf<Char, Int>()
     var index = 0
     while(index < letrasNormal.length){
         if(letrasNormal[index].isLetter()){
-            treeLetras.merge(letrasNormal[index],1) {
+            mapLetras.merge(letrasNormal[index],1) {
                 old, value -> old+value
             }
         }
         index++
     }
-    var contadorLetras = treeLetras.toString().replace(" ","")
+    var contadorLetras = mapLetras.toSortedMap().toString().replace(" ","")
     return contadorLetras.substring(1,contadorLetras.length-1)
 }
