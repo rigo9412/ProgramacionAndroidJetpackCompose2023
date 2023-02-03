@@ -37,10 +37,11 @@ Derigatur ignoratione tuemur umbram verum! áfferát comparat dicitis neque omni
 """.trimIndent()
     print(contarLetras(texto))
 }
-
+     
 fun contarLetras(palabra: String): String {
+    var textoNormalizado = Normalizer.normalize(palabra, Normalizer.Form.NFD).lowercase()
     val letras = mutableMapOf<Char, Int>()
-    for (char in Normalizer.normalize(palabra, Normalizer.Form.NFD).lowercase()) {
+    for (char in textoNormalizado) {
         if(char.isLetter()){
             if (letras.containsKey(char)) {
                 letras[char] = letras[char]!! + 1
