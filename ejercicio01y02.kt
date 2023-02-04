@@ -1,26 +1,26 @@
 //Elaborar una función que reciba una cadena de texto y la invierta.
 
-// fun main() {
-//     invertidostr("Holaaaa")
-// }
+fun main() {
+    // EJERCICIO 1
+    invertidostr("Holaaaa")
 
- fun main() {
-//     invertidostr("Hello, world!!!")
-//     invertidostr(null)
-//     invertidostr()
+
+
+    // EJERCICIO2
     var str = "Rene Alexis salinas a"
     print(str.lowercase().CamelStr())
-    // str.lowercase()
-    // print(str.replace(" ","").uppercase().decapitalize())
- }
+}
 
-// fun invertidostr(value: String? = "default"){
-//     if(value == null) return;
-//     for(item in value.lastIndex downTo 0){
-//         print(value[item])
-//     }
-// }
+// EJERCICIO 1
+fun invertidostr(value: String? = "default"){
+    if(value == null) return;
+    for(item in value.lastIndex downTo 0){
+        print(value[item])
+    }
+}
 
+
+// EJERCICIO 2
 // Elaborar una función que convierta un texto de camelCase 
 // Ejemplo : "Esto es una Cadena" -> "estoEsUnaCadena"
 
