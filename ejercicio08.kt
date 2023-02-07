@@ -10,8 +10,8 @@ fun main() {
 }
 fun <T> diferencias(vararg array: List<T>) {
     var list = ArrayList<T>()
-    var u = 0
     var index = 0
+    var u = 0
     while(index < array.size){
         while(u < array.get(index).size){
             list.add(array.get(index).get(u))
@@ -20,6 +20,6 @@ fun <T> diferencias(vararg array: List<T>) {
         index++
         u=0
     }
-    val x = list.distinct()
-    print (x)
+    val diferencia = list.distinct()
+    print (diferencia)
 }
