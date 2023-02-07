@@ -37,13 +37,13 @@ Derigatur ignoratione tuemur umbram verum! áfferát comparat dicitis neque omni
 
 fun contarLetrasDeLaCadena(palabra: String): String {
     var text = Normalizer.normalize(palabra, Normalizer.Form.NFD).lowercase()
-    val letras = mutableMapOf<Char, Int>()
+    val caracteres = mutableMapOf<Char, Int>()
     for (char in texto) {
         if(char.isLetter()){
-            if (letras.containsKey(char)) {
-                letras[char] = letras[char]!! + 1
-            } else {letras[char] = 1}
+            if (caracteres.containsKey(char)) {
+                caracteres[char] = letras[char]!! + 1
+            } else {caracteres[char] = 1}
         }
     }
-    return letras.toSortedMap().toString().replace(Regex("""[{ }]"""), "")
+    return caracteres.toSortedMap().toString().replace(Regex("""[{ }]"""), "")
 }
