@@ -36,7 +36,7 @@ Derigatur ignoratione tuemur umbram verum! áfferát comparat dicitis neque omni
 }
 
 fun contarLetrasDeLaCadena(palabra: String): String {
-    var text = Normalizer.normalize(palabra, Normalizer.Form.NFD).lowercase()
+    var texto = Normalizer.normalize(palabra, Normalizer.Form.NFD).lowercase()
     val caracteres = mutableMapOf<Char, Int>()
     for (char in texto) {
         if(char.isLetter()){
