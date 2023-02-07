@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="ProgramacionAndroidJetpackCompose2023">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ejercicio04.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ejercicio03.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ejercicio02.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ejercicio01.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
