@@ -1,5 +1,6 @@
 fun diferencias(vararg arrays: Array<Any>): String {
-    return arrays.map { it.map { any -> any.toString()  }  }.reduce{ acc, arr -> acc + arr}.distinct().joinToString(",")
+    val aplanado = arrays.flatten().map { it.toString() }
+    return aplanado.toSet().filter { elem ->  aplanado.count { it == elem } == 1 }.joinToString(",")
 }
 
 fun main() {
