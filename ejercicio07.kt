@@ -1,11 +1,15 @@
 //Elaborar una función que reciba un array de enteros y que invierta la primera
 //posición por la segunda posición
-import java.util.*
 
 fun main(){
-    println(InvertirPos(intArrayOf(10,2,32)))
+    val arreglo = intArrayOf(1, 2, 3, 4, 5)
+    invertirPos(arreglo)
+    println(arreglo.joinToString(" "))
 }
 
-fun InvertirPos(arreglo : IntArray){
-    arreglo[1] = arreglo[0].also {arreglo[0] = arreglo[1]}
+fun invertirPos(arreglo: IntArray) {
+    if (arreglo.size < 2) return
+    val temp = arreglo[0]
+    arreglo[0] = arreglo[1]
+    arreglo[1] = temp
 }
