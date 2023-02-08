@@ -6,11 +6,7 @@ fun main() {
    print(determinarNumero(15,17,22))
 }
 
-fun determinarNumero(n1:Int,n2:Int,n3:Int): String {
+fun determinarNumero(n1:Int,n2:Int,n3:Int): Boolean {
     val result = setOf(n1%10, n2%10, n3%10).size == 3
-    if (result){
-        return "El último digito no se repite"
-    }else{
-        return "El último digito se repite"
-    }
+    return result
 }

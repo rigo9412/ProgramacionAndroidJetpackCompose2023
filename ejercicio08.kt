@@ -23,3 +23,18 @@ fun <T> diferencias(vararg array: List<T>) {
     val diferencia = list.distinct()
     print (diferencia)
 }
+
+fun main() {
+   print(diferencias(arrayOf(3),arrayOf(1,2,3,4,0,0,"a","null"), arrayOf("2",1,0,"A",9,"NULL")).joinToString())
+   
+}
+fun diferencias(vararg array: Array<Any>) : Array<Any> {
+    val resultArray = mutableListOf<Any>()
+    val contains = mutableListOf<Any>()
+    for(item in array) contains.addAll(item)
+    
+    contains.groupBy{it.toString()}.forEach{
+        if(it.value.count() == 1) resultArray.add(it.key)
+    }
+    return resultArray.toTypedArray()
+}
