@@ -20,5 +20,7 @@ fun charReapeat(value: String): Unit {
             if(letras.containsKey('u') && ((aux >= 217 && aux <= 220) || (aux >= 249 && aux <= 252))) letras.put('u',letras.getValue('u')+1); 
         }
     }
-    print(letras.toSortedMap())
+    var res1 = letras.toSortedMap().toString().replace(Regex("[\\s{\\s}]"), "")
+    
+    return res1
 }
