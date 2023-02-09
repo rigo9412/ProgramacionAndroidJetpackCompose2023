@@ -1,26 +1,20 @@
 //Cree una función que tome dos o más arrays y devuelva una array de sus diferencias.
 //La array que se devuelve debe contener solo valores únicos (no duplicados).
 
-
+//ARREGLAR
 fun main() {
-   val lista1 = listOf(1,2,3,4,0,0,"a","null")
-   val lista2 = listOf("2",1,0,"A",9,"NULL")
-   noDuplicados(lista1,lista2)
+    val resultado = arrayUnico(
+    arrayOf(3),
+    arrayOf(1,2,3,4,0,0,"a","null"),
+    arrayOf("2",1,0,"A",9,"NULL"))
+   print(arrayUnico(arrayOf(resultado)))
 }
-
-fun <T> noDuplicados(vararg array: List<T>) {
-    var list = ArrayList<T>()
-    var x = 0
-    var index = 0
-    while(index < array.size){
-        while(x < array.get(index).size)
-        {
-        	list.add(array.get(index).get(x))
-        	x++
-    	}
-        index++
-        x=0
+fun arrayUnico(vararg array: Array<Any>) : String {
+    var x = ArrayList<Any>()
+    var y = ArrayList<Any>()
+    for(item in array) x.addAll(item)
+    x.groupBy{it.toString()
     }
-    val noDuplicados = list.distinct()
-    print(noDuplicados)
+    .forEach{ if(it.value.count() == 1) y.add(it.key)}
+    return (y.joinToString())
 }
