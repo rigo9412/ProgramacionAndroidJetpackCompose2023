@@ -22,7 +22,7 @@ fun isInLastDigit(x : Int, y : Int, z : Int) : Boolean{
             temp = temp / 10
         }
     }
-    return (ultimos.intersect(stack).count() != 0) || (setOf(x,y,z).size != 3)
+    return (ultimos.intersect(stack).count() != 0) || (setOf(x % 10,y % 10,z % 10).size != 3)
 }
 
 //Version 1
