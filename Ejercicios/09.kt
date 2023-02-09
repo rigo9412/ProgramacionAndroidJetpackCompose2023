@@ -5,37 +5,32 @@
 ///a) Modificar la función anterior y contar el número de pasos que le tomo llegar a 1, contar los números pares e impares.
 ///b) Modificar la función anterior para que reciba un segundo número entero y buscar si existe dentro de los pasos para llegar al número 1 y si lo encuentra,detener el proceso e indicar en que paso lo encontró.
 
-var pasos = 1
-var pares = 0
-var impares = 1
 fun aquiGeneroElString(n:Long, segundoNumero:Long) : String {
-    val result = proceso(n, segundoNumero)
-    
-    pasos = pares + impares
-    if(result != -1) {
-        println("NO SE ENCONTRO EL NUMERO " + segundoNumero)
-    }
-
-    return "PASO=" + pasos + ",PARES=" + pares + ",INPARES=" + impares
+    proceso(n, segundoNumero, 0, 1)
+    return ""
 }
 
-fun proceso(n:Long, segundoNumero:Long): Int {
+fun proceso(n:Long, segundoNumero:Long, pares:Int, impares:Int): Int {
     if(segundoNumero == n) {
-        pasos = pares + impares
+        var pasos = pares + impares + 1
         println("SE ENCONTRO EN EL NUMERO " + segundoNumero + " EN EL PASO:" + pasos)
-        return -1
+        print("PASO=" + pasos + ",PARES=" + pares + ",INPARES=" + impares)
+        return pasos
     } 
-    if(n == 1L) return 1
+    if(n == 1L) {
+        var pasos = pares + impares + 1
+        println("NO SE ENCONTRO EL NUMERO " + segundoNumero)
+        print("PASO=" + pasos + ",PARES=" + pares + ",INPARES=" + impares)
+        return pasos
+    }
 
     if(n%2 == 0L) {
-        pares++
-        return proceso(n / 2, segundoNumero)
+        return proceso(n / 2, segundoNumero, pares + 1, impares)
     } else {
-        impares++
-        return proceso(n * 3 + 1, segundoNumero)
+        return proceso(n * 3 + 1, segundoNumero, pares, impares+1)
     }
 }
 
 fun main() {
-    println(aquiGeneroElString(10_017_019_990_047_100,0))
+    println(aquiGeneroElString(10_017_019_990_047_100, 55))
 }
