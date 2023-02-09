@@ -6,24 +6,16 @@ fun main(args: Array<String>) {
         arrayOf("2",1,0,"A",9,"NULL")))
 }
 
+//[[3],[1,2,3,4,5,0,0],[2,1,0,A,9]]
+
 fun EliminarDuplicados(vararg arrays: Array<Any>): String {
     var listaArrays = arrays.toList()
-    var listaAuxiliar = listaArrays.get(0).toList()
     var listaCombinada = ArrayList<Any>()
 
+    //Crear la lista combinada de todos los arreglos
     for(i in 0 until listaArrays.size){
-        if (i == 0){
-            var listaCombinada = listaArrays.get(0).toList()
-        }else{
-            listaCombinada.addAll(listaArrays.get(i))
-        }
+        listaCombinada.addAll(listaArrays.get(i))
     }
-    for(i in 0 until listaArrays.size){
-        if(i == 0){
-            continue
-        }else{
-            listaCombinada = listaArrays.get(i).toList().minus(listaCombinada.toList()) as ArrayList<Any>
-        }
-    }
-    return(listaCombinada.toString())
+    
+    return(listaCombinada.distinct().toString())
 }
