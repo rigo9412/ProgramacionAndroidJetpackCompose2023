@@ -1,9 +1,5 @@
 fun main() {
-    var result = combineArrays(
-        arrayOf(3),
-        arrayOf(1,2,3,4,0,0,"a","null"),
-        arrayOf("2",1,0,"A",9,"NULL"))
-    result = DiferenciaArreglos(
+    var result = DiferenciaArreglos(
         arrayOf(3),
         arrayOf(1,2,3,4,0,0,"a","null"),
         arrayOf("2",1,0,"A",9,"NULL"))
@@ -37,5 +33,5 @@ fun DiferenciaArreglos(vararg arreglos: Array<out Any?>): Array<Any?> {
         val temp = arreglos[i].map { it.toString() }.toSet()
         set = ((set - temp) + (temp - set)).toSet()
     }
-    return arrayOf(set)
+    return set.toTypedArray()
 }
