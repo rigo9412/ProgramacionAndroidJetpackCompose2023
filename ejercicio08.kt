@@ -1,7 +1,7 @@
 //Cree una función que tome dos o más arrays y devuelva una array de sus diferencias.
 //La array que se devuelve debe contener solo valores únicos (no duplicados).
 
-//ARREGLAR
+
 fun main() {
     val resultado = arrayUnico(
     arrayOf(3),
