@@ -7,14 +7,16 @@
 // y si lo encuentra, detener el proceso e indicar en que paso lo encontró.
 fun main(args: Array<String>) {
     var numN = 50
-    parImpar(numN)
+    var numN2 = 76
+    parImpar(numN, numN2)
 }
 
-fun parImpar(numN : Int) : Int{
+fun parImpar(numN : Int, numN2: Int) : Int{
     var nuevoNumero = numN
     var pasos = 0
     var contPar = 0
     var contImpar = 0
+    val numbers = mutableListOf<Int>()
     while (nuevoNumero != 1)
     {
         if (nuevoNumero % 2 == 0 ) {
@@ -28,6 +30,11 @@ fun parImpar(numN : Int) : Int{
             println("Impar: El nuevo numero es: $nuevoNumero se multiplico y sumo 1")
         }
         pasos++
+        numbers.add(nuevoNumero)
+        if (numN2 in numbers){
+            println("Se encontro el numero $numN2")
+            break
+        }
     }
     println("---------------------------------------")
     println("Cantidad de pasos $pasos")
