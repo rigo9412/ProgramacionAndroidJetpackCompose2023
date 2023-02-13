@@ -4,10 +4,10 @@ sumamos 1, esta función se deberá detener cuando llegue a 1.
  */
 
 fun main() {
-   print(nameless(10_017_019_990_047_100))
+   print(numero9(10_017_019_990_047_100))
 }
 
-fun nameless(NumInicial : Long): Long{
+fun numero9(NumInicial : Long): Long{
     var N = NumInicial ; var i = 1.toLong()
     while (N != i){
         if (N%2 == i){
