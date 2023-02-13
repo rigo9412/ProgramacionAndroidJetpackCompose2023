@@ -66,9 +66,9 @@ fun BuscarNumero(n1:Long, n2:Long):String{
     }
     if(encuentra)
     {
-        return "SE ENCONTRO EN EL NUMERO $n1 EN EL PASO:$pasos"
+        return "SE ENCONTRO EN EL NUMERO $n2 EN EL PASO:$pasos"
     }
     else{
-        return "NO SE ENCONTRO EN EL NUMERO $n1"
+        return "NO SE ENCONTRO EN EL NUMERO $n2"
     }
 }
