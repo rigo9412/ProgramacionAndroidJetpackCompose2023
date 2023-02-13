@@ -1,10 +1,10 @@
 E j e r c i c i o    9
 
 fun main() {
-    println(ParImpar(10_017_019_990_047_100))
+    println(ParImpar1(10_017_019_990_047_100))
 }
 
-fun ParImpar(num:Long): Long {
+fun ParImpar1(num:Long): Long {
     var va = num
     var i = 1.toLong()
     while (va != i){
@@ -21,10 +21,10 @@ E j e r c i c i o    9 a
 
 
 fun main() {
-    println(ParImpar(10_017_019_990_047_100))
+    println(ParImpar2(10_017_019_990_047_100))
 }
 
-fun ParImpar(num:Long): String {
+fun ParImpar2(num:Long): String {
     var va = num
     var i = 1.toLong()
     var pasos = 1
@@ -52,10 +52,10 @@ E j e r c i c i o    9 b
 
 
 fun main() {
-    println(ParImpar(10_017_019_990_047_100,11272))
+    println(ParImpar3(10_017_019_990_047_100,11272))
 }
 
-fun ParImpar(num:Long, buscarNum:Long): String {
+fun ParImpar3(num:Long, buscarNum:Long): String {
     var va = num
     var i = 1.toLong()
     var pasos = 1
