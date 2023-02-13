@@ -52,7 +52,7 @@ E j e r c i c i o    9 b
 
 
 fun main() {
-    println(ParImpar3(10_017_019_990_047_100,11272))
+    println(ParImpar3(10_017_019_990_047_100,10_017_019_990_047_100))
 }
 
 fun ParImpar3(num:Long, buscarNum:Long): String {
@@ -60,7 +60,8 @@ fun ParImpar3(num:Long, buscarNum:Long): String {
     var i = 1.toLong()
     var pasos = 1
     while (va != i){
-        if(va%2 == i){
+        if(va == buscarNum) return "SE ENCONTRÓ EN EL NÚMERO "+buscarNum+" EN EL PASO:"+pasos
+        else if(va%2 == i){
             va = (va * 3) + 1
             pasos++
         } 
