@@ -38,5 +38,5 @@ fun ingresarNumeroB(value:Long, value2:Long):String{
        return "SE ENCONTRO EN EL NUMERO $value2 EN EL PASO:$contador"
     }
 	}
-    return numeroNuevo.toString()+ "\nPASO=$contador,PARES=$par,IMPARES=$impar"
+    return "NO SE ENCONTRO EN EL NUMERO $value2"
 }

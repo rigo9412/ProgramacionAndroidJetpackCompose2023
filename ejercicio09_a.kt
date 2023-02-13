@@ -5,14 +5,10 @@ fun main() {
 }
 
 fun ingresarNumeroA(value:Long):String{ 
-    var contador:Int=1
+    var contador=1
     var par=0
     var impar=0
-    if(value==1.toLong()){
-        return value.toString()
-        contador++
-    }
-    var numeroNuevo:Long=0
+    var numeroNuevo=0.toLong()
     if(value%2==0.toLong()){
        numeroNuevo=value/2
         contador++
@@ -33,5 +29,5 @@ fun ingresarNumeroA(value:Long):String{
         impar++
     }
 	}
-    return numeroNuevo.toString()+ "\nPASO=$contador,PARES=$par,IMPARES=$impar"
+    return "$numeroNuevo\nPASO=$contador,PARES=$par,IMPARES=$impar"
 }
