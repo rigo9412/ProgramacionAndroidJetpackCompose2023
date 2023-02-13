@@ -3,10 +3,10 @@
 //detener el proceso e indicar en que paso lo encontró.
 
 fun main() {
-    print(ingresarNumero(10_017_019_990_047_100,11272))
+    print(ingresarNumeroB(10_017_019_990_047_100,11272))
 }
 
-fun ingresarNumero(value:Long, value2:Long):String{ 
+fun ingresarNumeroB(value:Long, value2:Long):String{ 
     var contador:Int=1
     var par=0
     var impar=1

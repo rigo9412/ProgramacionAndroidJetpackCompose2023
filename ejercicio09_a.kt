@@ -1,10 +1,10 @@
 //a. Modificar la función anterior y contar el número de pasos que le tomo llegar a 1, contar los números pares e impares.
 
 fun main() {
-    print(buscarParOImpar(10_017_019_990_047_100))
+    print(ingresarNumeroA(10_017_019_990_047_100))
 }
 
-fun buscarParOImpar(value:Long):String{ 
+fun ingresarNumeroA(value:Long):String{ 
     var contador:Int=1
     var par=0
     var impar=0
