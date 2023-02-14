@@ -16,7 +16,7 @@ fun evaluarExpresion(expresion : String) : Double{
 }
 
 fun EvaluarExpresionPostfija(postfijo : ArrayDeque<String>) : Double{
-    val pila = ArrayDeque<Double>()
+    var pila = ArrayDeque<Double>()
     val operadores = mapOf("+" to { a: Double, b: Double -> a + b },
                            "-" to { a: Double, b: Double -> a - b },
                            "*" to { a: Double, b: Double -> a * b },
@@ -25,6 +25,25 @@ fun EvaluarExpresionPostfija(postfijo : ArrayDeque<String>) : Double{
                            "%" to { a: Double, b: Double -> a * b / 100 },
                            "S" to { a: Double, b: Double -> Math.sqrt(a) },
                            "^" to { a: Double, b: Double -> Math.pow(a, b) })
+
+    while(postfijo.size > 0){
+        var token = postfijo.removeLast()
+
+        if (token in operadores) {
+            val b = pila.pop()
+            val a = pila.pop()
+            if (token == "/" && b == 0.0) {
+                throw ArithmeticException("División por cero")
+            }
+            if (token == "S" && a < 0) {
+                throw ArithmeticException("Raíz cuadrada de un número negativo")
+            }
+            pila.push(operadores[token]!!(a, b))
+        } else {
+            pila.push(token.toDouble())
+        }
+    }
+    return pila.pop()
 }
 
 fun SepararExpresion(expr : String) : ArrayDeque<String>{
