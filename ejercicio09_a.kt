@@ -7,14 +7,14 @@ fun main() {
 fun ingresarNumeroA(value:Long):String{ 
     var contador=1
     var par=0
-    var impar=0
-    var numeroNuevo=0.toLong()
+    var impar=1
+    var numeroNuevo=value
     if(value%2==0.toLong()){
-       numeroNuevo=value/2
+       numeroNuevo=numeroNuevo/2
         contador++
         par++
     } else {
-        numeroNuevo=(value*3)+1
+        numeroNuevo=(numeroNuevo*3)+1
         contador++
         impar++
     }
