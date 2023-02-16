@@ -6,9 +6,7 @@ b. Agregar funcionalidad de raíz cuadrada */
 import java.util.ArrayDeque
 
 fun main(){
-    println(SepararExpresion("1 + 23 - (423.24+2)"))
-    println(ConvertirPostfijo(SepararExpresion("1 + 23 - (423.24+2)")))
-    print(evaluarExpresion("1 + 23 - (423.24+2)"))
+    print(evaluarExpresion("-1 + 2"))
 }
 
 fun evaluarExpresion(expresion : String) : Double{
@@ -23,14 +21,18 @@ fun EvaluarExpresionPostfija(postfijo : ArrayDeque<String>) : Double{
                            "/" to { a: Double, b: Double -> a / b },
                            "M" to { a: Double, b: Double -> a % b },
                            "%" to { a: Double, b: Double -> a * b / 100 },
-                           "S" to { a: Double, b: Double -> Math.sqrt(a) },
+                           "S" to { a: Double, _: Double -> Math.sqrt(a) },
                            "^" to { a: Double, b: Double -> Math.pow(a, b) })
 
     while(postfijo.size > 0){
         var token = postfijo.removeLast()
 
         if (token in operadores) {
-            val b = pila.pop()
+            if(pila.size == 1 && token == "-"){
+                pila.push(pila.pop() * -1)
+                continue
+            }
+            val b = if(token == "S") 0.0 else pila.pop()
             val a = pila.pop()
             if (token == "/" && b == 0.0) {
                 throw ArithmeticException("División por cero")
@@ -77,7 +79,7 @@ fun SepararExpresion(expr : String) : ArrayDeque<String>{
 }
 
 fun ConvertirPostfijo(expresion : ArrayDeque<String>) : ArrayDeque<String>{
-    val prioridad = mapOf("+" to 1, "-" to 1, "*" to 2, "/" to 2, "^" to 3, "M" to 2, "%" to 1, "S" to 4,"(" to 5,")" to 5)
+    val prioridad = mapOf("+" to 1, "-" to 1, "*" to 4, "/" to 4, "^" to 5, "M" to 4, "%" to 4, "S" to 3,"(" to 6,")" to 6)
     var operadores = ArrayDeque<String>()
     var resultado = ArrayDeque<String>()
 
@@ -108,7 +110,7 @@ fun ConvertirPostfijo(expresion : ArrayDeque<String>) : ArrayDeque<String>{
             }
         }
         else{ //ELSE, el token es un operador
-            //While el stack de operadores no este vacio y la prioridad del operador actual sea menor o 
+            //While el stack de operadores no este vacio y la prioridad del operador actual sea mayor o 
             //igual al ultimo del stack de operadores
             while(operadores.size > 0 && prioridad.getValue(token) >= prioridad.getValue(operadores.peek())){
                 resultado.push(operadores.pop())
