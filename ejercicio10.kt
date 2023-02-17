@@ -6,7 +6,7 @@ b. Agregar funcionalidad de raíz cuadrada */
 import java.util.ArrayDeque
 
 fun main(){
-    print(evaluarExpresion("1 + 2 * S(3 ^ 2)"))
+    print(evaluarExpresion("20 % 200"))
 }
 
 fun evaluarExpresion(expresion : String) : Double{
@@ -20,7 +20,7 @@ fun EvaluarExpresionPostfija(postfijo : ArrayDeque<String>) : Double{
                            "*" to { a: Double, b: Double -> a * b },
                            "/" to { a: Double, b: Double -> a / b },
                            "M" to { a: Double, b: Double -> a % b },
-                           "%" to { a: Double, b: Double -> a * b / 100 },
+                           "%" to { a: Double, b: Double -> a / b * 100 },
                            "S" to { a: Double, _: Double -> Math.sqrt(a) },
                            "^" to { a: Double, b: Double -> Math.pow(a, b) })
 
