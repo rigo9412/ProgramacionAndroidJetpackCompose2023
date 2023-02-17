@@ -6,7 +6,7 @@ b. Agregar funcionalidad de raíz cuadrada */
 import java.util.ArrayDeque
 
 fun main(){
-    print(evaluarExpresion("-1 + 2"))
+    print(evaluarExpresion("3.14 * 2^2"))
 }
 
 fun evaluarExpresion(expresion : String) : Double{
@@ -79,7 +79,7 @@ fun SepararExpresion(expr : String) : ArrayDeque<String>{
 }
 
 fun ConvertirPostfijo(expresion : ArrayDeque<String>) : ArrayDeque<String>{
-    val prioridad = mapOf("+" to 1, "-" to 1, "*" to 4, "/" to 4, "^" to 5, "M" to 4, "%" to 4, "S" to 3,"(" to 6,")" to 6)
+    val prioridad = mapOf("+" to 1, "-" to 1, "*" to 4, "/" to 4, "^" to 3, "M" to 4, "%" to 4, "S" to 3,"(" to 6,")" to 6)
     var operadores = ArrayDeque<String>()
     var resultado = ArrayDeque<String>()
 
