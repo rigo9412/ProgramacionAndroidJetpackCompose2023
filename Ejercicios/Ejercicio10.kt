@@ -3,12 +3,24 @@
 //porcentaje.
 //a. Agregar funcionalidad de jerarquía de operadores
 //b. Agregar funcionalidad de raíz cuadrada
+import kotlin.math.sqrt
 
 fun main(){
-    val resultado = calcularOperacion("((5*5)+(9*10))/2")
-    println(resultado)
+    println("Ingrese las operaciones, los signos son: ")
+    println("Suma = +, Resta = -, Producto = *, Division = /, Residuo = R -> (num R)")
+    println("Porcentaje = % -> (numero | porcentaje)")
+    println("Raiz = S -> (numero S) | (S numero)")
+    println("--------------------------------------------------------------")
+    print("Operacion: ")
+    val resultado = readln()
+    println(calcularOperacion(resultado))
+/*Ejemplos
+    "((5*5)+(9*10))/2"
+    "100 % 10"
+    "5R2"
+    "S81" ó "81S"
+*/
 }
-
 
 fun calcularOperacion(operacion: String): Double {
     val numeros = mutableListOf<Double>()
@@ -26,7 +38,7 @@ fun calcularOperacion(operacion: String): Double {
                 numeros.add(numStr.toDouble())
             }
 
-            operacion[indice] == '+' || operacion[indice] == '-' || operacion[indice] == '*' || operacion[indice] == '/' || operacion[indice] == '%' -> {
+            operacion[indice] == '+' || operacion[indice] == '-' || operacion[indice] == '*' || operacion[indice] == '/' || operacion[indice] == '%' || operacion[indice] == 'S' || operacion[indice] == 'R'-> {
                 operadores.add(operacion[indice++])
             }
 
@@ -35,10 +47,16 @@ fun calcularOperacion(operacion: String): Double {
             }
             operacion[indice] == ')' -> {
                 while (operadores.last() != '(') {
-                    val operador = operadores.removeLast()
-                    val num2 = numeros.removeLast()
-                    val num1 = numeros.removeLast()
-                    numeros.add(realizarOperacion(operador, num1, num2))
+                    if (operadores.last() == 'S'){
+                        val operador = operadores.removeLast()
+                        val num1 = numeros.removeLast()
+                        numeros.add(realizarOperacion(operador, num1))
+                    } else {
+                        val operador = operadores.removeLast()
+                        val num2 = numeros.removeLast()
+                        val num1 = numeros.removeLast()
+                        numeros.add(realizarOperacion(operador, num1, num2))
+                    }
                 }
                 operadores.removeLast()
                 indice++
@@ -47,28 +65,37 @@ fun calcularOperacion(operacion: String): Double {
                 indice++
             }
             else -> {
-                throw IllegalArgumentException("Caracter no válido")
+                throw IllegalArgumentException("Caracter no valido")
             }
         }
     }
 
     while (operadores.isNotEmpty()) {
-        val operador = operadores.removeLast()
-        val num2 = numeros.removeLast()
-        val num1 = numeros.removeLast()
-        numeros.add(realizarOperacion(operador, num1, num2))
+        if (operadores.last() == 'S'){
+            val operador = operadores.removeLast()
+            val num1 = numeros.removeLast()
+            numeros.add(realizarOperacion(operador, num1))
+        } else {
+            val operador = operadores.removeLast()
+            val num2 = numeros.removeLast()
+            val num1 = numeros.removeLast()
+            numeros.add(realizarOperacion(operador, num1, num2))
+        }
     }
 
     return numeros[0]
 }
 
-fun realizarOperacion(operador: Char, num1: Double, num2: Double): Double {
+fun realizarOperacion(operador: Char, num1: Double, num2: Double = 0.0): Double {
     return when (operador) {
+        //suma, resta, producto, division, residuo, porcentaje, raiz.
         '+' -> num1 + num2
         '-' -> num1 - num2
         '*' -> num1 * num2
         '/' -> num1 / num2
-        '%' -> num1 % num2
-        else -> throw IllegalArgumentException("Operador no válido")
+        'R' -> num1 % num2
+        '%' -> num1 * (num2/100)
+        'S' -> Math.sqrt(num1)
+        else -> throw IllegalArgumentException("Operador no valido")
     }
 }
