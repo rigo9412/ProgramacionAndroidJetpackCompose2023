@@ -8,6 +8,10 @@ b. Modificar la función anterior para que reciba un segundo número entero y
 buscar si existe dentro de los pasos para llegar al número 1 y si lo encuentra,
 detener el proceso e indicar en que paso lo encontró.*/
 
+
+//HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+//TO NOVIO ANDUVO AQUI MOVIENDO EL CODIGOOOOO
+//DKASKDASDASJDAS ;)
 fun main() {
     var numero1: Int
     print("Ingrese el numero 1: ")
@@ -38,7 +42,7 @@ fun parImparA(numero:Int): String {
 
 
     }
-    return ("Pasos$pasos \n" +
-            " numeros impares \n" +
-            " $impar numeros pares= $par")
+    return ("Pasos $pasos \n" +
+            "numeros impares = $impar \n" +
+            "numeros pares = $par \n")
 }
