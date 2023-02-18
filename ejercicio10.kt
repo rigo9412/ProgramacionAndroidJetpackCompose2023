@@ -6,7 +6,7 @@ Agregar funcionalidad de raíz cuadrada.
 import kotlin.math.sqrt
 
 fun main(){
-    println(resolverOperacion("((5*5)+(S25))/2"))
+    println(resolverOperacion("40R7"))
 }
 
 
@@ -24,7 +24,7 @@ fun resolverOperacion(operacion: String): Double {
                 }
                 listanumeros.add(numStr.toDouble())
             }
-            operacion[indice] == '+' || operacion[indice] == '-' || operacion[indice] == '*' || operacion[indice] == '/' || operacion[indice] == '%' || operacion[indice] == 'S' -> {
+            operacion[indice] == '+' || operacion[indice] == '-' || operacion[indice] == '*' || operacion[indice] == '/'|| operacion[indice] == 'R' || operacion[indice] == '%' || operacion[indice] == 'S' -> {
                 listaoperadores.add(operacion[indice++])
             }
             operacion[indice] == '(' -> {
@@ -77,7 +77,8 @@ fun calcularOperacion(operador: Char, num1: Double, num2: Double = 0.0): Double 
         '-' -> num1 - num2
         '*' -> num1 * num2
         '/' -> num1 / num2
-        '%' -> num1 % num2
+        'R' -> num1 % num2
+        '%' -> num1 * (num2/100)
         'S' -> Math.sqrt(num1)
         else -> throw IllegalArgumentException("Error: Operador no válido")
     }
