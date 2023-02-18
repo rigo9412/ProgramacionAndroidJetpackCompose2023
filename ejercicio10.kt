@@ -2,10 +2,11 @@
 // la operación solicitada son suma, resta, división, producto, residuo y porcentaje.
 // a.Agregar funcionalidad de jerarquía de operandos
 // b.Agregar funcionalidad de raíz cuadrada
+
 import kotlin.math.sqrt
 
 fun main(){
-    println(ejecutaroperador("10*2"))
+    println(ejecutaroperador("S9"))
 }
 
 fun ejecutaroperador(operador: String): Double {
@@ -66,7 +67,7 @@ fun verificarOperador(operador: Char, numero1: Double, numero2: Double = 0.0): D
     return when (operador) {
         '+' -> numero1 + numero2; '*' -> numero1 * numero2
         '/' -> numero1 / numero2; '-' -> numero1 - numero2
-        'R' -> numero1 % numero2; 'S' -> Math.sqrt(numero1)
+        'R' -> numero1 % numero2; 'S' -> sqrt(numero1)
         '%' -> numero1 * (numero2/100)
         else -> throw IllegalArgumentException("Error")
     }
