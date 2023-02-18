@@ -1,7 +1,6 @@
 /*Modificar la función anterior y contar el número de pasos que le tomo llegar a
 1, contar los números pares e impares.
  */
-
 fun main() {
    print(inicisoa(10_017_019_990_047_100))
 }
@@ -19,5 +18,5 @@ fun inicisoa(NumInicial : Long): String {
         par++
         pasos++
     }
-    return "PASO="+pasos+",PARES="+par+",INPARES="+impar
+    return "PASO="+pasos+",PARES="+par+",IMPARES="+impar
 }
