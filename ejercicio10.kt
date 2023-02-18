@@ -65,12 +65,12 @@ fun auxiliar(valor1:Double,valor2:Double,operador:Char):Double{
     return  when (operador) {
         '+' -> valor1 + valor2
         '-' -> valor1 - valor2
+         '/' -> valor1 / valor2
         '*' -> valor1 * valor2
-        '/' -> valor1 / valor2
          'M' -> valor1 % valor2
          '%' -> valor1 * (valor2/100)
         '^' -> Math.sqrt(valor1)
-     else -> throw IllegalArgumentException("Error: Operador no válido")
+     else -> throw IllegalArgumentException("No se encuentra el operador buscado")
         }
     
 }
