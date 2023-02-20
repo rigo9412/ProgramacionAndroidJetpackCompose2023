@@ -4,35 +4,53 @@
 import java.util.Arrays
 
 fun combinarArreglos(vararg arrays: Array<Any?>): Array<Any> {
-    val map :MutableMap<Any?, Any?> = mutableMapOf<Any?, Any?>()
+
+    //Primero convertimos los arreglos a arreglos de string
+    val listaConvertidos:mutableListOf<Array<String>>()
     for (it in arrays) {
-        for (i in it) {
-            map.put(i, 1)
-        }
+        val arregloAuxiliar: Array<String> = it.toList().map { i -> i.toString() }.toTypedArray()
+        listaConvertidos.add(arregloAuxiliar)
     }
 
-    val list = mutableListOf<Any>()
-    for(key in map.keys) {
-        if(key != null) {
-            list.add(key)  
-        }
+    //Despues interceptamos todos los arreglos convertidos
+    var interceptados = listaConvertidos[0]
+    for(i in 0 until listaConvertidos.size - 1){
+        val temp = listaConvertidos[i].toTypedArray().intersect(listaConvertidos[i + 1])
+        interceptados = interceptados.toTypedArray().intersect(temp)
+
+        
     }
 
-    return list.toTypedArray()
+    //Al final agregamos todos los elementos de cada arreglo, siempre y cuando no este en mi intercepcion
+    
+    // val list = mutableListOf<Any>()
+    // for(key in map.keys) {
+    //     if(key != null) {
+    //         list.add(key)  
+        
+        
+    //     }
+    // }
+
+    // return list.toTypedArray()
+    return arrayOf(1,2,3,4,5,"3","a")
 }
 
 fun main() {
-    println(
-            Arrays.toString(
-                    combinarArreglos(
-                            arrayOf(1, 2, 3),
-                            arrayOf(1, 2, null),
-                            arrayOf("a", "b", "c"),
-                            arrayOf("f", "g", "h"),
-                            arrayOf("f", "g", "null"),
-                            arrayOf("f", "g", "h"),
-                            arrayOf("a", "b", "c")
-                    )
-            )
-    )
+
+//   val firstArray = arrayOf(1,2,3,4,5,"3","a")
+//     val secondArray = arrayOf(2,5,6,7,"3",null)
+
+//     val dest: Array<String> = firstArray.toList().map { i -> i.toString() }.toTypedArray()
+//     val dest2: Array<String> = secondArray.toList()
+//         .map { i -> i.toString() }
+//         .toTypedArray()
+
+
+//     println(dest[1]+2)
+//     println(Arrays.toString(dest2))
+    // println(Arrays.toString(dest.intersect(dest2.toList()).toTypedArray()))
+
+    //Los elementos que solo estan una vez entre todos los arreglos
+    println(Arrays.toString(combinarArreglos(arrayOf(1,2,3,4,0,0,"a","null"), arrayOf("2",1,0,"A",9,"NULL"))))
 }

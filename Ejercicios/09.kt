@@ -10,6 +10,49 @@ fun aquiGeneroElString(n:Long, segundoNumero:Long) : String {
     return ""
 }
 
+fun aplicarJerarquiaInstruccion(instruccion: String): String {
+    val elementos = instruccion.split(" ").filter { it.isNotBlank() }
+    val longitud = elementos.size
+    if (elementos.contains("(")) {
+        for (pos in elementos.indices) {
+            val elemento = elementos[pos]
+
+            if (elemento == "(") {
+                var reemplazos = pos + 1
+                var operacionEntreParentesis = ""
+                var auxElemento: String
+                do {
+                    auxElemento = elementos[reemplazos]
+                    operacionEntreParentesis += "$auxElemento "
+                    reemplazos++
+                } while (auxElemento != ")")
+
+                operacionEntreParentesis = operacionEntreParentesis.replace(") ", "")
+
+                val elementosDentroDeParentesis = reemplazos - pos - 1
+
+                elementos[pos++] = aplicarJerarquiaInstruccion(operacionEntreParentesis)
+
+                while (elementosDentroDeParentesis-- > 0) elementos.removeAt(pos)
+            }
+        }
+    }    
+        
+    if (elemento == "+" || elemento == "-") {
+        val operacionPK = generarTokenOperacion(false)
+        auxOperacionesRealizadas.add("$operacionPK = ${elementos[pos - 1]} $elemento ${elementos[pos + 1]}")
+
+        elementos[pos - 1] = operacionPK
+
+        elementos.removeAt(pos)
+        elementos.removeAt(pos--)
+    }
+
+    return elementos[0]
+}
+
+
+
 fun proceso(n:Long, segundoNumero:Long, pares:Int, impares:Int): Int {
     if(segundoNumero == n) {
         var pasos = pares + impares + 1
