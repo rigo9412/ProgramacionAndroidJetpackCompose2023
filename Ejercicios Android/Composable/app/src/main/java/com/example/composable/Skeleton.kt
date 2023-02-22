@@ -1,9 +1,12 @@
 package com.example.composable
 
+import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -33,8 +36,10 @@ class Skeleton : ComponentActivity() {
 }
 
 @Composable
-fun SkeletonDraw() {
-    SkeletonBackground {
+fun SkeletonDraw(context: Context) {
+    SkeletonBackground(onClickE = {
+        MediaPlayer.create(context, R.raw.skeleton).start()
+    }) {
         ConstraintLayout(modifier = Modifier.fillMaxSize()) {
             val (eyes, nose, mouth) = createRefs()
             Row(
@@ -101,11 +106,12 @@ fun SkeltonMouth(modifier: Modifier) {
 
 
 @Composable
-fun SkeletonBackground(function: @Composable () -> Unit) {
+fun SkeletonBackground(onClickE: () -> Unit, function: @Composable () -> Unit) {
     Box(
         Modifier
             .background(baseGray)
             .size(400.dp)
+            .clickable { onClickE() }
     ) { function() }
 }
 
@@ -113,6 +119,6 @@ fun SkeletonBackground(function: @Composable () -> Unit) {
 @Composable
 fun DefaultPreview2() {
     ComposableTheme {
-        SkeletonDraw()
+
     }
 }

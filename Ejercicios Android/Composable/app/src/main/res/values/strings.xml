@@ -2,4 +2,5 @@
     <string name="app_name">Composable</string>
     <string name="title_activity_skeleton">Skeleton</string>
     <string name="title_activity_creeper">Creeper</string>
+    <string name="title_activity_pig">Pig</string>
 </resources>

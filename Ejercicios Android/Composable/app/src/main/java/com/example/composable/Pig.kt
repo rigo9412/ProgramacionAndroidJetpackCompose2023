@@ -1,21 +1,20 @@
 package com.example.composable
 
+import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.composable.ui.theme.ComposableTheme
@@ -23,7 +22,7 @@ import com.example.composable.ui.theme.basePink
 import com.example.composable.ui.theme.nosePink
 import com.example.composable.ui.theme.nosePinkDark
 
-class MainActivity : ComponentActivity() {
+class Pig : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -31,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colors.background
                 ) {
 
                 }
@@ -41,12 +40,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Pig() {
-    val ctx = LocalContext.current
-    PigBackground {
-        ConstraintLayout(modifier = Modifier.clickable(onClick = {
-            Toast.makeText(ctx, "Oink oink", Toast.LENGTH_LONG).show()
-        } ).fillMaxSize()) {
+fun Pig(context: Context) {
+    PigBackground(onClickE = {
+        MediaPlayer.create(context, R.raw.pig).start()
+    }) {
+        ConstraintLayout(
+            modifier = Modifier.fillMaxSize()
+        ) {
             val (eyes, nose) = createRefs()
             Row(
                 modifier = Modifier
@@ -54,7 +54,8 @@ fun Pig() {
                     .background(Color.Transparent)
                     .constrainAs(eyes) {
                         bottom.linkTo(nose.top)
-                    }, horizontalArrangement = Arrangement.SpaceBetween,
+                    },
+                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 PigEye(position = "left")
@@ -72,12 +73,12 @@ fun Pig() {
 }
 
 @Composable
-fun PigBackground(function: @Composable () -> Unit) {
+fun PigBackground(onClickE: () -> Unit, function: @Composable () -> Unit) {
     Box(
         Modifier
             .background(basePink)
             .size(400.dp)
-    ) { function() }
+            .clickable { onClickE() }) { function() }
 }
 
 @Composable
@@ -128,14 +129,4 @@ fun PigNostrils() {
             .width(50.dp)
             .height(50.dp)
     )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ComposableTheme {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            Pig()
-        }
-    }
 }

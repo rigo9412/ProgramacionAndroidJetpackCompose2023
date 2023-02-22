@@ -9,28 +9,13 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Composable"
+        android:theme="@style/Theme.SimonDice"
         tools:targetApi="31">
-        <activity
-            android:name=".Pig"
-            android:exported="false"
-            android:label="@string/title_activity_pig"
-            android:theme="@style/Theme.Composable" />
-        <activity
-            android:name=".Creeper"
-            android:exported="false"
-            android:label="@string/title_activity_creeper"
-            android:theme="@style/Theme.Composable" />
-        <activity
-            android:name=".Skeleton"
-            android:exported="false"
-            android:label="@string/title_activity_skeleton"
-            android:theme="@style/Theme.Composable" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Composable">
+            android:theme="@style/Theme.SimonDice">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

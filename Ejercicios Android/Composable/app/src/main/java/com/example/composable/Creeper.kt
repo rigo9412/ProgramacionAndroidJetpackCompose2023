@@ -1,9 +1,12 @@
 package com.example.composable
 
+import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -36,8 +39,10 @@ class Creeper : ComponentActivity() {
 }
 
 @Composable
-fun CreeperDraw() {
-    CreeperBackground {
+fun CreeperDraw(context: Context) {
+    CreeperBackground(onClickE = {
+        MediaPlayer.create(context, R.raw.creeper).start()
+    }) {
         ConstraintLayout(modifier = Modifier.fillMaxSize()) {
             val (eyes, mouth, mouthFront) = createRefs()
             Row(
@@ -70,11 +75,11 @@ fun CreeperDraw() {
 }
 
 @Composable
-fun CreeperBackground(function: @Composable () -> Unit) {
+fun CreeperBackground(onClickE: () -> Unit, function: @Composable () -> Unit) {
     Box(
         Modifier
             .background(baseGreen)
-            .size(400.dp)
+            .size(400.dp).clickable { onClickE() }
     ) { function() }
 }
 
@@ -203,6 +208,6 @@ fun CreeperMouthFront(modifier: Modifier) {
 @Composable
 fun DefaultPreview3() {
     ComposableTheme {
-        CreeperDraw()
+
     }
 }
