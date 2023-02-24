@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rigo.simondice.domain.models.Action
 import com.rigo.simondice.domain.models.Game
+import com.rigo.simondice.domain.models.Player
 import com.rigo.simondice.ui.theme.*
 import kotlinx.coroutines.delay
 
@@ -37,8 +38,8 @@ class MainActivity : ComponentActivity() {
             val yellowAudio: MediaPlayer by remember { mutableStateOf(MediaPlayer.create(this, R.raw.yellow)) }
             val greenAudio: MediaPlayer by remember { mutableStateOf(MediaPlayer.create(this, R.raw.green)) }
 
-            var currentActionIndexState by remember { mutableStateOf(game.currentActionIndex) }
-            var currentActionPlayerIndexState by remember { mutableStateOf(game.currentActionPlayerIndex) }
+            var currentActionSimonIndexState by remember { mutableStateOf(game.currentActionSimonIndex) }
+            var resultsxState by remember { mutableStateOf<Player?>(null) }
             var currentActionPlayer by remember { mutableStateOf(Action.NO_ACTION) }
             var currentActionOn by remember { mutableStateOf(false) }
             var startGameState by remember { mutableStateOf(game.started) }
@@ -50,9 +51,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    LaunchedEffect(currentActionIndexState) {
-                        if (startGameState && !currentActionOn) {
-                            when (game.getCurrentAction()) {
+                    LaunchedEffect(currentActionSimonIndexState) {
+                        val action = game.getCurrentAction()
+                        println("${action.toString()} = ${game.currentActionSimonIndex}")
+                        if (startGameState && !currentActionOn && !game.endSpeak) {
+                            when (action) {
                                 Action.PRESS_GREEN_BUTTON -> playAudio(greenAudio)
                                 Action.PRESS_RED_BUTTON -> playAudio(redAudio)
                                 Action.PRESS_YELLOW_BUTTON -> playAudio(yellowAudio)
@@ -61,13 +64,12 @@ class MainActivity : ComponentActivity() {
                                     //NO SUENA
                                 }
                             }
-
                             currentActionOn = true
                             delay(1000)
                             currentActionOn = false
                             game.moveToNextAction()
-                            currentActionIndexState = game.currentActionIndex
-                            //currentActionOn = false
+                            currentActionSimonIndexState = game.currentActionSimonIndex
+
                         }
                         startPlayState = game.endSpeak
                     }
@@ -87,18 +89,16 @@ class MainActivity : ComponentActivity() {
                             currentActionOn = true
                             delay(300)
                             currentActionOn = false
-                            currentActionPlayer = Action.NO_ACTION
-//                            currentActionOn = false
-//
-//                            currentActionPlayerIndexState = game.currentActionPlayerIndex
-//                            if(!game.validateAction(currentActionPlayer)){
-//                                println("END GAME")
-//                                game.end("dummy")
-//                                startGameState = game.started
-//                                currentActionIndexState = game.currentActionIndex
-//                            }
 
-                           // currentActionPlayerIndexState = game.currentActionPlayerIndex
+                            if(!game.validateAction(currentActionPlayer)){
+                                println("END GAME")
+                                resultsxState = game.end("dummy")
+                                startGameState = game.started
+                            }
+
+                            currentActionSimonIndexState = game.currentActionSimonIndex
+                            currentActionPlayer = Action.NO_ACTION
+
                         }
                     }
 
@@ -108,7 +108,6 @@ class MainActivity : ComponentActivity() {
                             game.getCurrentAction(),
                             actionPlayer = currentActionPlayer,
                             currentActionOn) {
-
                                 currentActionPlayer = it
 
 
@@ -116,7 +115,7 @@ class MainActivity : ComponentActivity() {
 
                         StartButton(startGameState, onStart = {
                             game.start()
-                            currentActionIndexState = game.currentActionIndex
+                            currentActionSimonIndexState = game.currentActionSimonIndex
                             startGameState = game.started
 
                         })
@@ -129,17 +128,23 @@ class MainActivity : ComponentActivity() {
                             Text(text = "ACTION SIMON ${game.getCurrentAction().toString()}")
                             Text(text = "ACTION ${currentActionPlayer.toString()}")
                             Text(text = "ACTION ON/OFF ${currentActionOn.toString()}")
-                            Text(text = "INDEX PLAYER ACTION ON/OFF ${currentActionPlayerIndexState.toString()}")
-                            Text(text = "INDEX SIMON ON/OFF ${currentActionIndexState.toString()}")
+                            Text(text = "INDEX PLAYER ACTION ON/OFF ${game.currentActionPlayerIndex.toString()}")
+                            Text(text = "INDEX SIMON ON/OFF ${currentActionSimonIndexState.toString()}")
                             Button(onClick = {
                                 game.end("dummy")
                                 startGameState = game.started
-                                currentActionIndexState = game.currentActionIndex
+                                currentActionSimonIndexState = game.currentActionSimonIndex
 
                             }) {
                                 Text(text = "RESET")
                             }
 
+                        if(resultsxState != null) {
+                            Text(text = "=======RESULTADOS=======")
+                            Text(text = resultsxState!!.name)
+                            Text(text = resultsxState!!.score.toString())
+                            Text(text = resultsxState!!.level.toString())
+                        }
 
                     }
                 }
@@ -253,13 +258,12 @@ fun ButtonAction(
             .padding(4.dp)
             .background(if (on) colorOn else colorOff)
             .clickable(
-            interactionSource = interactionSource,
-            indication = null
-        ) {
-          if(!on && enablePlay){
-              onClick(action)
-          }
-        },
+                interactionSource = interactionSource,
+                indication = null,
+                enabled = !on && enablePlay
+            ) {
+                onClick(action)
+            },
         contentAlignment = Alignment.Center
     ) {
         Text(text = colorText, fontWeight = FontWeight(900))
