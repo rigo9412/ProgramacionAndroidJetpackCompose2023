@@ -1,0 +1,24 @@
+Deadline 24 de febrero
+*¿Que es? (Explicación breve del proyecto)*
+Anonimus Chat es una aplicación para movil que permite la creación de salas de chats comunitarias a las que cualquier individuo con la aplicación y a una distancia de x metros de quien creó la sala puede unirse.
+
+*Hasta donde van a llegar (limites del proyecto)*
+Imagenes y videos no podrán enviarse a traves del chat, ya que este unicamente soportará texto
+La aplicación tendría un historial de mensajes de 2hrs, posterior a esto todos los mensajes son eliminados.
+Al entrar a la sala a cada usuario se le asignará un nombre aleatorio, esto con el fin de mantener el anonimato y evitar nombres inapropiados.
+El creador de la sala puede cerrarla en cualquier momento (en caso de que se desconecte, la sala igualmente se cerrará.)
+Cada sala tendrá un limite de 10 personas que pueden ingresar.
+
+*¿Que aplicaciones van a utilizar?*
+Figma
+Android Studio
+(Inserte aquí la API para la geolocalización)
+
+*Avances (Boceto del diseño, la estructura general, cosas así)*
+Pantalla de carga 
+Pantalla de inicio de sesión
+Pantalla de registro
+Pantalla para ver las salas a las que anteriormente te has unido(?)
+Ver perfil
+Pantalla de "buscando sala de chat"
+El chat
