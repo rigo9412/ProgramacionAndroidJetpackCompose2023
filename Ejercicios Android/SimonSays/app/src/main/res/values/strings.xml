@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SimonSays</string>
+    <string name="title_activity_pad">Pad</string>
+    <string name="title_activity_pad_button">PadButton</string>
+</resources>
