@@ -19,20 +19,14 @@ class TrapeziumShape(private val topWidth: Dp, private val bottomWidth: Dp, priv
         density: Density
     ): Outline {
         val path = Path().apply {
-
-            val topLeft = Offset(x = size.width / 2 - topWidth.value / 2, y = 0f)
-            val topRight = Offset(x = size.width / 2 + topWidth.value / 2, y = 0f)
-            val bottomLeft = Offset(x = size.width / 2 - bottomWidth.value / 2, y = height.value)
-            val bottomRight = Offset(x = size.width / 2 + bottomWidth.value / 2, y = height.value)
-
-            val cornerRadius = 10f
-            val arcWidth = bottomWidth.value - cornerRadius * 2
-            val arcTop = height.value - 10f
+            val mSize = 2
+            val topLeft = Offset(x = size.width / mSize - topWidth.value / mSize, y = 0f)
+            val topRight = Offset(x = size.width / mSize + topWidth.value / mSize, y = 0f)
+            val bottomLeft = Offset(x = size.width / mSize - bottomWidth.value / mSize, y = height.value)
+            val bottomRight = Offset(x = size.width / mSize + bottomWidth.value / mSize, y = height.value)
 
             moveTo(topLeft.x, topLeft.y)
-
             lineTo(topRight.x, topRight.y)
-
             lineTo(bottomRight.x, bottomRight.y)
             lineTo(bottomLeft.x, bottomLeft.y)
 

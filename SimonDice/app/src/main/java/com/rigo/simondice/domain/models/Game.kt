@@ -76,7 +76,6 @@ class Game() {
 
 
     private fun generateActions() {
-        //_maxSteps += INCREMENT_BY_LEVEL
         _listActions.clear()
         for (i in 1.. _maxSteps){
             _listActions.add(Action.values()[Random.nextInt(1, Action.values().count())])
@@ -84,6 +83,7 @@ class Game() {
     }
 
     private fun levelUp(){
+        _maxSteps += 1
         _level++
         _score += (INCREMENT_BY_SCORE * _level)
         _currentActionSimonIndex = -1

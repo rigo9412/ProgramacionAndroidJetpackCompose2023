@@ -43,32 +43,28 @@ class MainActivity : ComponentActivity() {
             val blueAudio: MediaPlayer by remember {
                 mutableStateOf(
                     MediaPlayer.create(
-                        this,
-                        R.raw.blue
+                        this, R.raw.blue
                     )
                 )
             }
             val redAudio: MediaPlayer by remember {
                 mutableStateOf(
                     MediaPlayer.create(
-                        this,
-                        R.raw.red
+                        this, R.raw.red
                     )
                 )
             }
             val yellowAudio: MediaPlayer by remember {
                 mutableStateOf(
                     MediaPlayer.create(
-                        this,
-                        R.raw.yellow
+                        this, R.raw.yellow
                     )
                 )
             }
             val greenAudio: MediaPlayer by remember {
                 mutableStateOf(
                     MediaPlayer.create(
-                        this,
-                        R.raw.green
+                        this, R.raw.green
                     )
                 )
             }
@@ -82,8 +78,7 @@ class MainActivity : ComponentActivity() {
             SimonDiceTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
                     LaunchedEffect(currentActionSimonIndexState) {
                         val action = game.getCurrentAction()
@@ -158,9 +153,11 @@ class MainActivity : ComponentActivity() {
                     Column(
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        Spacer(modifier = Modifier
-                            .height(20.dp)
-                            .fillMaxWidth())
+                        Spacer(
+                            modifier = Modifier
+                                .height(20.dp)
+                                .fillMaxWidth()
+                        )
                         SimonGame(
                             game = game,
                             results = resultsState,
@@ -169,13 +166,15 @@ class MainActivity : ComponentActivity() {
                         ) {
                             currentActionPlayer = it
                         }
-                        Spacer(modifier = Modifier
-                            .height(52.dp)
-                            .fillMaxWidth())
+                        Spacer(
+                            modifier = Modifier
+                                .height(14.dp)
+                                .fillMaxWidth()
+                        )
 
 
-                        if(!game.started){
-                            CustomButton("INICAR JUEGO", startGameState, onClick = {
+                        if (!game.started) {
+                            CustomButton("INICIAR JUEGO", startGameState, onClick = {
                                 game.start()
                                 currentActionSimonIndexState = game.currentActionSimonIndex
                                 startGameState = game.started
@@ -224,7 +223,7 @@ fun SimonGame(
 
     ) {
         Status(game, results)
-        Score(game,results)
+        Score(game, results)
         Pad(
             if (game.endSpeak) actionPlayer else game.getCurrentAction(),
             onCurrent,
@@ -254,7 +253,7 @@ fun Status(game: Game, results: Player?) {
 
 
 @Composable
-fun Score(game: Game,player: Player?) {
+fun Score(game: Game, player: Player?) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -262,7 +261,7 @@ fun Score(game: Game,player: Player?) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        if(player != null){
+        if (player != null) {
             Text(
                 text = "SCORE: ${player.score}",
                 color = Color.White,
@@ -275,7 +274,7 @@ fun Score(game: Game,player: Player?) {
                 fontSize = 24.sp,
                 fontWeight = FontWeight(900)
             )
-        }else{
+        } else {
             Text(
                 text = "SCORE: ${game.score}",
                 color = Color.White,
@@ -295,21 +294,16 @@ fun Score(game: Game,player: Player?) {
 
 @Composable
 fun Pad(
-    action: Action?,
-    onCurrent: Boolean,
-    enablePlay: Boolean,
-    onClick: (action: Action) -> Unit
+    action: Action?, onCurrent: Boolean, enablePlay: Boolean, onClick: (action: Action) -> Unit
 ) {
 
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
 
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
+            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
         ) {
             ButtonAction(
                 on = action == Action.PRESS_GREEN_BUTTON && onCurrent,
@@ -335,8 +329,7 @@ fun Pad(
         }
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
+            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
         ) {
             ButtonAction(
                 on = action == Action.PRESS_BLUE_BUTTON && onCurrent,
@@ -381,6 +374,8 @@ fun ButtonAction(
             .height(200.dp)
             .padding(4.dp)
             .rotate(rotate)
+            .border(4.dp,colorOn, shape = buttonShape)
+//            .background(if (on) colorOn else colorOff)
             .shadow(
                 elevation = 30.dp,
                 shape = buttonShape,
@@ -388,8 +383,7 @@ fun ButtonAction(
                 spotColor = Color.White
             )
             .background(
-                if (on) colorOn else colorOff,
-                buttonShape
+                if (on) colorOn else colorOff, buttonShape
             )
             .clickable(
                 interactionSource = interactionSource,
@@ -397,8 +391,7 @@ fun ButtonAction(
                 enabled = !on && enablePlay
             ) {
                 onClick(action)
-            },
-        contentAlignment = Alignment.Center
+            }, contentAlignment = Alignment.Center
     ) {
 //        Text(text = colorText, fontWeight = FontWeight(900), color = Color.White)
     }
@@ -406,17 +399,14 @@ fun ButtonAction(
 
 @Composable
 fun CustomButton(text: String, startGameState: Boolean, onClick: () -> Unit) {
-    TextButton(
-        modifier = Modifier
-            .padding(10.dp)
-            .height(80.dp)
-            .fillMaxWidth(),
+    TextButton(modifier = Modifier
+        .padding(10.dp)
+        .height(80.dp)
+        .fillMaxWidth(),
         border = BorderStroke(
-            width = 2.dp,
-            brush = Brush.horizontalGradient(
+            width = 2.dp, brush = Brush.horizontalGradient(
                 listOf(
-                    Color.Cyan,
-                    Color.Yellow
+                    Color.Cyan, Color.Yellow
                 )
             )
         ),
@@ -431,14 +421,9 @@ fun CustomButton(text: String, startGameState: Boolean, onClick: () -> Unit) {
 fun TitleShadow() {
     val offset = Offset(5.0f, 10.0f)
     Text(
-        text = "SIMON GAME",
-        color = Color.Yellow,
-        style = TextStyle(
-            fontSize = 60.sp,
-            shadow = Shadow(
-                color = Color.Cyan,
-                offset = offset,
-                blurRadius = 6f
+        text = "SIMON GAME", color = Color.Yellow, style = TextStyle(
+            fontSize = 60.sp, shadow = Shadow(
+                color = Color.Cyan, offset = offset, blurRadius = 6f
             )
         )
     )
