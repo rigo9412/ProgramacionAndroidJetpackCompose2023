@@ -5,6 +5,7 @@ import kotlin.random.Random
 class Game() {
     private val INCREMENT_BY_LEVEL = 1
     private val INCREMENT_BY_SCORE = 10
+    private var _endGame = false
     private var _maxSteps = 1
     private var _score = 0
     private var _level = 1
@@ -17,6 +18,7 @@ class Game() {
 
 
     val started get() = _listActions.isNotEmpty()
+    val endGame get() = _endGame
     val endSpeak get() = _listActions.isNotEmpty() && _listActions.lastIndex < _currentActionSimonIndex
     val currentActionSimonIndex get() = _currentActionSimonIndex
     val currentActionPlayerIndex get() = _currentActionPlayerIndex
@@ -41,6 +43,7 @@ class Game() {
     fun start() : Game{
         _score  = 0
         _level = 1
+        _endGame = false
         _currentActionPlayerIndex = 0
         _currentActionSimonIndex = 0
         generateActions()
