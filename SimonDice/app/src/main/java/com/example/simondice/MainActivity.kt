@@ -29,12 +29,19 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.simondice.domain.models.*
 import kotlinx.coroutines.delay
 
 import com.example.simondice.ui.theme.*
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 class MainActivity : ComponentActivity() {
     private val game = Game()
@@ -144,6 +151,27 @@ class MainActivity : ComponentActivity() {
                     }
 
                     Column() {
+                        Row(
+                            horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+                                .fillMaxWidth()
+                                .background(
+                                    Color.Black
+                                )
+                        ) {
+                            Text(
+                                text = "SCORE ${game.score}",
+                                fontFamily = FontFamily.SansSerif,
+                                fontStyle = FontStyle(2),
+                                color = Color.White
+                            )
+                            Text(text = "Simon Dice", fontStyle = FontStyle(1), fontFamily = FontFamily.Monospace, color = Color.White, fontWeight = FontWeight(36))
+                            Text(
+                                text = "LEVEL ${game.level}",
+                                fontFamily = FontFamily.SansSerif,
+                                fontStyle = FontStyle(2),
+                                color = Color.White
+                            )
+                        }
                         SimonGame(
                             startPlayState,
                             game.getCurrentAction(),
@@ -154,33 +182,37 @@ class MainActivity : ComponentActivity() {
 
 
                         }
+                        Column(modifier = Modifier
+                            .background(Color.Black)
+                            .fillMaxSize(), verticalArrangement = Arrangement.SpaceBetween) {
 
-                        StartButton(startGameState, onStart = {
-                            game.start()
-                            currentActionSimonIndexState = game.currentActionSimonIndex
-                            startGameState = game.started
 
-                        })
+                            StartButton(startGameState, onStart = {
+                                game.start()
+                                currentActionSimonIndexState = game.currentActionSimonIndex
+                                startGameState = game.started
 
-                        Text(text = "STATUS GAME $startGameState")
-                        Text(text = "STATUS PLAY GAME $startPlayState")
-                        Text(text = "SPEAK ${game.endSpeak}")
-                        Text(text = "SCORE ${game.score}")
-                        Text(text = "LEVEL ${game.level}")
-                        Text(text = "ACTION SIMON ${game.getCurrentAction().toString()}")
-                        Text(text = "ACTION ${currentActionPlayer.toString()}")
-                        Text(text = "ACTION ON/OFF ${currentActionOn.toString()}")
-                        Text(text = "INDEX PLAYER ACTION ON/OFF ${game.currentActionPlayerIndex.toString()}")
-                        Text(text = "INDEX SIMON ON/OFF ${currentActionSimonIndexState.toString()}")
-                        Button(onClick = {
-                            game.end("dummy")
-                            startGameState = game.started
-                            currentActionSimonIndexState = game.currentActionSimonIndex
+                            })
 
-                        }) {
-                            Text(text = "RESET")
+                            //Text(text = "STATUS GAME $startGameState")
+                            //Text(text = "STATUS PLAY GAME $startPlayState")
+                            //Text(text = "SPEAK ${game.endSpeak}")
+                            //Text(text = "SCORE ${game.score}")
+                            //Text(text = "LEVEL ${game.level}")
+                            //Text(text = "ACTION SIMON ${game.getCurrentAction().toString()}")
+                            //Text(text = "ACTION ${currentActionPlayer.toString()}")
+                            //Text(text = "ACTION ON/OFF ${currentActionOn.toString()}")
+                            //Text(text = "INDEX PLAYER ACTION ON/OFF ${game.currentActionPlayerIndex.toString()}")
+                            //Text(text = "INDEX SIMON ON/OFF ${currentActionSimonIndexState.toString()}")
+                            Button(modifier = Modifier.fillMaxWidth(), onClick = {
+                                game.end("dummy")
+                                startGameState = game.started
+                                currentActionSimonIndexState = game.currentActionSimonIndex
+
+                            }) {
+                                Text(text = "RESET")
+                            }
                         }
-
                         if (resultsxState != null) {
                             Text(text = "=======RESULTADOS=======")
                             Text(text = resultsxState!!.name)
@@ -329,7 +361,9 @@ fun ButtonAction(
 fun StartButton(startGameState: Boolean, onStart: () -> Unit) {
     Button(
         enabled = !startGameState,
-        onClick = { onStart() }) {
+        onClick = { onStart() },
+        modifier = Modifier.fillMaxWidth()
+    ) {
         Text(text = "Iniciar")
     }
 }
