@@ -18,7 +18,7 @@ val basePink = Color(0xFFEF9A9A)
 val nosePink = Color(0xFFFFCDD2)
 val nosePinkDark = Color(0xFF884B4A)
 
-// Skeleton
+// Skeleton 
 
 val baseGray = Color(155,155,155)
 val noseGray = Color(130,130,130)

@@ -1,3 +1,4 @@
+/*
 package com.example.practicasstudio
 
 import android.content.Intent
@@ -162,9 +163,10 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    }
+}
 
 
 
 
 
+*/
