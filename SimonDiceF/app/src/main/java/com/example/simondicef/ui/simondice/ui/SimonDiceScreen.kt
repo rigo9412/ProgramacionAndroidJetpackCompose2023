@@ -1,6 +1,7 @@
 package com.example.simondicef.ui.simondice.ui
 
 import android.content.Context
+import android.graphics.Paint.Align
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.SoundPool
@@ -9,6 +10,9 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.GenericShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -23,11 +27,14 @@ import androidx.compose.ui.unit.sp
 import com.example.simondicef.R
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import kotlinx.coroutines.launch
 
-@Preview
 @Composable
 fun MyPreview(){
     simonDiceScreen(viewModel = SimonDiceViewModel())
@@ -38,10 +45,10 @@ var b2Color = Color.Green
 var b3Color = Color.Red
 var b4Color = Color(0xFFDFD846)
 
-var b1ColorOn = Color(0xFF828EFF)
-var b2ColorOn = Color(0xFF9FF88F)
-var b3ColorOn = Color(0xFFFA8484)
-var b4ColorOn = Color(0xFFFFDE00)
+var b1ColorOn = Color(0xFFB1B8FF)
+var b2ColorOn = Color(0xFFC7FFBD)
+var b3ColorOn = Color(0xFFFFBEBE)
+var b4ColorOn = Color(0xFFFFF191)
 
 @Composable
 fun simonDiceScreen(viewModel: SimonDiceViewModel){
@@ -58,10 +65,14 @@ fun simonDiceScreen(viewModel: SimonDiceViewModel){
 fun simonDice(modifier: Modifier, viewModel: SimonDiceViewModel) {
     val score : Int by viewModel.score.observeAsState(0)
     val started : Boolean by viewModel.started.observeAsState(false)
+    val nivel : Int by viewModel.nivel.observeAsState(0)
 
     val coroutineScope = rememberCoroutineScope()
 
     Column(modifier = modifier){
+        Text(text = "Simon Dice", textAlign = TextAlign.Center, color = Color.White, fontSize =40.sp, fontWeight= FontWeight.Bold,
+        modifier = Modifier.align(Alignment.CenterHorizontally))
+        HeaderNivel(nivel)
         HeaderScore(score)
         Spacer(modifier = Modifier.padding(4.dp))
         simonDiceBlocks(Modifier.align(Alignment.CenterHorizontally),viewModel = viewModel)
@@ -89,6 +100,11 @@ fun botonEmpezar(started : Boolean, empezarJuego:() -> Unit){
 }
 
 @Composable
+fun HeaderNivel(nivel : Int) {
+    Text(text="Nivel: $nivel")
+}
+
+@Composable
 fun HeaderScore(score : Int) {
     Text(text="Puntaje: $score")
 }
@@ -108,7 +124,8 @@ fun simonDiceBlocks(modifier : Modifier, viewModel: SimonDiceViewModel){
     val b3Audio : MediaPlayer by remember{ mutableStateOf(MediaPlayer.create(context,R.raw.sfx3))}
     val b4Audio : MediaPlayer by remember{ mutableStateOf(MediaPlayer.create(context,R.raw.sfx4))}
 
-    Row(modifier = modifier.background(if(!isEnabled) Color.LightGray else MaterialTheme.colors.background)){
+    Row(modifier = modifier.clip(RoundedCornerShape(10.dp))
+    .background(if(!isEnabled) Color(0xFF777777) else MaterialTheme.colors.background)){
         Column() {
             ColorBlock(backColor = b1Color, b1ColorOn, text = "Azul",1, isSelected = isSelected1,isEnabled,b1Audio, viewModel)
             ColorBlock(backColor = b2Color, b2ColorOn,text = "Verde",2,isSelected = isSelected2,isEnabled,b2Audio, viewModel)
@@ -136,19 +153,67 @@ fun ColorBlock(backColor : Color,
     Box(
         modifier = Modifier
             .padding(10.dp)
+            .clip(RoundedCornerShape(25.dp))
             .background(if (isSelected) colorOn else backColor)
             .width(150.dp)
             .height(150.dp)
+            .clip(RoundedCornerShape(10.dp))
             .clickable {
-                if(isEnabled) {
+                if (isEnabled) {
+                    coroutineScope.launch{viewModel.selectShow(num)}
                     coroutineScope.launch { viewModel.onSelectChange(num) }
                     playSFX(audio)
                 }
             },
         contentAlignment = Alignment.Center
     ){
+        Text(text = text, textAlign = TextAlign.Center, color = Color.Black, fontSize =20.sp, fontWeight= FontWeight.Bold)
+    }
+}
+
+@Preview
+@Composable
+fun PreviewColorBlocks(){
+    Row(){
+        Column() {
+            PreviewColorBlock(backColor = b1Color, text = "Azul", TriangleShape,0f)
+            PreviewColorBlock(backColor = b2Color, text = "Verde", TriangleShape,180f)
+        }
+        Column() {
+            PreviewColorBlock(backColor = b3Color, text = "Rojo", TriangleShape,90f)
+            PreviewColorBlock(backColor = b4Color, text = "Amarillo", TriangleShape,180f)
+        }
+    }
+}
+
+@Composable
+fun PreviewColorBlock(backColor : Color,
+               text : String, shape : Shape,rotation : Float){
+    Box(
+        modifier = Modifier
+            .padding(10.dp)
+            .background(backColor)
+            .clip(shape)
+            .rotate(rotation)
+            .size(150.dp)
+            .clickable {
+            },
+        contentAlignment = Alignment.Center
+    ){
         Text(text = text, textAlign = TextAlign.Center, color = Color.White, fontSize =25.sp)
     }
+}
+
+
+private val TriangleShape = GenericShape {size, _ ->
+    // 1)
+    moveTo(size.width , 0f)
+
+    // 2)
+    lineTo(size.width, size.height)
+
+    // 3)
+    lineTo(0f, size.height)
 }
 
 fun playSFX(mp : MediaPlayer){

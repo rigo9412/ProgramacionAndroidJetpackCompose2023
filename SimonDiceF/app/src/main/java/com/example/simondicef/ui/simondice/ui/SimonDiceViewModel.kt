@@ -16,9 +16,13 @@ class SimonDiceViewModel : ViewModel(){
     val started : LiveData<Boolean> = _started
     private val _isInputEnabled = MutableLiveData<Boolean>()
     val isInputEnabled  : LiveData<Boolean> = _isInputEnabled
+    private val _nivel = MutableLiveData<Int>()
+    val nivel : LiveData<Int> = _nivel
 
     var difficulty = 1
     var lost = false
+    var count = 0
+    var scoreCounter = 0
 
     private val _tiempoRestante =  MutableLiveData<Long>()
     val tiempoRestante : LiveData<Long> = _tiempoRestante
@@ -38,8 +42,8 @@ class SimonDiceViewModel : ViewModel(){
     val isSelected4 : LiveData<Boolean> = _isSelected4
 
     suspend fun empezarJuego(){
-        empezarTurno()
         _started.value = true
+        empezarTurno()
     }
 
     suspend fun onSelectChange(num : Int) {
@@ -47,9 +51,18 @@ class SimonDiceViewModel : ViewModel(){
         checkSelected()
     }
 
+    suspend fun selectShow(num : Int){
+        when(num){
+            1 -> {_isSelected1.value = true; delay(500); _isSelected1.value = false;}
+            2 -> {_isSelected2.value = true; delay(500); _isSelected2.value = false;}
+            3 -> {_isSelected3.value = true; delay(500); _isSelected3.value = false;}
+            4 -> {_isSelected4.value = true; delay(500); _isSelected4.value = false;}
+        }
+    }
+
     suspend fun empezarTurno(){
         if(!lost) {
-            selectionSequence = List(difficulty) { Random.nextInt(1, 4) }
+            selectionSequence = List(difficulty) { Random.nextInt(1, 5) }
             selectionSequence += 1
             showSelection()
         }
@@ -57,7 +70,7 @@ class SimonDiceViewModel : ViewModel(){
 
     suspend fun showSelection(){
         _isInputEnabled.value = false
-        delay(timeMillis = 750)
+        delay(timeMillis = 1250)
         for(s in selectionSequence){
             when(s){
                 1 -> {_isSelected1.value = true; delay(750); _isSelected1.value = false; delay(300)}
@@ -82,8 +95,16 @@ class SimonDiceViewModel : ViewModel(){
                 }
                 counter += 1
             }
-            difficulty += 1
-            _score.value = difficulty - 1
+            if(count == 3) {
+                _nivel.value = difficulty
+                difficulty += 1
+                count == 0
+            }
+            else {
+                count += 1
+            }
+            scoreCounter += 1
+            _score.value = scoreCounter
             selectionSequence = listOf()
             selectedSequence = mutableListOf()
             empezarTurno()
@@ -98,6 +119,8 @@ class SimonDiceViewModel : ViewModel(){
         _isInputEnabled.value = false
         selectedSequence = mutableListOf()
         selectionSequence = listOf()
+        _nivel.value = 0
+        scoreCounter = 0
         difficulty = 0
         _score.value = 0
         _isSelected1.value = false
