@@ -1,7 +1,10 @@
 package com.example.pig
 
+import android.content.Context
+import android.media.MediaPlayer
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,14 +26,18 @@ import com.google.android.gms.maps.model.Cap
 @Composable
 fun DefaultPreviewCreeper() {
     PIGTheme {
-        HeadCreeper()
     }
 }
 
 @Composable
-fun HeadCreeper() {
+fun HeadCreeper(context : Context) {
     Column(modifier = Modifier
-        .fillMaxSize(),
+        .fillMaxSize()
+        .clickable {
+            MediaPlayer
+                .create(context, R.raw.creeper)
+                .start()
+        },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,) {
         Box(modifier = Modifier
