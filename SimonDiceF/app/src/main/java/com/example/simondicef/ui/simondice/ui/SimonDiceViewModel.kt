@@ -98,7 +98,7 @@ class SimonDiceViewModel : ViewModel(){
             if(count == 3) {
                 _nivel.value = difficulty
                 difficulty += 1
-                count == 0
+                count = 0
             }
             else {
                 count += 1
