@@ -5,19 +5,28 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Menu
+import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.lanazirot.simonsays.domain.model.Player
 import com.lanazirot.simonsays.domain.model.SimonColorPad
@@ -47,7 +56,7 @@ fun SimonSayGame(padViewModel: PadViewModel = viewModel()) {
         ) {
             val ctx = LocalContext.current
 
-           val blueAudio: MediaPlayer by remember {
+            val blueAudio: MediaPlayer by remember {
                 mutableStateOf(
                     MediaPlayer.create(
                         ctx,
@@ -82,14 +91,12 @@ fun SimonSayGame(padViewModel: PadViewModel = viewModel()) {
                     )
                 )
             }
-
-            //remember game status
             var gameStatus by remember { mutableStateOf(padState.value.gameStatus) }
             var currentColorToFlash by remember { mutableStateOf(SimonColorPad.NONE) }
 
             LaunchedEffect(padState.value.gameStatus) {
                 gameStatus = padState.value.gameStatus
-                when(padState.value.gameStatus) {
+                when (padState.value.gameStatus) {
                     GAME_OVER -> {
                         Toast.makeText(ctx, "Game Over", Toast.LENGTH_SHORT).show()
                     }
@@ -100,13 +107,15 @@ fun SimonSayGame(padViewModel: PadViewModel = viewModel()) {
                         delay(500)
                         for (step in padState.value.pad?.colorSequence!!) {
                             currentColorToFlash = step.color
-                            playSound(when(step.color) {
-                                SimonColorPad.BLUE -> blueAudio
-                                SimonColorPad.GREEN -> greenAudio
-                                SimonColorPad.RED -> redAudio
-                                SimonColorPad.YELLOW -> yellowAudio
-                                else -> blueAudio
-                            })
+                            playSound(
+                                when (step.color) {
+                                    SimonColorPad.BLUE -> blueAudio
+                                    SimonColorPad.GREEN -> greenAudio
+                                    SimonColorPad.RED -> redAudio
+                                    SimonColorPad.YELLOW -> yellowAudio
+                                    else -> blueAudio
+                                }
+                            )
                             delay(500)
                             currentColorToFlash = SimonColorPad.NONE
                             delay(500)
@@ -122,45 +131,103 @@ fun SimonSayGame(padViewModel: PadViewModel = viewModel()) {
             Column(
                 modifier = Modifier.padding(10.dp), verticalArrangement = Arrangement.SpaceEvenly
             ) {
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Simon Says",
+                        style = MaterialTheme.typography.h3,
+                        textAlign = TextAlign.Center,
+                        color = Color.White
+                    )
+                }
+
                 Row(
                     modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
                 ) {
                     Pad {
-                        Row(horizontalArrangement = Arrangement.Center) {
-                            PadButton(
-                                color = if(currentColorToFlash == SimonColorPad.GREEN) SimonColorPad.NONE else SimonColorPad.GREEN,
-                                modifier = Modifier,
-                                enabled = gameStatus == PLAYING
-                            ) {
-                                playSound(greenAudio)
-                                padViewModel.compareStep(StepColorAction(padState.value.currentStep, SimonColorPad.GREEN))
+                        ConstraintLayout {
+                            val (firstRow, secondRow, circle) = createRefs()
+
+
+                            Row(horizontalArrangement = Arrangement.Center,
+                                modifier = Modifier.constrainAs(firstRow) {
+                                    top.linkTo(parent.top)
+                                    start.linkTo(parent.start)
+                                    end.linkTo(parent.end)
+                                }) {
+                                PadButton(
+                                    color = if (currentColorToFlash == SimonColorPad.GREEN) SimonColorPad.NONE else SimonColorPad.GREEN,
+                                    modifier = Modifier.clip(RoundedCornerShape(topStart = 150.dp)),
+                                    enabled = gameStatus == PLAYING
+                                ) {
+                                    playSound(greenAudio)
+                                    padViewModel.compareStep(
+                                        StepColorAction(
+                                            padState.value.currentStep,
+                                            SimonColorPad.GREEN
+                                        )
+                                    )
+                                }
+                                PadButton(
+                                    color = if (currentColorToFlash == SimonColorPad.RED) SimonColorPad.NONE else SimonColorPad.RED,
+                                    modifier = Modifier.clip(RoundedCornerShape(topEnd = 150.dp)),
+                                    enabled = gameStatus == PLAYING
+                                ) {
+                                    playSound(redAudio)
+                                    padViewModel.compareStep(
+                                        StepColorAction(
+                                            padState.value.currentStep,
+                                            SimonColorPad.RED
+                                        )
+                                    )
+                                }
                             }
-                            PadButton(
-                                color = if (currentColorToFlash == SimonColorPad.RED) SimonColorPad.NONE else SimonColorPad.RED,
-                                modifier = Modifier,
-                                enabled = gameStatus == PLAYING
-                            ) {
-                                playSound(redAudio)
-                                padViewModel.compareStep(StepColorAction(padState.value.currentStep, SimonColorPad.RED))
+                            Row(horizontalArrangement = Arrangement.Center,
+                                modifier = Modifier.constrainAs(secondRow) {
+                                    top.linkTo(firstRow.bottom)
+                                    bottom.linkTo(parent.bottom)
+                                }) {
+                                PadButton(
+                                    color = if (currentColorToFlash == SimonColorPad.YELLOW) SimonColorPad.NONE else SimonColorPad.YELLOW,
+                                    modifier = Modifier.clip(RoundedCornerShape(bottomStart = 150.dp)),
+                                    enabled = gameStatus == PLAYING
+                                ) {
+                                    playSound(yellowAudio)
+                                    padViewModel.compareStep(
+                                        StepColorAction(
+                                            padState.value.currentStep,
+                                            SimonColorPad.YELLOW
+                                        )
+                                    )
+                                }
+                                PadButton(
+                                    color = if (currentColorToFlash == SimonColorPad.BLUE) SimonColorPad.NONE else SimonColorPad.BLUE,
+                                    modifier = Modifier.clip(RoundedCornerShape(bottomEnd = 150.dp)),
+                                    enabled = gameStatus == PLAYING
+                                ) {
+                                    playSound(blueAudio)
+                                    padViewModel.compareStep(
+                                        StepColorAction(
+                                            padState.value.currentStep,
+                                            SimonColorPad.BLUE
+                                        )
+                                    )
+                                }
                             }
-                        }
-                        Row(horizontalArrangement = Arrangement.Center) {
-                            PadButton(
-                                color = if (currentColorToFlash == SimonColorPad.YELLOW) SimonColorPad.NONE else SimonColorPad.YELLOW,
-                                modifier = Modifier,
-                                enabled = gameStatus == PLAYING
-                            ) {
-                                playSound(yellowAudio)
-                                padViewModel.compareStep(StepColorAction(padState.value.currentStep, SimonColorPad.YELLOW))
-                            }
-                            PadButton(
-                                color = if (currentColorToFlash == SimonColorPad.BLUE) SimonColorPad.NONE else SimonColorPad.BLUE,
-                                modifier = Modifier,
-                                enabled = gameStatus == PLAYING
-                            ) {
-                                playSound(blueAudio)
-                                padViewModel.compareStep(StepColorAction(padState.value.currentStep, SimonColorPad.BLUE))
-                            }
+
+                            Canvas(modifier = Modifier
+                                .size(125.dp)
+                                .clickable(onClick = {})
+                                .constrainAs(circle) {
+                                    top.linkTo(firstRow.top)
+                                    bottom.linkTo(secondRow.bottom)
+                                    start.linkTo(parent.start)
+                                    end.linkTo(parent.end)
+                                }, onDraw = {
+                                drawCircle(color = Color.Black)
+                            })
                         }
                     }
                 }
@@ -169,14 +236,14 @@ fun SimonSayGame(padViewModel: PadViewModel = viewModel()) {
                 ) {
                     Box(
                         modifier = Modifier
-                            .height(30.dp)
+                            .height(50.dp)
                             .width(200.dp)
-                            .background(color = MaterialTheme.colors.primary)
                     ) {
                         Text(
                             text = "Score: ${padState.value.player?.score ?: 0}",
-                            color = MaterialTheme.colors.onPrimary,
+                            color = Color.White,
                             textAlign = TextAlign.Center,
+                            fontSize = 30.sp,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .fillMaxHeight()
@@ -187,11 +254,22 @@ fun SimonSayGame(padViewModel: PadViewModel = viewModel()) {
                 Row(
                     modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
                 ) {
-                    Button(onClick = {
-                        padViewModel.gameStart(Player("Alan"))
-                    }, enabled = gameStatus == HOLD  || gameStatus == GAME_OVER) {
+                    Button(
+                        modifier = Modifier
+                            .height(100.dp)
+                            .width(250.dp)
+                            .shadow(10.dp)
+                            .clip(RoundedCornerShape(50.dp, 50.dp, 50.dp, 50.dp)),
+                        onClick = {
+                            padViewModel.gameStart(Player("Alan"))
+                            //playSound(startAudio)
+                        }, enabled = gameStatus == HOLD || gameStatus == GAME_OVER
+                    ) {
+                        Icon(Icons.Rounded.PlayArrow, contentDescription = "Localized description")
                         Text(
-                            text = "Start Game", fontFamily = MaterialTheme.typography.h1.fontFamily
+                            text = "Start Game",
+                            fontFamily = MaterialTheme.typography.h1.fontFamily,
+                            fontSize = 30.sp
                         )
                     }
                 }
@@ -199,6 +277,7 @@ fun SimonSayGame(padViewModel: PadViewModel = viewModel()) {
         }
     }
 }
+
 
 fun playSound(mediaPlayer: MediaPlayer) {
     if (!mediaPlayer.isPlaying) {

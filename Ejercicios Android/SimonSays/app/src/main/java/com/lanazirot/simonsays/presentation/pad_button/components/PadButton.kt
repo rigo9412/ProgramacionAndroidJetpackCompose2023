@@ -15,7 +15,6 @@ import com.lanazirot.simonsays.domain.model.SimonColorPad
 @Composable
 fun PadButton(
     color: SimonColorPad,
-    isFlashing: Boolean = false,
     enabled: Boolean = false,
     modifier: Modifier = Modifier,
     onClick: () -> Unit
@@ -23,7 +22,7 @@ fun PadButton(
     Box(
         modifier = modifier
             .background(color = color.color)
-            .size(100.dp)
+            .size(150.dp)
             .clickable(enabled = enabled, onClick = onClick)
     )
 }
