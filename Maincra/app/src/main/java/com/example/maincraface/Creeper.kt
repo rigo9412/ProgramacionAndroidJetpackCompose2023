@@ -1,6 +1,9 @@
 package com.example.maincraface
 
+import android.content.Context
+import android.media.MediaPlayer
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,13 +17,13 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun DefaultPreviewCreeper() {
-    HeadCreeper()
+    //HeadCreeper()
 }
 
 @Composable
-fun HeadCreeper()
+fun HeadCreeper(context: Context)
 {
-    Column(modifier = Modifier.fillMaxSize(),
+    Column(modifier = Modifier.fillMaxSize().clickable { MediaPlayer.create(context,R.raw.creeper).start() },
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

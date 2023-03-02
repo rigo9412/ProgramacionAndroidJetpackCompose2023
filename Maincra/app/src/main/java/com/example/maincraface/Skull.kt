@@ -1,6 +1,9 @@
 package com.example.maincraface
 
+import android.content.Context
+import android.media.MediaPlayer
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,13 +18,13 @@ import androidx.constraintlayout.compose.ConstraintLayout
 
 @Composable
 fun DefaultPreviewSkull() {
-       HeadSkull()
+       //HeadSkull()
 
 }
 @Composable
-fun HeadSkull(){
+fun HeadSkull(context: Context){
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().clickable { MediaPlayer.create(context,R.raw.skeleton).start() },
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
