@@ -25,15 +25,26 @@ class GatoViewModel : ViewModel() {
 
 
     fun colocarValorJugadorAGatoArray(fila: Int, columna: Int) {
-        Log.d("GatoViewModel", "Antes gatoArray: ${_gato.value.player}")
-        _gato.value = _gato.value.copy(
+        //Change player if X then put O and viceversa
+      _gato.value = GatoState(
+            gatoArray = _gato.value.gatoArray.apply {
+                this[fila][columna] = _gato.value.player
+            },
+            isDraw = false,
             player = if (_gato.value.player == "X") "O" else "X",
-            isDraw = _gato.value.isDraw,
-            winner = _gato.value.winner,
-            isGameOver = _gato.value.isGameOver,
-            gatoArray = _gato.value.gatoArray
+            winner = null,
+            isGameOver = false
         )
-        Log.d("GatoViewModel", "Despues gatoArray: ${_gato.value.player}")
+    }
+
+    fun resetGame(){
+        _gato.value = GatoState(
+            gatoArray = arrayOf( arrayOf("","",""), arrayOf("","",""), arrayOf("","","")),
+            isDraw = false,
+            player = "X",
+            winner = null,
+            isGameOver = false
+        )
     }
 
 
