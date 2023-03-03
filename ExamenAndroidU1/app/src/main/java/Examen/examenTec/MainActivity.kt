@@ -7,13 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import Examen.examenTec.ui.theme.ExamenTheme
 import android.app.Activity
-import android.app.AlertDialog
-import android.app.GameState
-import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -29,9 +24,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            val matriz = Array(3) { arrayOfNulls<String>(3) }
+            var tabla by remember {mutableStateOf(mutableListOf<MutableList<String>>(mutableListOf<String>("","",""),mutableListOf<String>("","",""),mutableListOf<String>("","","")))}
+            //val matriz = Array(3) { arrayOfNulls<String>(3) }
             val interactionSource = remember { MutableInteractionSource() }
-            //val isPressed by interactionSource.collectIsPressedAsState()
+            var jugador by remember { mutableStateOf( true)}
+            var ganador by remember { mutableStateOf("")}
+
+
 
             ExamenTheme {
                 Surface(
@@ -39,12 +38,17 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     Iniciar()
-                    Gato()
+                    Gato(tabla, jugador) {
+                        jugador = !jugador
+                        ganador = ObtenerGanador(tabla)
+                    }
+                    Text(text="Empate")
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun Iniciar() {
@@ -77,53 +81,88 @@ fun Iniciar() {
 }
 
 @Composable
-fun Gato(){
-    var x = mutableListOf<String>()
+fun Gato(tabla: MutableList<MutableList<String>> , jugador: Boolean, cambiojugador: () -> Unit){
+
     Column(){
         Text(text = "Juego Del Gato", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 45.sp, modifier = Modifier
             .align(Alignment.CenterHorizontally)
             .padding(20.dp)
         )
         Row(modifier = Modifier.align(CenterHorizontally)){
-            x.add(Cuadro())
-            x.add(Cuadro())
-            x.add(Cuadro())
+            (Cuadro(0,0,tabla,jugador, cambiojugador))
+            (Cuadro(0,1,tabla,jugador, cambiojugador))
+            (Cuadro(0,2,tabla,jugador, cambiojugador))
         }
         Row(modifier = Modifier.align(CenterHorizontally))
         {
-            x.add(Cuadro())
-            x.add(Cuadro())
-            x.add(Cuadro())
+            (Cuadro(1,0,tabla,jugador, cambiojugador))
+            (Cuadro(1,1,tabla,jugador, cambiojugador))
+            (Cuadro(1,2,tabla,jugador, cambiojugador))
         }
         Row(modifier = Modifier.align(CenterHorizontally)){
-            x.add(Cuadro())
-            x.add(Cuadro())
-            x.add(Cuadro())
+            (Cuadro(2,0,tabla,jugador, cambiojugador))
+            (Cuadro(2,1,tabla,jugador, cambiojugador))
+            (Cuadro(2,2,tabla,jugador, cambiojugador))
         }
 
     }
 }
-var x = 1
 
 @Composable
-fun Cuadro() :String {
+fun Cuadro(x:Int, y:Int, tabla: MutableList<MutableList<String>>, jugador: Boolean, cambiojugador:() -> Unit) :String {
     var buttonState by remember { mutableStateOf("") }
     Button(
         onClick = {
-            buttonState = if (buttonState == "" && (x%2!=0)) "X" else "0"
+            // poner en la mariz en la posicion x,y el valor de button state
+            if(tabla[x][y] == "") {
+                tabla[x][y] = if (jugador) "x" else "o"
+                cambiojugador()
+            }
+
+
         },
         modifier = Modifier
             .padding(5.dp)
     ) {
-        Text(text = buttonState)
-        x++
+        Text(text = tabla[x][y])
     }
     return buttonState
 }
+
+fun ObtenerGanador(gameState: MutableList<MutableList<String>>): String {
+    for (row in gameState) {
+        if (row[0] != "" && row[0] == row[1] && row[1] == row[2]) {
+            return row[0]
+        }
+    }
+
+    for (col in 0..2) {
+        if (gameState[0][col] != "" && gameState[0][col] == gameState[1][col] && gameState[1][col] == gameState[2][col]) {
+            return gameState[0][col]
+        }
+    }
+
+    if (gameState[0][0] != "" && gameState[0][0] == gameState[1][1] && gameState[1][1] == gameState[2][2]) {
+        return gameState[0][0]
+    }
+    if (gameState[0][2] != "" && gameState[0][2] == gameState[1][1] && gameState[1][1] == gameState[2][0]) {
+        return gameState[0][2]
+    }
+
+    for (row in gameState) {
+        for (cell in row) {
+            if (cell == "") {
+                return ""
+            }
+        }
+    }
+    return "Empate"
+}
+
+
 
 
 @Preview (showBackground = true)
 @Composable
 fun PreviewGato(){
-    Gato()
 }
