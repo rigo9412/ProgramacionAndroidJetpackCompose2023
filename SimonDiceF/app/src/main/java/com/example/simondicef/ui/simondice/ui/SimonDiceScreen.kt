@@ -29,6 +29,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.text.font.FontWeight
@@ -127,12 +128,12 @@ fun simonDiceBlocks(modifier : Modifier, viewModel: SimonDiceViewModel){
     Row(modifier = modifier.clip(RoundedCornerShape(10.dp))
     .background(if(!isEnabled) Color(0xFF777777) else MaterialTheme.colors.background)){
         Column() {
-            ColorBlock(backColor = b1Color, b1ColorOn, text = "Azul",1, isSelected = isSelected1,isEnabled,b1Audio, viewModel)
-            ColorBlock(backColor = b2Color, b2ColorOn,text = "Verde",2,isSelected = isSelected2,isEnabled,b2Audio, viewModel)
+            ColorBlock(backColor = b1Color, b1ColorOn, text = "Azul",1, isSelected = isSelected1,isEnabled,b1Audio, viewModel, shape = QuarterCircleShape,0f)
+            ColorBlock(backColor = b2Color, b2ColorOn,text = "Verde",2,isSelected = isSelected2,isEnabled,b2Audio, viewModel, shape = QuarterCircleShape,-90f)
         }
         Column() {
-            ColorBlock(backColor = b3Color, b3ColorOn,text = "Rojo",3,isSelected = isSelected3,isEnabled,b3Audio, viewModel)
-            ColorBlock(backColor = b4Color, b4ColorOn,text = "Amarillo",4,isSelected= isSelected4,isEnabled,b4Audio, viewModel)
+            ColorBlock(backColor = b3Color, b3ColorOn,text = "Rojo",3,isSelected = isSelected3,isEnabled,b3Audio, viewModel, shape =  QuarterCircleShape,90f)
+            ColorBlock(backColor = b4Color, b4ColorOn,text = "Amarillo",4,isSelected= isSelected4,isEnabled,b4Audio, viewModel, shape =  QuarterCircleShape,180f)
         }
     }
 }
@@ -145,29 +146,30 @@ fun ColorBlock(backColor : Color,
                isSelected : Boolean,
                isEnabled : Boolean,
                audio : MediaPlayer,
-               viewModel: SimonDiceViewModel){
+               viewModel: SimonDiceViewModel,
+               shape : Shape,
+               rotation : Float){
     if(isSelected){
         playSFX(audio)
     }
     val coroutineScope = rememberCoroutineScope()
-    Box(
-        modifier = Modifier
-            .padding(10.dp)
-            .clip(RoundedCornerShape(25.dp))
-            .background(if (isSelected) colorOn else backColor)
-            .width(150.dp)
-            .height(150.dp)
-            .clip(RoundedCornerShape(10.dp))
-            .clickable {
-                if (isEnabled) {
-                    coroutineScope.launch{viewModel.selectShow(num)}
-                    coroutineScope.launch { viewModel.onSelectChange(num) }
-                    playSFX(audio)
-                }
-            },
-        contentAlignment = Alignment.Center
-    ){
-        Text(text = text, textAlign = TextAlign.Center, color = Color.Black, fontSize =20.sp, fontWeight= FontWeight.Bold)
+    Box(modifier = Modifier.rotate(rotation)) {
+        Box(
+            modifier = Modifier
+                .padding(5.dp)
+                .clip(shape)
+                .background(if (isSelected) colorOn else backColor)
+                .size(150.dp)
+                .clickable {
+                    if (isEnabled) {
+                        coroutineScope.launch { viewModel.selectShow(num) }
+                        coroutineScope.launch { viewModel.onSelectChange(num) }
+                        playSFX(audio)
+                    }
+                },
+            contentAlignment = Alignment.Center
+        ) {
+        }
     }
 }
 
@@ -176,12 +178,12 @@ fun ColorBlock(backColor : Color,
 fun PreviewColorBlocks(){
     Row(){
         Column() {
-            PreviewColorBlock(backColor = b1Color, text = "Azul", TriangleShape,0f)
-            PreviewColorBlock(backColor = b2Color, text = "Verde", TriangleShape,180f)
+            PreviewColorBlock(backColor = b1Color, text = "Azul", QuarterCircleShape,0f)
+            PreviewColorBlock(backColor = b2Color, text = "Verde", QuarterCircleShape,-90f)
         }
         Column() {
-            PreviewColorBlock(backColor = b3Color, text = "Rojo", TriangleShape,90f)
-            PreviewColorBlock(backColor = b4Color, text = "Amarillo", TriangleShape,180f)
+            PreviewColorBlock(backColor = b3Color, text = "Rojo", QuarterCircleShape,90f)
+            PreviewColorBlock(backColor = b4Color, text = "Amarillo", QuarterCircleShape,180f)
         }
     }
 }
@@ -189,18 +191,18 @@ fun PreviewColorBlocks(){
 @Composable
 fun PreviewColorBlock(backColor : Color,
                text : String, shape : Shape,rotation : Float){
-    Box(
-        modifier = Modifier
-            .padding(10.dp)
-            .background(backColor)
-            .clip(shape)
-            .rotate(rotation)
-            .size(150.dp)
-            .clickable {
-            },
-        contentAlignment = Alignment.Center
-    ){
-        Text(text = text, textAlign = TextAlign.Center, color = Color.White, fontSize =25.sp)
+    Box(modifier = Modifier.rotate(rotation)) {
+        Box(
+            modifier = Modifier
+                .padding(10.dp)
+                .clip(shape)
+                .background(backColor)
+                .size(150.dp)
+                .clickable {
+                },
+            contentAlignment = Alignment.Center
+        ) {
+        }
     }
 }
 
@@ -214,6 +216,18 @@ private val TriangleShape = GenericShape {size, _ ->
 
     // 3)
     lineTo(0f, size.height)
+}
+
+private val QuarterCircleShape = GenericShape { size, _ ->
+    moveTo(size.width,0f)
+    arcTo(
+        rect = Rect(0f, 0f, size.width*2, size.height*2),
+        startAngleDegrees = -90f,
+        sweepAngleDegrees = -90f,
+        forceMoveTo = false
+    )
+    lineTo(0f,size.height)
+    lineTo(size.width,size.height)
 }
 
 fun playSFX(mp : MediaPlayer){
