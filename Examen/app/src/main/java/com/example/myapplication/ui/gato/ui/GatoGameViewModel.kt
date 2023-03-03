@@ -87,7 +87,7 @@ class GatoGameViewModel : ViewModel(){
 
         // Check for tie
         if (!gridState.any { it.isBlank() }) {
-            gameOver("")
+            gameOver(isWinningMove())
         }
         Log.d("CURRENT PLAYER",_currentPlayer.value.toString())
         if(_currentPlayer.value == "Wario"){
@@ -121,6 +121,32 @@ class GatoGameViewModel : ViewModel(){
         _playing.value = false
         gridState = mutableListOf<String>("","","","","","","","","")
 
+    }
+
+    fun isWinningMove(): String {
+        // Check for horizontal wins
+        for (i in 0..6 step 3) {
+            if (gridState[i] == gridState[i+1] && gridState[i] == gridState[i+2]) {
+                return gridState[i]
+            }
+        }
+
+        // Check for vertical wins
+        for (i in 0..2) {
+            if (gridState[i] == gridState[i+3] && gridState[i] == gridState[i+6]) {
+                return gridState[i]
+            }
+        }
+
+        // Check for diagonal wins
+        if (gridState[0] == gridState[4] && gridState[0] == gridState[8]) {
+            return gridState[0]
+        }
+        if (gridState[2] == gridState[4] && gridState[2] == gridState[6]) {
+            return gridState[2]
+        }
+
+        return ""
     }
 
 }
