@@ -78,35 +78,35 @@ fun Iniciar() {
 
 @Composable
 fun Gato(){
+    var x = mutableListOf<String>()
     Column(){
         Text(text = "Juego Del Gato", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 45.sp, modifier = Modifier
             .align(Alignment.CenterHorizontally)
             .padding(20.dp)
         )
         Row(modifier = Modifier.align(CenterHorizontally)){
-            Cuadro()
-            Cuadro()
-            Cuadro()
+            x.add(Cuadro())
+            x.add(Cuadro())
+            x.add(Cuadro())
         }
         Row(modifier = Modifier.align(CenterHorizontally))
         {
-            Cuadro()
-            Cuadro()
-            Cuadro()
+            x.add(Cuadro())
+            x.add(Cuadro())
+            x.add(Cuadro())
         }
         Row(modifier = Modifier.align(CenterHorizontally)){
-            Cuadro()
-            Cuadro()
-            Cuadro()
+            x.add(Cuadro())
+            x.add(Cuadro())
+            x.add(Cuadro())
         }
-
 
     }
 }
 var x = 1
 
 @Composable
-fun Cuadro() {
+fun Cuadro() :String {
     var buttonState by remember { mutableStateOf("") }
     Button(
         onClick = {
@@ -118,6 +118,7 @@ fun Cuadro() {
         Text(text = buttonState)
         x++
     }
+    return buttonState
 }
 
 
