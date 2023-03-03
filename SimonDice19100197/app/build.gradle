@@ -8,7 +8,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.simondice19100197"
+        applicationId "tec.mx.simondice19100197"
         minSdk 28
         targetSdk 33
         versionCode 1
