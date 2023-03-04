@@ -81,6 +81,6 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     CabezasMinecraftTheme {
-        //HeadPig()
+        //HeadPig(context = applicationContext)
     }
 }

@@ -132,6 +132,6 @@ fun HeadPig(/*onClick: () -> Unit,*/ context: Context?){
 @Composable
 fun DefaultPreviewPig() {
     CabezasMinecraftTheme {
-        //HeadPig()
+        Face()
     }
 }
