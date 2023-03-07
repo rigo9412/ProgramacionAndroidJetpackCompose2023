@@ -20,16 +20,17 @@ import androidx.compose.ui.unit.sp
 
 var turno = mutableStateOf(true)
 
+var restart = mutableStateOf(true)
+
 var empate = mutableStateOf(false)
 
 var P1 = mutableStateOf(mutableListOf<Int>())
 var P2 = mutableStateOf(mutableListOf<Int>())
 
-var START = mutableStateOf("Start")
-
 var isGaming = mutableStateOf(false)
 
-var WIN = mutableStateOf(false)
+var START = mutableStateOf("Start")
+
 var X0 = mutableStateOf(mutableListOf<String>("","","","","","","","",""))
 
 var WinX = mutableStateOf(false)
@@ -46,10 +47,24 @@ var win8 = arrayOf(2,4,6)
 
 var arrays = arrayOf(win1,win2,win3,win4,win5,win6,win7,win8)
 
+var firstTime = mutableStateOf(0)
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            LaunchedEffect( restart.value ){
+                X0.value = mutableListOf<String>("","","","","","","","","")
+                empate.value = false
+                WinO.value = false
+                WinX.value = false
+
+                P1.value = mutableListOf<Int>()
+                P2.value = mutableListOf<Int>()
+
+                isGaming.value = true
+            }
+
             var reload by remember{mutableStateOf(true)}
 
             GatoTheme {
@@ -63,7 +78,8 @@ class MainActivity : ComponentActivity() {
                     }
 
                     Gato(reload = {reload = it}, X0.value)
-                    if (!isGaming.value){
+                    if (!isGaming.value && firstTime.value == 0){
+                        firstTime.value++
                         Button(onClick = { isGaming.value = true; START.value = ""},
                             colors = ButtonDefaults.buttonColors(disabledBackgroundColor = Color.Transparent)) {
                             Text(text = START.value , fontSize = 50.sp)
@@ -122,15 +138,18 @@ fun Gato(reload: (Boolean) -> Unit, X0: MutableList<String>) {
     Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.Center) {
         if (empate.value){
             Text(text = "Empate", fontSize = 40.sp)
+            isGaming.value =  false
         }
         if (WinX.value){
+            isGaming.value =  false
             Text(text = "Ganaron las XXX", fontSize = 40.sp)
         }
         else if (WinO.value){
+            isGaming.value =  false
             Text(text = "Ganaron las Hoyos", fontSize = 40.sp)
         }
     }
-    if (isGaming.value){
+    Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
             Column {
                 Box(
@@ -139,7 +158,7 @@ fun Gato(reload: (Boolean) -> Unit, X0: MutableList<String>) {
                         .height(100.dp)
                         .border(width = 1.dp, color = Color.White)
                         .background(Color.Gray)
-                        .clickable { triggerButton(0, reload)}
+                        .clickable { if (isGaming.value) triggerButton(0, reload) }
                 ){
                     Text(text = X0[0], fontSize = 50.sp)
                 }
@@ -149,7 +168,7 @@ fun Gato(reload: (Boolean) -> Unit, X0: MutableList<String>) {
                         .height(100.dp)
                         .border(width = 1.dp, color = Color.White)
                         .background(Color.Gray)
-                        .clickable { triggerButton(3, reload) }
+                        .clickable { if (isGaming.value)  triggerButton(3, reload) }
                 ){
                     Text(text = X0[3], fontSize = 50.sp )
                 }
@@ -159,7 +178,7 @@ fun Gato(reload: (Boolean) -> Unit, X0: MutableList<String>) {
                         .height(100.dp)
                         .border(width = 1.dp, color = Color.White)
                         .background(Color.Gray)
-                        .clickable { triggerButton(6, reload) }){
+                        .clickable { if (isGaming.value)  triggerButton(6, reload) }){
                     Text(text = X0[6], fontSize = 50.sp)
                 }
             }
@@ -170,7 +189,7 @@ fun Gato(reload: (Boolean) -> Unit, X0: MutableList<String>) {
                         .height(100.dp)
                         .border(width = 1.dp, color = Color.White)
                         .background(Color.Gray)
-                        .clickable { triggerButton(1, reload) }){
+                        .clickable { if (isGaming.value)  triggerButton(1, reload) }){
                     Text(text = X0[1], fontSize = 50.sp)
                 }
                 Box(
@@ -179,7 +198,7 @@ fun Gato(reload: (Boolean) -> Unit, X0: MutableList<String>) {
                         .height(100.dp)
                         .border(width = 1.dp, color = Color.White)
                         .background(Color.Gray)
-                        .clickable { triggerButton(4, reload) }){
+                        .clickable { if (isGaming.value) triggerButton(4, reload) }){
                     Text(text = X0[4], fontSize = 50.sp)
                 }
                 Box(
@@ -188,7 +207,7 @@ fun Gato(reload: (Boolean) -> Unit, X0: MutableList<String>) {
                         .height(100.dp)
                         .border(width = 1.dp, color = Color.White)
                         .background(Color.Gray)
-                        .clickable { triggerButton(7, reload) }){
+                        .clickable { if (isGaming.value) triggerButton(7, reload) }){
                     Text(text = X0[7] , fontSize = 50.sp)
                 }
             }
@@ -199,7 +218,7 @@ fun Gato(reload: (Boolean) -> Unit, X0: MutableList<String>) {
                         .height(100.dp)
                         .border(width = 1.dp, color = Color.White)
                         .background(Color.Gray)
-                        .clickable { triggerButton(2, reload) }){
+                        .clickable { if (isGaming.value) triggerButton(2, reload) }){
                     Text(text = X0[2], fontSize = 50.sp)
                 }
                 Box(
@@ -208,7 +227,7 @@ fun Gato(reload: (Boolean) -> Unit, X0: MutableList<String>) {
                         .height(100.dp)
                         .border(width = 1.dp, color = Color.White)
                         .background(Color.Gray)
-                        .clickable { triggerButton(5, reload) }){
+                        .clickable { if (isGaming.value) triggerButton(5, reload) }){
                     Text(text = X0[5], fontSize = 50.sp)
                 }
                 Box(
@@ -217,12 +236,20 @@ fun Gato(reload: (Boolean) -> Unit, X0: MutableList<String>) {
                         .height(100.dp)
                         .border(width = 1.dp, color = Color.White)
                         .background(Color.Gray)
-                        .clickable { triggerButton(8, reload) }){
+                        .clickable { if (isGaming.value) triggerButton(8, reload) }){
                     Text(text = X0[8], fontSize = 50.sp)
                 }
             }
         }
+        if (!isGaming.value){
+            Button(onClick = { restart.value = !restart.value }) {
+                Text(text = "Restart XD")
+            }
+        }
     }
+
+
+
 
 }
 
