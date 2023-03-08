@@ -7,11 +7,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import Examen.examenTec.ui.theme.ExamenTheme
 import android.app.Activity
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -25,12 +23,8 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             var tabla by remember {mutableStateOf(mutableListOf<MutableList<String>>(mutableListOf<String>("","",""),mutableListOf<String>("","",""),mutableListOf<String>("","","")))}
-            //val matriz = Array(3) { arrayOfNulls<String>(3) }
-            val interactionSource = remember { MutableInteractionSource() }
             var jugador by remember { mutableStateOf( true)}
             var ganador by remember { mutableStateOf("")}
-
-
 
             ExamenTheme {
                 Surface(
@@ -42,17 +36,19 @@ class MainActivity : ComponentActivity() {
                         jugador = !jugador
                         ganador = ObtenerGanador(tabla)
                     }
-                    Text(text="Empate")
+                    if (ganador != ""){
+                        Fin(ganador)
+                        tabla = mutableListOf<MutableList<String>>(mutableListOf<String>("","",""),mutableListOf<String>("","",""),mutableListOf<String>("","",""))
+                        jugador = true
+                    }
                 }
             }
         }
     }
 }
 
-
 @Composable
 fun Iniciar() {
-    val activity = (LocalContext.current as? Activity)
     MaterialTheme {
         Column {
             val openDialog = remember { mutableStateOf(true)  }
@@ -85,7 +81,7 @@ fun Gato(tabla: MutableList<MutableList<String>> , jugador: Boolean, cambiojugad
 
     Column(){
         Text(text = "Juego Del Gato", fontWeight = FontWeight.Bold, color = Color.Black, fontSize = 45.sp, modifier = Modifier
-            .align(Alignment.CenterHorizontally)
+            .align(CenterHorizontally)
             .padding(20.dp)
         )
         Row(modifier = Modifier.align(CenterHorizontally)){
@@ -118,8 +114,6 @@ fun Cuadro(x:Int, y:Int, tabla: MutableList<MutableList<String>>, jugador: Boole
                 tabla[x][y] = if (jugador) "x" else "o"
                 cambiojugador()
             }
-
-
         },
         modifier = Modifier
             .padding(5.dp)
@@ -159,10 +153,55 @@ fun ObtenerGanador(gameState: MutableList<MutableList<String>>): String {
     return "Empate"
 }
 
-
-
+@Composable
+fun Fin(ganador : String) {
+    val activity = (LocalContext.current as? Activity)
+    MaterialTheme {
+        Column {
+            val openDialog = remember { mutableStateOf(true)  }
+            if (openDialog.value){
+                AlertDialog(
+                    onDismissRequest = {
+                        openDialog.value = false
+                    },
+                    title = {
+                        Text(text = "¡Fin del juego!",fontSize = 35.sp,fontWeight = FontWeight(600))
+                    },
+                    text = {
+                        Text("\nGanador: "+ganador,fontSize = 20.sp, color = Color.Black)
+                    },
+                    confirmButton = {
+                        Button(
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue),
+                            onClick = {
+                                openDialog.value = false
+                            }) {
+                            Text("Reiniciar",fontSize = 20.sp, color = Color.White)
+                        }
+                    },
+                    dismissButton = {
+                        Button(
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue),
+                            onClick = {
+                                activity?.finish()
+                            }) {
+                            Text("Salir",fontSize = 20.sp, color = Color.White)
+                        }
+                    }
+                )
+            }
+        }
+    }
+}
 
 @Preview (showBackground = true)
 @Composable
 fun PreviewGato(){
+    var tabla by remember {mutableStateOf(mutableListOf<MutableList<String>>(mutableListOf<String>("","",""),mutableListOf<String>("","",""),mutableListOf<String>("","","")))}
+    var jugador by remember { mutableStateOf( true)}
+    var ganador by remember { mutableStateOf("")}
+    Gato(tabla, jugador) {
+        jugador = !jugador
+        ganador = ObtenerGanador(tabla)
+    }
 }
