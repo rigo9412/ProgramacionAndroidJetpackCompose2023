@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">RegistroCurp</string>
+    <string name="name">Nombres(s)</string>
+    <string name="ap_Materno">Primer apellido</string>
+    <string name="ap_Paterno">Segundo apellido Paterno</string>
+    <string name="birth">Fecha de nacimiento</string>
+    <string name="sexo">Sexo</string>
+    <string name="states">Estados</string>
+</resources>
