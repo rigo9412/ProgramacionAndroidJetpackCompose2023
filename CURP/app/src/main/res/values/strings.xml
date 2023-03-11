@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CURP</string>
+    <string name="name">Nombres(s)</string>
+    <string name="middle_lastname">Primer Apellido</string>
+    <string name="last_name">Segundo Apellido</string>
+    <string name="bitrh">Fecha de Nacimiento</string>
+    <string name="sexo">Sexo</string>
+    <string name="states">Estados</string>
+</resources>
