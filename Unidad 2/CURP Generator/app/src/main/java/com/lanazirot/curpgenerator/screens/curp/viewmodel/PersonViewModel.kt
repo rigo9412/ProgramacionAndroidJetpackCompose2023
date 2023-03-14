@@ -1,6 +1,6 @@
 package com.lanazirot.curpgenerator.screens.curp.viewmodel
 
-import android.util.Log
+
 import androidx.lifecycle.ViewModel
 import com.lanazirot.curpgenerator.domain.enums.blackListWords
 import com.lanazirot.curpgenerator.domain.models.Person
@@ -56,13 +56,12 @@ class PersonViewModel : ViewModel() {
 
     private fun digitoVerificador(curp: String): Int {
         val diccionario = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-        var suma = 0.0
+        var suma = 0
         for (i in 0 until 17) {
             suma += diccionario.indexOf(curp[i]) * (18 - i)
         }
-        val digito: Double = 10 - suma % 10
-        if (digito == 10.0) return 0
-        return abs(digito.toInt())
+        val mod = suma % 10
+        return if (mod == 0) 0 else 10 - mod
     }
 
     fun generateCURP(): String {
@@ -81,7 +80,8 @@ class PersonViewModel : ViewModel() {
         curp += state.surname.slice(1..2).replace(regex = Regex("[A|E|I|O|U]"), replacement = "")[0]
         curp += state.name.slice(1..2).replace(regex = Regex("[A|E|I|O|U]"), replacement = "")
         curp += if (state.birthDate.substring(0, 4).toInt() < 2000) "1" else "A"
+        curp = checkBlackListCURP(curp.replace("Ñ", "X").uppercase())
         curp += digitoVerificador(curp)
-        return checkBlackListCURP(curp.replace("Ñ", "X").uppercase())
+        return curp
     }
 }
