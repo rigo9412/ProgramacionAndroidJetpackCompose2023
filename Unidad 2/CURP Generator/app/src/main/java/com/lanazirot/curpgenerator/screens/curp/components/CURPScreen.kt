@@ -22,7 +22,10 @@ fun CURPScreen(personViewModel: PersonViewModel = PersonViewModel()) {
 
     //Focus manager
     val focusManager = LocalFocusManager.current
+
     val state by personViewModel.personState.collectAsState()
+    val uiState by personViewModel.uiState.collectAsState()
+
     var curpDialogOpened by remember { mutableStateOf(false) }
 
     CURPGeneratorTheme(darkTheme = false) {

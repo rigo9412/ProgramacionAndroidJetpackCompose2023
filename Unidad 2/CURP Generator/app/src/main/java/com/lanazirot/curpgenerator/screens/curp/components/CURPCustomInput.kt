@@ -22,6 +22,7 @@ fun CustomInput(
     maxLines: Int = 1,
     lastInput: Boolean = false,
     capitalization: KeyboardCapitalization = KeyboardCapitalization.None,
+    isError : Boolean = false,
     onValueChange: (String) -> Unit
 ) {
     OutlinedTextField(
@@ -35,6 +36,7 @@ fun CustomInput(
             keyboardType = if (numeric) KeyboardType.Number else KeyboardType.Text,
             imeAction = ImeAction.Done
         ),
+        isError = isError,
         singleLine = maxLines == 1,
         keyboardActions = KeyboardActions(
             onDone = {

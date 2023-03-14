@@ -16,11 +16,11 @@ import com.lanazirot.curpgenerator.domain.enums.State
 @Composable
 fun CustomInputDropdownStates(
     value: State = State.values()[0],
-    onValueChange: (State) -> Unit = {}
+    onValueChange: (State) -> Unit = {},
+    values: List<State> = State.values().toList()
 ) {
-    val states = State.values().toMutableList()
     var expanded by remember { mutableStateOf(false) }
-    var selectedType by remember { mutableStateOf(states[0]) }
+    var selectedType by remember { mutableStateOf(values[0]) }
     ExposedDropdownMenuBox(
         expanded = expanded,
         onExpandedChange = {
@@ -52,7 +52,7 @@ fun CustomInputDropdownStates(
                 expanded = false
             }
         ) {
-            states.forEach { state ->
+            values.forEach { state ->
                 DropdownMenuItem(
                     onClick = {
                         selectedType = state
