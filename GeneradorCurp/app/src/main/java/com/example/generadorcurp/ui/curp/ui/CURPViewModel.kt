@@ -47,21 +47,55 @@ class CURPViewModel : ViewModel() {
     }
 
     fun generarCurp() : String{
-        val vowels = listOf('a','e','i','o','u')
-
-        var curp = _primerApellido.value?.substring(0,1)
+        var curp = _primerApellido.value?.substring(0,2)
         curp += _segundoApellido.value?.get(0)
         curp += _nombre.value?.get(0)
-        curp += _fecha.value?.year.toString().substring(2,3)
-        curp += _fecha.value?.month.toString()
+        curp += _fecha.value?.year.toString().substring(2,4)
+        curp += _fecha.value?.monthValue.toString()
         curp += _fecha.value?.dayOfMonth.toString()
         curp += _sexo.value
         curp += _estado.value?.first
-        curp += _primerApellido.value?.substring(1)?.dropWhile { vowels.contains(it) }?.firstOrNull()
-        curp += _segundoApellido.value?.substring(1)?.dropWhile { vowels.contains(it) }?.firstOrNull()
-        curp += _nombre.value?.substring(1)?.dropWhile { vowels.contains(it) }?.firstOrNull()
+        curp += getInternalConsonant(_primerApellido.value!!)
+        curp += getInternalConsonant(_segundoApellido.value!!)
+        curp += getInternalConsonant(_nombre.value!!)
+        curp += if(_fecha.value!!.year < 2000) '0' else 'A'
+        curp += calcularUltimoDigitoCURP(curp!!)
 
         return curp!!
     }
+
+    fun getInternalConsonant(nombre : String) : Char{
+        val vowels = listOf('A','E','I','O','U')
+        var counter = 1
+        while(counter < nombre.length){
+            if(vowels.contains(nombre[counter])){
+                counter++
+                continue
+            }
+            break
+        }
+        return nombre[counter]
+    }
+
+    fun calcularUltimoDigitoCURP(curp: String): Int {
+        val pesos = intArrayOf(18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
+        var suma = 0
+
+        // Recorremos los primeros 17 caracteres de la CURP
+        for (i in 0 until 17) {
+            val c = curp[i]
+            val valor = when {
+                c.isLetter() -> c.toUpperCase() - 'A' + 1 // Letras
+                c.isDigit() -> c - '0' // Números
+                else -> 0 // Caracteres no válidos
+            }
+            suma += valor * pesos[i]
+        }
+
+        // Obtenemos el último dígito de la CURP
+        val residuo = suma % 10
+        return if (residuo == 0) 0 else 10 - residuo
+    }
+
 
 }
