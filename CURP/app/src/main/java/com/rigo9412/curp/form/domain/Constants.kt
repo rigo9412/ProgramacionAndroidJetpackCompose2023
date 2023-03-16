@@ -1,6 +1,8 @@
 package com.rigo9412.curp.form.domain
 
-val blackList = arrayListOf(
+import java.time.format.DateTimeFormatter
+
+val BLACK_LIST = arrayListOf(
     "BACA", "BAKA", "BUEI", "BUEY",
     "CACA", "CACO", "CAGA", "CAGO", "CAKA", "CAKO", "COGE", "COGI", "COJA", "COJE", "COJI", "COJO", "COLA", "CULO",
     "FALO", "FETO",
@@ -19,3 +21,11 @@ val blackList = arrayListOf(
     "WUEI", "WUEY"
 
 )
+
+val PATTERN_NAME = Regex("[a-zA-zñÑáéíóúÁÉÍÓÚÜ'° .,\\\\s]*")
+val COMPOSTION_NAME =  arrayListOf("MARIA", "MA.", "MA", "JOSE", "J", "J." )
+val PREPOSTION_CONJUNTION_CONTRADICTION = arrayListOf<String>("DA", "DAS", "DE", "DEL", "DER", "DI", "DIE", "DD", "EL", "LA", "LOS", "LAS", "LE", "LES", "MAC", "MC", "VAN", "VON", "Y", "J", "MA" );
+val VOCAL = "AEIOU";
+val CONSONANTS = " BCDFGHJKLMNÑPQRSTVXZWY";
+val FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+val FORMATTER_CURP = DateTimeFormatter.ofPattern("yyMMdd")

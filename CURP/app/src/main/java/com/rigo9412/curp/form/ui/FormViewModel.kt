@@ -1,55 +1,55 @@
 package com.rigo9412.curp.form.ui
-
+import android.os.Handler
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.rigo9412.curp.form.domain.blackList
-import com.rigo9412.curp.form.domain.estados
-import com.rigo9412.curp.form.domain.generos
+import com.rigo9412.curp.form.domain.*
 import com.rigo9412.curp.form.ui.FormUiState.Loaded
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import java.text.Normalizer
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.timerTask
 
-class FormViewModel: ViewModel() {
-    val PATTERN_NAME = Regex("[a-zA-zñÑáéíóúÁÉÍÓÚÜ'° .,\\\\s]*")
+//private val savedStateHandle: SavedStateHandle
+class FormViewModel(): ViewModel() {
 
-    private val COMPOSTION_NAME =  arrayListOf("MARIA", "MA.", "MA", "JOSE", "J", "J." )
-    private val PREPOSTION_CONJUNTION_CONTRADICTION = arrayListOf<String>("DA", "DAS", "DE", "DEL", "DER", "DI", "DIE", "DD", "EL", "LA", "LOS", "LAS", "LE", "LES", "MAC", "MC", "VAN", "VON", "Y", "J", "MA" );
-    private val VOCAL = "AEIOU";
-    private val CONSONANTS = " BCDFGHJKLMNÑPQRSTVXZWY";
-    private val FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-    private val FORMATTER_CURP = DateTimeFormatter.ofPattern("yyMMdd")
     private val _uiStateData = MutableStateFlow<CurpUiModel>(CurpUiModel())
     val uiStateData: StateFlow<CurpUiModel> = _uiStateData
 
-    private val _uiState = MutableStateFlow<FormUiState>(FormUiState.Empty)
+    private val _uiState = MutableStateFlow<FormUiState>( FormUiState.Init) //savedStateHandle["formState"] ?:
     val uiState: StateFlow<FormUiState> = _uiState
 
     init {
         initState()
     }
 
+     fun initState() {
 
-    private fun initState() {
-        //_uiState.value = FormUiState.Loading
-        _uiStateData.value = CurpUiModel(
-            isValid = true,
-            name= "RIGOBERTO",
-            middleName= "RAMOS",
-            lastname = "APARICIO",
-            birth = "1994-11-12",
-            state = Pair("TS","Tamaulipas"),
-            gender = Pair("H","Hombre"),
-            sexList = getGenders(),
-            statesList = getStates(),
-        )
-        _uiState.value = Loaded
+             _uiState.value = FormUiState.Loading("cargando...estamos trabajando...")
+             _uiStateData.value = CurpUiModel(
+                 isValid = true,
+                 name = "RIGOBERTO",
+                 middleName = "RAMOS",
+                 lastname = "APARICIO",
+                 birth = "1994-11-12",
+                 state = Pair("TS", "Tamaulipas"),
+                 gender = Pair("H", "Hombre"),
+                 sexList = getGenders(),
+                 statesList = getStates(),
+             )
+
+             Timer().schedule(timerTask {
+                 _uiState.value = FormUiState.Loaded
+
+             }, 3000)
     }
-
 
     fun onChangeName(name: String) {
        if (name.matches(PATTERN_NAME)) {
+            //_uiStateData.value.name = "sdsdf"
             _uiStateData.value = _uiStateData.value.copy(name = name.uppercase())
        }
         validateInputs()
@@ -87,36 +87,53 @@ class FormViewModel: ViewModel() {
         validateInputs()
     }
 
-    fun generateCURP(){
-        var curp = ""
-        val inputData = _uiStateData.value;
-        val date = LocalDate.parse(inputData.birth, FORMATTER_INPUT)
-        val name = Clean(inputData.name)
-        val middleName = Clean(inputData.middleName)
-        val lastname = Clean(inputData.lastname)
+     fun generateCURP() {
 
-        curp += middleName[0]
-        curp += getLetterForPostion(middleName,1, VOCAL)
-        curp += if(lastname.isEmpty()) 'X' else lastname[0]
-        curp += name[0]
-        curp += date.format(FORMATTER_CURP)
-        curp += inputData.gender.first
-        curp += inputData.state.first
-        curp += getLetterForPostion(middleName.substring(1),1, CONSONANTS)
-        curp += if(lastname.isEmpty()) 'X' else  getLetterForPostion(lastname.substring(1),1, CONSONANTS)
-        curp += getLetterForPostion(name.substring(1),1, CONSONANTS)
+            try{
+                _uiState.value = FormUiState.Loading("Pi Po Pi Pu...Calculando CURP")
+                var curp = ""
+                val inputData = _uiStateData.value;
+                val date = LocalDate.parse(inputData.birth, FORMATTER_INPUT)
+                val name = clean(inputData.name)
+                val middleName = clean(inputData.middleName)
+                val lastname = clean(inputData.lastname)
+
+                curp += middleName[0]
+                curp += getLetterForPostion(middleName, 1, VOCAL)
+                curp += if (lastname.isEmpty()) 'X' else lastname[0]
+                curp += name[0]
+                curp += date.format(FORMATTER_CURP)
+                curp += inputData.gender.first
+                curp += inputData.state.first
+                curp += getLetterForPostion(middleName.substring(1), 1, CONSONANTS)
+                curp += if (lastname.isEmpty()) 'X' else getLetterForPostion(
+                    lastname.substring(1),
+                    1,
+                    CONSONANTS
+                )
+                curp += getLetterForPostion(name.substring(1), 1, CONSONANTS)
 
 
-        if (blackList.contains(curp.substring(0, 4)))
-        {
-            curp = curp[0] + "X" + curp.substring(2);
-        }
+                if (BLACK_LIST.contains(curp.substring(0, 4))) {
+                    curp = curp[0] + "X" + curp.substring(2);
+                }
 
-        curp += if(date.year < 2000) "0" else "A"
+                curp += if (date.year < 2000) "0" else "A"
 
-        _uiStateData.value = _uiStateData.value.copy(curp = "$curp${generateValidatorDigit(curp)}")
+                _uiStateData.value = _uiStateData.value.copy(curp = "$curp${generateValidatorDigit(curp)}")
+
+                Timer().schedule(timerTask {
+                    _uiState.value = FormUiState.Done(_uiStateData.value.curp,_uiStateData.value.name)
+                }, 2000)
+
+
+            }
+            catch(e: java.lang.Exception) {
+                _uiState.value = FormUiState.Error("ERROR ROMPISTE LA APP...TE VOY A ENCONTRAR >:(")
+
+            }
+
     }
-
 
     private fun getLetterForPostion(value: String,postion: Int, listLetters: String): Char{
         var indexPosition = 1;
@@ -130,8 +147,6 @@ class FormViewModel: ViewModel() {
         }
         return 'X'
     }
-
-
 
     private fun  generateValidatorDigit(curp: String): Int{
         var countCurp = 18;
@@ -147,7 +162,7 @@ class FormViewModel: ViewModel() {
                 countCurp--;
                 sum += result;
             }else{
-                //TODO ERROR FALTA
+                //TODO: ERROR FALTA
             }
 
         }
@@ -158,9 +173,10 @@ class FormViewModel: ViewModel() {
         return numVer;
     }
 
-    private fun Clean(value: String) : String {
+    private fun clean(value: String) : String {
         var valueCleaned = value
 
+        valueCleaned.replace("Ñ","X")
         valueCleaned = Normalizer.normalize(valueCleaned, Normalizer.Form.NFD);
         valueCleaned = valueCleaned.replace("[\\p{InCombiningDiacriticalMarks}]", "");
 
@@ -172,6 +188,7 @@ class FormViewModel: ViewModel() {
         // Preposición, conjunción, contraccion
         words = words.filter { !PREPOSTION_CONJUNTION_CONTRADICTION.contains(it)}
             .toMutableList();
+
 
         if (words.count() >= 2 && COMPOSTION_NAME.contains(words[0]))
         {
@@ -214,9 +231,6 @@ class FormViewModel: ViewModel() {
 
     }
 
-
-
-
     private fun getGenders() : ArrayList<Pair<String,String>>{
         //todo simular un delay
         return generos
@@ -231,16 +245,18 @@ class FormViewModel: ViewModel() {
 
 
 sealed class FormUiState {
-    object Empty : FormUiState()
-    object Loading : FormUiState()
+    object Init : FormUiState()
+    class Loading(val message: String) : FormUiState()
+
     object Loaded : FormUiState()
+    class Done(val curp: String, val name: String) : FormUiState()
     class Error(val message: String) : FormUiState()
 }
 
 data class CurpUiModel(
     val isValid: Boolean = false,
     val curp: String = "",
-    val name: String = "",
+    var name: String = "",
     val middleName: String = "",
     val lastname: String = "",
     val birth: String = "",
