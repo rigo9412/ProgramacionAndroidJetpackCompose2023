@@ -97,17 +97,22 @@ class FormViewModel(): ViewModel() {
             val date = LocalDate.parse(inputData.birth, FORMATTER_INPUT)
             val name = clean(inputData.name)
             val middleName = clean(inputData.middleName)
-            var lastname = clean(inputData.lastname)
+            var lastname = ""
+            if(inputData.lastname.isEmpty() || inputData.lastname.isBlank()){
+                lastname = "X"
+            }else {
+                lastname = clean(inputData.lastname)
+            }
 
             curp += middleName[0]
             curp += getLetterForPostion(middleName, 1, VOCAL)
-            curp += if (lastname.isEmpty()) 'X' else lastname[0]
+            curp += lastname[0]
             curp += name[0]
             curp += date.format(FORMATTER_CURP)
             curp += inputData.gender.first
             curp += inputData.state.first
             curp += getLetterForPostion(middleName.substring(1), 1, CONSONANTS)
-            curp += if (lastname.isEmpty()) 'X' else getLetterForPostion(
+            curp += if (lastname == "X") 'X' else getLetterForPostion(
                 lastname.substring(1),
                 1,
                 CONSONANTS
