@@ -1,7 +1,6 @@
 package com.example.generadorcurp.ui.curp.ui
 
 import android.app.DatePickerDialog
-import android.provider.Settings.Global.getString
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.*
@@ -14,35 +13,23 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.toUpperCase
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
 import com.example.generadorcurp.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-@Composable
-fun generadorCurpScreen(viewModel: CURPViewModel){
-    generadorView(viewModel = viewModel)
-}
-
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun generadorView(viewModel: CURPViewModel){
+fun GeneradorView(viewModel: CURPViewModel){
     val focusManager = LocalFocusManager.current
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
@@ -248,7 +235,6 @@ fun sexo(modifier: Modifier,
 
         }
     }
-
 }
 
 @Composable
@@ -323,8 +309,6 @@ fun estado(modifier: Modifier,
             }
         }
     }
-
-
 }
 
 val sexos = listOf(Pair("H","Hombre"),Pair("M","Mujer"),Pair("X","No binario"))

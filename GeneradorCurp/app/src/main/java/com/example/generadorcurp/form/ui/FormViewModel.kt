@@ -18,6 +18,10 @@ class FormViewModel(): ViewModel() {
     private val _uiEstado = MutableStateFlow<FormUIestado>(FormUIestado.Init)
     val uiEstado: StateFlow<FormUIestado> = _uiEstado
 
+    init {
+        initState()
+    }
+
     fun initState(){
         _uiEstado.value = FormUIestado.Loading("Cargando")
         _uiEstadoData.value = CurpModel(
@@ -26,9 +30,7 @@ class FormViewModel(): ViewModel() {
             segundoApellido = "JIMENEZ",
             fechaNacimiento = LocalDate.of(2001,11,23),
             estado = "TS" to "Tamaulipas",
-            genero = "H" to "Hombre",
-            sexList = getGeneros(),
-            statesList = getEstados()
+            genero = "H"
         )
         Timer().schedule(timerTask { _uiEstado.value = FormUIestado.Loaded },2000)
     }
@@ -45,14 +47,70 @@ class FormViewModel(): ViewModel() {
         if(segundoApellido.matches(PATTERN_NAME)){
             _uiEstadoData.value = _uiEstadoData.value.copy(segundoApellido = segundoApellido.uppercase())
         }
+
+        validarInputs()
     }
 
     fun onChangeFechaNacimiento(fechaNacimiento: LocalDate){
-        
+        _uiEstadoData.value = _uiEstadoData.value.copy(fechaNacimiento = fechaNacimiento)
+        validarInputs()
     }
 
-    fun onChangeGenero(genero : Pair<String, String>){
+    fun onChangeGenero(genero : String){
         _uiEstadoData.value = _uiEstadoData.value.copy(genero = genero)
+        validarInputs()
+    }
+
+    fun onChangeEstado(estado: Pair<String,String>){
+        _uiEstadoData.value = _uiEstadoData.value.copy(estado = estado)
+        validarInputs()
+    }
+
+    fun generarCURP(){
+        _uiEstado.value = FormUIestado.Loading("Generando CURP")
+
+        var curp = ""
+        val inputData = _uiEstadoData.value
+        val nombre = normalizarNombre(inputData.nombre)
+        val primerApellido = normalizarNombre(inputData.primerApellido)
+        val segundoApellido = normalizarNombre(inputData.segundoApellido)
+
+        curp += primerApellido[0]
+        curp += getInternalVowel(primerApellido)
+        curp += if(segundoApellido.isEmpty()) "X"  else segundoApellido[0]
+        curp += nombre[0]
+        curp += inputData.fechaNacimiento.year.toString().substring(2,4)
+        curp += inputData.fechaNacimiento.monthValue.toString()
+        curp += inputData.fechaNacimiento.dayOfMonth.toString()
+        curp += inputData.genero
+        curp += inputData.estado.first
+        curp += getInternalConsonant(primerApellido)
+        curp += if(segundoApellido.isEmpty()) "X"  else getInternalConsonant(segundoApellido)
+        curp += getInternalConsonant(nombre)
+        curp += if(inputData.fechaNacimiento.year < 2000) '0' else 'A'
+        curp += calcularUltimoDigitoCURP(curp)
+
+
+        _uiEstadoData.value = _uiEstadoData.value.copy(curp = curp)
+
+        Timer().schedule(timerTask { _uiEstado.value = FormUIestado.Done(_uiEstadoData.value.curp, _uiEstadoData.value.nombre) },2000)
+
+    }
+
+    fun validarInputs(){
+        var valid = true
+        val curpModel = uiEstadoData.value
+
+        when {
+            curpModel.nombre.isEmpty() -> valid = false
+            curpModel.primerApellido.isEmpty() -> valid = false
+            curpModel.segundoApellido.isEmpty() -> valid = false
+            curpModel.fechaNacimiento == LocalDate.now() -> valid = false
+            curpModel.genero.isEmpty() -> valid = false
+            curpModel.estado.first.isEmpty() -> valid = false
+        }
+
+        _uiEstadoData.value = _uiEstadoData.value.copy(btnEnabled = valid)
     }
 
 }
@@ -67,13 +125,12 @@ sealed class FormUIestado{
 }
 
 data class CurpModel(
+    var btnEnabled: Boolean = false,
     var curp: String = "",
     var nombre: String = "",
     var primerApellido: String = "",
     var segundoApellido: String = "",
     var fechaNacimiento: LocalDate = LocalDate.now(),
-    var genero: Pair<String,String> = Pair("",""),
-    var estado: Pair<String,String> = Pair("",""),
-    val sexList: ArrayList<Pair<String, String>> = ArrayList(),
-    val statesList: ArrayList<Pair<String, String>> = ArrayList()
+    var genero: String = "",
+    var estado: Pair<String, String> = Pair("","")
 )

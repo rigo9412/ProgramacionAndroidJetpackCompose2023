@@ -78,21 +78,16 @@ class CURPViewModel : ViewModel() {
     }
 
     fun calcularUltimoDigitoCURP(curp: String): Int {
-        val pesos = intArrayOf(18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
+        val vowels = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
         var suma = 0
-
-        // Recorremos los primeros 17 caracteres de la CURP
+        var counter = 18
         for (i in 0 until 17) {
             val c = curp[i]
-            val valor = when {
-                c.isLetter() -> c.toUpperCase() - 'A' + 1 // Letras
-                c.isDigit() -> c - '0' // Números
-                else -> 0 // Caracteres no válidos
-            }
-            suma += valor * pesos[i]
+            val valor = vowels.indexOf(c)
+            suma += valor * counter
+            counter += -1
         }
 
-        // Obtenemos el último dígito de la CURP
         val residuo = suma % 10
         return if (residuo == 0) 0 else 10 - residuo
     }

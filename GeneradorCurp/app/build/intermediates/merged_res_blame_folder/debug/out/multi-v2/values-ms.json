@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.generadorcurp.app-mergeDebugResources-37:/values-ms/values-ms.xml",
+            "outputFile": "com.example.generadorcurp.app-mergeDebugResources-46:/values-ms/values-ms.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\jonar\\.gradle\\caches\\transforms-3\\9e6c59fa836bf02be7604ca30953af03\\transformed\\core-1.7.0\\res\\values-ms\\values-ms.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "16",
-                        "startColumns": "4",
-                        "startOffsets": "1276",
-                        "endColumns": "100",
-                        "endOffsets": "1372"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\jonar\\.gradle\\caches\\transforms-3\\24f4e099d209265d11c9d6ea502b9a99\\transformed\\ui-1.2.0\\res\\values-ms\\values-ms.xml",
+                    "source": "C:\\Users\\Jaime\\.gradle\\caches\\transforms-3\\24f4e099d209265d11c9d6ea502b9a99\\transformed\\ui-1.2.0\\res\\values-ms\\values-ms.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -35,6 +18,23 @@
                         "startOffsets": "105,195,279,375,477,562,645,728,815,900,966,1033,1118,1204,1377,1443",
                         "endColumns": "89,83,95,101,84,82,82,86,84,65,66,84,85,71,65,119",
                         "endOffsets": "190,274,370,472,557,640,723,810,895,961,1028,1113,1199,1271,1438,1558"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Jaime\\.gradle\\caches\\transforms-3\\c2f72fe2755f2af06633b21853cdfb71\\transformed\\core-1.8.0\\res\\values-ms\\values-ms.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "16",
+                        "startColumns": "4",
+                        "startOffsets": "1276",
+                        "endColumns": "100",
+                        "endOffsets": "1372"
                     }
                 }
             ]

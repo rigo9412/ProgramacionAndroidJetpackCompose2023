@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.generadorcurp.app-mergeDebugResources-37:/values-kk/values-kk.xml",
+            "outputFile": "com.example.generadorcurp.app-mergeDebugResources-46:/values-kk/values-kk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\jonar\\.gradle\\caches\\transforms-3\\24f4e099d209265d11c9d6ea502b9a99\\transformed\\ui-1.2.0\\res\\values-kk\\values-kk.xml",
+                    "source": "C:\\Users\\Jaime\\.gradle\\caches\\transforms-3\\24f4e099d209265d11c9d6ea502b9a99\\transformed\\ui-1.2.0\\res\\values-kk\\values-kk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\jonar\\.gradle\\caches\\transforms-3\\9e6c59fa836bf02be7604ca30953af03\\transformed\\core-1.7.0\\res\\values-kk\\values-kk.xml",
+                    "source": "C:\\Users\\Jaime\\.gradle\\caches\\transforms-3\\c2f72fe2755f2af06633b21853cdfb71\\transformed\\core-1.8.0\\res\\values-kk\\values-kk.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
