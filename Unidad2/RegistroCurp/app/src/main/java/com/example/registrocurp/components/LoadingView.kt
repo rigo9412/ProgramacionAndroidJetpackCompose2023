@@ -1,15 +1,13 @@
 package com.example.registrocurp.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
@@ -22,10 +20,20 @@ fun LoadingView(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
-        CircularProgressIndicator(
-            modifier  = Modifier.size(52.dp)
-        )
+        Box(contentAlignment = Alignment.Center) {
+            CircularProgressIndicator(
+                strokeWidth = 6.dp,
+                color = Color.Magenta,
+                modifier = Modifier.then(Modifier.size(60.dp).rotate(degrees = 15f)))
+            CircularProgressIndicator(
+                strokeWidth = 6.dp,
+                color = Color.Cyan,
+                modifier = Modifier.then(Modifier.size(80.dp).rotate(degrees = 45f)))
+            CircularProgressIndicator(
+                strokeWidth = 6.dp,
+                color = Color.Yellow,
+                modifier = Modifier.then(Modifier.size(100.dp).rotate(degrees = 75f)))
+        }
         Text(text = message)
     }
 }
