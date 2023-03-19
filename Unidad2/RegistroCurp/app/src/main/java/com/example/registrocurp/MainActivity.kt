@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                         ) {
                             val curp = it.arguments?.getString("curp")
                             val name = it.arguments?.getString("name")
-                            viewModel = ResultScreen(curp ?: "CURP", name ?: "name", navController,viewModel)
+                            viewModel = ResultScreen(curp ?: "CURP", name ?: "name", navController)
                         }
                     }
                 }

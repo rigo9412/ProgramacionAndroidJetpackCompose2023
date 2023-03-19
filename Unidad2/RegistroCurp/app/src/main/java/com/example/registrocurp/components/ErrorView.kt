@@ -28,7 +28,7 @@ fun ErrorView(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Blue),
+            .background(Color(144, 12, 63)),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -47,8 +47,7 @@ fun ErrorView(
         )
         OutlinedButton(
             onClick = { onInitAction() }) {
-            Text(text = "REINICIAR",color = Color.Blue)
-
+            Text(text = "REINICIAR",color = Color(88, 24, 69 ),fontWeight = FontWeight.Bold)
         }
 
     }

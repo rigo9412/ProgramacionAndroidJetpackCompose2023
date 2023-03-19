@@ -26,14 +26,14 @@ fun EmptyView(
 
 
         Text(
-            text = "CURP LISTO",
+            text = "CURP GENERADO CON EXITO",
             fontWeight = FontWeight.Bold,
-            fontSize = 23.sp
+            fontSize = 25.sp,
+            color = Color(46,139,87 )
         )
         OutlinedButton(
             onClick = { action() }) {
-            Text(text = "VER CURP",color = Color.Blue)
-
+            Text(text = "VER CURP",color = Color.Black)
         }
 
     }

@@ -91,7 +91,7 @@ class FormViewModel(): ViewModel() {
     fun generateCURP() {
 
         try{
-            _uiState.value = FormUiState.Loading("Calculando CURP")
+            _uiState.value = FormUiState.Loading("Calculando CURP...")
             var curp = ""
             val inputData = _uiStateData.value;
             val date = LocalDate.parse(inputData.birth, FORMATTER_INPUT)
@@ -135,7 +135,7 @@ class FormViewModel(): ViewModel() {
 
         }
         catch(e: java.lang.Exception) {
-            _uiState.value = FormUiState.Error("ERROR EN LA APP")
+            _uiState.value = FormUiState.Error("ERROR AL GENERAR CURP")
         }
 
     }

@@ -32,8 +32,7 @@ import kotlinx.coroutines.flow.StateFlow
 fun ResultScreen(
     curp: String,
     name: String,
-    navigationController: NavHostController,
-    viewModel: FormViewModel
+    navigationController: NavHostController
 ): FormViewModel {
     var fvm = FormViewModel()
     fvm.initState()
@@ -47,7 +46,7 @@ fun ResultView(curp: String, onClick: () -> Unit){
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Green),
+            .background(Color(46,139,87)),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -59,16 +58,22 @@ fun ResultView(curp: String, onClick: () -> Unit){
             tint = Color.White
         )
         Text(
+            text = "CURP GENERADA:",
+            color = Color.White,
+            fontWeight = FontWeight.Bold,
+            fontSize = 30.sp
+        )
+        Text(
             text = curp,
             color = Color.White,
             fontWeight = FontWeight.Bold,
-            fontSize = 50.sp
+            fontSize = 30.sp
         )
         OutlinedButton(
             onClick = { onClick() },
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color.Yellow,
-                contentColor = Color.Red
+                backgroundColor = Color.White,
+                contentColor = Color(28, 87, 54)
             )
         ) {
             Text(text = "Regresar")
