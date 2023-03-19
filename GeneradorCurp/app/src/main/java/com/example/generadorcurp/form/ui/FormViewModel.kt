@@ -67,34 +67,41 @@ class FormViewModel(): ViewModel() {
     }
 
     fun generarCURP(){
-        _uiEstado.value = FormUIestado.Loading("Generando CURP")
+        try {
+            _uiEstado.value = FormUIestado.Loading("Generando CURP")
 
-        var curp = ""
-        val inputData = _uiEstadoData.value
-        val nombre = normalizarNombre(inputData.nombre)
-        val primerApellido = normalizarNombre(inputData.primerApellido)
-        val segundoApellido = normalizarNombre(inputData.segundoApellido)
+            var curp = ""
+            val inputData = _uiEstadoData.value
+            val nombre = normalizarNombre(inputData.nombre)
+            val primerApellido = normalizarNombre(inputData.primerApellido)
+            val segundoApellido = normalizarNombre(inputData.segundoApellido)
 
-        curp += primerApellido[0]
-        curp += getInternalVowel(primerApellido)
-        curp += if(segundoApellido.isEmpty()) "X"  else segundoApellido[0]
-        curp += nombre[0]
-        curp += inputData.fechaNacimiento.year.toString().substring(2,4)
-        curp += inputData.fechaNacimiento.monthValue.toString()
-        curp += inputData.fechaNacimiento.dayOfMonth.toString()
-        curp += inputData.genero
-        curp += inputData.estado.first
-        curp += getInternalConsonant(primerApellido)
-        curp += if(segundoApellido.isEmpty()) "X"  else getInternalConsonant(segundoApellido)
-        curp += getInternalConsonant(nombre)
-        curp += if(inputData.fechaNacimiento.year < 2000) '0' else 'A'
-        curp += calcularUltimoDigitoCURP(curp)
+            curp += primerApellido[0]
+            curp += getInternalVowel(primerApellido)
+            curp += if (segundoApellido.isEmpty()) "X" else segundoApellido[0]
+            curp += nombre[0]
+            curp += inputData.fechaNacimiento.year.toString().substring(2, 4)
+            curp += inputData.fechaNacimiento.monthValue.toString()
+            curp += inputData.fechaNacimiento.dayOfMonth.toString()
+            curp += inputData.genero
+            curp += inputData.estado.first
+            curp += getInternalConsonant(primerApellido)
+            curp += if (segundoApellido.isEmpty()) "X" else getInternalConsonant(segundoApellido)
+            curp += getInternalConsonant(nombre)
+            curp += if (inputData.fechaNacimiento.year < 2000) '0' else 'A'
+            curp += calcularUltimoDigitoCURP(curp)
 
 
-        _uiEstadoData.value = _uiEstadoData.value.copy(curp = curp)
+            _uiEstadoData.value = _uiEstadoData.value.copy(curp = curp)
 
-        Timer().schedule(timerTask { _uiEstado.value = FormUIestado.Done(_uiEstadoData.value.curp, _uiEstadoData.value.nombre) },2000)
-
+            Timer().schedule(timerTask {
+                _uiEstado.value =
+                    FormUIestado.Done(_uiEstadoData.value.curp, _uiEstadoData.value.nombre)
+            }, 2000)
+        }
+        catch (e: java.lang.Exception){
+            _uiEstado.value = FormUIestado.Error("ERROR")
+        }
     }
 
     fun validarInputs(){

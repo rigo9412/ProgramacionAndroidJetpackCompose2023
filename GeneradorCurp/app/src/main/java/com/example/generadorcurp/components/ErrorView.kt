@@ -25,8 +25,10 @@ import com.example.generadorcurp.form.ui.components.btnEnter
 fun ErrorView(message : String, onInitAction: () -> Unit){
     val color = remember { Animatable(Color.Black)}
     LaunchedEffect(Unit){
-        color.animateTo(Color.Red, animationSpec = tween(1000))
-        color.animateTo(Color.Black, animationSpec = tween(1000))
+        while(true) {
+            color.animateTo(Color.Red, animationSpec = tween(2000))
+            color.animateTo(Color.Black, animationSpec = tween(2000))
+        }
     }
     //jeje
     var mediaPlayer = MediaPlayer.create(LocalContext.current, R.raw.test1)

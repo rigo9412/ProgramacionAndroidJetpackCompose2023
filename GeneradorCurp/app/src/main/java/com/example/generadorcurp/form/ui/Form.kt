@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -57,6 +58,5 @@ fun Formulario(viewModel: FormViewModel) {
             listItems = estadosMexicanos, onValueChange = {viewModel.onChangeEstado(it)})
 
         btnEnter(enabled = data.btnEnabled, generar = { viewModel.generarCURP() }, content = "Generar CURP")
-
     }
 }
