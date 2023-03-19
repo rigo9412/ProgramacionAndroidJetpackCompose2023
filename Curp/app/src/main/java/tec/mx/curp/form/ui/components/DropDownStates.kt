@@ -1,4 +1,4 @@
-package tec.mx.curp.form.ui.componentes
+package tec.mx.curp.form.ui.components
 
 import androidx.compose.material.*
 import androidx.compose.runtime.*

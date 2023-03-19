@@ -1,4 +1,4 @@
-package tec.mx.curp.form.ui.componentes
+package tec.mx.curp.form.ui.components
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
