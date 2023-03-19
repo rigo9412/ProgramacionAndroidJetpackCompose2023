@@ -6,13 +6,25 @@ import androidx.activity.compose.setContent
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import Examen.examenTec.ui.theme.ExamenTheme
+import Examen.examenTec.ui.theme.Purple200
+import Examen.examenTec.ui.theme.Purple700
 import android.app.Activity
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,12 +66,24 @@ fun Iniciar() {
             val openDialog = remember { mutableStateOf(true)  }
             if (openDialog.value){
                 AlertDialog(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize().align(CenterHorizontally).padding(15.dp),
                     onDismissRequest = {
                         openDialog.value = false
                     },
                     title = {
-                        Text(text = "GATO",fontSize = 35.sp,fontWeight = FontWeight(600))
+                        Column {
+                            Text(text = "Juego del Gato!",fontSize = 45.sp,fontWeight = FontWeight(600),
+                            )
+                            Image(
+                                painter = painterResource(id = R.drawable.tictactoe),
+                                contentDescription = "Gato Logo",
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier
+                                    .width(200.dp)
+                                    .height(200.dp)
+                                    .align(CenterHorizontally)
+                            )
+                        }
                     },
                     confirmButton = {
                         Button(
@@ -107,7 +131,7 @@ fun Gato(tabla: MutableList<MutableList<String>> , jugador: Boolean, cambiojugad
 @Composable
 fun Cuadro(x:Int, y:Int, tabla: MutableList<MutableList<String>>, jugador: Boolean, cambiojugador:() -> Unit) :String {
     var buttonState by remember { mutableStateOf("") }
-    Button(
+    Button( modifier = Modifier.padding(5.dp).clip(shape = RoundedCornerShape(size = 2.dp)).background(color = Purple700),
         onClick = {
             // poner en la mariz en la posicion x,y el valor de button state
             if(tabla[x][y] == "") {
@@ -115,8 +139,6 @@ fun Cuadro(x:Int, y:Int, tabla: MutableList<MutableList<String>>, jugador: Boole
                 cambiojugador()
             }
         },
-        modifier = Modifier
-            .padding(5.dp)
     ) {
         Text(text = tabla[x][y])
     }
