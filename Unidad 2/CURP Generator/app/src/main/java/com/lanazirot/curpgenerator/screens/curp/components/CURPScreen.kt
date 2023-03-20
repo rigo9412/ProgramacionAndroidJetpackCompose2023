@@ -126,7 +126,7 @@ fun CURPScreen(
                 Button(
                     onClick = {
                         if (uiState is CURPUIState.Valid) {
-                            navController.navigate("${Routes.RESULT(personViewModel.generateCURP(), state.person.name).route()}}")
+                            navController.navigate("${Routes.RESULT(personViewModel.generateCURP(), state.person.name).route()}")
                         } else {
                             when (uiState) {
                                 is CURPUIState.Error -> Toast.makeText(

@@ -25,12 +25,12 @@ fun CURPResultScreen(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "El CURP es: $curp",
+            text = "CURP: $curp",
             style = MaterialTheme.typography.h5
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = "De la persona $name",
+            text = "Nombre: $name",
             style = MaterialTheme.typography.h5
         )
         Spacer(modifier = Modifier.height(16.dp))
