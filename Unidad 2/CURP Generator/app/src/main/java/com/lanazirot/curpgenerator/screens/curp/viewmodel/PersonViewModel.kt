@@ -18,26 +18,23 @@ class PersonViewModel : ViewModel() {
     private var _uiState = MutableStateFlow<CURPUIState>(CURPUIState.Loading)
     var uiState: StateFlow<CURPUIState> = _uiState.asStateFlow()
 
+
     init {
         _personState.value = PersonState()
-        _uiState.value = CURPUIState.Loaded
+        _uiState.value = CURPUIState.Loaded("Llenar los campos")
     }
 
-    fun onValidForm(): Boolean {
+    private fun onValidForm() {
         val state = _personState.value.person
         if (state.name.isEmpty()) {
             _uiState.value = CURPUIState.Error("El nombre no puede estar vacío")
-            return false
-        }
-        if (state.surname.isEmpty()) {
+        } else if (state.lastname.isEmpty()) {
             _uiState.value = CURPUIState.Error("El apellido paterno no puede estar vacío")
-            return false
-        }
-        if (state.birthDate.isEmpty()) {
+        } else if (state.birthDate.isEmpty()) {
             _uiState.value = CURPUIState.Error("La fecha de nacimiento no puede estar vacía")
-            return false
+        }else{
+            _uiState.value = CURPUIState.Valid
         }
-        return true
     }
 
     fun updatePerson(updatedPerson: Person) {
@@ -46,11 +43,7 @@ class PersonViewModel : ViewModel() {
     }
 
     private fun checkBlackListCURP(curp: String): String {
-        return if (blackListWords.contains(curp.substring(0, 4))) curp.replaceRange(
-            1,
-            2,
-            "X"
-        ) else curp
+        return if (blackListWords.contains(curp.substring(0, 4))) curp.replaceRange(1, 2, "X") else curp
     }
 
 
@@ -61,7 +54,7 @@ class PersonViewModel : ViewModel() {
             suma += diccionario.indexOf(curp[i]) * (18 - i)
         }
         val mod = suma % 10
-        return if (mod == 0) 0 else 10 - mod
+        return if (mod == 0) 0 else abs(10 - mod)
     }
 
     fun generateCURP(): String {
@@ -81,6 +74,7 @@ class PersonViewModel : ViewModel() {
         curp += state.name.slice(1..2).replace(regex = Regex("[A|E|I|O|U]"), replacement = "")
         curp += if (state.birthDate.substring(0, 4).toInt() < 2000) "1" else "A"
         curp = checkBlackListCURP(curp.replace("Ñ", "X").uppercase())
+        curp = curp.unaccent()
         curp += digitoVerificador(curp)
         return curp
     }

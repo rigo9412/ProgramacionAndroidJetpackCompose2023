@@ -4,5 +4,6 @@ sealed class CURPUIState {
     object Loading : CURPUIState()
     object Success : CURPUIState()
     data class Error(val message: String) : CURPUIState()
-    object Loaded : CURPUIState()
+    data class Loaded(val message: String) : CURPUIState()
+    object Valid : CURPUIState()
 }

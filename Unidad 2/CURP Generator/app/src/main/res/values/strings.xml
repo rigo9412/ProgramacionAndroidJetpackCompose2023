@@ -9,4 +9,7 @@
     <string name="input_state_user">Estado</string>
     <string name="btn_generar_curp">Generar CURP</string>
     <string name="alert_confirm">Confirmar</string>
+    <string name="app_loading">Loading app...</string>
+    <string name="app_loading_error">Error loading app</string>
+    <string name="screen_loading">Loading...</string>
 </resources>
