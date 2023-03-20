@@ -57,6 +57,7 @@ fun Form(viewModel: FormViewModel) {
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
             ) {
+                Text(text = "Ingresa tu nombre:", modifier = Modifier.padding(20.dp,10.dp,0.dp,10.dp))
                 CustomInput(
                     label = stringResource(R.string.name),
                     value = data.name,
@@ -86,6 +87,7 @@ fun Form(viewModel: FormViewModel) {
                         .padding(10.dp),
                     focusManager = focusManager
                 )
+                Text(text = "Selecciona tu fecha de Nacimiento:", modifier = Modifier.padding(20.dp,10.dp,0.dp,10.dp))
                 DatePickerDate(
                     label = "Fecha Nacimiento",
                     value = data.birth,
@@ -94,9 +96,8 @@ fun Form(viewModel: FormViewModel) {
                         .fillMaxWidth()
                         .padding(10.dp),
                     focusManager = focusManager
-
                 )
-
+                Text(text = "Selecciona tu sexo:", modifier = Modifier.padding(20.dp,10.dp,0.dp,10.dp))
                 RadioButtonGroupSex(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -106,6 +107,7 @@ fun Form(viewModel: FormViewModel) {
                     onItemClick = { viewModel.onChangeGender(it) }
 
                 )
+                Text(text = "Selecciona tu estado de Nacimiento:", modifier = Modifier.padding(20.dp,10.dp,0.dp,10.dp))
                 DropdownStates(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -116,15 +118,12 @@ fun Form(viewModel: FormViewModel) {
                     onValueChange = {
                         viewModel.onChangeState(it)
                     }
-
                 )
-
-
             }
         },
         topBar = {
             TopAppBar(
-                title = { Text("Calculadora CURP", color = Color.White) },
+                title = { Text("Consultor de CURP 📃", color = Color.White) },
             )
         },
         floatingActionButton = {

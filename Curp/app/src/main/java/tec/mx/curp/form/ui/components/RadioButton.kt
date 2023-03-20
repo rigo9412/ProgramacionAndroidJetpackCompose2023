@@ -18,7 +18,9 @@ fun RadioButtonGroupSex(
     Column(modifier = modifier) {
         items.forEach { item ->
             RadioButtonLabel(
-                modifier = Modifier.fillMaxWidth().clickable {  onItemClick(item) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onItemClick(item) },
                 label = item.second,
                 selected = item.first == selection,
                 onClick = {
@@ -38,7 +40,6 @@ fun RadioButtonLabel(
     enabled: Boolean = true,
     colors: RadioButtonColors = RadioButtonDefaults.colors()
 ) {
-
     Row(
         modifier = modifier
             .padding(horizontal = 16.dp)

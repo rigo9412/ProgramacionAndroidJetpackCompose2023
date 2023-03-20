@@ -1,10 +1,7 @@
 package tec.mx.curp.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
@@ -22,13 +19,14 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun ErrorView(
-    error: String = "Error",
+    error: String = "error",
     onInitAction: () -> Unit,
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Blue),
+            .background(color = Color(0xFF018786))
+        ,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -36,18 +34,19 @@ fun ErrorView(
         Icon(
             Icons.Default.Warning,
             modifier = Modifier.size(100.dp),
-            contentDescription = "ERROR CURP",
-            tint = Color.White
+            contentDescription = "Error al crear CURP",
+            tint = Color.Yellow
         )
         Text(
-            text = error,
+            text = "Ocurrio un error inesperado 💔",
             color = Color.White,
             fontWeight = FontWeight.Bold,
-            fontSize = 23.sp
+            fontSize = 23.sp,
+            modifier = Modifier.padding(20.dp)
         )
         OutlinedButton(
             onClick = { onInitAction() }) {
-            Text(text = "REINICIAR",color = Color.Blue)
+            Text(text = "Reiniciar",color = Color.Black)
 
         }
 

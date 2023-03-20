@@ -45,7 +45,7 @@ fun ResultView(curp: String, onClick: () -> Unit){
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Green),
+            .background(Color(0xFF018786)),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -60,7 +60,7 @@ fun ResultView(curp: String, onClick: () -> Unit){
             text = curp,
             color = Color.White,
             fontWeight = FontWeight.Bold,
-            fontSize = 50.sp
+            fontSize = 30.sp
         )
         OutlinedButton(
             onClick = { onClick() },
