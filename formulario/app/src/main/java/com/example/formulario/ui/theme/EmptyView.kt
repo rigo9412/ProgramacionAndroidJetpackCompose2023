@@ -39,7 +39,6 @@ fun EmptyView(
 //            model = "https://example.com/image.jpg",
 //            contentDescription = "Translated description of what the image contains"
 //        )
-
     }
 }
 

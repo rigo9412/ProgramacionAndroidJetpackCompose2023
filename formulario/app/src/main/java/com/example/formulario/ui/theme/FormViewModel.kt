@@ -28,13 +28,13 @@ class FormViewModel(): ViewModel() {
         _uiState.value = FormUiState.Loading("cargando...estamos trabajando...")
         _uiStateData.value = CurpUiModel(
             isValid = true,
-            name = "RIGOBERTO",
-            middleName = "RAMOS",
-            lastname = "APARICIO",
-            birth = "1994-11-12",
+            name = "GEMA NATALY",
+            middleName = "MERAZ",
+            lastname = "SANCHEZ",
+            birth = "2001-10-12",
             state = Pair("TS", "Tamaulipas"),
             gender = Pair("H", "Hombre"),
-            sexList = getGenders(),
+//            sexList = getGenders(),
             statesList = getStates(),
         )
 
