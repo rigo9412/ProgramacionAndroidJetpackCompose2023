@@ -1,0 +1,40 @@
+<resources>
+    <!-- Defaults -->
+    <string name="app_name">CURP Avanzado</string>
+    <string name="welcome_screen_button_wizard">Modo Wizard</string>
+    <string name="welcome_screen_button_manual">Modo Manual</string>
+    <string name="alert_confirm">Confirmar</string>
+
+    <string name="screen_default_title">DEFAULT_SCREEN_TITLE</string>
+    <string name="screen_default_subtitle">DEFAULT_SCREEN_SUBTITLE</string>
+
+    <string name="screen_forward">Siguiente</string>
+    <string name="screen_back">Atrás</string>
+    <string name="screen_end_wizard">Finalizar y generar CURP</string>
+    <string name="screen_generate_curp">Generar CURP</string>
+
+    <!-- Titulos para el screen de los datos personales (nombre y apellidos) -->
+
+    <string name="screen_personal_data_title">Datos Personales</string>
+    <string name="screen_personal_data_subtitle">Ingresa tu nombre y apellidos</string>
+    <string name="screen_personal_data_name">Nombre</string>
+    <string name="screen_personal_data_surname">Apellido Paterno</string>
+    <string name="screen_personal_data_mother_surname">Apellido Materno</string>
+
+     <!-- Titulos para el screen de la fecha de nacimiento -->
+
+    <string name="screen_birth_date_title">Fecha de Nacimiento</string>
+    <string name="screen_birth_date_subtitle">Ingresa tu fecha de nacimiento</string>
+
+
+    <!-- Titulos para el screen de la seleccion de sexo (genero) -->
+
+    <string name="screen_gender_title">Sexo</string>
+    <string name="screen_gender_subtitle">Selccioona tu sexo</string>
+
+    <!-- Titulos para el screen de la seleccion del estado de nacimiento -->
+
+    <string name="screen_birth_state_title">Estado de Nacimiento</string>
+    <string name="screen_birth_state_subtitle">Selecciona tu estado de Nacimiento</string>
+
+</resources>
