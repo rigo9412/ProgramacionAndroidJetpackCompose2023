@@ -2,7 +2,6 @@ package com.rigo9412.curp.ui.nav
 
 import androidx.navigation.*
 import androidx.navigation.compose.composable
-import com.rigo9412.curp.ui.form.ui.CurpFormModelState
 import com.rigo9412.curp.ui.wizard.ui.*
 
 

@@ -26,7 +26,9 @@ class WizardViewModel(
     val uiStateData: StateFlow<CurpFormModelState> = _uiStateData
 
     fun initState() {
+        println("CURP-WIZARD-STATE INIT")
         _uiStateData.value = CurpFormModelState(
+            name = "test",
             sexList = getGenders(),
             statesList = getStates(),
         )

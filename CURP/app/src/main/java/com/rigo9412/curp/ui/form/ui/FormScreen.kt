@@ -10,6 +10,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -34,11 +35,16 @@ import com.rigo9412.curp.ui.nav.Screens
 fun FormScreen() {
     val viewModel = GlobalProvider.current.formVM
     val state = viewModel.uiState.collectAsState().value
+    val data = viewModel.uiStateData.collectAsState().value
     val navigationController = GlobalProvider.current.nav
 
     when (state) {
-        is FormCurpScreenState.Error -> ErrorView(error = state.message) { viewModel.initState() }
-        is FormCurpScreenState.Loaded -> Form(viewModel)
+        is FormCurpScreenState.Error -> ErrorView(error = state.message) {
+            viewModel.onEvent(CurpFormEvent.Hide)
+        }
+        is FormCurpScreenState.Loaded -> Form(data){
+            viewModel.onEvent(it)
+        }
         is FormCurpScreenState.Loading -> LoadingView(message = state.message)
         is FormCurpScreenState.Done -> EmptyView(action = {
             navigationController.navigate(
@@ -52,19 +58,16 @@ fun FormScreen() {
                 }
             }
         })
-        else -> {
-
-        }
+        FormCurpScreenState.Init -> viewModel.initState()
     }
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun Form(viewModel: FormViewModel) {
-    val data = viewModel.uiStateData.collectAsState().value
+fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
     val focusManager = LocalFocusManager.current
     val scaffoldState = rememberScaffoldState()
-
+    val navigationController = GlobalProvider.current.nav
     Scaffold(
         scaffoldState = scaffoldState,
         content = {
@@ -76,7 +79,7 @@ fun Form(viewModel: FormViewModel) {
                     label = stringResource(R.string.name),
                     value = data.name,
                     error = data.nameError,
-                    onChangeValue = { viewModel.onEvent(CurpFormEvent.NameChanged(it)) },
+                    onChangeValue = { onEvent(CurpFormEvent.NameChanged(it)) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
@@ -87,7 +90,7 @@ fun Form(viewModel: FormViewModel) {
                     value = data.middleName,
                     error = data.middleNameError,
                     onChangeValue = {
-                        viewModel.onEvent(CurpFormEvent.MiddleNameChanged(it))
+                        onEvent(CurpFormEvent.MiddleNameChanged(it))
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -99,7 +102,7 @@ fun Form(viewModel: FormViewModel) {
                     value = data.lastName,
                     error = data.lastNameError,
                     onChangeValue = {
-                        viewModel.onEvent(CurpFormEvent.LastNameChanged(it))
+                        onEvent(CurpFormEvent.LastNameChanged(it))
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -110,7 +113,7 @@ fun Form(viewModel: FormViewModel) {
                     label = stringResource(R.string.birth),
                     value = data.birth,
                     onValueChange = {
-                        viewModel.onEvent(CurpFormEvent.BirthChanged(it))
+                        onEvent(CurpFormEvent.BirthChanged(it))
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -125,7 +128,7 @@ fun Form(viewModel: FormViewModel) {
                     items = data.sexList,
                     selection = data.gender.first,
                     onItemClick = {
-                        viewModel.onEvent(CurpFormEvent.GenderChanged(it))
+                        onEvent(CurpFormEvent.GenderChanged(it))
                     }
 
                 )
@@ -138,7 +141,7 @@ fun Form(viewModel: FormViewModel) {
                     listItems = data.statesList,
                     onValueChange = {
 
-                        viewModel.onEvent(CurpFormEvent.StateChanged(it))
+                        onEvent(CurpFormEvent.StateChanged(it))
                     }
 
                 )
@@ -148,12 +151,29 @@ fun Form(viewModel: FormViewModel) {
         },
         topBar = {
             TopAppBar(
+
                 title = { Text(stringResource(R.string.form_title), color = Color.White) },
+                navigationIcon =  {
+                    IconButton(onClick = {
+
+                        navigationController.navigate(route = Screens.HomeScreen.route) {
+                            popUpTo(navigationController.graph.id) {
+                                inclusive = true
+                            }
+                        }
+
+                    }) {
+                        Icon(
+                            Icons.Filled.ArrowBack,
+                            contentDescription = "atras"
+                        )
+                    }
+                }
             )
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                viewModel.onEvent(CurpFormEvent.Submit)
+                onEvent(CurpFormEvent.Submit)
             }) {
                 Icon(Icons.Filled.Done, contentDescription = stringResource(R.string.form_submit))
             }

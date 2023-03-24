@@ -9,4 +9,6 @@ sealed class CurpFormEvent {
     data class StateChanged(val state:Pair<String,String>) : CurpFormEvent()
     object Submit : CurpFormEvent()
 
+    object Hide : CurpFormEvent()
+
 }

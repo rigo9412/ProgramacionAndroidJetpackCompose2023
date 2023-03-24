@@ -28,16 +28,11 @@ class FormViewModel(
     private val _uiStateData = MutableStateFlow<CurpFormModelState>(CurpFormModelState())
     val uiStateData: StateFlow<CurpFormModelState> = _uiStateData
 
-
-    init {
-        initState()
-    }
-
     fun initState() {
-
+        println("CURP-FORM-STATE INIT")
         _uiState.value = FormCurpScreenState.Loading("cargando...estamos trabajando...")
         _uiStateData.value = CurpFormModelState(
-//            name = "RIGOBERTO",
+           name = "RIGOBERTO",
 //            middleName = "RAMOS",
 //            lastName = "APARICIO",
 //            birth = "1994-11-12",
@@ -51,6 +46,7 @@ class FormViewModel(
             _uiState.value = FormCurpScreenState.Loaded
         }, 1000)
     }
+
 
     fun onEvent(event: CurpFormEvent) {
         when (event) {
@@ -76,6 +72,7 @@ class FormViewModel(
             is CurpFormEvent.Submit -> {
                 submitData()
             }
+            CurpFormEvent.Hide -> _uiState.value = FormCurpScreenState.Loaded
         }
     }
 
@@ -118,9 +115,11 @@ class FormViewModel(
                     _uiState.value = FormCurpScreenState.Done(result.curp, _uiStateData.value.name)
                 }, 1200)
             } else if (result is ResultCase.ResultError) {
-                _uiState.value = FormCurpScreenState.Error(message = result.error)
+
             }
 
+        }else{
+            _uiState.value = FormCurpScreenState.Error(message = "Ocurrio un problema")
         }
 
 
