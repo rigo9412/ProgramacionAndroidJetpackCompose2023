@@ -1,13 +1,11 @@
-package com.rigo9412.curp.result.ui
+package com.rigo9412.curp.ui.result.ui
 
-import androidx.compose.material.icons.filled.DoneOutline
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.rigo9412.curp.form.ui.FormViewModel
+import com.rigo9412.curp.ui.nav.Screens
 
 @Composable
 fun ResultScreen(
@@ -26,7 +24,13 @@ fun ResultScreen(
     navigationController: NavHostController
 ) {
     ResultView(curp) {
-        navigationController.popBackStack()
+        //navigationController.popBackStack()
+        //navigationController.navigate(Screens.Form.generateRoute(true))
+        navigationController.navigate(route = Screens.Form.generateRoute(true)){
+            popUpTo(navigationController.graph.id){
+                inclusive = true
+            }
+        }
     }
 }
 @Composable

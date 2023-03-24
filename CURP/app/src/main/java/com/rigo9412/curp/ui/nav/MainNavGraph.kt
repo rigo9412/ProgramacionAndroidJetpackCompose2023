@@ -1,0 +1,63 @@
+package com.rigo9412.curp.ui.nav
+
+import androidx.lifecycle.ViewModel
+import androidx.navigation.*
+import androidx.navigation.compose.composable
+import com.rigo9412.curp.ui.HomeScreen
+import com.rigo9412.curp.ui.form.ui.FormScreen
+import com.rigo9412.curp.ui.form.ui.FormViewModel
+import com.rigo9412.curp.ui.result.ui.ResultScreen
+import com.rigo9412.curp.ui.wizard.ui.StepNameScreen
+
+class MainNavGraph {
+}
+
+fun NavGraphBuilder.MainNavGraph(navController: NavHostController,viewModel: FormViewModel){
+
+    navigation(
+        startDestination = Screens.StepNameScreen.route,
+        route = RoutesGraph.WIZARD.toString()
+    ){
+        composable(Screens.HomeScreen.route) {
+            HomeScreen(navController)
+        }
+
+        composable(
+            Screens.Form.route,
+            arguments = listOf(
+                navArgument("restart") {
+                    type = NavType.BoolType
+                },
+            )
+        ) {
+            val restart = it.arguments?.getBoolean("restart", false)!!
+            if (restart) {
+                viewModel.initState()
+            }
+            FormScreen(viewModel, navController)
+        }
+
+        composable(
+            Screens.Result.route,
+            arguments = listOf(
+                navArgument("curp") {
+                    type = NavType.StringType
+                },
+                navArgument("name") {
+                    type = NavType.StringType
+                    defaultValue = "name"
+                },
+                navArgument("lastname") {
+                    type = NavType.StringType
+                    defaultValue = "lastname"
+                }
+            )
+
+        ) {
+            val curp = it.arguments?.getString("curp", "curp")!!
+            val name = it.arguments?.getString("name")!!
+            val lastname = it.arguments?.getString("name")!!
+            ResultScreen(curp, name + lastname, navController)
+        }
+    }
+}

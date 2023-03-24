@@ -1,4 +1,4 @@
-package com.rigo9412.curp.form.domain
+package com.rigo9412.curp.utils
 
 import java.time.format.DateTimeFormatter
 

@@ -1,4 +1,4 @@
-package com.rigo9412.curp.ui.theme
+package com.rigo9412.curp.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
