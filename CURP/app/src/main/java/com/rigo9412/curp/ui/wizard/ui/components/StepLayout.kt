@@ -44,6 +44,19 @@ fun StepLayout(
                         onSubmit()
                     })
             }
+            else if(isFirst){
+                    ExtendedFloatingActionButton(
+                        text = { Text("Iniciar", color = Color.Black) },
+                        icon = {
+                            Icon(
+                                Icons.Filled.Start ,
+                                contentDescription = "INICIAR"
+                            )
+                        },
+                        onClick = {
+                            onSubmit()
+                        })
+            }
             else{
                 ExtendedFloatingActionButton(
                     text = { Text(text = "Siguiente", color = Color.Black) },

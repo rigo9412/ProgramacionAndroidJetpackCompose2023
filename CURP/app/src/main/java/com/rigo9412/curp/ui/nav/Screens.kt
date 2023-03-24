@@ -11,6 +11,11 @@ sealed class Screens (val route:String){
             return "result?curp=${curp}&name=${name}&lastname=${name}"
         }
     }
+    object StepInstructionsScreen: Screens("StepInstructionScreen?restart={restart}"){
+        fun generateRoute(restart: Boolean?) : String{
+            return "StepInstructionScreen?restart=${restart}"
+        }
+    }
     object StepNameScreen: Screens("StepNameScreen")
     object StepBirthScreen: Screens("StepBirthScreen")
     object StepGenderScreen: Screens("StepGenderScreen")

@@ -5,24 +5,26 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.curp.R
+import com.rigo9412.curp.GlobalProvider
 import com.rigo9412.curp.form.ui.CustomInput
 import com.rigo9412.curp.ui.nav.Screens
-import com.rigo9412.curp.ui.form.ui.CurpFormModelState
+
 import com.rigo9412.curp.ui.wizard.ui.components.StepLayout
 
 @Composable
-fun StepNameScreen(
-    data: CurpFormModelState,
-    onEvent: (WizardScreenEvent) -> Unit
-) {
+fun StepNameScreen(onEvent: (WizardScreenEvent) -> Unit) {
     val focusManager = LocalFocusManager.current
+    val data = GlobalProvider.current.wizardVM.uiStateData.collectAsState().value
+
     StepLayout(
-        isFirst = true,
+
         title = stringResource(R.string.step_name),
         subtitle = stringResource(R.string.step_name_subtitle),
         onBack = {

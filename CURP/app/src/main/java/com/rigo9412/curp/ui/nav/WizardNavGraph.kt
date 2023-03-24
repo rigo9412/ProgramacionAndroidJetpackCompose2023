@@ -1,38 +1,49 @@
 package com.rigo9412.curp.ui.nav
 
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
+import androidx.navigation.*
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import com.rigo9412.curp.ui.form.ui.CurpFormModelState
-import com.rigo9412.curp.ui.wizard.ui.StepNameScreen
-import com.rigo9412.curp.ui.wizard.ui.WizardViewModel
+import com.rigo9412.curp.ui.wizard.ui.*
 
 
-fun NavGraphBuilder.WizardNavGraph(navController: NavHostController,viewModelWizard: WizardViewModel, wizardData: CurpFormModelState,){
+fun NavGraphBuilder.WizardNavGraph(wizardVM: WizardViewModel){
     navigation(
         startDestination = Screens.StepNameScreen.route,
         route = RoutesGraph.WIZARD.toString()
     ){
         composable(Screens.StepNameScreen.route) {
-            StepNameScreen(wizardData){
-                viewModelWizard.onEvent(it)
+            StepNameScreen {
+                wizardVM.onEvent(it)
             }
         }
         composable(Screens.StepGenderScreen.route) {
-            StepNameScreen(wizardData){
-                viewModelWizard.onEvent(it)
+            StepGenderScreen {
+                wizardVM.onEvent(it)
             }
         }
         composable(Screens.StepBirthScreen.route) {
-            StepNameScreen(wizardData){
-                viewModelWizard.onEvent(it)
+            StepBitrhScreen {
+                wizardVM.onEvent(it)
             }
         }
         composable(Screens.StepStateScreen.route) {
-            StepNameScreen(wizardData){
-                viewModelWizard.onEvent(it)
+            StepStateScreen() {
+                wizardVM.onEvent(it)
             }
+        }
+        composable(
+            Screens.StepInstructionsScreen.route,
+            arguments = listOf(
+                navArgument("restart") {
+                    type = NavType.BoolType
+                },
+            )
+        ) {
+            val restart = it.arguments?.getBoolean("restart", false)!!
+            if (restart) {
+                wizardVM.initState()
+            }
+            StepInstructionsScreen()
         }
     }
 }

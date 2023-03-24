@@ -1,5 +1,6 @@
 package com.rigo9412.curp.ui.result.ui
 
+import android.graphics.Paint.Align
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -9,24 +10,27 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.rigo9412.curp.GlobalProvider
+import com.rigo9412.curp.theme.green
+import com.rigo9412.curp.theme.greenDark
 import com.rigo9412.curp.ui.nav.Screens
 
 @Composable
 fun ResultScreen(
     curp: String,
     name: String,
-    navigationController: NavHostController
 ) {
-    ResultView(curp) {
-        //navigationController.popBackStack()
-        //navigationController.navigate(Screens.Form.generateRoute(true))
-        navigationController.navigate(route = Screens.Form.generateRoute(true)){
+    val navigationController = GlobalProvider.current.nav
+    ResultView(curp,name) {
+        navigationController.navigate(route = Screens.HomeScreen.route){
             popUpTo(navigationController.graph.id){
                 inclusive = true
             }
@@ -34,37 +38,46 @@ fun ResultScreen(
     }
 }
 @Composable
-fun ResultView(curp: String, onClick: () -> Unit){
+fun ResultView(curp: String,name:String, onClick: () -> Unit){
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Green),
+            .background(green),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
         Icon(
             Icons.Default.CheckCircle,
-            modifier = Modifier.size(100.dp),
+            modifier = Modifier.size(80.dp),
             contentDescription = "DONE CURP",
             tint = Color.White
+        )
+        Spacer(modifier = Modifier.height(24.dp))
+        Text(
+            text = "$name tu CURP es el siguiente: ",
+            textAlign = TextAlign.Center,
+            color = Color.White,
+            fontWeight = FontWeight.Light,
+            fontSize = 28.sp
         )
         Text(
             text = curp,
             color = Color.White,
+            textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
-            fontSize = 52.sp
+            fontSize = 24.sp
         )
         OutlinedButton(
             onClick = { onClick() },
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color.Yellow,
-                contentColor = Color.Red
+                backgroundColor = greenDark,
+                contentColor = Color.White
             )
 
         ) {
-            Text(text = "Regresar")
+            Text(text = "Volver al Inicio")
 
         }
 
@@ -74,5 +87,5 @@ fun ResultView(curp: String, onClick: () -> Unit){
 @Preview(device = Devices.PIXEL_2)
 @Composable
 fun PreviewResultView() {
-    ResultView("CURP", {})
+    ResultView("CURP","tu nombre",{});
 }

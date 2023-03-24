@@ -19,18 +19,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.curp.R
+import com.rigo9412.curp.GlobalProvider
 import com.rigo9412.curp.components.EmptyView
 import com.rigo9412.curp.components.ErrorView
 import com.rigo9412.curp.components.LoadingView
 import com.rigo9412.curp.form.ui.CustomInput
 import com.rigo9412.curp.form.ui.DropdownStates
 import com.rigo9412.curp.form.ui.RadioButtonGroupSex
+
 import com.rigo9412.curp.ui.nav.Screens
 
 
 @Composable
-fun FormScreen(viewModel: FormViewModel, navigationController: NavHostController) {
+fun FormScreen() {
+    val viewModel = GlobalProvider.current.formVM
     val state = viewModel.uiState.collectAsState().value
+    val navigationController = GlobalProvider.current.nav
+
     when (state) {
         is FormCurpScreenState.Error -> ErrorView(error = state.message) { viewModel.initState() }
         is FormCurpScreenState.Loaded -> Form(viewModel)

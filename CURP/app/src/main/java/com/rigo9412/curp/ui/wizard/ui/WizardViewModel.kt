@@ -2,10 +2,15 @@ package com.rigo9412.curp.ui.wizard.ui
 
 import androidx.lifecycle.ViewModel
 import com.rigo9412.curp.domain.*
+import com.rigo9412.curp.ui.form.domain.estados
+import com.rigo9412.curp.ui.form.domain.generos
 import com.rigo9412.curp.ui.form.ui.CurpFormEvent
 import com.rigo9412.curp.ui.form.ui.CurpFormModelState
+import com.rigo9412.curp.ui.form.ui.FormCurpScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import java.util.*
+import kotlin.concurrent.timerTask
 
 class WizardViewModel(
     private val addNameUseCase: AddNameUseCase = AddNameUseCase(),
@@ -20,15 +25,17 @@ class WizardViewModel(
     private val _uiStateData = MutableStateFlow<CurpFormModelState>(CurpFormModelState())
     val uiStateData: StateFlow<CurpFormModelState> = _uiStateData
 
-
-//    init {
-//        _uiStateData.value =
-//            _uiStateData.value.copy(name = "RIGOBERTO", middleName = "RAMOS", lastName = "APARICIO")
-//    }
+    fun initState() {
+        _uiStateData.value = CurpFormModelState(
+            sexList = getGenders(),
+            statesList = getStates(),
+        )
+    }
 
     fun onEvent(event: WizardScreenEvent) {
         when (event) {
-            is WizardScreenEvent.Back -> back(event.origin,event.destination)
+            is WizardScreenEvent.Back -> back(event.origin, event.destination)
+
             is WizardScreenEvent.BirthChanged -> {
                 _uiStateData.value = _uiStateData.value.copy(birth = event.birth, birthError = null)
             }
@@ -60,7 +67,7 @@ class WizardViewModel(
             WizardScreenEvent.StepGenderSubmit -> onSubmitStepGender()
             WizardScreenEvent.StepNameSubmit -> onSubmitStepName()
             WizardScreenEvent.StepStateSubmit -> onSubmitStepState()
-
+            WizardScreenEvent.Start -> start()
         }
     }
 
@@ -91,9 +98,6 @@ class WizardViewModel(
             _uiStateData.value = _uiStateData.value.copy(genderError = result.error)
         }
 
-
-
-
         if (result is ResultCase.ResultValid
         ) {
             _uiWizardState.value = WizardScreenState.StepState
@@ -111,7 +115,10 @@ class WizardViewModel(
         }
 
         if (resultCURP is ResultCase.ResultSuccess) {
-            _uiWizardState.value = WizardScreenState.StepDone(resultCURP.curp,"${_uiStateData.value.name} ${_uiStateData.value.middleName} ${_uiStateData.value.lastName}")
+            _uiWizardState.value = WizardScreenState.StepDone(
+                resultCURP.curp,
+                "${_uiStateData.value.name} ${_uiStateData.value.middleName} ${_uiStateData.value.lastName}"
+            )
         }
     }
 
@@ -126,7 +133,21 @@ class WizardViewModel(
         }
     }
 
-    private fun back(origin: String,destination: String) {
-        _uiWizardState.value = WizardScreenState.StateBack(origin,destination)
+    private fun back(origin: String, destination: String) {
+        _uiWizardState.value = WizardScreenState.StateBack(origin, destination)
+    }
+
+    private fun start() {
+        _uiWizardState.value = WizardScreenState.StepName
+    }
+
+    private fun getGenders(): ArrayList<Pair<String, String>> {
+        //todo simular un delay
+        return generos
+    }
+
+    private fun getStates(): ArrayList<Pair<String, String>> {
+        //todo simular un delay
+        return estados
     }
 }
