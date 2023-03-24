@@ -7,9 +7,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.example.curp.R
 import com.rigo9412.curp.GlobalProvider
@@ -18,6 +21,7 @@ import com.rigo9412.curp.ui.nav.Screens
 
 import com.rigo9412.curp.ui.wizard.ui.components.StepLayout
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun StepNameScreen(onEvent: (WizardScreenEvent) -> Unit) {
     val focusManager = LocalFocusManager.current
@@ -49,7 +53,9 @@ fun StepNameScreen(onEvent: (WizardScreenEvent) -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
-                    focusManager = focusManager
+                    onAction = {
+                        focusManager.moveFocus(FocusDirection.Down)
+                    }
                 )
                 CustomInput(
                     label = "Primer Apellido",
@@ -61,7 +67,9 @@ fun StepNameScreen(onEvent: (WizardScreenEvent) -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
-                    focusManager = focusManager
+                    onAction = {
+                        focusManager.moveFocus(FocusDirection.Down)
+                    }
                 )
                 CustomInput(
                     label = "Segundo Apellido",
@@ -73,7 +81,10 @@ fun StepNameScreen(onEvent: (WizardScreenEvent) -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
-                    focusManager = focusManager
+                    imeAction= ImeAction.Done,
+                    onAction = {
+                        focusManager.clearFocus()
+                    }
                 )
             }
         }

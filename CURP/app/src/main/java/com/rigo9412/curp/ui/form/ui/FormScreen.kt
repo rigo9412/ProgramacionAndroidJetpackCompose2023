@@ -13,7 +13,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
@@ -62,6 +64,7 @@ fun FormScreen() {
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
@@ -83,7 +86,9 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
-                    focusManager = focusManager
+                    onAction = {
+                        focusManager.moveFocus(FocusDirection.Down)
+                    }
                 )
                 CustomInput(
                     label = stringResource(R.string.middle_name),
@@ -95,7 +100,9 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
-                    focusManager = focusManager
+                    onAction = {
+                        focusManager.moveFocus(FocusDirection.Down)
+                    }
                 )
                 CustomInput(
                     label = stringResource(R.string.lastname),
@@ -107,7 +114,9 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
-                    focusManager = focusManager
+                    onAction = {
+                        focusManager.moveFocus(FocusDirection.Exit)
+                    }
                 )
                 DatePickerBirthDate(
                     label = stringResource(R.string.birth),

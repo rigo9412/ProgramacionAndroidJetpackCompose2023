@@ -5,7 +5,7 @@ import androidx.navigation.compose.composable
 import com.rigo9412.curp.ui.wizard.ui.*
 
 
-fun NavGraphBuilder.WizardNavGraph(wizardVM: WizardViewModel){
+fun NavGraphBuilder.NavGraphWizard(wizardVM: WizardViewModel){
     navigation(
         startDestination = Screens.StepNameScreen.route,
         route = RoutesGraph.WIZARD.toString()

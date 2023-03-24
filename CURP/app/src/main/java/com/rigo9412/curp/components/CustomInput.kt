@@ -52,7 +52,9 @@ fun CustomInput(
     error: String?,
     onChangeValue: (String) -> Unit,
     modifier: Modifier,
-    focusManager: FocusManager
+    onAction: () -> Unit,
+    imeAction: ImeAction =  ImeAction.Next,
+
 ) {
     val isError = error != null && error != ""
     Column() {
@@ -68,12 +70,15 @@ fun CustomInput(
 
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Characters,
-                imeAction = ImeAction.Next,
+                imeAction = imeAction,
                 keyboardType = KeyboardType.Text
             ),
             keyboardActions = KeyboardActions(
                 onNext = {
-                    focusManager.moveFocus(FocusDirection.Down)
+                    onAction()
+                },
+                onDone = {
+                    onAction()
                 }
             ),
         )

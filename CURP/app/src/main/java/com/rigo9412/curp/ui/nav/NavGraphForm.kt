@@ -6,13 +6,12 @@ import com.rigo9412.curp.ui.form.ui.FormScreen
 import com.rigo9412.curp.ui.form.ui.FormViewModel
 import com.rigo9412.curp.ui.result.ui.ResultScreen
 
-class MainNavGraph {
-}
 
-fun NavGraphBuilder.MainNavGraph(formVM: FormViewModel){
+
+fun NavGraphBuilder.NavGraphForm(formVM: FormViewModel){
 
     navigation(
-        startDestination = Screens.HomeScreen.route,
+        startDestination = Screens.Form.route,
         route = RoutesGraph.FORM.toString()
     ){
         composable(

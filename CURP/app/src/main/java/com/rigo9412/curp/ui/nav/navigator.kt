@@ -60,13 +60,11 @@ fun Navigator(navController: NavHostController,formViewModel: FormViewModel,wiza
 
 
     NavHost(navController = navController,
-        startDestination = Screens.HomeScreen.route,
+        startDestination = RoutesGraph.MAIN.toString(),
         route = RoutesGraph.ROOT.toString()
     ) {
-        composable(Screens.HomeScreen.route) {
-            HomeScreen()
-        }
-        MainNavGraph(formViewModel)
-        WizardNavGraph(wizardVM)
+        NavGraphMain()
+        NavGraphForm(formViewModel)
+        NavGraphWizard(wizardVM)
     }
 }
