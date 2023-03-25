@@ -27,7 +27,7 @@ fun ErrorView(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
-            Icons.Default.SentimentSatisfiedAlt,
+            Icons.Default.SentimentVeryDissatisfied,
             modifier = Modifier.size(100.dp),
             contentDescription = "ERROR CURP",
             tint = Color.White
