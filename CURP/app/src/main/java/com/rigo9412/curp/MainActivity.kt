@@ -28,7 +28,7 @@ import com.rigo9412.curp.ui.nav.Navigator
 import com.rigo9412.curp.ui.wizard.ui.*
 
 
-val GlobalProvider = staticCompositionLocalOf<GlobalProvider> { error("No navigation host controller provided.") }
+val GlobalProvider = compositionLocalOf<GlobalProvider> { error("No navigation host controller provided.") }
 class MainActivity : ComponentActivity() {
     private val globalVM: GlobalStateScreenViewModel by viewModels()
     private val formVM: FormViewModel by viewModels()
