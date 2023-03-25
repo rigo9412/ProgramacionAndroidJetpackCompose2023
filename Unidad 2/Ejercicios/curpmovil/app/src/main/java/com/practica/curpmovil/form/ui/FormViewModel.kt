@@ -8,16 +8,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 import kotlinx.coroutines.flow.StateFlow
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import kotlin.random.Random
 
 
 class FormViewModel : ViewModel() {
-    private val _uiStateData = MutableStateFlow<CurpUIModel>(CurpUIModel())
-    val uiStateData: StateFlow<CurpUIModel> = _uiStateData
+    private var _uiStateData = MutableStateFlow<CurpUIModel>(CurpUIModel())
+    public var uiStateData: StateFlow<CurpUIModel> = _uiStateData
 
-    private val _uiState = MutableStateFlow<FormUiState>(FormUiState.Empty)
-    val uiState: StateFlow<FormUiState> = _uiState
+    private var _uiState = MutableStateFlow<FormUiState>(FormUiState.Empty)
+    var uiState: StateFlow<FormUiState> = _uiState
 
 
     init {
@@ -29,7 +28,7 @@ class FormViewModel : ViewModel() {
             sexList = getGenders(),
             statesList = getStates(),
         )
-        _uiState.value = FormUiState.Loaded
+        _uiState.value = FormUiState.MainMenu
     }
 
     fun onChangeName(name: String) {
@@ -79,6 +78,13 @@ class FormViewModel : ViewModel() {
         object Loading : FormUiState()
         object Loaded : FormUiState()
         object Success : FormUiState()
+        //agregar mas objects : FormUiSstate, que serian WizardName, WizardGender, WizardBirth, WizardState
+        object WizardName : FormUiState()
+        object WizardGender : FormUiState()
+        object WizardBirth : FormUiState()
+        object WizardState : FormUiState()
+        object MainMenu : FormUiState()
+        object FormComplete : FormUiState()
         class Error(val message: String) : FormUiState()
     }
     public fun getCurp():String{
@@ -109,7 +115,7 @@ class FormViewModel : ViewModel() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-     fun generateCurp() : String{
+     fun generateCurpToShow() : String{
         _uiState.value = FormUiState.Loading
 
         var curp = ""
@@ -137,6 +143,35 @@ class FormViewModel : ViewModel() {
         _uiState.value = FormUiState.Success
         return  curp
     }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun regresarPaginaPrincipal(){
+        _uiState.value = FormUiState.Loading
+
+        _uiState.value = FormUiState.MainMenu
+
+
+
+
+    }
+
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun toGenderWizard(){
+        _uiState.value = FormUiState.Loading
+
+        _uiState.value = FormUiState.WizardGender
+    }
+
+    //Make a function to go to to toNameWizard, like the function toGenderWizard
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun toNameWizard(){
+        _uiState.value = FormUiState.Loading
+
+        _uiState.value = FormUiState.WizardName
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     fun generarCURP(nombre: String, apellidoPaterno: String, apellidoMaterno: String, sexo: Char, estado: String, fechaNacimiento: String): String {
         val primerLetraApellidoPaterno = apellidoPaterno[0]
@@ -149,6 +184,12 @@ class FormViewModel : ViewModel() {
         return "${primerLetraApellidoPaterno}${primeraVocalApellidoPaterno}${primerLetraApellidoMaterno}${primerLetraNombre}${fechaNacimientoFormatted}${sexo}${estado}${digitoVerificador}"
     }
 
+
+
+
+
+
+
     fun buscarPrimeraVocal(cadena: String): Char {
         val vocales = listOf('a', 'e', 'i', 'o', 'u')
         for (c in cadena) {
@@ -157,6 +198,24 @@ class FormViewModel : ViewModel() {
             }
         }
         return 'X' // Si no hay vocales, se pone X
+    }
+
+    fun toFormCompleta() {
+        _uiState.value = FormUiState.Loading
+
+        _uiState.value = FormUiState.FormComplete
+    }
+
+    fun toStateWizard() {
+        _uiState.value = FormUiState.Loading
+
+        _uiState.value = FormUiState.WizardState
+    }
+
+    fun toDateBirthPage() {
+        _uiState.value = FormUiState.Loading
+
+        _uiState.value = FormUiState.WizardBirth
     }
 
 

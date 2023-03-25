@@ -12,9 +12,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.practica.curpmovil.form.ui.Form
 import com.practica.curpmovil.form.ui.FormScreen
 import com.practica.curpmovil.form.ui.FormViewModel
+import com.practica.curpmovil.form.ui.ShowCurp
 import com.practica.curpmovil.ui.theme.CurpTheme
 
 class MainActivity : ComponentActivity() {
@@ -47,6 +47,6 @@ fun Greeting(name: String) {
 fun DefaultPreview() {
     var viewModel = FormViewModel()
     CurpTheme {
-        Form(viewModel = viewModel)
+        ShowCurp(viewModel =viewModel)
     }
 }
