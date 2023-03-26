@@ -49,8 +49,5 @@ fun DatePickerBirthDate(
         keyboardActions = KeyboardActions.Default,
         label = { Text(label) },
         textStyle = TextStyle(color = Color.Black)
-
-
     )
-
 }

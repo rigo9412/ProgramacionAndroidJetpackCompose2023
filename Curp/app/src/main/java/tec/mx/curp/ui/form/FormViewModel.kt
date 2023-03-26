@@ -27,20 +27,15 @@ class FormViewModel(
     private val _uiStateData = MutableStateFlow<CurpFormModelState>(CurpFormModelState())
     val uiStateData: StateFlow<CurpFormModelState> = _uiStateData
 
+    // Estado Incial del Generar CURP en el todo en uno
     fun initState() {
         println("CURP-FORM-STATE INIT")
-        _uiState.value = FormCurpScreenState.Loading("cargando...estamos trabajando...")
+        _uiState.value = FormCurpScreenState.Loading("Cargando...")
         _uiStateData.value = CurpFormModelState(
-            name = "RIGOBERTO",
-//            middleName = "RAMOS",
-//            lastName = "APARICIO",
-//            birth = "1994-11-12",
-//            state = Pair("TS", "Tamaulipas"),
-//            gender = Pair("H", "Hombre"),
+            name = "",
             sexList = getGenders(),
             statesList = getStates(),
         )
-
         Timer().schedule(timerTask {
             _uiState.value = FormCurpScreenState.Loaded
         }, 1000)
@@ -75,9 +70,8 @@ class FormViewModel(
         }
     }
 
-
     private fun submitData() {
-        _uiState.value = FormCurpScreenState.Loading("cargando...estamos trabajando...")
+        _uiState.value = FormCurpScreenState.Loading("cargando...")
         val nameResult = addNameUseCase.invoque(_uiStateData.value.name)
         val middleNameResult = addNameUseCase.invoque(_uiStateData.value.middleName)
         val genderResult = addGenderCase.invoque(_uiStateData.value.gender.first)

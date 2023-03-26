@@ -1,4 +1,4 @@
-package tec.mx.curp.nav
+package tec.mx.curp.domain.nav
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -6,8 +6,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import tec.mx.curp.form.ui.FormViewModel
-import tec.mx.curp.wizard.ui.WizardScreenState
-import tec.mx.curp.wizard.ui.WizardViewModel
+import tec.mx.curp.ui.wizard.ui.WizardScreenState
+import tec.mx.curp.ui.wizard.ui.WizardViewModel
 
 @Composable
 fun Navigator(navController: NavHostController, formViewModel: FormViewModel, wizardVM: WizardViewModel){
@@ -25,7 +25,7 @@ fun Navigator(navController: NavHostController, formViewModel: FormViewModel, wi
                     navController.navigate(Screens.StepGenderScreen.route)
                 }
                 is WizardScreenState.StepDone -> {
-                    navController.navigate(Screens.Result.generateRoute(event.curp,event.name))
+                    navController.navigate(Screens.Result.generateRoute(event.curp, event.name))
                 }
                 WizardScreenState.StepName -> {
                     navController.navigate(Screens.StepNameScreen.route)

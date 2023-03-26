@@ -1,9 +1,11 @@
-package tec.mx.curp.wizard.ui.components
+package tec.mx.curp.ui.wizard.ui.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.East
+import androidx.compose.material.icons.filled.Start
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 

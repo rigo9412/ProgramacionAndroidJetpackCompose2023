@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tec.mx.curp.GlobalProvider
-import tec.mx.curp.nav.Screens
+import tec.mx.curp.domain.nav.Screens
 import tec.mx.curp.ui.theme.green
 import tec.mx.curp.ui.theme.greenDark
 
@@ -37,9 +37,9 @@ fun ResultScreen(
         }
     }
 }
+//Doble nombre
 @Composable
 fun ResultView(curp: String,name:String, onClick: () -> Unit){
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -56,7 +56,7 @@ fun ResultView(curp: String,name:String, onClick: () -> Unit){
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = "$name tu CURP es el siguiente: ",
+            text = "Tu CURP es el siguiente: ",
             textAlign = TextAlign.Center,
             color = Color.White,
             fontWeight = FontWeight.Light,
@@ -78,7 +78,6 @@ fun ResultView(curp: String,name:String, onClick: () -> Unit){
 
         ) {
             Text(text = "Volver al Inicio")
-
         }
 
     }

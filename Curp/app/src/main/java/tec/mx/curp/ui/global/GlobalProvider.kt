@@ -1,8 +1,8 @@
-package tec.mx.curp.global
+package tec.mx.curp.ui.global
 
 import androidx.navigation.NavHostController
 import tec.mx.curp.form.ui.FormViewModel
-import tec.mx.curp.wizard.ui.WizardViewModel
+import tec.mx.curp.ui.wizard.ui.WizardViewModel
 
 data class GlobalProvider (
     val formVM: FormViewModel,

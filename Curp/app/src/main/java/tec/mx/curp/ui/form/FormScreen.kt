@@ -11,7 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import tec.mx.curp.components.*
 import tec.mx.curp.R
 import tec.mx.curp.GlobalProvider
-import tec.mx.curp.nav.Screens
+import tec.mx.curp.domain.nav.Screens
 
 @Composable
 fun FormScreen() {
@@ -139,7 +139,6 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     label = stringResource(R.string.state),
                     listItems = data.statesList,
                     onValueChange = {
-
                         onEvent(CurpFormEvent.StateChanged(it))
                     }
 
@@ -150,7 +149,6 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
         },
         topBar = {
             TopAppBar(
-
                 title = { Text(stringResource(R.string.form_title), color = Color.White) },
                 navigationIcon =  {
                     IconButton(onClick = {

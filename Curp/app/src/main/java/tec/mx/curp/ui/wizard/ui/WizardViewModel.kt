@@ -1,4 +1,4 @@
-package tec.mx.curp.wizard.ui
+package tec.mx.curp.ui.wizard.ui
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,10 +22,11 @@ class WizardViewModel(
     private val _uiStateData = MutableStateFlow<CurpFormModelState>(CurpFormModelState())
     val uiStateData: StateFlow<CurpFormModelState> = _uiStateData
 
+    //Por si queremos iniciarlo con datos
     fun initState() {
-        println("CURP-WIZARD-STATE INIT")
+        //println("CURP-WIZARD-STATE INIT")
         _uiStateData.value = CurpFormModelState(
-            name = "test",
+            name = "",
             sexList = getGenders(),
             statesList = getStates(),
         )

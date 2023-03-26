@@ -15,7 +15,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CustomImput(
+fun CustomInput(
     label: String,
     value: String,
     error: String?,

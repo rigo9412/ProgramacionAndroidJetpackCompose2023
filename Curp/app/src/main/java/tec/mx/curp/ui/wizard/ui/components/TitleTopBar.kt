@@ -1,4 +1,4 @@
-package tec.mx.curp.wizard.ui.components
+package tec.mx.curp.ui.wizard.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -26,8 +26,6 @@ fun TitleTopBar(title: String, subTitle: String?, isFirst: Boolean, onBackAction
     TopAppBar(
         modifier = Modifier.height(120.dp),
     ){
-
-
         Column() {
             Row(
                 modifier = Modifier
@@ -42,7 +40,6 @@ fun TitleTopBar(title: String, subTitle: String?, isFirst: Boolean, onBackAction
                         Icon(
                             Icons.Filled.Close,
                             contentDescription = "cerrar"
-
                         )
                     }
                 } else {
@@ -62,9 +59,7 @@ fun TitleTopBar(title: String, subTitle: String?, isFirst: Boolean, onBackAction
                         contentScale = ContentScale.Crop,
                     )
                 }
-
             }
-
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = title,
@@ -73,9 +68,7 @@ fun TitleTopBar(title: String, subTitle: String?, isFirst: Boolean, onBackAction
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(
                     horizontal = 8.dp
-
                 )
-
             )
             Text(
                 text = subTitle ?: "",

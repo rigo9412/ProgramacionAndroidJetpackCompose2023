@@ -1,4 +1,4 @@
-package tec.mx.curp.nav
+package tec.mx.curp.domain.nav
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType

@@ -1,4 +1,4 @@
-package tec.mx.curp.wizard.ui
+package tec.mx.curp.ui.wizard.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -13,12 +13,13 @@ import androidx.compose.ui.unit.dp
 import tec.mx.curp.GlobalProvider
 import tec.mx.curp.components.Footer
 import tec.mx.curp.components.Header
-import tec.mx.curp.nav.Screens
+import tec.mx.curp.domain.nav.Screens
+import tec.mx.curp.R
 
+//Pantalla principal con las dos opciones
 @Composable
 fun HomeScreen() {
     val navController = GlobalProvider.current.nav
-
     Column(
         modifier = Modifier
             .fillMaxSize()

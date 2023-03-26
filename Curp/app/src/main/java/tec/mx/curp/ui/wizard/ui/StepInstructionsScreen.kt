@@ -1,4 +1,4 @@
-package tec.mx.curp.wizard.ui
+package tec.mx.curp.ui.wizard.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,8 +12,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tec.mx.curp.GlobalProvider
-import tec.mx.curp.nav.Screens
-import tec.mx.curp.wizard.ui.components.StepLayout
+import tec.mx.curp.domain.nav.Screens
+import tec.mx.curp.ui.wizard.ui.components.StepLayout
 
 @Composable
 @Preview
@@ -22,7 +22,7 @@ fun StepInstructionsScreen() {
 
     StepLayout(
         isFirst = true,
-        title = "Wizard CURP ",
+        title = "CURP Paso a Paso",
         subtitle = "",
         onBack = {
             wizardVM.onEvent(WizardScreenEvent.Back(Screens.StepInstructionsScreen.route, Screens.HomeScreen.route))
@@ -36,7 +36,7 @@ fun StepInstructionsScreen() {
             ) {
                 Spacer(modifier = Modifier.height(40.dp))
                 Text(text = "Bienvenido", fontSize = 52.sp, fontWeight = FontWeight.Bold)
-                Text(text = "Te guiaremos para completar tu CURP", fontSize = 32.sp)
+                Text(text = "Te guiaremos de forma sencilla y paso a paso para completar tu CURP", fontSize = 32.sp)
             }
         }
     )

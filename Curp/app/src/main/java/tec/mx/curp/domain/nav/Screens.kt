@@ -1,4 +1,4 @@
-package tec.mx.curp.nav
+package tec.mx.curp.domain.nav
 
 sealed class Screens (val route:String){
     object Form: Screens("form?restart={restart}"){
@@ -21,5 +21,4 @@ sealed class Screens (val route:String){
     object StepGenderScreen: Screens("StepGenderScreen")
     object StepStateScreen: Screens("StepStateScreen")
     object HomeScreen: Screens("HomeScreen")
-
 }
