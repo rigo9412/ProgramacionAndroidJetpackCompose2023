@@ -1,4 +1,4 @@
-package com.example.generadorcurp.form.domain.ui
+package com.example.generadorcurp.ui.form.ui
 
 sealed class CurpFormScreenState {
     object Init: CurpFormScreenState()

@@ -1,4 +1,8 @@
 package com.example.generadorcurp.ui.nav
 
-class RoutesGraph {
+enum class RoutesGraph {
+    ROOT,
+    MAIN,
+    FORM,
+    WIZARD
 }

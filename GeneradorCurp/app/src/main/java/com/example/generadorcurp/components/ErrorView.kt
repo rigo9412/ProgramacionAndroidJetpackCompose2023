@@ -19,7 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.generadorcurp.R
 import androidx.compose.ui.unit.sp
-import com.example.generadorcurp.form.ui.components.btnEnter
+import com.example.generadorcurp.form.domain.ui.components.btnEnter
 
 @Composable
 fun ErrorView(message : String, onInitAction: () -> Unit){

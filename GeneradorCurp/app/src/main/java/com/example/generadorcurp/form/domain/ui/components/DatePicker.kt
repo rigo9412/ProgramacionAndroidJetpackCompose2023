@@ -1,4 +1,4 @@
-package com.example.generadorcurp.form.ui.components
+package com.example.generadorcurp.form.domain.ui.components
 
 import android.app.DatePickerDialog
 import androidx.compose.foundation.clickable

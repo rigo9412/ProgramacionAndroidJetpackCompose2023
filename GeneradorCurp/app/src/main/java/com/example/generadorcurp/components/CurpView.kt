@@ -11,7 +11,7 @@ import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.generadorcurp.form.ui.components.btnEnter
+import com.example.generadorcurp.form.domain.ui.components.btnEnter
 
 @Composable
 fun CurpView(action:() -> Unit){

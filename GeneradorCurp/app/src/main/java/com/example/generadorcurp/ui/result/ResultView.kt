@@ -1,49 +1,81 @@
 package com.example.generadorcurp.result
 
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import com.example.generadorcurp.ui.form.ui.FormViewModel
-import com.example.generadorcurp.form.domain.ui.components.btnEnter
+import com.example.generadorcurp.GlobalProvider
+import com.example.generadorcurp.theme.green
+import com.example.generadorcurp.theme.greenDark
+import com.example.generadorcurp.ui.nav.Screens
 
 @Composable
-fun ResultadoScreen(curp: String, navigationController: NavHostController, viewModel: FormViewModel){
-
-    Log.d("CURP",curp)
-
-    ResultadoView(curp){
-        viewModel.initState()
-        navigationController.navigate("formulario")
+fun ResultScreen(
+    curp: String,
+    name: String,
+) {
+    val navigationController = GlobalProvider.current.nav
+    ResultView(curp,name) {
+        navigationController.navigate(route = Screens.HomeScreen.route){
+            popUpTo(navigationController.graph.id){
+                inclusive = true
+            }
+        }
     }
 }
-
 @Composable
-fun ResultadoView(curp: String, function: () -> Unit) {
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .padding(30.dp),
+fun ResultView(curp: String,name:String, onClick: () -> Unit){
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(green),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-        //var clipdata = ClipData.newPlainText("CURP",curp)
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
 
-        Icon(Icons.Default.Done, modifier = Modifier.size(100.dp), contentDescription = "DONE", tint = Color.White)
-//        Button(onClick = {clipboardManager.setPrimaryClip(clipdata) }){
-//            Text(text = "Copiar")
-//        }
-        Text(text = "CURP: ", fontSize = 30.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(15.dp))
-        TextField(value = curp, onValueChange = {}, enabled = false,modifier = Modifier.padding(15.dp))
+        Icon(
+            Icons.Default.CheckCircle,
+            modifier = Modifier.size(80.dp),
+            contentDescription = "DONE CURP",
+            tint = Color.White
+        )
+        Spacer(modifier = Modifier.height(24.dp))
+        Text(
+            text = "$name tu CURP es el siguiente: ",
+            textAlign = TextAlign.Center,
+            color = Color.White,
+            fontWeight = FontWeight.Light,
+            fontSize = 28.sp
+        )
+        Text(
+            text = curp,
+            color = Color.White,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp
+        )
+        OutlinedButton(
+            onClick = { onClick() },
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = greenDark,
+                contentColor = Color.White
+            )
 
-        btnEnter(enabled = true, generar = { function() }, content = "Regresar")
+        ) {
+            Text(text = "Volver al Inicio")
+
+        }
 
     }
 }

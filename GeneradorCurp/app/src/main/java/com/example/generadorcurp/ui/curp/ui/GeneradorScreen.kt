@@ -313,7 +313,7 @@ fun estado(modifier: Modifier,
 
 val sexos = listOf(Pair("H","Hombre"),Pair("M","Mujer"),Pair("X","No binario"))
 
-val estadosMexicanos = listOf(
+val estadosMexicanos = arrayListOf(
     "AS" to "Aguascalientes",
     "BC" to "Baja California",
     "BS" to "Baja California Sur",

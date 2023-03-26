@@ -1,6 +1,6 @@
 package com.example.generadorcurp.form.domain
 
-val estadosMexicanos = listOf(
+val estadosMexicanos = arrayListOf(
     "AS" to "Aguascalientes",
     "BC" to "Baja California",
     "BS" to "Baja California Sur",

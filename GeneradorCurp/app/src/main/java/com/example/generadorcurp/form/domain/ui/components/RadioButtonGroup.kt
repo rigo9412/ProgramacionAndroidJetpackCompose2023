@@ -1,4 +1,4 @@
-package com.example.generadorcurp.form.ui.components
+package com.example.generadorcurp.form.domain.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
