@@ -1,4 +1,4 @@
-package com.rigo9412.poketest.data
+package com.rigo9412.poketest.data.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -32,4 +32,19 @@ data class PokemonEntity(
     val spDef: Int,
     val speed: Int,
     val generation: Int,
-    )
+)
+
+fun PokemonEntity.asExternalModel() = Pokemon(
+    numberID,
+    name,
+    type1,
+    type2,
+    total,
+    hp,
+    attack,
+    defense,
+    spAtk,
+    spDef,
+    speed,
+    generation,
+)
