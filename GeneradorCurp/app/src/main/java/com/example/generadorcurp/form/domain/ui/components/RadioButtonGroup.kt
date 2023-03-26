@@ -11,7 +11,8 @@ import androidx.compose.ui.unit.dp
 import com.example.generadorcurp.R
 
 @Composable
-fun RadioButtonPairListGroup(label:String,modifier: Modifier,
+fun RadioButtonPairListGroup(
+        label:String,modifier: Modifier,
          items: List<Pair<String, String>>,
          selection: String,
          onItemClick: ((String) -> Unit)){
@@ -20,7 +21,7 @@ fun RadioButtonPairListGroup(label:String,modifier: Modifier,
 
     Column(modifier = modifier) {
         items.forEach { item ->
-            com.example.generadorcurp.ui.curp.ui.RadioButtonLabel(
+            RadioButtonLabel(
                 modifier = modifier
                     .fillMaxWidth()
                     .clickable { onItemClick(item.first) },

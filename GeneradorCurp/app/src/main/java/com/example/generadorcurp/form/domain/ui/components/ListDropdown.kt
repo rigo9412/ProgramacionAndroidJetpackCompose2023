@@ -6,11 +6,13 @@ import androidx.compose.ui.Modifier
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun PairListDropdown(modifier: Modifier,
-           selected: Pair<String,String>,
-           label: String,
-           listItems: List<Pair<String,String>>,
-           onValueChange: (Pair<String,String>) -> Unit){
+fun PairListDropdown(
+    modifier: Modifier,
+       selected: Pair<String,String>,
+       label: String,
+       listItems: List<Pair<String,String>>,
+       onValueChange: (Pair<String,String>) -> Unit
+){
     var open by remember{ mutableStateOf(false) }
     ExposedDropdownMenuBox(
         expanded = open,
@@ -18,7 +20,6 @@ fun PairListDropdown(modifier: Modifier,
             open = it
         }
     ) {
-
         TextField(
             modifier = modifier,
             value = selected.second,

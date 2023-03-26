@@ -1,4 +1,4 @@
-package com.example.generadorcurp.form.ui
+package com.example.generadorcurp.form.domain.ui
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
@@ -17,6 +17,7 @@ import com.example.generadorcurp.R
 import com.example.generadorcurp.form.ui.components.*
 import com.example.generadorcurp.components.*
 import com.example.generadorcurp.form.domain.*
+import com.example.generadorcurp.form.domain.ui.components.*
 import java.time.LocalDate
 
 @Composable
