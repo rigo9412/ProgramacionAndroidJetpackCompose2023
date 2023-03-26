@@ -12,6 +12,7 @@
     <string name="screen_back">Atrás</string>
     <string name="screen_end_wizard">Finalizar y generar CURP</string>
     <string name="screen_generate_curp">Generar CURP</string>
+    <string name="screen_manual_data">Ingresa tus datos personales</string>
 
     <!-- Titulos para el screen de los datos personales (nombre y apellidos) -->
 

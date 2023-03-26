@@ -46,8 +46,9 @@ class WizardViewModel @Inject constructor(
             is WizardScreenEvent.Back -> back(wizardEvent.origin, wizardEvent.destination)
             is WizardScreenEvent.StepNameSubmit -> validateStepName()
             is WizardScreenEvent.StepBirthSubmit -> validateStepBirthDate()
-            is WizardScreenEvent.StepGenderSubmit -> _wizardScreenState.value = WizardScreenState.WizardStateScreen
             is WizardScreenEvent.StepStateSubmit -> generateCurp()
+            is WizardScreenEvent.StepGenderSubmit  -> _wizardScreenState.value = WizardScreenState.WizardStateScreen
+            is WizardScreenEvent.StepDone -> validateData()
         }
     }
 
@@ -55,43 +56,57 @@ class WizardViewModel @Inject constructor(
         val curp = curpGenerator.generate(personState.value.person)
         _wizardScreenState.value = WizardScreenState.ResultScreen(curp, personState.value.person.name, personState.value.person.lastname)
     }
-
     private fun validateStepName() {
-
         val name = personState.value.person.name
         val lastName = personState.value.person.lastname
 
-        val validName = nameValidator.validateName(name)
-        val validLastName = nameValidator.validateLastName(lastName)
+        val validationResult = validateName(name, lastName)
 
-
-        if (validName is ValidationResult.Invalid) {
-            _wizardScreenState.value = WizardScreenState.Error(validName.message)
+        _wizardScreenState.value = when (validationResult) {
+            is ValidationResult.Invalid -> WizardScreenState.Error(validationResult.message)
+            is ValidationResult.Valid -> WizardScreenState.WizardBirthDateScreen
         }
-
-        if (validLastName is ValidationResult.Invalid) {
-            _wizardScreenState.value = WizardScreenState.Error(validLastName.message)
-        }
-
-        if (validName is ValidationResult.Valid && validLastName is ValidationResult.Valid) {
-            _wizardScreenState.value = WizardScreenState.WizardBirthDateScreen
-        }
-
     }
 
     private fun validateStepBirthDate() {
         val birthdate = personState.value.person.birthDate
         val validBirthDate = birthValidator.validateBirthdate(birthdate)
 
-        if (validBirthDate is ValidationResult.Invalid) {
-            _wizardScreenState.value = WizardScreenState.Error(validBirthDate.message)
-        }
-
-        if (validBirthDate is ValidationResult.Valid) {
-            _wizardScreenState.value = WizardScreenState.WizardGenderScreen
+        _wizardScreenState.value = when (validBirthDate) {
+            is ValidationResult.Invalid -> WizardScreenState.Error(validBirthDate.message)
+            is ValidationResult.Valid -> WizardScreenState.WizardGenderScreen
         }
     }
 
+    private fun validateData() {
+        val person = personState.value.person
+
+        val validationResult = validateName(person.name, person.lastname)
+
+        _wizardScreenState.value = when (validationResult) {
+            is ValidationResult.Invalid -> WizardScreenState.Error(validationResult.message)
+            is ValidationResult.Valid -> {
+                when (val validBirthDate = birthValidator.validateBirthdate(person.birthDate)) {
+                    is ValidationResult.Invalid -> WizardScreenState.Error(validBirthDate.message)
+                    is ValidationResult.Valid -> WizardScreenState.ResultScreen(curpGenerator.generate(person), person.name, person.lastname)
+                }
+            }
+            else -> {
+                WizardScreenState.Error("Error desconocido :(")
+            }
+        }
+    }
+
+    private fun validateName(name: String, lastName: String): ValidationResult {
+        val validName = nameValidator.validateName(name)
+        val validLastName = nameValidator.validateLastName(lastName)
+
+        return when {
+            validName is ValidationResult.Invalid -> validName
+            validLastName is ValidationResult.Invalid -> validLastName
+            else -> ValidationResult.Valid
+        }
+    }
 
     private fun back(origin: String, destination: String) {
         _wizardScreenState.value = WizardScreenState.WizardBack(origin, destination)

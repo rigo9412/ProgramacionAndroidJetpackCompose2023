@@ -35,7 +35,7 @@ fun GenderScreen(
             personViewModel.onEvent(WizardScreenEvent.StepGenderSubmit)
         },
         onBack = {
-            personViewModel.onEvent(WizardScreenEvent.Back(Routes.WizardGender.route, Routes.WizardName.route))
+            personViewModel.onEvent(WizardScreenEvent.Back(Routes.WizardGender.route, Routes.WizardBirthDate.route))
         },
     ) {
         Column(

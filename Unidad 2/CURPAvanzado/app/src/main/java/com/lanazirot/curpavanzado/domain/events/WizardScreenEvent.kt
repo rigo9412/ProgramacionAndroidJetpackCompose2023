@@ -6,4 +6,5 @@ sealed class WizardScreenEvent {
     object StepBirthSubmit: WizardScreenEvent()
     object StepGenderSubmit : WizardScreenEvent()
     object StepStateSubmit : WizardScreenEvent()
+    object StepDone : WizardScreenEvent()
 }
