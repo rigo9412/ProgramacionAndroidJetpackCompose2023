@@ -22,7 +22,7 @@ fun ErrorView(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Blue),
+            .background(Color.White),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -35,7 +35,7 @@ fun ErrorView(
 //        )
         Text(
             text = error,
-            color = Color.White,
+            color = Color.Black,
             fontWeight = FontWeight.Bold,
             fontSize = 23.sp
         )

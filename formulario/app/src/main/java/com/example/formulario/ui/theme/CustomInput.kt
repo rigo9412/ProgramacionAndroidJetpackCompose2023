@@ -24,7 +24,7 @@ fun CustomInput(
     TextField(
         value = value,
         onValueChange = onChangeValue,
-        modifier = Modifier,
+        modifier = modifier,
 
         label = {Text(label)},
         isError= false,

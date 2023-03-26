@@ -6,4 +6,8 @@ sealed class rutas (val route: String){
         fun genarateRoutes(curp: String, name: String):String{
             return "result?curp=${curp}&name=${name}&lastname=${name}"
         }
+    object StepNameScreen: rutas("StepNameScreen")
+    object StepBirthScreen: rutas("StepBirthScreen")
+    object StepGenderSreen: rutas("StepGenderScreen")
+
 }

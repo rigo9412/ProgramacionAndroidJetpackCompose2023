@@ -33,7 +33,7 @@ class FormViewModel(): ViewModel() {
             lastname = "SANCHEZ",
             birth = "2001-10-12",
             state = Pair("TS", "Tamaulipas"),
-            gender = Pair("H", "Hombre"),
+            gender = Pair("M", "Mujer"),
 //            sexList = getGenders(),
             statesList = getStates(),
         )
