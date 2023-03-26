@@ -12,17 +12,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import com.lanazirot.curpavanzado.R
+import com.lanazirot.curpavanzado.domain.enums.Routes
+import com.lanazirot.curpavanzado.domain.events.WizardScreenEvent
+import com.lanazirot.curpavanzado.provider.LocalGlobalProvider
 import com.lanazirot.curpavanzado.screens.components.common.CustomInput
 import com.lanazirot.curpavanzado.screens.components.step.StepScreen
-import com.lanazirot.curpavanzado.screens.viewmodels.PersonViewModel
+
 
 
 @Composable
-fun NameScreen(
-    personViewModel : PersonViewModel,
-    onNext: () -> Unit,
-    onBack: () -> Unit,
-) {
+fun NameScreen() {
+
+    val gp = LocalGlobalProvider.current
+    val personViewModel = gp.wizardVM
 
     val focusManager = LocalFocusManager.current
     val state by personViewModel.personState.collectAsState()
@@ -31,9 +33,12 @@ fun NameScreen(
         title = stringResource(id = R.string.screen_personal_data_title),
         subtitle = stringResource(id = R.string.screen_personal_data_subtitle),
         isLast = false,
-        isFirst = true,
-        onNext = { onNext() },
-        onBack = { onBack() },
+        onNext = {
+            personViewModel.onEvent(WizardScreenEvent.StepNameSubmit)
+        },
+        onBack = {
+            personViewModel.onEvent(WizardScreenEvent.Back(origin = Routes.WizardName.route, destination = Routes.Welcome.route))
+        },
     ) {
         Column(
             modifier = Modifier

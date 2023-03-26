@@ -4,10 +4,10 @@ import com.lanazirot.curpavanzado.common.utils.unaccent
 import com.lanazirot.curpavanzado.domain.enums.blackListWords
 import com.lanazirot.curpavanzado.services.interfaces.ICURPGenerator
 import com.lanazirot.curpgenerator.domain.models.Person
+import javax.inject.Inject
 import kotlin.math.abs
 
 class CURPGenerator : ICURPGenerator {
-
     override fun generate(person: Person): String {
         var curp = ""
         curp += person.lastname.substring(0, 1)

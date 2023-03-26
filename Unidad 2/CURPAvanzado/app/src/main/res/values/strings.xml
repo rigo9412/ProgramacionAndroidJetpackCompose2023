@@ -23,7 +23,7 @@
 
      <!-- Titulos para el screen de la fecha de nacimiento -->
 
-    <string name="screen_birth_date_title">Fecha de Nacimiento</string>
+    <string name="screen_birth_date_title">Nacimiento</string>
     <string name="screen_birth_date_subtitle">Ingresa tu fecha de nacimiento</string>
 
 
@@ -34,7 +34,7 @@
 
     <!-- Titulos para el screen de la seleccion del estado de nacimiento -->
 
-    <string name="screen_birth_state_title">Estado de Nacimiento</string>
+    <string name="screen_birth_state_title">Estado</string>
     <string name="screen_birth_state_subtitle">Selecciona tu estado de Nacimiento</string>
 
 </resources>

@@ -18,8 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lanazirot.curpavanzado.R
-import com.lanazirot.curpavanzado.ui.theme.BANNER_GOBIERNO_COLOR
-import com.lanazirot.curpavanzado.ui.theme.BANNER_GOBIERNO_COLOR_LIGHT
+import dagger.hilt.internal.aggregatedroot.codegen.theme.BANNER_GOBIERNO_COLOR
+import dagger.hilt.internal.aggregatedroot.codegen.theme.BANNER_GOBIERNO_COLOR_LIGHT
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -29,13 +29,10 @@ fun StepScreen(
     subtitle: String,
     onBack: () -> Unit = { },
     onNext: () -> Unit = { },
-    onSkip: () -> Unit = { },
-    isFirst: Boolean = false,
     isLast: Boolean = false,
     content: @Composable () -> Unit,
 ) {
     Scaffold(
-        backgroundColor = Color.White,
         modifier = Modifier.padding(bottom = 10.dp),
         topBar = {
             Row(
@@ -52,7 +49,7 @@ fun StepScreen(
                         text = title,
                         Modifier
                             .fillMaxWidth(0.75f)
-                            .size(50.dp),
+                            .size(40.dp),
                         color = Color.White,
                         fontSize = 30.sp
                     )
@@ -69,7 +66,7 @@ fun StepScreen(
 
                 Column {
                     TextButton(
-                        onClick = if (isFirst) onBack else onSkip,
+                        onClick = {onBack()},
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = Color.Transparent,
                             contentColor = Color.White
@@ -105,6 +102,7 @@ fun StepScreen(
                         onClick = { onNext()},
                         backgroundColor = BANNER_GOBIERNO_COLOR,
                         contentColor = Color.White,
+                        modifier = Modifier.size(100.dp)
                     ) {
                         Icon(
                             imageVector = if (isLast) Icons.Default.Done else Icons.Default.ArrowForward,
@@ -123,7 +121,6 @@ fun StepScreenPreview() {
     StepScreen(
         title = "Title",
         subtitle = "Subtitle",
-        isFirst = true,
         content = {
             Text(text = "Content")
         }

@@ -1,14 +1,14 @@
 package com.lanazirot.curpavanzado.screens.states
 
-open class WizardScreenState(
-    val personState: PersonState = PersonState()
-) {
-    class Welcome : WizardScreenState()
-    class Manual : WizardScreenState()
-    class WizardNameScreen(): WizardScreenState()
-    class WizardBirthDateScreen : WizardScreenState()
-    class WizardGenderScreen : WizardScreenState()
-    class WizardStateScreen : WizardScreenState()
-    class ResultScreen() : WizardScreenState()
+sealed class WizardScreenState{
+    object Welcome : WizardScreenState()
+    object Manual : WizardScreenState()
+    object WizardNameScreen : WizardScreenState()
+    object WizardBirthDateScreen: WizardScreenState()
+    object WizardGenderScreen : WizardScreenState()
+    object WizardStateScreen : WizardScreenState()
+    class ResultScreen(val curp: String, val name: String, val lastname: String) : WizardScreenState()
+    class WizardBack(val origin: String, val destination: String) : WizardScreenState()
+
     class Error(val message: String) : WizardScreenState()
 }

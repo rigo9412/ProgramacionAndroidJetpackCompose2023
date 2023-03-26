@@ -10,29 +10,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.lanazirot.curpavanzado.R
+import com.lanazirot.curpavanzado.domain.enums.Gender
 import com.lanazirot.curpavanzado.domain.enums.Routes
 import com.lanazirot.curpavanzado.domain.events.WizardScreenEvent
 import com.lanazirot.curpavanzado.provider.LocalGlobalProvider
-import com.lanazirot.curpavanzado.screens.components.common.CustomInputDate
+import com.lanazirot.curpavanzado.screens.components.common.CustomInputRadioButtonGroup
 import com.lanazirot.curpavanzado.screens.components.step.StepScreen
 
 
 @Composable
-fun BirthdateScreen() {
+fun GenderScreen(
+) {
 
     val gp = LocalGlobalProvider.current
     val personViewModel = gp.wizardVM
+
     val state by personViewModel.personState.collectAsState()
 
     StepScreen(
-        title = stringResource(id = R.string.screen_birth_date_title),
-        subtitle = stringResource(id = R.string.screen_birth_date_subtitle),
+        title = stringResource(id = R.string.screen_gender_title),
+        subtitle = stringResource(id = R.string.screen_gender_subtitle),
         isLast = false,
         onNext = {
-            personViewModel.onEvent(WizardScreenEvent.StepBirthSubmit)
+            personViewModel.onEvent(WizardScreenEvent.StepGenderSubmit)
         },
         onBack = {
-            personViewModel.onEvent(WizardScreenEvent.Back(origin = Routes.WizardBirthDate.route, destination = Routes.WizardName.route))
+            personViewModel.onEvent(WizardScreenEvent.Back(Routes.WizardGender.route, Routes.WizardName.route))
         },
     ) {
         Column(
@@ -40,12 +43,16 @@ fun BirthdateScreen() {
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            CustomInputDate(
-                value = state.person.birthDate,
-                label = stringResource(id = R.string.screen_birth_date_subtitle),
-                onValueChange = {
+            CustomInputRadioButtonGroup(
+                options = listOf(
+                    Gender.MALE,
+                    Gender.FEMALE,
+                    Gender.NON_BINARY
+                ),
+                selectedOption = state.person.gender,
+                onOptionSelected = {
                     personViewModel.updatePerson(
-                        state.person.copy(birthDate = it)
+                        state.person.copy(gender = it)
                     )
                 })
         }

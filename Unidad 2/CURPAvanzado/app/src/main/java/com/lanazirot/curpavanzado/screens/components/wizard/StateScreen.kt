@@ -13,26 +13,28 @@ import com.lanazirot.curpavanzado.R
 import com.lanazirot.curpavanzado.domain.enums.Routes
 import com.lanazirot.curpavanzado.domain.events.WizardScreenEvent
 import com.lanazirot.curpavanzado.provider.LocalGlobalProvider
-import com.lanazirot.curpavanzado.screens.components.common.CustomInputDate
+import com.lanazirot.curpavanzado.screens.components.common.CustomInputDropdownStates
 import com.lanazirot.curpavanzado.screens.components.step.StepScreen
 
 
 @Composable
-fun BirthdateScreen() {
+fun StateScreen(
+) {
 
     val gp = LocalGlobalProvider.current
     val personViewModel = gp.wizardVM
+
     val state by personViewModel.personState.collectAsState()
 
     StepScreen(
-        title = stringResource(id = R.string.screen_birth_date_title),
-        subtitle = stringResource(id = R.string.screen_birth_date_subtitle),
-        isLast = false,
+        title = stringResource(id = R.string.screen_birth_state_title),
+        subtitle = stringResource(id = R.string.screen_birth_state_subtitle),
+        isLast = true,
         onNext = {
-            personViewModel.onEvent(WizardScreenEvent.StepBirthSubmit)
+            personViewModel.onEvent(WizardScreenEvent.StepStateSubmit)
         },
         onBack = {
-            personViewModel.onEvent(WizardScreenEvent.Back(origin = Routes.WizardBirthDate.route, destination = Routes.WizardName.route))
+            personViewModel.onEvent(WizardScreenEvent.Back(Routes.WizardState.route, Routes.WizardGender.route))
         },
     ) {
         Column(
@@ -40,12 +42,12 @@ fun BirthdateScreen() {
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            CustomInputDate(
-                value = state.person.birthDate,
-                label = stringResource(id = R.string.screen_birth_date_subtitle),
-                onValueChange = {
+            CustomInputDropdownStates(
+                value = state.person.state,
+                label = stringResource(id = R.string.screen_birth_state_subtitle),
+                onValueChange = { a ->
                     personViewModel.updatePerson(
-                        state.person.copy(birthDate = it)
+                        state.person.copy(state = a)
                     )
                 })
         }

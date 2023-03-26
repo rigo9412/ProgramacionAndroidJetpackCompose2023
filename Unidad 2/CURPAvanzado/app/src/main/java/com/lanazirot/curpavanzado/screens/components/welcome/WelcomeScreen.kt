@@ -8,6 +8,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,10 +18,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.lanazirot.curpavanzado.domain.enums.Routes
+import com.lanazirot.curpavanzado.provider.LocalGlobalProvider
+import dagger.hilt.internal.aggregatedroot.codegen.theme.BANNER_GOBIERNO_COLOR
 
 
 @Composable
-fun WelcomeScreen(navController: NavController) {
+fun WelcomeScreen() {
+
+    val gp = LocalGlobalProvider.current
+
+    val navController = gp.nav
+
+    LaunchedEffect(Unit){ gp.wizardVM.resetPerson() }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -44,7 +54,7 @@ fun WelcomeScreen(navController: NavController) {
             },
             shape = RoundedCornerShape(50),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = com.lanazirot.curpavanzado.ui.theme.BANNER_GOBIERNO_COLOR,
+                backgroundColor = BANNER_GOBIERNO_COLOR,
                 contentColor = Color.White
             ),
             modifier = Modifier
@@ -60,7 +70,7 @@ fun WelcomeScreen(navController: NavController) {
             },
             shape = RoundedCornerShape(50),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = com.lanazirot.curpavanzado.ui.theme.BANNER_GOBIERNO_COLOR,
+                backgroundColor = BANNER_GOBIERNO_COLOR,
                 contentColor = Color.White
             ),
             modifier = Modifier
