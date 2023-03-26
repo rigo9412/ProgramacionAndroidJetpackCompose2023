@@ -1,4 +1,4 @@
-package com.jordandiaz19100170.formulario.ui.theme
+package com.jordandiaz19100170.formulario.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

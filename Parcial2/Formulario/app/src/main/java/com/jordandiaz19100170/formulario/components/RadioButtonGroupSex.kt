@@ -1,7 +1,5 @@
-package com.jordandiaz19100170.formulario.ui
+package com.jordandiaz19100170.formulario.components
 
-import android.widget.RadioButton
-import android.widget.RemoteViews.RemoteCollectionItems
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -9,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-
 
 
 @Composable

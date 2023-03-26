@@ -1,7 +1,5 @@
-package com.jordandiaz19100170.formulario.form.domain
+package com.jordandiaz19100170.formulario.utils
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import java.time.format.DateTimeFormatter
 
 val BLACK_LIST = arrayListOf(
@@ -29,7 +27,5 @@ val COMPOSTION_NAME =  arrayListOf("MARIA", "MA.", "MA", "JOSE", "J", "J." )
 val PREPOSTION_CONJUNTION_CONTRADICTION = arrayListOf<String>("DA", "DAS", "DE", "DEL", "DER", "DI", "DIE", "DD", "EL", "LA", "LOS", "LAS", "LE", "LES", "MAC", "MC", "VAN", "VON", "Y", "J", "MA" );
 val VOCAL = "AEIOU";
 val CONSONANTS = " BCDFGHJKLMNÑPQRSTVXZWY";
-@RequiresApi(Build.VERSION_CODES.O)
 val FORMATTER_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-@RequiresApi(Build.VERSION_CODES.O)
 val FORMATTER_CURP = DateTimeFormatter.ofPattern("yyMMdd")

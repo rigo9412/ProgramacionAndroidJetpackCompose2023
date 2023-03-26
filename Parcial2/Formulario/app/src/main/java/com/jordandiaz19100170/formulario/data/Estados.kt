@@ -1,4 +1,4 @@
-package com.jordandiaz19100170.formulario.form.domain
+package com.jordandiaz19100170.formulario.data
 
 val estados = arrayListOf(
     Pair("AS", "Aguascalientes"),

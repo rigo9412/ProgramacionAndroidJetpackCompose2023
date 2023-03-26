@@ -1,4 +1,4 @@
-package com.jordandiaz19100170.formulario.ui
+package com.jordandiaz19100170.formulario.components
 
 import androidx.compose.material.*
 import androidx.compose.material.ExposedDropdownMenuDefaults.TrailingIcon
