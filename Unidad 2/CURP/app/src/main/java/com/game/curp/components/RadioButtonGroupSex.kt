@@ -13,17 +13,16 @@ fun RadioButtonGroupSex(
     modifier: Modifier,
     items: List<Pair<String, String>>,
     selection: String,
-    onItemClick: ((Pair<String,String>) -> Unit) //(String) -> Unit
-    /*onClick: Any?*/
+    onItemClick: ((Pair<String,String>) -> Unit)
 ) {
     Column(modifier = modifier) {
         items.forEach { item ->
             RadioButtonLabel(
-                modifier = Modifier.fillMaxWidth().clickable {  },
+                modifier = Modifier.fillMaxWidth().clickable { onItemClick(item) },
                 label = item.second,
                 selected = item.first == selection,
                 onClick = {
-                    onItemClick(item/*.first*/)
+                    onItemClick(item)
                 }
             )
         }
