@@ -1,8 +1,6 @@
-package tec.mx.curp.form.ui.components
+package tec.mx.curp.components
 
 import android.app.DatePickerDialog
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -18,9 +16,8 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun DatePickerDate(
+fun DatePickerBirthDate(
     label: String,
     value: String,
     onValueChange: (String) -> Unit = {},
@@ -52,6 +49,8 @@ fun DatePickerDate(
         keyboardActions = KeyboardActions.Default,
         label = { Text(label) },
         textStyle = TextStyle(color = Color.Black)
+
+
     )
 
 }

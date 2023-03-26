@@ -39,9 +39,7 @@ fun EmptyView(
         OutlinedButton(
             onClick = { action() }) {
             Text(text = "Ver CURP ",color = Color.Green)
-
         }
-
     }
 }
 

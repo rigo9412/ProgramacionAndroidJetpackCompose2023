@@ -1,8 +1,9 @@
-package tec.mx.curp.form.ui.components
+package tec.mx.curp.components
 
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

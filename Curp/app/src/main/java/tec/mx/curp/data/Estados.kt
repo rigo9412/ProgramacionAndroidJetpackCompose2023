@@ -1,4 +1,4 @@
-package tec.mx.curp.form.domain
+package tec.mx.curp.data
 
 val estados = arrayListOf(
     Pair("AS", "Aguascalientes"),

@@ -1,8 +1,7 @@
-package tec.mx.curp.form.domain
+package tec.mx.curp.data
 
 val generos = arrayListOf(
     Pair("M","Mujer"),
     Pair("H","Hombre"),
-    Pair("X","No Binario")
+    Pair("X","No Binario"),
 )
-
