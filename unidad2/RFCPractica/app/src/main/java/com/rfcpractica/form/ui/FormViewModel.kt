@@ -7,7 +7,6 @@ import com.rfcpractica.form.domain.*
 import com.rfcpractica.form.domain.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import java.lang.Exception
 import java.text.Normalizer
 import java.time.LocalDate
 import java.util.*
@@ -136,7 +135,7 @@ class FormViewModel(): ViewModel() {
 
 
         }
-        catch(e: Exception) {
+        catch(e: java.lang.Exception) {
             _uiState.value = FormUiState.Error("ERROR EN LA APP")
         }
 

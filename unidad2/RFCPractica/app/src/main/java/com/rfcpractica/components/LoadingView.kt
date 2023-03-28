@@ -3,7 +3,6 @@ package com.rfcpractica.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,13 +21,18 @@ fun LoadingView(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Box(contentAlignment = Alignment.Center) {
-            LinearProgressIndicator(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(15.dp),
-                backgroundColor = Color.LightGray,
-                color = Color.Green //progress color
-            )
+            CircularProgressIndicator(
+                strokeWidth = 6.dp,
+                color = Color.Magenta,
+                modifier = Modifier.then(Modifier.size(60.dp).rotate(degrees = 15f)))
+            CircularProgressIndicator(
+                strokeWidth = 6.dp,
+                color = Color.Cyan,
+                modifier = Modifier.then(Modifier.size(80.dp).rotate(degrees = 45f)))
+            CircularProgressIndicator(
+                strokeWidth = 6.dp,
+                color = Color.Yellow,
+                modifier = Modifier.then(Modifier.size(100.dp).rotate(degrees = 75f)))
         }
         Text(text = message)
     }

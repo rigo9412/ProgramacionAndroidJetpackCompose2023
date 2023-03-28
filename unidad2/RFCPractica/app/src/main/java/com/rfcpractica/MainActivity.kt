@@ -4,60 +4,45 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHost
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.navArgument
-import com.rfcpractica.form.ui.FormScreen
-import com.rfcpractica.form.ui.FormViewModel
-import com.rfcpractica.result.ResultScreen
-import com.rfcpractica.ui.theme.RFCPracticaTheme
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.compose.composable
+import com.rfcpractica.curp.ui.form.ui.FormViewModel
+import com.rfcpractica.curp.ui.global.*
+import com.rfcpractica.curp.ui.nav.Navigator
+import com.rfcpractica.curp.ui.wizard.ui.WizardViewModel
+import com.rfcpractica.theme.RegistroCurpTheme
+import com.rfcpractica.curp.ui.global.GlobalProvider
+import com.rfcpractica.curp.ui.global.GlobalStateScreenViewModel
 
-
+val GlobalProvider = staticCompositionLocalOf<GlobalProvider> { error("No navigation host controller provided.") }
 class MainActivity : ComponentActivity() {
+    private val globalVM: GlobalStateScreenViewModel by viewModels()
+    private val formVM: FormViewModel by viewModels()
+    private val wizardVM: WizardViewModel by viewModels()
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-            var viewModel = FormViewModel()
-            RFCPracticaTheme {
+            val gp = GlobalProvider(
+                formVM = formVM,
+                wizardVM = wizardVM,
+                globalVM = globalVM,
+                nav = navController
+            )
+            RegistroCurpTheme {
+                CompositionLocalProvider(GlobalProvider provides gp) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    NavHost(navController = navController, startDestination = "form") {
-                        composable("form") { FormScreen(viewModel, navController) }
-                        composable(
-                            "result/{curp}/{name}",
-                            arguments = listOf(
-                                navArgument("curp") {
-                                    type = NavType.StringType
-                                },
-                                navArgument("name") {
-                                    type = NavType.StringType
-                                })
-                        ) {
-                            val curp = it.arguments?.getString("curp")
-                            val name = it.arguments?.getString("name")
-                            viewModel = ResultScreen(
-                                curp ?: "CURP",
-                                name ?: "name",
-                                navController,
-                                viewModel
-                            )
-                        }
-                    }
+                    Navigator(gp.nav,gp.formVM,gp.wizardVM)
+                }
                 }
             }
         }

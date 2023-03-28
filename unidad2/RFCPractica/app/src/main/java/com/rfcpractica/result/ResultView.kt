@@ -39,7 +39,7 @@ fun ResultView(curp: String, onClick: () -> Unit){
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF0EFFE7)),
+            .background(Color.Green),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -52,18 +52,18 @@ fun ResultView(curp: String, onClick: () -> Unit){
         )
         Text(
             text = curp,
-            color = Color(0xFF000202),
+            color = Color.White,
             fontWeight = FontWeight.Bold,
             fontSize = 50.sp
         )
         OutlinedButton(
             onClick = { onClick() },
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color(0xFFFFEB3B),
+                backgroundColor = Color.Yellow,
                 contentColor = Color.Red
             )
         ) {
-            Text(text = "Pag principal")
+            Text(text = "Regresar")
         }
 
     }

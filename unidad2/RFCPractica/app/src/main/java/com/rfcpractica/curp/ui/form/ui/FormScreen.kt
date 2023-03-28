@@ -1,4 +1,4 @@
-package com.rfcpractica.form.ui
+package com.rfcpractica.curp.ui.form.ui
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -9,33 +9,43 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
+import com.rfcpractica.GlobalProvider
 import com.rfcpractica.R
-import com.rfcpractica.components.EmptyView
-import com.rfcpractica.components.ErrorView
-import com.rfcpractica.components.LoadingView
-import com.rfcpractica.form.ui.componentes.CustomInput
-import com.rfcpractica.form.ui.componentes.DatePickerDate
-import com.rfcpractica.form.ui.componentes.DropdownStates
-import com.rfcpractica.form.ui.componentes.RadioButtonGroupSex
+//import com.rfcpractica.components.*
+import com.rfcpractica.curp.ui.nav.Screens
+import com.rfcpractica.curp.components.*
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun FormScreen(viewModel: FormViewModel, navigationController: NavHostController) {
+fun FormScreen() {
+    val viewModel = GlobalProvider.current.formVM
     val state = viewModel.uiState.collectAsState().value
+    val navigationController = GlobalProvider.current.nav
 
     when (state) {
-        is FormUiState.Error -> ErrorView(error = state.message) { viewModel.initState() }
-        is FormUiState.Loaded -> Form(viewModel)
-        is FormUiState.Loading -> LoadingView(message = state.message)
-        is FormUiState.Done -> EmptyView(action = {
-            navigationController.navigate("result/${state.curp}/${state.name}}")
+        is FormCurpScreenState.Error -> ErrorView(error = state.message) { viewModel.initState() }
+        is FormCurpScreenState.Loaded -> Form(viewModel)
+        is FormCurpScreenState.Loading -> LoadingView(message = state.message)
+        is FormCurpScreenState.Done -> EmptyView(action = {
+            navigationController.navigate(
+                route = Screens.Result.generateRoute(
+                    state.curp,
+                    state.name
+                )
+            ) {
+                popUpTo(navigationController.graph.id) {
+                    inclusive = true
+                }
+            }
         })
         else -> {
 
@@ -61,17 +71,19 @@ fun Form(viewModel: FormViewModel) {
                 CustomInput(
                     label = stringResource(R.string.name),
                     value = data.name,
-                    onChangeValue = { viewModel.onChangeName(it) },
+                    error = data.nameError,
+                    onChangeValue = { viewModel.onEvent(CurpFormEvent.NameChanged(it)) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
                     focusManager = focusManager
                 )
                 CustomInput(
-                    label = "Primer Apellido",
+                    label = stringResource(R.string.middle_name),
                     value = data.middleName,
+                    error = data.middleNameError,
                     onChangeValue = {
-                        viewModel.onChangeMiddlename(it)
+                        viewModel.onEvent(CurpFormEvent.MiddleNameChanged(it))
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -79,23 +91,27 @@ fun Form(viewModel: FormViewModel) {
                     focusManager = focusManager
                 )
                 CustomInput(
-                    label = "Segundo Apellido",
-                    value = data.lastname,
-                    onChangeValue = { viewModel.onChangeLastname(it) },
+                    label = stringResource(R.string.lastname),
+                    value = data.lastName,
+                    error = data.lastNameError,
+                    onChangeValue = {
+                        viewModel.onEvent(CurpFormEvent.LastNameChanged(it))
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
                     focusManager = focusManager
                 )
                 DatePickerDate(
-                    label = "Fecha de nacimiento",
+                    label = stringResource(R.string.birth),
                     value = data.birth,
-                    onValueChange = { viewModel.onChangeBirth(it) },
+                    onValueChange = {
+                        viewModel.onEvent(CurpFormEvent.BirthChanged(it))
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
                     focusManager = focusManager
-
                 )
 
                 RadioButtonGroupSex(
@@ -104,7 +120,9 @@ fun Form(viewModel: FormViewModel) {
                         .padding(10.dp),
                     items = data.sexList,
                     selection = data.gender.first,
-                    onItemClick = { viewModel.onChangeGender(it) }
+                    onItemClick = {
+                        viewModel.onEvent(CurpFormEvent.GenderChanged(it))
+                    }
 
                 )
                 DropdownStates(
@@ -112,30 +130,29 @@ fun Form(viewModel: FormViewModel) {
                         .fillMaxWidth()
                         .padding(10.dp),
                     selected = data.state,
-                    label = "Estado",
+                    label = stringResource(R.string.state),
                     listItems = data.statesList,
                     onValueChange = {
-                        viewModel.onChangeState(it)
+
+                        viewModel.onEvent(CurpFormEvent.StateChanged(it))
                     }
 
                 )
-
-
             }
         },
         topBar = {
             TopAppBar(
-                title = { Text("GENERADOR DE CURP", color = Color.White) },
-                backgroundColor = Color.Blue
+                title = { Text(stringResource(R.string.form_title), color = Color.White) },
             )
         },
         floatingActionButton = {
-            ExtendedFloatingActionButton(
-                text = { Text("GENERAR CURP") },
-                onClick = { viewModel.generateCURP() },
-                backgroundColor = Color(0xFFBBDEFB),
-                contentColor = Color(0xFF0D47A1)
-            )
+            FloatingActionButton(onClick = {
+                viewModel.onEvent(CurpFormEvent.Submit)
+            }) {
+                Icon(Icons.Filled.Done, contentDescription = stringResource(R.string.form_submit))
+            }
         }
     )
 }
+
+
