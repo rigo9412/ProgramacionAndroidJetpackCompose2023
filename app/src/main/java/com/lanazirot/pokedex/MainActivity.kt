@@ -17,39 +17,26 @@ import coil.compose.rememberAsyncImagePainter
 import com.lanazirot.pokedex.ui.navigation.AppNavGraph
 import com.lanazirot.pokedex.ui.providers.AppProvider
 import com.lanazirot.pokedex.ui.providers.GlobalProvider
+import com.lanazirot.pokedex.ui.screens.LoginScreen
+import com.lanazirot.pokedex.ui.screens.MainScreen
 import com.lanazirot.pokedex.ui.theme.PokedexTheme
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            var navController = rememberNavController()
-            val gp = AppProvider(navigation = navController)
-            PokedexTheme {
-                CompositionLocalProvider(
-                    GlobalProvider provides gp
-                ) {
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colors.background
-                    ) {
-                        AppNavGraph(globalProvider = gp)
-                    }
-                    }
-                }
-            }
+            MainScreen()
         }
     }
+}
 
-
-    @Composable
-    fun Greeting() {
-        val painter = rememberAsyncImagePainter(model = "file:///android_asset/images/019.png")
-        Image(
-            painter = painter,
-            contentDescription = "Imagen con filtro negro",
-            colorFilter = ColorFilter.tint(Color.Black)
-        )
-    }
+@Composable
+fun Greeting() {
+    val painter = rememberAsyncImagePainter(model = "file:///android_asset/images/019.png")
+    Image(
+        painter = painter,
+        contentDescription = "Imagen con filtro negro",
+        colorFilter = ColorFilter.tint(Color.Black)
+    )
+}
 

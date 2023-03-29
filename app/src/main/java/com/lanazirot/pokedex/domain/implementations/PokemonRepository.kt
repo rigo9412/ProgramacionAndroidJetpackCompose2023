@@ -16,7 +16,6 @@ class PokemonRepository : IPokemonRepository {
         }
     }
 
-
     override suspend fun getPokemonById(id: Int): PokemonMapped {
         return withContext(Dispatchers.IO) {
             val json = javaClass.classLoader?.getResource("pokemon.json")?.readText()

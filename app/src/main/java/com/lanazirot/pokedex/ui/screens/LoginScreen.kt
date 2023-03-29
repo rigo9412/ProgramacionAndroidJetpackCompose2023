@@ -15,9 +15,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lanazirot.pokedex.R
+import com.lanazirot.pokedex.ui.navigation.routing.AppRoutes
+import com.lanazirot.pokedex.ui.providers.GlobalProvider
 
 @Composable
 fun LoginScreen() {
+    val navController = GlobalProvider.current.navigation
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -37,7 +41,9 @@ fun LoginScreen() {
             )
             Spacer(modifier = Modifier.height(50.dp))
             OutlinedButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    navController.navigate(AppRoutes.User.Profile)
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 50.dp),

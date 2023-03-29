@@ -17,7 +17,7 @@ import com.lanazirot.pokedex.ui.theme.pokemonRed
 fun BottomNavBar() {
     val navController = GlobalProvider.current.navigation
 
-    var navItems = listOf(
+    val navItems = listOf(
         BottomNavItem.User,
         BottomNavItem.Pokedex
     )
