@@ -1,15 +1,23 @@
 package com.otop.chinpokomon.data
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
-class MyViewModel : ViewModel() {
 
-    val greeting = mutableStateOf("Hola!")
+class MainViewModel: ViewModel() {
+    private val _currentScreen = MutableStateFlow<Screen>(Screen.Home)
+    val currentScreen: StateFlow<Screen> = _currentScreen
 
-    fun setGreeting(newGreeting: String) {
-        greeting.value = newGreeting
+
+    fun navigateToHome() {
+        _currentScreen.value = Screen.Home
     }
 
-    // Si necesitas algún proceso asíncrono, también puedes declararlo aquí
-    // por ejemplo, una llamada a una API
+    fun navigateToProfile() {
+        _currentScreen.value = Screen.Profile
+    }
+
+    fun navigateToSettings() {
+        _currentScreen.value = Screen.Settings
+    }
 }

@@ -1,50 +1,37 @@
 package com.otop.chinpokomon
 
-import android.content.res.AssetManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.otop.chinpokomon.data.MainViewModel
+import com.otop.chinpokomon.data.screens.MainScreen
 import com.otop.chinpokomon.ui.theme.CHIMPOKONTheme
-import java.io.IOException
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             CHIMPOKONTheme {
+                val viewModel: MainViewModel by viewModels()
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    MainScreen(viewModel = viewModel)
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    CHIMPOKONTheme {
-        Greeting("Android")
-    }
-}
 
 //class PokemonLocalAPI: IPokemonLocalAPI {
 //    override fun getPokemons(manager: AssetManager): List<PokemonEntity>{
