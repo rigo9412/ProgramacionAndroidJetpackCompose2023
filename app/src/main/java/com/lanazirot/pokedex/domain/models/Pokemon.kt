@@ -18,4 +18,19 @@ data class Pokemon(
     fun getPathImage(): String {
         return "file:///android_asset/images/${id.toString().padStart(3, '0')}.png"
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Pokemon
+
+        if (id != other.id) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id
+    }
 }

@@ -1,5 +1,7 @@
 package com.lanazirot.pokedex.domain.implementations
 
+import android.content.Context
+import androidx.compose.ui.platform.LocalContext
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.lanazirot.pokedex.domain.interfaces.IPokemonRepository
@@ -10,7 +12,7 @@ import kotlinx.coroutines.withContext
 class PokemonRepository : IPokemonRepository {
     override suspend fun getPokemonList(): List<PokemonMapped> {
         return withContext(Dispatchers.IO) {
-            val json = javaClass.classLoader?.getResource("pokemon.json")?.readText()
+            val json = javaClass.classLoader?.getResource("assets/json/pokemon.json")?.readText()
             val listType = object : TypeToken<List<PokemonMapped>>() {}.type
             Gson().fromJson(json, listType)
         }

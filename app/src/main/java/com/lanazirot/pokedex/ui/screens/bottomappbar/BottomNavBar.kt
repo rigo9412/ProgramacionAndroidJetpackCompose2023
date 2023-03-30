@@ -7,8 +7,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.lanazirot.pokedex.ui.providers.GlobalProvider
 import com.lanazirot.pokedex.ui.theme.pokemonRed
@@ -23,7 +21,7 @@ fun BottomNavBar() {
     )
 
     BottomNavigation(
-        backgroundColor = pokemonRed
+        backgroundColor = pokemonRed,
     ) {
         val navBack by navController.currentBackStackEntryAsState()
         val currentRoute = navBack?.destination?.route

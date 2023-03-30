@@ -1,5 +1,6 @@
 package com.lanazirot.pokedex.domain.interfaces
 
+import android.content.Context
 import com.lanazirot.pokedex.domain.models.PokemonMapped
 
 interface IPokemonRepository {

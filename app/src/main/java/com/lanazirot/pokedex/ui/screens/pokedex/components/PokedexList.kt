@@ -6,10 +6,10 @@ import androidx.compose.runtime.Composable
 import com.lanazirot.pokedex.domain.models.Pokemon
 
 @Composable
-fun PokedexList(pokemons: List<Pokemon>) {
+fun PokedexList(allPokemon: List<Pokemon>, pokemonFounded: List<Pokemon>) {
     LazyColumn {
-        items(pokemons) {
-            p -> PokemonSimpleCard(pokemon = p)
+        items(allPokemon) {
+            p -> PokemonSimpleCard(pokemon = p, isVisible = pokemonFounded.contains(p))
         }
     }
 }

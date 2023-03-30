@@ -33,10 +33,11 @@ fun MainScreen() {
                 Scaffold(
                     bottomBar = {
                         BottomNavBar()
+                    },
+                    content = {
+                        AppNavGraph(globalProvider = gp)
                     }
-                ) {
-                    AppNavGraph(globalProvider = gp)
-                }
+                )
             }
         }
     }
