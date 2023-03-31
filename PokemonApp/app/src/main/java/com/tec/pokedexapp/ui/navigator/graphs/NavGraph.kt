@@ -17,8 +17,6 @@ fun RootGraph(navController: NavHostController){
         composable(route = Graphs.HomeGraph.route){
             HomeScreenContainer()
         }
-
-        GameGraph(navController)
     }
 
 }

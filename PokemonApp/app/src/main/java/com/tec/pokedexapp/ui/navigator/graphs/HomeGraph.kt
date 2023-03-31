@@ -31,7 +31,8 @@ fun HomeGraph(navController: NavHostController){
         composable(route = BottomBarScreens.Pokedex.route){
             PokemonListScreen(navController = navController)
         }
-
+        
+        GameGraph(navController)
         PokeGraph(navController)
     }
 }
