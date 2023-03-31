@@ -1,6 +1,7 @@
 package com.tec.pokedexapp.ui.navigator.main
 
 import android.annotation.SuppressLint
+import android.content.res.AssetManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -20,6 +21,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tec.pokedexapp.R
 import com.tec.pokedexapp.data.constants.BackgroundRed
+import com.tec.pokedexapp.data.source.Pokemon
 import com.tec.pokedexapp.ui.components.BottomBar
 import com.tec.pokedexapp.ui.components.CustomButton
 import com.tec.pokedexapp.ui.navigator.graphs.HomeGraph
@@ -28,11 +30,11 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun HomeScreenContainer(navController: NavHostController = rememberNavController()){
+fun HomeScreenContainer(navController: NavHostController = rememberNavController(),assetManager: AssetManager, pokemonList: List<Pokemon>){
     Scaffold(
         bottomBar = { BottomBar(navController = navController)}
     ) {
-        HomeGraph(navController = navController)
+        HomeGraph(navController = navController,assetManager,pokemonList)
     }
 }
 

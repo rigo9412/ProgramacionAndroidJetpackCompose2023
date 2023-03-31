@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import com.tec.pokedexapp.data.source.Pokemon
+import com.tec.pokedexapp.data.source.PokemonAPI
 import com.tec.pokedexapp.ui.navigator.graphs.RootGraph
 import com.tec.pokedexapp.ui.theme.PokedexAppTheme
 
@@ -24,7 +26,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    RootGraph(navController = rememberNavController())
+                    var assetManager = assets
+                    var pokemons = PokemonAPI().getPokemons(assetManager)
+                    RootGraph(navController = rememberNavController(),assetManager,pokemons)
                 }
             }
         }

@@ -14,7 +14,7 @@ data class Pokemon(
     val speed : Int,
     val generation : Int,
     val legendary : Boolean,
-    val discovered : Boolean = false
+    val discovered : Boolean = true
 ){
     fun getImagePath() : String{
         return "images/${String.format("%03d",id)}.png"
