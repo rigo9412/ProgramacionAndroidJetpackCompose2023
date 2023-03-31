@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.tec.pokedexapp'
+    namespace 'com.tec.blackouttest'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.tec.pokedexapp"
+        applicationId "com.tec.blackouttest"
         minSdk 26
         targetSdk 33
         versionCode 1
@@ -54,7 +54,6 @@ dependencies {
     implementation "androidx.compose.ui:ui:$compose_ui_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
     implementation 'androidx.compose.material:material:1.2.0'
-    implementation("androidx.navigation:navigation-compose:2.5.3")
     implementation 'com.google.code.gson:gson:2.10.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
