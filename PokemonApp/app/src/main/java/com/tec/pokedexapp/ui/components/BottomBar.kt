@@ -12,6 +12,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.tec.pokedexapp.data.constants.DarkRed
 import com.tec.pokedexapp.ui.navigator.screens.BottomBarScreens
 
 @Composable
@@ -27,7 +28,7 @@ fun BottomBar(navController: NavHostController){
 
     val bottomBarDestination = screens.any {it.route == currentDestination?.route}
     if(bottomBarDestination){
-        BottomNavigation(backgroundColor = Color.Red) {
+        BottomNavigation(backgroundColor = DarkRed) {
             screens.forEach{screen ->
                 AddItem(
                     screen = screen,
