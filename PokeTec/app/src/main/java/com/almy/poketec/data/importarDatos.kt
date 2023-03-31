@@ -31,36 +31,8 @@ fun readJsonFile(context: Context, fileName: String): List<Pokemon> {
     return pokemonList
 }
 
-
-//este es namas una prueba
-@Composable
-fun MyScreen(
-    context: Context,
-    modifier: Modifier = Modifier
-) {
+fun ListaPokemon(context: Context): List<Pokemon>
+{
     val pokemonList: List<Pokemon> = readJsonFile(context, "pokemon151.json")
-
-    var poke: Pokemon = pokemonList[0]
-
-    //textos namas pa testear
-    Column(
-        verticalArrangement = Arrangement.spacedBy(24.dp),
-
-        ) {
-        Text(
-            text = poke.name,
-            fontSize = 45.sp,
-            modifier = modifier.align(Alignment.CenterHorizontally)
-        )
-        Text(
-            text = poke.type1 + "/" + poke.type2,
-            fontSize = 45.sp,
-            modifier = modifier.align(Alignment.CenterHorizontally)
-        )
-        Text(
-            text = poke.total.toString(),
-            fontSize = 45.sp,
-            modifier = modifier.align(Alignment.CenterHorizontally)
-        )
-    }
+    return pokemonList
 }

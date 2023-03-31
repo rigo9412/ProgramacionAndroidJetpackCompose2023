@@ -14,3 +14,5 @@ data class Pokemon(
     val generation: Int,
     val legendary: String
 )
+
+var listaPokemon: List<Pokemon> = listOf()
