@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.tec.pokedexapp.ui.game.GameScreen
 import com.tec.pokedexapp.ui.navigator.main.HomeScreen
 import com.tec.pokedexapp.ui.navigator.main.PerfilScreen
 import com.tec.pokedexapp.ui.navigator.screens.BottomBarScreens
@@ -33,5 +34,7 @@ fun HomeGraph(navController: NavHostController){
         }
 
         PokeGraph(navController)
+
+        GameGraph(navController)
     }
 }
