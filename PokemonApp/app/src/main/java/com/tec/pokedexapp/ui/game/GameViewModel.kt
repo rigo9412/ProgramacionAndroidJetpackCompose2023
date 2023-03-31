@@ -1,4 +1,6 @@
 package com.tec.pokedexapp.ui.game
 
-class GameViewModel {
+import androidx.lifecycle.ViewModel
+
+class GameViewModel : ViewModel() {
 }
