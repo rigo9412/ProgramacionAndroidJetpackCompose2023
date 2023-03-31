@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">GeneradorCurp</string>
-    <string name="nombre">Nombre</string>
-    <string name="pApellido">Primer Apellido</string>
-    <string name="sApellido">Segundo Apellido</string>
-    <string name="fecha">Fecha de nacimiento</string>
-    <string name="sexo">Sexo</string>
-    <string name="estado">Estado</string>
-</resources>
