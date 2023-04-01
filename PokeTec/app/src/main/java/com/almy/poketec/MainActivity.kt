@@ -31,6 +31,8 @@ import com.almy.poketec.screens.game.GameScreen1
 import com.almy.poketec.screens.game.GameViewModel
 import com.almy.poketec.screens.pokedex.FormScreenPokedex
 import com.almy.poketec.screens.pokedex.PokedexViewModel
+import com.almy.poketec.screens.usuario.PantallaUsuario.Usuario
+import com.almy.poketec.screens.usuario.PantallaUsuario.Usuario
 import com.almy.poketec.ui.theme.PokeTecTheme
 import com.almy.poketec.ui.theme.navBar
 import com.game.guesspoke.screens.game.listaPokedex
@@ -67,7 +69,7 @@ fun NavigationGraph(
             GameScreen1(viewModel = gameViewModel)
         }
         composable("statistics") {
-
+            Usuario(Listaxd = listaPokemon)
         }
         composable("pokedex") {
             FormScreenPokedex(pokemones = listaPokemon, viewModel = pokedexViewModel)
