@@ -115,7 +115,7 @@ fun PokemonDetails(
     pokemon: Pokemon,
     viewModel: PokedexViewModel
 ) {
-    viewModel.asignarPokemon(pokemon = pokemon)
+    //viewModel.asignarPokemon(pokemon = pokemon)
     val uiStatePokemon = viewModel.uiStatePokemon.collectAsState().value
 
     AlertDialog(
