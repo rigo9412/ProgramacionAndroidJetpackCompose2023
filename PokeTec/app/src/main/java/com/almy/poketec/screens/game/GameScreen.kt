@@ -1,4 +1,4 @@
-package com.game.guesspoke.screens.game
+package com.almy.poketec.screens.game
 
 import android.app.Activity
 import android.content.Context
@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.os.CountDownTimer
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -30,9 +31,10 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.almy.poketec.R
-import com.almy.poketec.data.Pokemon
 import com.almy.poketec.data.listaPokemon
+import com.almy.poketec.screens.pokedex.Pokemon
 import com.almy.poketec.ui.theme.PokeTecTheme
+import com.game.guesspoke.screens.game.*
 import kotlinx.coroutines.delay
 import java.util.*
 import kotlin.concurrent.timerTask
@@ -40,9 +42,8 @@ import kotlin.concurrent.timerTask
 @Composable
 fun GameScreen1(viewModel: GameViewModel) {
     val state = viewModel.uiState.collectAsState().value
-
     when (state) {
-        is ScreenUiState.CargarPokemon -> { }
+        is ScreenUiState.CargarPokemon -> {}
         is ScreenUiState.MostrarPokemon -> {
             MostrarPokemonScreen(gameViewModel = viewModel)
             /*Timer().schedule(timerTask {
@@ -52,7 +53,7 @@ fun GameScreen1(viewModel: GameViewModel) {
                 }
             }, 5000)*/
         }
-        is ScreenUiState.Evaluar -> { }
+        is ScreenUiState.Evaluar -> {}
         is ScreenUiState.Resultado -> ResultadoScreen(gameViewModel = viewModel)
         is ScreenUiState.JuegoTerminado -> ScreenJuegoTerminado(
             gameViewModel = viewModel,
@@ -62,7 +63,7 @@ fun GameScreen1(viewModel: GameViewModel) {
             state.listaRespuestaElegida,
             state.seAgotoElTiempo
         )
-        is ScreenUiState.PokedexCompletada -> { }
+        is ScreenUiState.PokedexCompletada -> {}
         else -> {
 
         }
@@ -78,7 +79,8 @@ fun MostrarPokemonScreen(
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .wrapContentSize(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Status(gameViewModel)
@@ -104,7 +106,8 @@ fun ResultadoScreen(
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
-            .padding(16.dp),
+            .padding(16.dp)
+            .wrapContentSize(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Status(gameViewModel)
@@ -288,7 +291,12 @@ fun MostrarRespuestas2(
                 .width(150.dp)
                 .height(50.dp)
                 .padding(end = 8.dp),
-            enabled = false
+            enabled = false,
+            colors = ButtonDefaults.buttonColors(
+                disabledBackgroundColor = if (data.listaRespuestaElegida.last() == 0 && !data.seAgotoElTiempo.last()) {
+                    if (data.esCorrecto) Color.Green else Color.Red
+                } else Color.LightGray
+            )
         ) {
             Text(data.cuatroPokemonsDesordenado[0].name)
         }
@@ -301,7 +309,12 @@ fun MostrarRespuestas2(
                 .width(150.dp)
                 .height(50.dp)
                 .padding(end = 8.dp),
-            enabled = false
+            enabled = false,
+            colors = ButtonDefaults.buttonColors(
+                disabledBackgroundColor = if (data.listaRespuestaElegida.last() == 1 && !data.seAgotoElTiempo.last()) {
+                    if (data.esCorrecto) Color.Green else Color.Red
+                } else Color.LightGray
+            )
         ) {
             Text(data.cuatroPokemonsDesordenado[1].name)
         }
@@ -320,7 +333,12 @@ fun MostrarRespuestas2(
                 .width(150.dp)
                 .height(50.dp)
                 .padding(end = 8.dp),
-            enabled = false
+            enabled = false,
+            colors = ButtonDefaults.buttonColors(
+                disabledBackgroundColor = if (data.listaRespuestaElegida.last() == 2 && !data.seAgotoElTiempo.last()) {
+                    if (data.esCorrecto) Color.Green else Color.Red
+                } else Color.LightGray
+            )
         ) {
             Text(data.cuatroPokemonsDesordenado[2].name)
         }
@@ -333,7 +351,12 @@ fun MostrarRespuestas2(
                 .width(150.dp)
                 .height(50.dp)
                 .padding(end = 8.dp),
-            enabled = false
+            enabled = false,
+            colors = ButtonDefaults.buttonColors(
+                disabledBackgroundColor = if (data.listaRespuestaElegida.last() == 3 && !data.seAgotoElTiempo.last()) {
+                    if (data.esCorrecto) Color.Green else Color.Red
+                } else Color.LightGray
+            )
         ) {
             Text(data.cuatroPokemonsDesordenado[3].name)
         }
@@ -504,19 +527,19 @@ fun ScreenJuegoTerminado(
     Column(
         modifier = Modifier
             //.verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+            .padding(horizontal = 20.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         Text(
             text = stringResource(R.string.progreso, progreso),
-            modifier = Modifier.padding(top = 15.dp),
+            modifier = Modifier.padding(top = 20.dp, bottom = 0.dp, start = 0.dp, end = 15.dp),
             fontSize = 25.sp,
             textAlign = TextAlign.Center,
         )
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(bottom = 15.dp),
+                //.padding(),
             //horizontalArrangement = Arrangement.Center
         ) {
             LinearProgressIndicator(
@@ -528,10 +551,12 @@ fun ScreenJuegoTerminado(
             text = stringResource(R.string.tu_puntuacion, puntos),
             fontSize = 25.sp,
             textAlign = TextAlign.Center,
+            modifier = Modifier.padding(vertical = 10.dp)
         )
         Row(
             modifier = modifier
                 .fillMaxWidth(),
+                //.padding(15.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             OutlinedButton(
@@ -554,7 +579,7 @@ fun ScreenJuegoTerminado(
                     .height(40.dp)
                     .padding(end = 8.dp, top = 5.dp)
             ) {
-                Text("Intentar de nuevo")
+                Text("Jugar de nuevo")
             }
         }
 
@@ -585,7 +610,8 @@ fun ScreenJuegoTerminado(
                 listaPregunta[i].third,
                 listaPregunta[i].fourth
             )
-            pregunta.esCorrecto = pregunta.pokemones[pregunta.opcionElegida] == pregunta.pokemones[pregunta.opcionCorrecta]
+            pregunta.esCorrecto =
+                pregunta.pokemones[pregunta.opcionElegida] == pregunta.pokemones[pregunta.opcionCorrecta]
             pregunta.seAgotoElTiempo = seAgotoElTiempo[i]
             listaPreguntas.add(pregunta)
             i++
@@ -613,7 +639,7 @@ fun ListarPreguntas(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    "Preguntas",
+                    "Tus respuestas",
                     fontSize = 30.sp
                 )
             }
@@ -630,6 +656,7 @@ fun ListarPreguntas(
         }
     }
 }
+
 
 @Composable
 fun QuestionsCard(
@@ -784,7 +811,7 @@ fun MostrarRespuestas3(
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview2() {
-    PokeTecTheme() {
+    PokeTecTheme(){
 
     }
 }

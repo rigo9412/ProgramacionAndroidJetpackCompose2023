@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.almy.poketec.screens.pokedex.Pokemon
+//import com.almy.poketec.data.Pokemon
 
 @Composable
 fun FormScreenPokedex(pokemones: List<Pokemon>, viewModel: PokedexViewModel){

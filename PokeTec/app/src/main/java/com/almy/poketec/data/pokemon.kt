@@ -1,6 +1,8 @@
 package com.almy.poketec.data
 
-data class Pokemon(
+import com.almy.poketec.screens.pokedex.Pokemon
+
+/*data class Pokemon(
     val id: Int,
     val name: String,
     val type1: String,
@@ -12,7 +14,9 @@ data class Pokemon(
     val spAtk: Int,
     val speed: Int,
     val generation: Int,
-    val legendary: String
-)
+    val legendary: String,
+    val image: String,
+    var discover: Boolean
+)*/
 
 var listaPokemon: List<Pokemon> = listOf()

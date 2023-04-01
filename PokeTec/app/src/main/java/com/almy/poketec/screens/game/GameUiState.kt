@@ -1,8 +1,8 @@
 package com.game.guesspoke.screens.game
 
 
-import com.almy.poketec.data.Pokemon
 import com.almy.poketec.data.listaPokemon
+import com.almy.poketec.screens.pokedex.Pokemon
 import java.io.Serializable
 
 data class GameUiState(

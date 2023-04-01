@@ -54,7 +54,7 @@ data class Pokemon(
     val generation: Int = 0,
     val legendary: String = "",
     val image:String = "",
-    val discover:Boolean = false
+    var discover:Boolean = false
 )
 
 sealed class FormUiState {

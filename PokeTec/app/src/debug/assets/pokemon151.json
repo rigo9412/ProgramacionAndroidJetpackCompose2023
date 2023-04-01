@@ -12,7 +12,9 @@
     "spDef": 65,
     "speed": 45,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/001.png",
+    "discover": false
   },
   {
     "id": 2,
@@ -27,7 +29,9 @@
     "spDef": 80,
     "speed": 60,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/002.png",
+    "discover": false
   },
   {
     "id": 3,
@@ -42,7 +46,9 @@
     "spDef": 100,
     "speed": 80,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/003.png",
+    "discover": false
   },
 
   {
@@ -58,7 +64,9 @@
     "spDef": 50,
     "speed": 65,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/004.png",
+    "discover": false
   },
   {
     "id": 5,
@@ -73,7 +81,9 @@
     "spDef": 65,
     "speed": 80,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/005.png",
+    "discover": false
   },
   {
     "id": 6,
@@ -88,7 +98,9 @@
     "spDef": 85,
     "speed": 100,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/006.png",
+    "discover": false
   },
 
   {
@@ -104,7 +116,9 @@
     "spDef": 64,
     "speed": 43,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/007.png",
+    "discover": false
   },
   {
     "id": 8,
@@ -119,7 +133,9 @@
     "spDef": 80,
     "speed": 58,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/008.png",
+    "discover": false
   },
   {
     "id": 9,
@@ -134,7 +150,9 @@
     "spDef": 105,
     "speed": 78,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/009.png",
+    "discover": false
   },
  
   {
@@ -150,7 +168,9 @@
     "spDef": 20,
     "speed": 45,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/010.png",
+    "discover": false
   },
   {
     "id": 11,
@@ -165,7 +185,9 @@
     "spDef": 25,
     "speed": 30,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/011.png",
+    "discover": false
   },
   {
     "id": 12,
@@ -180,7 +202,9 @@
     "spDef": 80,
     "speed": 70,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/012.png",
+    "discover": false
   },
   {
     "id": 13,
@@ -195,7 +219,9 @@
     "spDef": 20,
     "speed": 50,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/013.png",
+    "discover": false
   },
   {
     "id": 14,
@@ -210,7 +236,9 @@
     "spDef": 25,
     "speed": 35,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/014.png",
+    "discover": false
   },
   {
     "id": 15,
@@ -225,7 +253,9 @@
     "spDef": 80,
     "speed": 75,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/015.png",
+    "discover": false
   },
  
   {
@@ -241,7 +271,9 @@
     "spDef": 35,
     "speed": 56,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/016.png",
+    "discover": false
   },
   {
     "id": 17,
@@ -256,7 +288,9 @@
     "spDef": 50,
     "speed": 71,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/017.png",
+    "discover": false
   },
   {
     "id": 18,
@@ -271,7 +305,9 @@
     "spDef": 70,
     "speed": 101,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/018.png",
+    "discover": false
   },
   {
     "id": 19,
@@ -286,7 +322,9 @@
     "spDef": 35,
     "speed": 72,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/019.png",
+    "discover": false
   },
   {
     "id": 20,
@@ -301,7 +339,9 @@
     "spDef": 70,
     "speed": 97,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/020.png",
+    "discover": false
   },
   {
     "id": 21,
@@ -316,7 +356,9 @@
     "spDef": 31,
     "speed": 70,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/021.png",
+    "discover": false
   },
   {
     "id": 22,
@@ -331,7 +373,9 @@
     "spDef": 61,
     "speed": 100,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/022.png",
+    "discover": false
   },
   {
     "id": 23,
@@ -346,7 +390,9 @@
     "spDef": 54,
     "speed": 55,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/023.png",
+    "discover": false
   },
   {
     "id": 24,
@@ -361,7 +407,9 @@
     "spDef": 79,
     "speed": 80,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/024.png",
+    "discover": false
   },
   {
     "id": 25,
@@ -376,7 +424,9 @@
     "spDef": 50,
     "speed": 90,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/025.png",
+    "discover": false
   },
   {
     "id": 26,
@@ -391,7 +441,9 @@
     "spDef": 80,
     "speed": 110,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/026.png",
+    "discover": false
   },
   {
     "id": 27,
@@ -406,7 +458,9 @@
     "spDef": 30,
     "speed": 40,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/027.png",
+    "discover": false
   },
   {
     "id": 28,
@@ -421,7 +475,9 @@
     "spDef": 55,
     "speed": 65,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/028.png",
+    "discover": false
   },
   {
     "id": 29,
@@ -436,7 +492,9 @@
     "spDef": 40,
     "speed": 41,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/029.png",
+    "discover": false
   },
   {
     "id": 30,
@@ -451,7 +509,8 @@
     "spDef": 55,
     "speed": 56,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/030.png"
   },
   {
     "id": 31,
@@ -466,7 +525,9 @@
     "spDef": 85,
     "speed": 76,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/031.png",
+    "discover": false
   },
   {
     "id": 32,
@@ -481,7 +542,9 @@
     "spDef": 40,
     "speed": 50,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/032.png",
+    "discover": false
   },
   {
     "id": 33,
@@ -496,7 +559,9 @@
     "spDef": 55,
     "speed": 65,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/033.png",
+    "discover": false
   },
   {
     "id": 34,
@@ -511,7 +576,9 @@
     "spDef": 75,
     "speed": 85,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/034.png",
+    "discover": false
   },
   {
     "id": 35,
@@ -526,7 +593,9 @@
     "spDef": 65,
     "speed": 35,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/035.png",
+    "discover": false
   },
   {
     "id": 36,
@@ -541,7 +610,9 @@
     "spDef": 90,
     "speed": 60,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/036.png",
+    "discover": false
   },
   {
     "id": 37,
@@ -556,7 +627,9 @@
     "spDef": 65,
     "speed": 65,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/037.png",
+    "discover": false
   },
   {
     "id": 38,
@@ -571,7 +644,9 @@
     "spDef": 100,
     "speed": 100,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/038.png",
+    "discover": false
   },
   {
     "id": 39,
@@ -586,7 +661,9 @@
     "spDef": 25,
     "speed": 20,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/039.png",
+    "discover": false
   },
   {
     "id": 40,
@@ -601,7 +678,9 @@
     "spDef": 50,
     "speed": 45,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/040.png",
+    "discover": false
   },
   {
     "id": 41,
@@ -616,7 +695,9 @@
     "spDef": 40,
     "speed": 55,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/041.png",
+    "discover": false
   },
   {
     "id": 42,
@@ -631,7 +712,9 @@
     "spDef": 75,
     "speed": 90,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/042.png",
+    "discover": false
   },
   {
     "id": 43,
@@ -646,7 +729,8 @@
     "spDef": 65,
     "speed": 30,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/043.png","discover": false
   },
   {
     "id": 44,
@@ -661,7 +745,9 @@
     "spDef": 75,
     "speed": 40,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/044.png",
+    "discover": false
   },
   {
     "id": 45,
@@ -676,7 +762,8 @@
     "spDef": 90,
     "speed": 50,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/045.png","discover": false
   },
   {
     "id": 46,
@@ -691,7 +778,8 @@
     "spDef": 55,
     "speed": 25,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/046.png","discover": false
   },
   {
     "id": 47,
@@ -706,7 +794,9 @@
     "spDef": 80,
     "speed": 30,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/047.png",
+    "discover": false
   },
   {
     "id": 48,
@@ -721,7 +811,9 @@
     "spDef": 55,
     "speed": 45,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/048.png",
+    "discover": false
   },
   {
     "id": 49,
@@ -736,7 +828,9 @@
     "spDef": 75,
     "speed": 90,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/049.png",
+    "discover": false
   },
   {
     "id": 50,
@@ -751,7 +845,9 @@
     "spDef": 45,
     "speed": 95,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/050.png",
+    "discover": false
   },
   {
     "id": 51,
@@ -766,7 +862,9 @@
     "spDef": 70,
     "speed": 120,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/051.png",
+    "discover": false
   },
   {
     "id": 52,
@@ -781,7 +879,9 @@
     "spDef": 40,
     "speed": 90,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/052.png",
+    "discover": false
   },
   {
     "id": 53,
@@ -796,7 +896,9 @@
     "spDef": 65,
     "speed": 115,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/053.png",
+    "discover": false
   },
   {
     "id": 54,
@@ -811,7 +913,9 @@
     "spDef": 50,
     "speed": 55,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/054.png",
+    "discover": false
   },
   {
     "id": 55,
@@ -826,7 +930,9 @@
     "spDef": 80,
     "speed": 85,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/055.png",
+    "discover": false
   },
   {
     "id": 56,
@@ -841,7 +947,9 @@
     "spDef": 45,
     "speed": 70,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/056.png",
+    "discover": false
   },
   {
     "id": 57,
@@ -856,7 +964,9 @@
     "spDef": 70,
     "speed": 95,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/057.png",
+    "discover": false
   },
   {
     "id": 58,
@@ -871,7 +981,9 @@
     "spDef": 50,
     "speed": 60,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/058.png",
+    "discover": false
   },
   {
     "id": 59,
@@ -886,7 +998,9 @@
     "spDef": 80,
     "speed": 95,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/059.png",
+    "discover": false
   },
   {
     "id": 60,
@@ -901,7 +1015,9 @@
     "spDef": 40,
     "speed": 90,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/060.png",
+    "discover": false
   },
   {
     "id": 61,
@@ -916,7 +1032,9 @@
     "spDef": 50,
     "speed": 90,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/061.png",
+    "discover": false
   },
   {
     "id": 62,
@@ -931,7 +1049,9 @@
     "spDef": 90,
     "speed": 70,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/062.png",
+    "discover": false
   },
   {
     "id": 63,
@@ -946,7 +1066,9 @@
     "spDef": 55,
     "speed": 90,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/063.png",
+    "discover": false
   },
   {
     "id": 64,
@@ -961,7 +1083,9 @@
     "spDef": 70,
     "speed": 105,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/064.png",
+    "discover": false
   },
   {
     "id": 65,
@@ -976,7 +1100,9 @@
     "spDef": 95,
     "speed": 120,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/065.png",
+    "discover": false
   },
  
   {
@@ -992,7 +1118,9 @@
     "spDef": 35,
     "speed": 35,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/066.png",
+    "discover": false
   },
   {
     "id": 67,
@@ -1007,7 +1135,9 @@
     "spDef": 60,
     "speed": 45,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/067.png",
+    "discover": false
   },
   {
     "id": 68,
@@ -1022,7 +1152,9 @@
     "spDef": 85,
     "speed": 55,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/068.png",
+    "discover": false
   },
   {
     "id": 69,
@@ -1037,7 +1169,9 @@
     "spDef": 30,
     "speed": 40,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/069.png",
+    "discover": false
   },
   {
     "id": 70,
@@ -1052,7 +1186,9 @@
     "spDef": 45,
     "speed": 55,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/070.png",
+    "discover": false
   },
   {
     "id": 71,
@@ -1067,7 +1203,9 @@
     "spDef": 70,
     "speed": 70,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/071.png",
+    "discover": false
   },
   {
     "id": 72,
@@ -1082,7 +1220,9 @@
     "spDef": 100,
     "speed": 70,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/072.png",
+    "discover": false
   },
   {
     "id": 73,
@@ -1097,7 +1237,9 @@
     "spDef": 120,
     "speed": 100,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/073.png",
+    "discover": false
   },
   {
     "id": 74,
@@ -1112,7 +1254,9 @@
     "spDef": 30,
     "speed": 20,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/074.png",
+    "discover": false
   },
   {
     "id": 75,
@@ -1127,7 +1271,9 @@
     "spDef": 45,
     "speed": 35,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/075.png",
+    "discover": false
   },
   {
     "id": 76,
@@ -1142,7 +1288,9 @@
     "spDef": 65,
     "speed": 45,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/076.png",
+    "discover": false
   },
   {
     "id": 77,
@@ -1157,7 +1305,9 @@
     "spDef": 65,
     "speed": 90,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/077.png",
+    "discover": false
   },
   {
     "id": 78,
@@ -1172,7 +1322,9 @@
     "spDef": 80,
     "speed": 105,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/078.png",
+    "discover": false
   },
   {
     "id": 79,
@@ -1187,7 +1339,9 @@
     "spDef": 40,
     "speed": 15,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/079.png",
+    "discover": false
   },
   {
     "id": 80,
@@ -1202,7 +1356,9 @@
     "spDef": 80,
     "speed": 30,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/080.png",
+    "discover": false
   },
  
   {
@@ -1218,7 +1374,9 @@
     "spDef": 55,
     "speed": 45,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/081.png",
+    "discover": false
   },
   {
     "id": 82,
@@ -1233,7 +1391,9 @@
     "spDef": 70,
     "speed": 70,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/082.png",
+    "discover": false
   },
   {
     "id": 83,
@@ -1248,7 +1408,9 @@
     "spDef": 62,
     "speed": 60,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/083.png",
+    "discover": false
   },
   {
     "id": 84,
@@ -1263,7 +1425,9 @@
     "spDef": 35,
     "speed": 75,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/084.png",
+    "discover": false
   },
   {
     "id": 85,
@@ -1278,7 +1442,9 @@
     "spDef": 60,
     "speed": 100,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/085.png",
+    "discover": false
   },
   {
     "id": 86,
@@ -1293,7 +1459,9 @@
     "spDef": 70,
     "speed": 45,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/086.png",
+    "discover": false
   },
   {
     "id": 87,
@@ -1308,7 +1476,9 @@
     "spDef": 95,
     "speed": 70,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/087.png",
+    "discover": false
   },
   {
     "id": 88,
@@ -1323,7 +1493,9 @@
     "spDef": 50,
     "speed": 25,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/088.png",
+    "discover": false
   },
   {
     "id": 89,
@@ -1338,7 +1510,9 @@
     "spDef": 100,
     "speed": 50,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/089.png",
+    "discover": false
   },
   {
     "id": 90,
@@ -1353,7 +1527,9 @@
     "spDef": 25,
     "speed": 40,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/090.png",
+    "discover": false
   },
   {
     "id": 91,
@@ -1368,7 +1544,9 @@
     "spDef": 45,
     "speed": 70,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/091.png",
+    "discover": false
   },
   {
     "id": 92,
@@ -1383,7 +1561,9 @@
     "spDef": 35,
     "speed": 80,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/092.png",
+    "discover": false
   },
   {
     "id": 93,
@@ -1398,7 +1578,9 @@
     "spDef": 55,
     "speed": 95,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/093.png",
+    "discover": false
   },
   {
     "id": 94,
@@ -1413,7 +1595,9 @@
     "spDef": 75,
     "speed": 110,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/094.png",
+    "discover": false
   },
  
   {
@@ -1429,7 +1613,9 @@
     "spDef": 45,
     "speed": 70,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/095.png",
+    "discover": false
   },
   {
     "id": 96,
@@ -1444,7 +1630,9 @@
     "spDef": 90,
     "speed": 42,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/096.png",
+    "discover": false
   },
   {
     "id": 97,
@@ -1459,7 +1647,9 @@
     "spDef": 115,
     "speed": 67,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/097.png",
+    "discover": false
   },
   {
     "id": 98,
@@ -1474,7 +1664,9 @@
     "spDef": 25,
     "speed": 50,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/098.png",
+    "discover": false
   },
   {
     "id": 99,
@@ -1489,7 +1681,9 @@
     "spDef": 50,
     "speed": 75,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/099.png",
+    "discover": false
   },
   {
     "id": 100,
@@ -1504,7 +1698,9 @@
     "spDef": 55,
     "speed": 100,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/100.png",
+    "discover": false
   },
   {
     "id": 101,
@@ -1519,7 +1715,9 @@
     "spDef": 80,
     "speed": 140,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/101.png",
+    "discover": false
   },
   {
     "id": 102,
@@ -1534,7 +1732,9 @@
     "spDef": 45,
     "speed": 40,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/102.png",
+    "discover": false
   },
   {
     "id": 103,
@@ -1549,7 +1749,9 @@
     "spDef": 65,
     "speed": 55,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/103.png" ,
+    "discover": false
   },
   {
     "id": 104,
@@ -1564,7 +1766,9 @@
     "spDef": 50,
     "speed": 35,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/104.png",
+    "discover": false
   },
   {
     "id": 105,
@@ -1579,7 +1783,9 @@
     "spDef": 80,
     "speed": 45,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/105.png",
+    "discover": false
   },
   {
     "id": 106,
@@ -1594,7 +1800,9 @@
     "spDef": 110,
     "speed": 87,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/106.png",
+    "discover": false
   },
   {
     "id": 107,
@@ -1609,7 +1817,9 @@
     "spDef": 110,
     "speed": 76,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/107.png",
+    "discover": false
   },
   {
     "id": 108,
@@ -1624,7 +1834,9 @@
     "spDef": 75,
     "speed": 30,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/108.png",
+    "discover": false
   },
   {
     "id": 109,
@@ -1639,7 +1851,9 @@
     "spDef": 45,
     "speed": 35,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/109.png",
+    "discover": false
   },
   {
     "id": 110,
@@ -1654,7 +1868,9 @@
     "spDef": 70,
     "speed": 60,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/110.png",
+    "discover": false
   },
   {
     "id": 111,
@@ -1669,7 +1885,9 @@
     "spDef": 30,
     "speed": 25,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/111.png",
+    "discover": false
   },
   {
     "id": 112,
@@ -1684,7 +1902,9 @@
     "spDef": 45,
     "speed": 40,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/112.png",
+    "discover": false
   },
   {
     "id": 113,
@@ -1699,7 +1919,9 @@
     "spDef": 105,
     "speed": 50,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/113.png",
+    "discover": false
   },
   {
     "id": 114,
@@ -1714,7 +1936,9 @@
     "spDef": 40,
     "speed": 60,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/114.png",
+    "discover": false
   },
   {
     "id": 115,
@@ -1729,9 +1953,11 @@
     "spDef": 80,
     "speed": 90,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/115.png",
+    "discover": false
   },
- 
+
   {
     "id": 116,
     "name": "Horsea",
@@ -1745,7 +1971,9 @@
     "spDef": 25,
     "speed": 60,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/116.png",
+    "discover": false
   },
   {
     "id": 117,
@@ -1760,7 +1988,9 @@
     "spDef": 45,
     "speed": 85,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/117.png",
+    "discover": false
   },
   {
     "id": 118,
@@ -1775,7 +2005,9 @@
     "spDef": 50,
     "speed": 63,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/118.png",
+    "discover": false
   },
   {
     "id": 119,
@@ -1790,7 +2022,9 @@
     "spDef": 80,
     "speed": 68,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/119.png",
+    "discover": false
   },
   {
     "id": 120,
@@ -1805,7 +2039,9 @@
     "spDef": 55,
     "speed": 85,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/120.png",
+    "discover": false
   },
   {
     "id": 121,
@@ -1820,7 +2056,9 @@
     "spDef": 85,
     "speed": 115,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/121.png",
+    "discover": false
   },
   {
     "id": 122,
@@ -1835,7 +2073,9 @@
     "spDef": 120,
     "speed": 90,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/122.png",
+    "discover": false
   },
   {
     "id": 123,
@@ -1850,7 +2090,9 @@
     "spDef": 80,
     "speed": 105,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/123.png",
+    "discover": false
   },
   {
     "id": 124,
@@ -1865,7 +2107,9 @@
     "spDef": 95,
     "speed": 95,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/124.png",
+    "discover": false
   },
   {
     "id": 125,
@@ -1880,7 +2124,9 @@
     "spDef": 85,
     "speed": 105,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/125.png",
+    "discover": false
   },
   {
     "id": 126,
@@ -1895,7 +2141,9 @@
     "spDef": 85,
     "speed": 93,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/126.png",
+    "discover": false
   },
   {
     "id": 127,
@@ -1910,9 +2158,11 @@
     "spDef": 70,
     "speed": 85,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/127.png",
+    "discover": false
   },
-  
+
   {
     "id": 128,
     "name": "Tauros",
@@ -1926,7 +2176,9 @@
     "spDef": 70,
     "speed": 110,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/128.png",
+    "discover": false
   },
   {
     "id": 129,
@@ -1941,7 +2193,9 @@
     "spDef": 20,
     "speed": 80,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/129.png",
+    "discover": false
   },
   {
     "id": 130,
@@ -1956,9 +2210,11 @@
     "spDef": 100,
     "speed": 81,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/130.png",
+    "discover": false
   },
- 
+
   {
     "id": 131,
     "name": "Lapras",
@@ -1972,7 +2228,9 @@
     "spDef": 95,
     "speed": 60,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/131.png",
+    "discover": false
   },
   {
     "id": 132,
@@ -1987,7 +2245,9 @@
     "spDef": 48,
     "speed": 48,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/132.png",
+    "discover": false
   },
   {
     "id": 133,
@@ -2002,7 +2262,9 @@
     "spDef": 65,
     "speed": 55,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/133.png",
+    "discover": false
   },
   {
     "id": 134,
@@ -2017,7 +2279,9 @@
     "spDef": 95,
     "speed": 65,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/134.png",
+    "discover": false
   },
   {
     "id": 135,
@@ -2032,7 +2296,9 @@
     "spDef": 95,
     "speed": 130,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/135.png",
+    "discover": false
   },
   {
     "id": 136,
@@ -2047,7 +2313,9 @@
     "spDef": 110,
     "speed": 65,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/136.png",
+    "discover": false
   },
   {
     "id": 137,
@@ -2062,7 +2330,9 @@
     "spDef": 75,
     "speed": 40,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/137.png",
+    "discover": false
   },
   {
     "id": 138,
@@ -2077,7 +2347,9 @@
     "spDef": 55,
     "speed": 35,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/138.png",
+    "discover": false
   },
   {
     "id": 139,
@@ -2092,7 +2364,9 @@
     "spDef": 70,
     "speed": 55,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/139.png",
+    "discover": false
   },
   {
     "id": 140,
@@ -2107,7 +2381,9 @@
     "spDef": 45,
     "speed": 55,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/140.png",
+    "discover": false
   },
   {
     "id": 141,
@@ -2122,7 +2398,9 @@
     "spDef": 70,
     "speed": 80,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/141.png",
+    "discover": false
   },
   {
     "id": 142,
@@ -2137,9 +2415,10 @@
     "spDef": 75,
     "speed": 130,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/142.png",
+    "discover": false
   },
-  
   {
     "id": 143,
     "name": "Snorlax",
@@ -2153,7 +2432,9 @@
     "spDef": 110,
     "speed": 30,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/143.png",
+    "discover": false
   },
   {
     "id": 144,
@@ -2168,7 +2449,9 @@
     "spDef": 125,
     "speed": 85,
     "generation": 1,
-    "legendary": "True"
+    "legendary": "True",
+    "image": "images/144.png",
+    "discover": false
   },
   {
     "id": 145,
@@ -2183,7 +2466,9 @@
     "spDef": 90,
     "speed": 100,
     "generation": 1,
-    "legendary": "True"
+    "legendary": "True",
+    "image": "images/145.png",
+    "discover": false
   },
   {
     "id": 146,
@@ -2198,7 +2483,9 @@
     "spDef": 85,
     "speed": 90,
     "generation": 1,
-    "legendary": "True"
+    "legendary": "True",
+    "image": "images/146.png",
+    "discover": false
   },
   {
     "id": 147,
@@ -2213,7 +2500,9 @@
     "spDef": 50,
     "speed": 50,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/147.png",
+    "discover": false
   },
   {
     "id": 148,
@@ -2228,7 +2517,9 @@
     "spDef": 70,
     "speed": 70,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/148.png",
+    "discover": false
   },
   {
     "id": 149,
@@ -2243,7 +2534,9 @@
     "spDef": 100,
     "speed": 80,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/149.png",
+    "discover": false
   },
   {
     "id": 150,
@@ -2258,10 +2551,12 @@
     "spDef": 90,
     "speed": 130,
     "generation": 1,
-    "legendary": "True"
+    "legendary": "True",
+    "image": "images/150.png",
+    "discover": false
   },
- 
- 
+
+
   {
     "id": 151,
     "name": "Mew",
@@ -2275,6 +2570,8 @@
     "spDef": 100,
     "speed": 100,
     "generation": 1,
-    "legendary": "False"
+    "legendary": "False",
+    "image": "images/151.png",
+    "discover": false
   }
-]
+  ]

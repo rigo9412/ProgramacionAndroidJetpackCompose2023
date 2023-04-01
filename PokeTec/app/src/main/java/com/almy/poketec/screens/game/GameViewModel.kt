@@ -1,12 +1,16 @@
-package com.game.guesspoke.screens.game
+package com.almy.poketec.screens.game
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.almy.poketec.data.Pokemon
 import com.almy.poketec.data.listaPokemon
+import com.almy.poketec.screens.pokedex.Pokemon
+import com.game.guesspoke.screens.game.GameUiState
+import com.game.guesspoke.screens.game.Quadruple
+import com.game.guesspoke.screens.game.ScreenUiState
+import com.game.guesspoke.screens.game.listaPokedex
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -142,11 +146,15 @@ class GameViewModel : ViewModel() {
 
         //aqui mero evalua si es correcto o no (recordar que "pokemonActual" es la respuesta correcta)
         if (_uiStateData.value.cuatroPokemonsDesordenado[n] == _uiStateData.value.pokemonActual) {
+            var poke: Pokemon = _uiStateData.value.pokemonActual
+            poke.discover = true
             _uiStateData.value = _uiStateData.value.copy(
+                pokemonActual = poke,
                 esCorrecto = true,
                 puntos = pts + 1,
-                seAgotoElTiempo = listaBln
+                seAgotoElTiempo = listaBln,
             )
+
             //registrarlo en la pokedex
             listaPokedex.add(_uiStateData.value.pokemonActual)
 
