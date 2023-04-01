@@ -42,15 +42,15 @@ fun PokemonListField(pokemon: Pokemon, assetManager: AssetManager?, navControlle
             },
     ){
         Text(text = pokemon.id.toString())
-        PokemonListFieldImage(assetPath = pokemon.getImagePath(), assetManager = assetManager!!, color = pokemon.discovered)
+        PokemonListFieldImage(modifier = Modifier, assetPath = pokemon.getImagePath(), assetManager = assetManager!!, color = pokemon.discovered)
         Text(text = if(pokemon.discovered) pokemon.name else "???")
     }
 }
 
 @Composable
-fun PokemonListFieldImage(assetPath: String, assetManager: AssetManager?, color: Boolean){
+fun PokemonListFieldImage(modifier : Modifier,assetPath: String, assetManager: AssetManager?, color: Boolean){
     val bitmap = BitmapFactory.decodeStream(assetManager!!.open(assetPath))
     val painter = bitmap.asImageBitmap()
     val filter = if(!color) ColorFilter.lighting(Color.Black, Color.Black) else null
-    Image(bitmap = painter, contentDescription = "Pokemon Image", colorFilter = filter)
+    Image(modifier = modifier, bitmap = painter, contentDescription = "Pokemon Image", colorFilter = filter)
 }

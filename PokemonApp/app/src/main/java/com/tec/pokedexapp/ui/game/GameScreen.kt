@@ -10,6 +10,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.tec.pokedexapp.data.model.Pokemon
@@ -35,10 +36,10 @@ fun game(gameViewModel: GameViewModel, pokedex: PokemonViewModel, assetManager :
     val pokemonOptions = gameViewModel.pokemonOptions.collectAsState()
     val currentPokemon = gameViewModel.currentPokemon!!
 
-    Box(modifier = Modifier.fillMaxSize()){
+    Box(modifier = Modifier.fillMaxSize().padding(15.dp)){
         Column(Modifier.fillMaxSize()) {
 
-            PokemonListFieldImage(assetPath = currentPokemon.getImagePath(),
+            PokemonListFieldImage(modifier = Modifier.fillMaxWidth().size(300.dp), assetPath = currentPokemon.getImagePath(),
                 assetManager = assetManager,
                 color = currentPokemon.discovered)
 
@@ -52,7 +53,7 @@ fun game(gameViewModel: GameViewModel, pokedex: PokemonViewModel, assetManager :
 
 @Composable
 fun gameOptions(pokemonOptions: List<Pokemon>,enabled: Boolean, makeGuess : (Int) -> Unit){
-    Column() {
+    Column(modifier = Modifier.padding(10.dp)) {
         pokemonOption(pokemonOptions[0],enabled,makeGuess)
         pokemonOption(pokemonOptions[1],enabled,makeGuess)
         pokemonOption(pokemonOptions[2],enabled,makeGuess)
@@ -62,7 +63,7 @@ fun gameOptions(pokemonOptions: List<Pokemon>,enabled: Boolean, makeGuess : (Int
 
 @Composable
 fun pokemonOption(pokemon : Pokemon,  enabled: Boolean, makeGuess: (Int) -> Unit){
-    CustomButton(modifier = Modifier.fillMaxWidth(), text = pokemon.name, enabled = enabled) {makeGuess(pokemon.id)}
+    CustomButton(modifier = Modifier.fillMaxWidth().padding(10.dp), text = pokemon.name, enabled = enabled) {makeGuess(pokemon.id)}
 }
 
 //@Preview
