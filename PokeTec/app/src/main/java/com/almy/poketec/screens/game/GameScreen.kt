@@ -33,6 +33,7 @@ import androidx.navigation.NavHostController
 import com.almy.poketec.R
 import com.almy.poketec.data.listaPokemon
 import com.almy.poketec.screens.pokedex.Pokemon
+import com.almy.poketec.screens.pokedexCompleted.FormScreenPokedexCompleted
 import com.almy.poketec.ui.theme.PokeTecTheme
 import com.game.guesspoke.screens.game.*
 import kotlinx.coroutines.delay
@@ -63,7 +64,7 @@ fun GameScreen1(viewModel: GameViewModel) {
             state.listaRespuestaElegida,
             state.seAgotoElTiempo
         )
-        is ScreenUiState.PokedexCompletada -> {}
+        is ScreenUiState.PokedexCompletada -> { FormScreenPokedexCompleted() }
         else -> {
 
         }
