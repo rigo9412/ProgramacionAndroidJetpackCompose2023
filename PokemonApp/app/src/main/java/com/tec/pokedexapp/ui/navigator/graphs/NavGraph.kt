@@ -5,19 +5,19 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.tec.pokedexapp.data.source.Pokemon
+import com.tec.pokedexapp.ui.global.GlobalProvider
 import com.tec.pokedexapp.ui.navigator.main.HomeScreenContainer
 import com.tec.pokedexapp.ui.navigator.screens.Graphs
 
 @Composable
-fun RootGraph(navController: NavHostController,assetManager: AssetManager, pokemonList: List<Pokemon>){
+fun RootGraph(globalProvider: GlobalProvider){
     NavHost(
-        navController = navController,
+        navController = globalProvider.nav,
         startDestination = Graphs.HomeGraph.route
     ){
 
         composable(route = Graphs.HomeGraph.route){
-            HomeScreenContainer(assetManager = assetManager, pokemonList = pokemonList)
+            HomeScreenContainer(globalProvider = globalProvider)
         }
     }
 

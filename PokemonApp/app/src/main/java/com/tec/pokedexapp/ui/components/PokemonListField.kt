@@ -13,29 +13,27 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.tec.pokedexapp.data.source.Pokemon
+import com.tec.pokedexapp.data.model.Pokemon
 import com.tec.pokedexapp.ui.navigator.screens.Screens
 
 @Preview
 @Composable
 fun previewField(){
-    var pokemon = Pokemon(id = 1,name = "Bulbasaur", type1 = "Grass", type2 = "Poison", total = 318, hp = 45, attack = 49, 
+    var pokemon = Pokemon(id = 1,name = "Bulbasaur", type1 = "Grass", type2 = "Poison", total = 318, hp = 45, attack = 49,
         defense = 49, spAtk = 65, spDef = 65, speed = 45, generation = 1, legendary = false)
     PokemonListField(pokemon = pokemon,null,null)
 }
 
 @Composable
-fun PokemonListField(pokemon: Pokemon,assetManager: AssetManager?, navController: NavHostController?){
+fun PokemonListField(pokemon: Pokemon, assetManager: AssetManager?, navController: NavHostController?){
     Row(
-        horizontalArrangement = Arrangement.Start,
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
             .padding(10.dp)
@@ -44,8 +42,8 @@ fun PokemonListField(pokemon: Pokemon,assetManager: AssetManager?, navController
             },
     ){
         Text(text = pokemon.id.toString())
-        PokemonListFieldImage(assetPath = pokemon.getImagePath(), assetManager = assetManager!!, color = false)
-        Text(text = pokemon.name)
+        PokemonListFieldImage(assetPath = pokemon.getImagePath(), assetManager = assetManager!!, color = pokemon.discovered)
+        Text(text = if(pokemon.discovered) pokemon.name else "???")
     }
 }
 
@@ -53,6 +51,6 @@ fun PokemonListField(pokemon: Pokemon,assetManager: AssetManager?, navController
 fun PokemonListFieldImage(assetPath: String, assetManager: AssetManager?, color: Boolean){
     val bitmap = BitmapFactory.decodeStream(assetManager!!.open(assetPath))
     val painter = bitmap.asImageBitmap()
-    val filter = if(color) ColorFilter.lighting(Color.Black, Color.Black) else null
+    val filter = if(!color) ColorFilter.lighting(Color.Black, Color.Black) else null
     Image(bitmap = painter, contentDescription = "Pokemon Image", colorFilter = filter)
 }

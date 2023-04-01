@@ -1,4 +1,4 @@
-package com.tec.pokedexapp.data.source
+package com.tec.pokedexapp.data.model
 
 data class Pokemon(
     val id : Int,
@@ -14,7 +14,7 @@ data class Pokemon(
     val speed : Int,
     val generation : Int,
     val legendary : Boolean,
-    val discovered : Boolean = true
+    val discovered : Boolean = false
 ){
     fun getImagePath() : String{
         return "images/${String.format("%03d",id)}.png"
