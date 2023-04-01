@@ -92,14 +92,6 @@ fun Image(ruta:String,discover:Boolean){
 }
 
 
-@Composable
-fun Text(Text: String, Modifier: Modifier){
-    Text(
-        text = Text,
-        modifier = Modifier,
-        fontWeight = FontWeight.Bold
-    )
-}
 
 @Composable
 fun ImageFondo(ruta:String,discover:Boolean){

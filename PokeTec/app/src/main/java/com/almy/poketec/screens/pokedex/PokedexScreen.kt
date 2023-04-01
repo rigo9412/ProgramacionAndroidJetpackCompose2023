@@ -21,9 +21,7 @@ import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import com.almy.poketec.screens.pokedex.Pokemon
-//import com.almy.poketec.data.Pokemon
+
 
 @Composable
 fun FormScreenPokedex(pokemones: List<Pokemon>, viewModel: PokedexViewModel){
@@ -32,8 +30,7 @@ fun FormScreenPokedex(pokemones: List<Pokemon>, viewModel: PokedexViewModel){
 
     when (state) {
         is FormUiState.VistaPokemones -> RecyclerView(pokemones, viewModel)
-        is FormUiState.DetallePokemon -> PokemonDetails(pokemones,pokemon,viewModel)
-        //is FormUiState.FelicidadesScreen -> FelicidadesScreen(pokemones,viewModel)
+        is FormUiState.DetallePokemon -> PokemonDetails(pokemones,viewModel)
         else -> {
         //TODO
         }
@@ -112,10 +109,8 @@ fun Text(
 @Composable
 fun PokemonDetails(
     listapokemon: List<Pokemon>,
-    pokemon: Pokemon,
     viewModel: PokedexViewModel
 ) {
-    //viewModel.asignarPokemon(pokemon = pokemon)
     val uiStatePokemon = viewModel.uiStatePokemon.collectAsState().value
 
     AlertDialog(
