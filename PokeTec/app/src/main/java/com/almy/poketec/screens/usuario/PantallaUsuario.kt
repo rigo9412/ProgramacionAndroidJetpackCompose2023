@@ -36,6 +36,7 @@ import com.almy.poketec.data.ListaPokemon
 //import com.almy.poketec.data.listaPokemon
 import com.almy.poketec.screens.pokedex.Pokemon
 import com.almy.poketec.ui.theme.naranja
+import com.game.guesspoke.screens.game.listaPokedex
 import com.game.guesspoke.screens.game.listaPuntuaciones
 
 //class MainActivity : ComponentActivity() {
@@ -177,7 +178,7 @@ fun MostrarMedalla(listaPokemon:List<Pokemon>,Generacion:Int):Boolean{
 
 fun ContarPokemonesLegendarios(listaPokemon:List<Pokemon>):Int{
     var descubiertos=0
-    for (i in listaPokemon) {
+    for (i in listaPokedex) {
         if (i.discover && i.legendary=="true" || i.legendary=="True") {
             descubiertos += 1
         }
