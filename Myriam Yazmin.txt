@@ -6,3 +6,8 @@ Crear una rama con git checkout -b "nombre rama"
 Agregar el cambio git add .
 Hacer el commit git commit -m "mensaje"
 Subir el cambio git push origin nombreDeLaRama
+
+para clonar la rama 
+git branch PokeTec
+ git checkout PokeTec
+git pull
