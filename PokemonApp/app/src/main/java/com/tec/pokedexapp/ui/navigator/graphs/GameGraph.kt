@@ -20,8 +20,12 @@ fun NavGraphBuilder.GameGraph(navController: NavHostController,globalProvider: G
         composable(
             route = Screens.ResultScreen.route,
             arguments = listOf(navArgument("score"){
-                type = NavType.IntType
-            })
+                    type = NavType.IntType
+                },
+                navArgument("state"){
+                    type = NavType.StringType
+                }
+            )
         ){
             ResultScreen(navController = navController,globalProvider = globalProvider)
         }

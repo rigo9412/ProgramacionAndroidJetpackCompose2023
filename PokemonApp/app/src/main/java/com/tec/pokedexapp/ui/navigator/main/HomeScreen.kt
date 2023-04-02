@@ -36,14 +36,14 @@ fun HomeScreenContainer(navController: NavHostController = rememberNavController
     }
 }
 
-@Preview
-@Composable
-fun previewHome(){
-    HomeScreen(null)
-}
+//@Preview
+//@Composable
+//fun previewHome(){
+//    HomeScreen(null,null)
+//}
 
 @Composable
-fun HomeScreen(navController: NavHostController?){
+fun HomeScreen(navController: NavHostController?,globalProvider: GlobalProvider){
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -62,6 +62,8 @@ fun HomeScreen(navController: NavHostController?){
 
             Row(modifier = Modifier.padding(10.dp)) {
                 CustomButton(text = "Jugar", enabled = true, modifier = Modifier.fillMaxWidth()) {
+                    globalProvider.gameVM.finished = false
+                    globalProvider.gameVM.started = false
                     navController?.navigate(Screens.GameScreen.route)
                 }
             }

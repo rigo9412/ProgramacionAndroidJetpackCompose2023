@@ -20,7 +20,7 @@ fun HomeGraph(navController: NavHostController,globalProvider: GlobalProvider){
         startDestination = BottomBarScreens.Home.route
     ){
         composable(route = BottomBarScreens.Home.route){
-            HomeScreen(navController = navController)
+            HomeScreen(navController = navController,globalProvider)
         }
 
         composable(route = BottomBarScreens.Perfil.route){

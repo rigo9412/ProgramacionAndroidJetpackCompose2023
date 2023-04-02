@@ -37,8 +37,9 @@ fun PokemonListField(pokemon: Pokemon, assetManager: AssetManager?, navControlle
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
             .padding(10.dp)
-            .background(Color.White).clickable {
+            .background(Color.White).clickable { if(pokemon.discovered) {
                 navController?.navigate(Screens.PokemonScreen.passId(pokemon.id))
+            }
             },
     ){
         Text(text = pokemon.id.toString())

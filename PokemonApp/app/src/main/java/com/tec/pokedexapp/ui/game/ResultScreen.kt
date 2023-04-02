@@ -1,5 +1,6 @@
 package com.tec.pokedexapp.ui.game
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -11,6 +12,7 @@ import com.tec.pokedexapp.ui.navigator.screens.BottomBarScreens
 @Composable
 fun ResultScreen(navController: NavHostController, globalProvider: GlobalProvider){
     Column() {
+        Log.d("RESULT","idk")
         Text("RESULT")
         Button(onClick = {
             navController.navigate(BottomBarScreens.Home.route){

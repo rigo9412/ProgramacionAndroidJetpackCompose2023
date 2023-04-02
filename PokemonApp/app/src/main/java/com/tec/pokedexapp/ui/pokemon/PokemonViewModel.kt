@@ -18,7 +18,7 @@ class PokemonViewModel(
 ) : ViewModel() {
 
     private val _pokedexState = MutableStateFlow<PokemonModelState>(PokemonModelState())
-    val pokedexState: StateFlow<PokemonModelState> = _pokedexState
+    var pokedexState: StateFlow<PokemonModelState> = _pokedexState
 
     init{
         viewModelScope.launch {
@@ -29,9 +29,15 @@ class PokemonViewModel(
     }
 
     fun addViewedPokemon(id: Int){
-        _pokedexState.value.fullPokemon[id-1].copy(discovered = true)
+        updatePokemon(id)
         _pokedexState.value.copy(viewedPokemon = _pokedexState.value.viewedPokemon + _pokedexState.value.fullPokemon[id - 1])
         _pokedexState.value.copy(unknownPokemon = _pokedexState.value.unknownPokemon - _pokedexState.value.fullPokemon[id - 1])
+    }
+
+    fun updatePokemon(id: Int){
+        val pokemonList = _pokedexState.value.fullPokemon.toMutableList()
+        pokemonList[id - 1] = pokemonList[id-1].copy(discovered = true)
+        _pokedexState.value.fullPokemon = pokemonList
     }
 
     fun getPokemonCount(viewed: Boolean = false, type: String = ""): Int {
@@ -61,7 +67,7 @@ class PokemonViewModel(
 }
 
 data class PokemonModelState(
-    val fullPokemon: List<Pokemon> = listOf(),
-    val viewedPokemon: List<Pokemon> = listOf(),
-    val unknownPokemon: List<Pokemon> = listOf()
+    var fullPokemon: List<Pokemon> = listOf(),
+    var viewedPokemon: List<Pokemon> = listOf(),
+    var unknownPokemon: List<Pokemon> = listOf()
 )

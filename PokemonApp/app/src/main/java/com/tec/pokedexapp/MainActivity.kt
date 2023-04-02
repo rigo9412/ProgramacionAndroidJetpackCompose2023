@@ -15,6 +15,7 @@ import com.tec.pokedexapp.ui.game.GameViewModel
 import com.tec.pokedexapp.ui.global.GlobalProvider
 import com.tec.pokedexapp.ui.navigator.graphs.RootGraph
 import com.tec.pokedexapp.ui.navigator.main.PerfilViewModel
+import com.tec.pokedexapp.ui.pokemon.GameViewModelFactory
 import com.tec.pokedexapp.ui.pokemon.PokemonViewModel
 import com.tec.pokedexapp.ui.pokemon.PokemonViewModelFactory
 import com.tec.pokedexapp.ui.theme.PokedexAppTheme
@@ -33,9 +34,9 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
 
                     val pokemonLocalRepository = PokemonLocalRepository(assetManager)
-                    val pokedexVM : PokemonViewModel by viewModels{ PokemonViewModelFactory(pokemonLocalRepository)}
+                    val pokedexVM : PokemonViewModel by viewModels{ PokemonViewModelFactory(pokemonLocalRepository) }
                     val perfilVM : PerfilViewModel by viewModels()
-                    val gameVM : GameViewModel by viewModels()
+                    val gameVM : GameViewModel by viewModels{ GameViewModelFactory(pokedexVM) }
 
                     val gp = GlobalProvider(
                         gameVM = gameVM,

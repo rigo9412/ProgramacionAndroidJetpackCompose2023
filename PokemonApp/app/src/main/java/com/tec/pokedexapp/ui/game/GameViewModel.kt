@@ -1,94 +1,99 @@
 package com.tec.pokedexapp.ui.game
 
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.tec.pokedexapp.data.PokemonLocalRepository
 import com.tec.pokedexapp.data.model.Pokemon
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
+import com.tec.pokedexapp.ui.pokemon.PokemonViewModel
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
+import kotlin.random.Random
 
-class GameViewModel : ViewModel() {
-    private val _gameModelState = MutableStateFlow<GameModelState>(GameModelState())
-    val gameModelState: StateFlow<GameModelState> = _gameModelState
+class GameViewModel(
+    private val pokemonViewModel: PokemonViewModel
+) : ViewModel() {
+    private val _score = MutableStateFlow(0)
+    val score : StateFlow<Int> = _score
 
-    private val _gameState = MutableStateFlow<GameState>(GameState.START)
+    private val _lives = MutableStateFlow(3)
+    val lives : StateFlow<Int> = _lives
+
+    private val _gameState = MutableStateFlow(GameState.START)
     val gameState: StateFlow<GameState> = _gameState
 
     private val _pokemonOptions = MutableStateFlow<List<Pokemon>>(listOf())
     val pokemonOptions: StateFlow<List<Pokemon>> = _pokemonOptions
 
-//    private val _currentPokemonID = MutableStateFlow<Int>(0)
-//    val currentPokemonID: StateFlow<Int> = _currentPokemonID
+    private val _currentPokemon = MutableStateFlow<Pokemon?>(Pokemon(id = 1))
+    val currentPokemon: StateFlow<Pokemon?> = _currentPokemon
 
-    var currentPokemon : Pokemon? = null
-    var answered = false
-    var answer = 0
-    var answerResult = false
+    var started = false
+    var finished = false
     private val answerTimer : Long = 5000
     private val resultTimer : Long = 1500
+    private var guessJob: Job? = null
 
-    fun startRound(correctPokemon: Pokemon, options: List<Pokemon>){
-        if(_gameModelState.value.lives > 0){
-            CoroutineScope(Dispatchers.Default).launch {
-                guessPokemon(correctPokemon, options)
-            }
-        }
-        else{
-            _gameState.value = GameState.LOST
+    fun startRound(){
+        _gameState.value = GameState.START
+        _currentPokemon.value = pokemonViewModel.getRandomUnknownPokemon()!!
+        _pokemonOptions.value = (pokemonViewModel.getRandomPokemonList(3) + _currentPokemon.value!!).shuffled()
+        CoroutineScope(Dispatchers.Default).launch {
+            guessPokemon()
         }
     }
 
-    suspend fun guessPokemon(correctPokemon: Pokemon?, options: List<Pokemon>){
-        if(correctPokemon != null) {
+    suspend fun guessPokemon(){
+        if(_currentPokemon.value != null) {
             _gameState.value = GameState.GUESSING
-            currentPokemon = correctPokemon
-            _pokemonOptions.value = (options + correctPokemon).shuffled()
-
-            CoroutineScope(Dispatchers.Default).launch {
+            guessJob = viewModelScope.launch {
                 delay(answerTimer)
-                showResult()
-            }
-
-            if (answered) {
+                _lives.value -= 1
                 showResult()
             }
         }
         else{
-            GameState.END
+            _gameState.value = GameState.END
         }
     }
 
-    fun makeGuess(id: Int){
-        answered = true
-        if(id == currentPokemon?.id){
-            answerResult = true
+    suspend fun makeGuess(id: Int){
+        guessJob?.cancel()
+        if(id == _currentPokemon.value?.id){
+            _score.value += 1
+            pokemonViewModel.addViewedPokemon(_currentPokemon.value!!.id)
+            _currentPokemon.value = pokemonViewModel.pokedexState.value.fullPokemon[_currentPokemon.value!!.id - 1]
         }
         else{
-            answerResult = false
-            _gameModelState.value.copy(lives = _gameModelState.value.lives - 1)
+            _lives.value -= 1
         }
+        showResult()
     }
 
     suspend fun showResult(){
+        _gameState.value = if(_lives.value < 1) GameState.LOST else _gameState.value
+        var tempState = _gameState.value
+
         _gameState.value = GameState.RESULT
         delay(resultTimer)
+
+        _gameState.value = tempState
+        when(_gameState.value){
+            GameState.END -> stopGame()
+            GameState.LOST -> stopGame()
+            else -> startRound()
+        }
     }
 
-    fun resetRound(){
-        currentPokemon = null
-        answered = false
-        answer = 0
-        answerResult = false
+    fun stopGame(){
+        guessJob?.cancel()
+        _lives.value = 3
+        _score.value = 0
     }
 }
 
-data class GameModelState(
-    val score: Int = 0,
-    val lives: Int = 3
-)
 
 enum class GameState{
     START,GUESSING,RESULT,LOST,END

@@ -2,12 +2,11 @@ package com.tec.pokedexapp.ui.game
 
 import android.annotation.SuppressLint
 import android.content.res.AssetManager
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,46 +23,76 @@ import kotlinx.coroutines.launch
 @Composable
 fun GameScreen(navController: NavHostController?, globalProvider : GlobalProvider){
     val gameVM = globalProvider.gameVM
-    val pokedex = globalProvider.pokemonVM
-    gameVM.startRound(pokedex.getRandomUnknownPokemon()!!,pokedex.getRandomPokemonList(3))
-    game(gameViewModel = gameVM, pokedex = pokedex, assetManager = globalProvider.assetManager)
+    game(gameViewModel = gameVM, assetManager = globalProvider.assetManager, navController)
 }
 
 @Composable
-fun game(gameViewModel: GameViewModel, pokedex: PokemonViewModel, assetManager : AssetManager){
-    val gameData = gameViewModel.gameModelState.collectAsState()
+fun game(gameViewModel: GameViewModel, assetManager : AssetManager, navController: NavHostController?){
+    if(!gameViewModel.started){
+        gameViewModel.started = true
+        gameViewModel.startRound()
+    }
+
+    val score = gameViewModel.score.collectAsState()
+    val lives = gameViewModel.lives.collectAsState()
     val gameState = gameViewModel.gameState.collectAsState()
     val pokemonOptions = gameViewModel.pokemonOptions.collectAsState()
-    val currentPokemon = gameViewModel.currentPokemon!!
+    var currentPokemon = gameViewModel.currentPokemon.collectAsState()
 
-    Box(modifier = Modifier.fillMaxSize().padding(15.dp)){
+    if(gameState.value == GameState.END || gameState.value == GameState.LOST){
+        if(!gameViewModel.finished) {
+            gameViewModel.stopGame()
+            gameViewModel.finished = true
+            navController!!.navigate(
+                Screens.ResultScreen.passScoreAndState(
+                    score.value,
+                    if (gameState.value == GameState.END) "END" else "LOST"
+                )
+            )
+        }
+        return
+    }
+    Log.d("CURRENT",currentPokemon.value.toString())
+    Log.d("OPTIONS",pokemonOptions.value.toString())
+
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .padding(15.dp)){
         Column(Modifier.fillMaxSize()) {
+            
+            Text("Score: ${score.value}")
+            Text("Lives: ${lives.value}")
 
-            PokemonListFieldImage(modifier = Modifier.fillMaxWidth().size(300.dp), assetPath = currentPokemon.getImagePath(),
+            PokemonListFieldImage(modifier = Modifier
+                .fillMaxWidth()
+                .size(300.dp), assetPath = currentPokemon.value!!.getImagePath(),
                 assetManager = assetManager,
-                color = currentPokemon.discovered)
+                color = currentPokemon.value!!.discovered)
 
             gameOptions(pokemonOptions = pokemonOptions.value,
                 enabled = (gameState.value != GameState.RESULT),
-                makeGuess = {gameViewModel.makeGuess(currentPokemon.id)}
+                vm = gameViewModel
             )
         }
     }
 }
 
 @Composable
-fun gameOptions(pokemonOptions: List<Pokemon>,enabled: Boolean, makeGuess : (Int) -> Unit){
+fun gameOptions(pokemonOptions: List<Pokemon>,enabled: Boolean, vm: GameViewModel){
     Column(modifier = Modifier.padding(10.dp)) {
-        pokemonOption(pokemonOptions[0],enabled,makeGuess)
-        pokemonOption(pokemonOptions[1],enabled,makeGuess)
-        pokemonOption(pokemonOptions[2],enabled,makeGuess)
-        pokemonOption(pokemonOptions[3],enabled,makeGuess)
+        pokemonOption(pokemonOptions[0],enabled,vm)
+        pokemonOption(pokemonOptions[1],enabled,vm)
+        pokemonOption(pokemonOptions[2],enabled,vm)
+        pokemonOption(pokemonOptions[3],enabled,vm)
     }
 }
 
 @Composable
-fun pokemonOption(pokemon : Pokemon,  enabled: Boolean, makeGuess: (Int) -> Unit){
-    CustomButton(modifier = Modifier.fillMaxWidth().padding(10.dp), text = pokemon.name, enabled = enabled) {makeGuess(pokemon.id)}
+fun pokemonOption(pokemon : Pokemon,  enabled: Boolean, viewModel: GameViewModel){
+    val coroutineScope = rememberCoroutineScope()
+    CustomButton(modifier = Modifier
+        .fillMaxWidth()
+        .padding(10.dp), text = pokemon.name, enabled = enabled) {coroutineScope.launch{viewModel.makeGuess(pokemon.id)}}
 }
 
 //@Preview
