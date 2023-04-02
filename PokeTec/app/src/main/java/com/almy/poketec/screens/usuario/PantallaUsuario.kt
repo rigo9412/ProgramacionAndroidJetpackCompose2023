@@ -153,6 +153,16 @@ fun PokemonesRestantesTipo(listaPokemon:List<Pokemon>):String{
                 repetidos+=1
             }
         }
+
+        for (x in listaPokedex) {
+            if (i==x.type1){
+                repetidos-=1
+            }
+            if (i==x.type2){
+                repetidos-=1
+            }
+        }
+
         imprimimosTodaLaCasa+="\n"+i+": "+repetidos
         repetidos=0
     }
