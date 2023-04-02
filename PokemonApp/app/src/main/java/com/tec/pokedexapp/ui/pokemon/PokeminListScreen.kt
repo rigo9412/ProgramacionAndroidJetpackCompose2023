@@ -4,8 +4,7 @@ import android.content.res.AssetManager
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,12 +19,14 @@ import com.tec.pokedexapp.ui.global.GlobalProvider
 
 @Composable
 fun PokemonListScreen(navControler: NavHostController, globalProvider: GlobalProvider){
-    val pokedex = globalProvider.pokemonVM.pokedexState.collectAsState()
-    PokemonList(pokedex.value.fullPokemon,navControler,globalProvider.assetManager)
+    PokemonList(globalProvider,navControler)
 }
 
 @Composable
-fun PokemonList(pokemonList : List<Pokemon>?, navController: NavHostController?, assetManager: AssetManager?) {
+fun PokemonList(globalProvider: GlobalProvider, navController: NavHostController?) {
+    var lista by remember { mutableStateOf(ListType.FULL)}
+    var pokedexState = globalProvider.pokemonVM.pokedexState.collectAsState()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -38,13 +39,34 @@ fun PokemonList(pokemonList : List<Pokemon>?, navController: NavHostController?,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(15.dp)
+                    .padding(5.dp)
             ) {
-                CustomButton(modifier = Modifier.width(150.dp), text = "Vistos", enabled = true, onClick = {})
-                CustomButton(modifier = Modifier, text = "No Vistos",enabled = true,onClick = {})
+                CustomButton(modifier = Modifier.width(150.dp).height(55.dp), text = "Vistos", enabled = true, onClick = {lista = ListType.VIEWED})
+                CustomButton(modifier = Modifier.height(55.dp), text = "No Vistos",enabled = true,onClick = {lista = ListType.NONVIEWED})
             }
-
-            PokemonListColumn(pokemonList = pokemonList!!, assetManager = assetManager!!, navController = navController!!)
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(5.dp)
+            ) {
+                CustomButton(modifier = Modifier.height(55.dp),text = "Todos",enabled = true, onClick = { lista = ListType.FULL })
+            }
+            Box(modifier = Modifier
+                .padding(20.dp, 20.dp, 20.dp, 60.dp)
+                .fillMaxSize())
+            {
+                PokemonListColumn(
+                    pokemonList = when(lista){
+                        ListType.FULL -> pokedexState.value.fullPokemon
+                        ListType.VIEWED -> pokedexState.value.viewedPokemon
+                        ListType.NONVIEWED -> pokedexState.value.unknownPokemon
+                    },
+                    assetManager = globalProvider.assetManager!!,
+                    navController = navController!!
+                )
+            }
 //        Column(){
 //            Button(onClick = { navController?.navigate(Screens.PokemonScreen.passId(1))}) {
 //                Text("VerPokemon")
@@ -52,4 +74,8 @@ fun PokemonList(pokemonList : List<Pokemon>?, navController: NavHostController?,
 //        }
         }
     }
+}
+
+enum class ListType{
+    VIEWED, NONVIEWED, FULL
 }

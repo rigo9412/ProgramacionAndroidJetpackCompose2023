@@ -1,11 +1,14 @@
 package com.tec.pokedexapp.ui.pokemon
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.tec.pokedexapp.data.PokemonLocalRepository
 import com.tec.pokedexapp.ui.game.GameViewModel
 
-class PokemonViewModelFactory(private val repository: PokemonLocalRepository) : ViewModelProvider.Factory {
+class PokemonViewModelFactory(
+    private val repository: PokemonLocalRepository
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(PokemonViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

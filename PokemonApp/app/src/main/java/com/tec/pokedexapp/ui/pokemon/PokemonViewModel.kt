@@ -1,6 +1,7 @@
 package com.tec.pokedexapp.ui.pokemon
 
 import android.content.res.AssetManager
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -17,6 +18,8 @@ class PokemonViewModel(
     private val pokemonLocalRepository: PokemonLocalRepository
 ) : ViewModel() {
 
+    private val pokemonListStateKey = "pokemonList"
+
     private val _pokedexState = MutableStateFlow<PokemonModelState>(PokemonModelState())
     var pokedexState: StateFlow<PokemonModelState> = _pokedexState
 
@@ -26,6 +29,10 @@ class PokemonViewModel(
                 _pokedexState.value = pokedexState.value.copy(fullPokemon = pokemons, unknownPokemon = pokemons)
             }
         }
+    }
+
+    fun getPokemonByID(id: Int): Pokemon{
+        return _pokedexState.value.fullPokemon[id - 1]
     }
 
     fun addViewedPokemon(id: Int){
@@ -77,8 +84,10 @@ class PokemonViewModel(
         return _pokedexState.value.unknownPokemon[Random.nextInt(0,_pokedexState.value.unknownPokemon.size)]
     }
 
-    fun getRandomPokemonList(size: Int): List<Pokemon> {
-        return _pokedexState.value.fullPokemon.shuffled().take(size)
+    fun getRandomPokemonList(size: Int, id: Int = 0): List<Pokemon> {
+        val pokemonList = _pokedexState.value.fullPokemon.toMutableList()
+        pokemonList.removeIf { it.id == id }
+        return pokemonList.shuffled().take(size)
     }
 }
 

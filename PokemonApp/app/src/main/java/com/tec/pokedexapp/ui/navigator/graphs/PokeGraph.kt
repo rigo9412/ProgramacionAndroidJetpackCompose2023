@@ -25,7 +25,7 @@ fun NavGraphBuilder.PokeGraph(navController: NavHostController, globalProvider: 
                 type = NavType.IntType
             })
         ){
-            PokemonScreen(navController = navController)
+            PokemonScreen(globalProvider,it.arguments?.getInt("id"))
         }
     }
 }

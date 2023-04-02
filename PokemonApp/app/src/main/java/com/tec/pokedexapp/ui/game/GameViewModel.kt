@@ -2,6 +2,7 @@ package com.tec.pokedexapp.ui.game
 
 import android.util.Log
 import androidx.compose.runtime.MutableState
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tec.pokedexapp.data.PokemonLocalRepository
@@ -42,12 +43,10 @@ class GameViewModel(
 
     fun startRound(){
         _gameState.value = GameState.START
-        Log.d("POKEMONS",pokemonViewModel.pokedexState.value.unknownPokemon.toString())
-        Log.d("POKEMONS",pokemonViewModel.pokedexState.value.viewedPokemon.toString())
         _currentPokemon.value = pokemonViewModel.getRandomUnknownPokemon()
         if(_currentPokemon.value != null) {
             _pokemonOptions.value =
-                (pokemonViewModel.getRandomPokemonList(3) + _currentPokemon.value!!).shuffled()
+                (pokemonViewModel.getRandomPokemonList(3, _currentPokemon.value!!.id) + _currentPokemon.value!!).shuffled()
             CoroutineScope(Dispatchers.Default).launch {
                 guessPokemon()
             }

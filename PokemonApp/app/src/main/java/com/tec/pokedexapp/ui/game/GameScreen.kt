@@ -3,6 +3,7 @@ package com.tec.pokedexapp.ui.game
 import android.annotation.SuppressLint
 import android.content.res.AssetManager
 import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -16,18 +17,23 @@ import com.tec.pokedexapp.data.model.Pokemon
 import com.tec.pokedexapp.ui.components.CustomButton
 import com.tec.pokedexapp.ui.components.PokemonListFieldImage
 import com.tec.pokedexapp.ui.global.GlobalProvider
+import com.tec.pokedexapp.ui.navigator.main.PerfilViewModel
 import com.tec.pokedexapp.ui.navigator.screens.Screens
 import com.tec.pokedexapp.ui.pokemon.PokemonViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun GameScreen(navController: NavHostController?, globalProvider : GlobalProvider){
+fun GameScreen(navController: NavHostController?, globalProvider : GlobalProvider,onBackPressed: () -> Unit){
+    BackHandler(onBack = onBackPressed)
     val gameVM = globalProvider.gameVM
-    game(gameViewModel = gameVM, assetManager = globalProvider.assetManager, navController)
+    game(gameViewModel = gameVM, globalProvider.perfilVM ,assetManager = globalProvider.assetManager, navController)
 }
 
 @Composable
-fun game(gameViewModel: GameViewModel, assetManager : AssetManager, navController: NavHostController?){
+fun game(gameViewModel: GameViewModel,
+         perfilViewModel: PerfilViewModel,
+         assetManager : AssetManager,
+         navController: NavHostController?){
 
     if(!gameViewModel.started){
         gameViewModel.started = true
@@ -44,6 +50,7 @@ fun game(gameViewModel: GameViewModel, assetManager : AssetManager, navControlle
         if(!gameViewModel.finished) {
             gameViewModel.stopGame()
             gameViewModel.finished = true
+            perfilViewModel.addScore(gameViewModel.tempScore)
             navController!!.navigate(
                 Screens.ResultScreen.passScoreAndState(
                     gameViewModel.tempScore,

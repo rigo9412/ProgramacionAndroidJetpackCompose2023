@@ -24,7 +24,7 @@ fun HomeGraph(navController: NavHostController,globalProvider: GlobalProvider){
         }
 
         composable(route = BottomBarScreens.Perfil.route){
-            PerfilScreen(navController = navController)
+            PerfilScreen(navController = navController,globalProvider)
         }
 
         composable(route = BottomBarScreens.Pokedex.route){
