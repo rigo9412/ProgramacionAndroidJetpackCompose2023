@@ -8,3 +8,4 @@ val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
 val navBar = Color(0xFFF75547)
+val naranja = Color(0xFFFF9800)
