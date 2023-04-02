@@ -31,30 +31,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.compose.rememberNavController
 import com.almy.poketec.R
-import com.almy.poketec.data.ListaPokemon
-//import com.almy.poketec.data.listaPokemon
 import com.almy.poketec.screens.pokedex.Pokemon
 import com.almy.poketec.ui.theme.naranja
 import com.game.guesspoke.screens.game.listaPokedex
 import com.game.guesspoke.screens.game.listaPuntuaciones
 
-//class MainActivity : ComponentActivity() {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContent {
-//            UsuarioUsuarioTheme {
-//                // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = Color.Red
-//                ) {
-//                    Usuario()
-//                }
-//            }
-//        }
-//    }
-//}
+
 
 //lista que se usa de preba para las puntuaciones
 val puntuaciones: List<Int> = listOf(80,70,30)
@@ -64,10 +48,7 @@ fun Usuario(Listaxd: List<Pokemon>,
             elevation: Dp = 0.dp,
             border: BorderStroke? = BorderStroke(0.dp, Color.Transparent),
             shape: Shape = MaterialTheme.shapes.medium) {
-    //Variables
-//    val ListaPokemon=Listaxd
-//    var vistos by remember { mutableStateOf(90) }
-//    val totales by remember { mutableStateOf(150) }
+
     Card(
         shape = shape,
         elevation = elevation,
@@ -75,6 +56,8 @@ fun Usuario(Listaxd: List<Pokemon>,
         modifier = modifier
 
     ){
+        val darkMode = remember{ mutableStateOf(false) }
+
         Column(
             Modifier
                 .background(Color(0xD788B6DB))) {
@@ -82,11 +65,12 @@ fun Usuario(Listaxd: List<Pokemon>,
             Row {
                 Titulo(
                     elevation = 0.dp,
-                    border = BorderStroke(0.dp, Color.Transparent)
+                    border = BorderStroke(0.dp, Color.Transparent),
+                    darkMode = darkMode
                 )
             }
             Row {
-                InformacionDelUsuario(Listaxd = com.almy.poketec.data.listaPokemon)
+                InformacionDelUsuario(Listaxd = com.almy.poketec.data.listaPokemon,darkMode = darkMode)
 
             }
 
@@ -212,7 +196,8 @@ fun Titulo(
     border: BorderStroke? = null,
     background: Color = Color.Transparent,
     contentColor: Color = contentColorFor(background),
-    shape: Shape = MaterialTheme.shapes.medium
+    shape: Shape = MaterialTheme.shapes.medium,
+    darkMode: MutableState<Boolean>
 ) {
     val gradient = Brush.linearGradient(
         0.0f to  Color(0xFFA770EF),
@@ -260,7 +245,9 @@ fun Titulo(
                 Box(
                     modifier = Modifier
                         .padding(top = 15.dp)
-                        .background(color = Color.White, shape = CircleShape)
+                        .background(color =
+                        if(darkMode.value) Color(0xFF0032c50)
+                        else Color(0xFF3aa0f9), shape = CircleShape)
                         .border(BorderStroke(2.dp, naranja), CircleShape),
                     contentAlignment = Alignment.Center
                 ) {
@@ -485,12 +472,6 @@ fun PuntajeItemCard(Puntaje:Int){
                     start.linkTo(puntaje.end)
                 })
 
-//            Text(text = "${puntaje}",
-//                Modifier.constrainAs(puntaje){
-//                    top.linkTo(puntaje.top)
-//                    start.linkTo(parent.start)
-//                    width= Dimension.fillToConstraints
-//                })
         }
     }
 
@@ -506,10 +487,12 @@ fun InformacionDelUsuario(
     border: BorderStroke? = BorderStroke(3.dp, Color.White),
     background: Color = Color(0xE8FFFFFF),
     contentColor: Color = contentColorFor(background),
-    shape: Shape = MaterialTheme.shapes.medium){
+    shape: Shape = MaterialTheme.shapes.medium,
+    darkMode: MutableState<Boolean>
+){
     val ListaPokemon=Listaxd
     Card(
-        backgroundColor = background,
+        backgroundColor = if(darkMode.value) Color(0xFF000000) else Color(0xE8FFFFFF),
         contentColor = contentColor,
         shape = shape,
         elevation = elevation,
