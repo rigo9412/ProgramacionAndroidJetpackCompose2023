@@ -53,6 +53,7 @@ import com.almy.poketec.ui.theme.naranja
 //        }
 //    }
 //}
+
 //lista que se usa de preba para las puntuaciones
 val puntuaciones: List<Int> = listOf(80,70,30)
 @Composable
@@ -128,11 +129,11 @@ fun PokemonesRestantesTipo(listaPokemon:List<Pokemon>):String{
     val tiposContados: MutableList<String> = mutableListOf()
     var imprimimosTodaLaCasa=""
     for (i in listaPokemon){
-        if (!tiposContados.contains(i.type1)){
+        if (!tiposContados.contains(i.type1)&&i.type1!=""){
             tiposContados.add(i.type1)
             print(i.type1+" agregado")
         }
-        if (!tiposContados.contains(i.type2)){
+        if (!tiposContados.contains(i.type2)&&i.type2!=""){
             tiposContados.add(i.type2)
             print(i.type2+" agregado")
         }
@@ -413,7 +414,7 @@ fun Medalla(
                 Text(text = "Medallas")
             }
             Row(modifier=Modifier.padding(4.dp)) {
-                val bitmap = BitmapFactory.decodeStream(LocalContext.current.assets.open("assets/images/medalla1.png"))
+                val bitmap = BitmapFactory.decodeStream(LocalContext.current.assets.open("images/medalla1.png"))
                 val painter = BitmapPainter(bitmap.asImageBitmap())
                 androidx.compose.foundation.Image(
                     painter = painter,
