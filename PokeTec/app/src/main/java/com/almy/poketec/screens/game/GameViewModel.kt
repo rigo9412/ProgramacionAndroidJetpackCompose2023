@@ -7,10 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.almy.poketec.data.listaPokemon
 import com.almy.poketec.screens.pokedex.Pokemon
-import com.game.guesspoke.screens.game.GameUiState
-import com.game.guesspoke.screens.game.Quadruple
-import com.game.guesspoke.screens.game.ScreenUiState
-import com.game.guesspoke.screens.game.listaPokedex
+import com.game.guesspoke.screens.game.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -37,6 +34,9 @@ class GameViewModel : ViewModel() {
         if (listaPokedex == null) {
             pickearPrimerPokemonCorrecto()
             pickearPrimerosCuatroPokemons()
+        } else if(listaPokedex.size == 151){
+            _uiState.value = ScreenUiState.PokedexCompletada
+            return
         } else {
             pickearPokemonCorrecto()
             pickearCuatroPokemons()
@@ -93,13 +93,18 @@ class GameViewModel : ViewModel() {
 
     private fun pickearCuatroPokemons() {
         var cuatroPokemon: MutableList<Pokemon> = mutableListOf(_uiStateData.value.pokemonActual)
-        var i = 3
+
+        //hay que comprobar si ya llego a 148 la lista, entonces vamos a mostrar menos de 4 respuestas
+        var i = if (listaPokedex.size == 148) 2
+        else if (listaPokedex.size == 149) 1 else if(listaPokedex.size == 150) 0 else 3
+
         while (i != 0) {
             var pokemon: Pokemon
             do {
                 pokemon = listaPokemon.random()
             } while (listaPokedex.contains(pokemon))
 
+            //no va a permitir respuestas repetidas
             if (cuatroPokemon.contains(pokemon)) {
                 continue
             } else {
@@ -192,6 +197,12 @@ class GameViewModel : ViewModel() {
                             _uiStateData.value.listaRespuestaElegida,
                             _uiStateData.value.seAgotoElTiempo
                         )
+
+                        //registrar puntuacion
+                        listaPuntuaciones.add(_uiStateData.value.puntos)
+
+                        //sumar intentos
+                        totalDeIntentos.plus(1)
                         var intentos = _uiStateData.value.intentos + 1
                         _uiStateData.value =
                             _uiStateData.value.copy(
@@ -211,6 +222,9 @@ class GameViewModel : ViewModel() {
     }
 
     fun AgregarPreguntasYRespuestas(poke: List<Pokemon>, pokeCorrecto: Pokemon, respuesta: Int) {
+        //hay que saber cuantos pokemon hay
+        var n = poke.size
+
         //obtenemos la lista actual
         var listaPreguntas: MutableList<Quadruple<Pokemon, Pokemon, Pokemon, Pokemon>> =
             _uiStateData.value.listaPreguntas
@@ -218,7 +232,18 @@ class GameViewModel : ViewModel() {
         var listaRespuestaElegida: MutableList<Int> = _uiStateData.value.listaRespuestaElegida
 
         //agregamos la ultima pregunta
-        listaPreguntas.add(Quadruple(poke[0], poke[1], poke[2], poke[3]))
+        if(n == 3)
+        {
+            listaPreguntas.add(Quadruple(poke[0], poke[1], poke[2], Pokemon()))
+        } else if (n == 2)
+        {
+            listaPreguntas.add(Quadruple(poke[0], poke[1], Pokemon(), Pokemon()))
+        } else if(n == 1){
+            listaPreguntas.add(Quadruple(poke[0], Pokemon(), Pokemon(), Pokemon()))
+        } else{
+            listaPreguntas.add(Quadruple(poke[0], poke[1], poke[2], poke[3]))
+        }
+
         listaPokemonCorrecto.add(pokeCorrecto)
         listaRespuestaElegida.add(respuesta)
 

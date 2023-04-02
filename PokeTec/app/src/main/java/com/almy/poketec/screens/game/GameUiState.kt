@@ -46,6 +46,8 @@ data class Quadruple<A,B,C,D>(var first: A, var second: B, var third: C, var fou
 }
 
 var listaPokedex: MutableList<Pokemon> = mutableListOf()
+var listaPuntuaciones: MutableList<Int> = mutableListOf()
+var totalDeIntentos: Int = 0
 
 data class Preguntas(
     var id: Int = 0,

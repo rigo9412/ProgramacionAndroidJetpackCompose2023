@@ -188,6 +188,12 @@ fun MostrarRespuestas(
     viewModel: GameViewModel
 ) {
     val data = viewModel.uiStateData.collectAsState().value
+
+    //amos a calcular cuantas respuestas posibles hay para el caso de que ya llegue a los 148 pokemones
+    val son3: Boolean = data.cuatroPokemonsDesordenado.size == 3
+    val son2: Boolean = data.cuatroPokemonsDesordenado.size == 2
+    val es1: Boolean = data.cuatroPokemonsDesordenado.size == 1
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -215,9 +221,10 @@ fun MostrarRespuestas(
             modifier = Modifier
                 .width(150.dp)
                 .height(50.dp)
-                .padding(end = 8.dp)
+                .padding(end = 8.dp),
+            enabled = !es1
         ) {
-            Text(data.cuatroPokemonsDesordenado[1].name)
+            Text(if (es1) "" else data.cuatroPokemonsDesordenado[1].name)
         }
     }
     Row(
@@ -234,9 +241,10 @@ fun MostrarRespuestas(
             modifier = Modifier
                 .width(150.dp)
                 .height(50.dp)
-                .padding(end = 8.dp)
+                .padding(end = 8.dp),
+            enabled = !son2 && !es1
         ) {
-            Text(data.cuatroPokemonsDesordenado[2].name)
+            Text(if (son2 || es1) "" else data.cuatroPokemonsDesordenado[2].name)
         }
 
         Button(
@@ -247,9 +255,10 @@ fun MostrarRespuestas(
             modifier = Modifier
                 .width(150.dp)
                 .height(50.dp)
-                .padding(end = 8.dp)
+                .padding(end = 8.dp),
+            enabled = !son3 && !son2 && !es1
         ) {
-            Text(data.cuatroPokemonsDesordenado[3].name)
+            Text(if (son3 || son2 || es1) "" else data.cuatroPokemonsDesordenado[3].name)
         }
     }
 }
@@ -278,6 +287,12 @@ fun MostrarRespuestas2(
     viewModel: GameViewModel
 ) {
     val data = viewModel.uiStateData.collectAsState().value
+
+    //amos a calcular cuantas respuestas posibles hay para el caso de que ya llegue a los 148 pokemones
+    val son3: Boolean = data.cuatroPokemonsDesordenado.size == 3
+    val son2: Boolean = data.cuatroPokemonsDesordenado.size == 2
+    val es1: Boolean = data.cuatroPokemonsDesordenado.size == 1
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -317,7 +332,7 @@ fun MostrarRespuestas2(
                 } else Color.LightGray
             )
         ) {
-            Text(data.cuatroPokemonsDesordenado[1].name)
+            Text(if (es1) "" else data.cuatroPokemonsDesordenado[1].name)
         }
     }
     Row(
@@ -341,7 +356,7 @@ fun MostrarRespuestas2(
                 } else Color.LightGray
             )
         ) {
-            Text(data.cuatroPokemonsDesordenado[2].name)
+            Text(if ( son2 || es1) "" else data.cuatroPokemonsDesordenado[2].name)
         }
 
         Button(
@@ -359,7 +374,7 @@ fun MostrarRespuestas2(
                 } else Color.LightGray
             )
         ) {
-            Text(data.cuatroPokemonsDesordenado[3].name)
+            Text(if (son3 || son2 || es1) "" else data.cuatroPokemonsDesordenado[3].name)
         }
     }
 }

@@ -36,6 +36,7 @@ import com.almy.poketec.data.ListaPokemon
 //import com.almy.poketec.data.listaPokemon
 import com.almy.poketec.screens.pokedex.Pokemon
 import com.almy.poketec.ui.theme.naranja
+import com.game.guesspoke.screens.game.listaPuntuaciones
 
 //class MainActivity : ComponentActivity() {
 //    override fun onCreate(savedInstanceState: Bundle?) {
@@ -513,7 +514,7 @@ fun InformacionDelUsuario(
 
             Row {
 //                Muestra los tres primero puntajes
-               TablaPuntajes(obtenerTresMayores(puntuaciones))
+               TablaPuntajes(obtenerTresMayores(listaPuntuaciones))
             }
 
             Row {
