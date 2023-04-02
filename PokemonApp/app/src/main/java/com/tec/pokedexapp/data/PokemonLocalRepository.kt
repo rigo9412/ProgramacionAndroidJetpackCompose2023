@@ -7,6 +7,7 @@ import com.tec.pokedexapp.data.source.IPokemonsLocalAPI
 import com.tec.pokedexapp.data.source.PokemonLocalAPI
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 
 class PokemonLocalRepository(
     private val assetManager: AssetManager,

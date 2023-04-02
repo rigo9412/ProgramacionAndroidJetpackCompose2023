@@ -18,17 +18,9 @@ import com.tec.pokedexapp.ui.components.PokemonListColumn
 import com.tec.pokedexapp.ui.game.Header
 import com.tec.pokedexapp.ui.global.GlobalProvider
 
-//@Preview
-//@Composable
-//fun PokedexPreview(){
-//    PokemonListScreen(null, null,null)
-//}
-
-
 @Composable
 fun PokemonListScreen(navControler: NavHostController, globalProvider: GlobalProvider){
     val pokedex = globalProvider.pokemonVM.pokedexState.collectAsState()
-    Log.d("POKEMON",pokedex.value.fullPokemon.toString())
     PokemonList(pokedex.value.fullPokemon,navControler,globalProvider.assetManager)
 }
 

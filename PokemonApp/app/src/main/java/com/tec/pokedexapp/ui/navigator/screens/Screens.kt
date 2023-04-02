@@ -11,7 +11,7 @@ sealed class Screens(val route: String){
     object GameScreen: Screens("GameScreen")
     object ResultScreen: Screens("ResultScreen/{$ARGUMENT_SCORE}/{$ARGUMENT_STATE}"){
         fun passScoreAndState(score : Int,gameState: String): String{
-            return "ResultScreen/$score/${gameState}"
+            return "ResultScreen/$score/$gameState"
         }
     }
     object PokemonListScreen: Screens("PokemonListScreen")

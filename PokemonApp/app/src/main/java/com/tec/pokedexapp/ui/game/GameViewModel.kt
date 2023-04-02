@@ -15,6 +15,7 @@ import kotlin.random.Random
 class GameViewModel(
     private val pokemonViewModel: PokemonViewModel
 ) : ViewModel() {
+
     private val _score = MutableStateFlow(0)
     val score : StateFlow<Int> = _score
 
@@ -30,18 +31,29 @@ class GameViewModel(
     private val _currentPokemon = MutableStateFlow<Pokemon?>(Pokemon(id = 1))
     val currentPokemon: StateFlow<Pokemon?> = _currentPokemon
 
+    var tempScore = 0
     var started = false
     var finished = false
+
     private val answerTimer : Long = 5000
     private val resultTimer : Long = 1500
+
     private var guessJob: Job? = null
 
     fun startRound(){
         _gameState.value = GameState.START
-        _currentPokemon.value = pokemonViewModel.getRandomUnknownPokemon()!!
-        _pokemonOptions.value = (pokemonViewModel.getRandomPokemonList(3) + _currentPokemon.value!!).shuffled()
-        CoroutineScope(Dispatchers.Default).launch {
-            guessPokemon()
+        Log.d("POKEMONS",pokemonViewModel.pokedexState.value.unknownPokemon.toString())
+        Log.d("POKEMONS",pokemonViewModel.pokedexState.value.viewedPokemon.toString())
+        _currentPokemon.value = pokemonViewModel.getRandomUnknownPokemon()
+        if(_currentPokemon.value != null) {
+            _pokemonOptions.value =
+                (pokemonViewModel.getRandomPokemonList(3) + _currentPokemon.value!!).shuffled()
+            CoroutineScope(Dispatchers.Default).launch {
+                guessPokemon()
+            }
+        }
+        else{
+            _gameState.value = GameState.END
         }
     }
 
@@ -75,6 +87,7 @@ class GameViewModel(
     suspend fun showResult(){
         _gameState.value = if(_lives.value < 1) GameState.LOST else _gameState.value
         var tempState = _gameState.value
+        tempScore = _score.value
 
         _gameState.value = GameState.RESULT
         delay(resultTimer)

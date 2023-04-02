@@ -10,10 +10,15 @@ import com.tec.pokedexapp.ui.global.GlobalProvider
 import com.tec.pokedexapp.ui.navigator.screens.BottomBarScreens
 
 @Composable
-fun ResultScreen(navController: NavHostController, globalProvider: GlobalProvider){
+fun ResultScreen(navController: NavHostController, globalProvider: GlobalProvider,score: Int?, state: String?){
     Column() {
-        Log.d("RESULT","idk")
+
+        //GameState.END
+        //GameState.LOST
+
         Text("RESULT")
+        Text("Score: $score")
+        Text("State: $state")
         Button(onClick = {
             navController.navigate(BottomBarScreens.Home.route){
                 popUpTo(BottomBarScreens.Home.route){inclusive = true}

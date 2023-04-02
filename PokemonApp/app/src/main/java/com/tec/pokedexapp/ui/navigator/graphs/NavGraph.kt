@@ -15,7 +15,6 @@ fun RootGraph(globalProvider: GlobalProvider){
         navController = globalProvider.nav,
         startDestination = Graphs.HomeGraph.route
     ){
-
         composable(route = Graphs.HomeGraph.route){
             HomeScreenContainer(globalProvider = globalProvider)
         }

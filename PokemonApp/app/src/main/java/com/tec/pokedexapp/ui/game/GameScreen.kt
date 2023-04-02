@@ -28,6 +28,7 @@ fun GameScreen(navController: NavHostController?, globalProvider : GlobalProvide
 
 @Composable
 fun game(gameViewModel: GameViewModel, assetManager : AssetManager, navController: NavHostController?){
+
     if(!gameViewModel.started){
         gameViewModel.started = true
         gameViewModel.startRound()
@@ -45,15 +46,13 @@ fun game(gameViewModel: GameViewModel, assetManager : AssetManager, navControlle
             gameViewModel.finished = true
             navController!!.navigate(
                 Screens.ResultScreen.passScoreAndState(
-                    score.value,
+                    gameViewModel.tempScore,
                     if (gameState.value == GameState.END) "END" else "LOST"
                 )
             )
         }
         return
     }
-    Log.d("CURRENT",currentPokemon.value.toString())
-    Log.d("OPTIONS",pokemonOptions.value.toString())
 
     Box(modifier = Modifier
         .fillMaxSize()

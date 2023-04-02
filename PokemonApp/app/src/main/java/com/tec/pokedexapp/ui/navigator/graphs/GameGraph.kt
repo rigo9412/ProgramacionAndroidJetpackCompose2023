@@ -27,7 +27,10 @@ fun NavGraphBuilder.GameGraph(navController: NavHostController,globalProvider: G
                 }
             )
         ){
-            ResultScreen(navController = navController,globalProvider = globalProvider)
+            ResultScreen(navController = navController,
+                globalProvider = globalProvider,
+                it.arguments?.getInt("score"),
+                it.arguments?.getString("state"))
         }
     }
 

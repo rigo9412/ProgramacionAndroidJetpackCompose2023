@@ -29,9 +29,9 @@ class PokemonViewModel(
     }
 
     fun addViewedPokemon(id: Int){
+        updateUnknownList(id)
         updatePokemon(id)
-        _pokedexState.value.copy(viewedPokemon = _pokedexState.value.viewedPokemon + _pokedexState.value.fullPokemon[id - 1])
-        _pokedexState.value.copy(unknownPokemon = _pokedexState.value.unknownPokemon - _pokedexState.value.fullPokemon[id - 1])
+        updateViewedList(id)
     }
 
     fun updatePokemon(id: Int){
@@ -40,9 +40,25 @@ class PokemonViewModel(
         _pokedexState.value.fullPokemon = pokemonList
     }
 
+
+    fun updateViewedList(id: Int){
+        val pokemonList = _pokedexState.value.fullPokemon.toMutableList()
+        val pokemon = pokemonList[id-1]
+        val pokemonViewedList = _pokedexState.value.viewedPokemon.toMutableList()
+        pokemonViewedList += pokemon
+        _pokedexState.value = _pokedexState.value.copy(viewedPokemon = pokemonViewedList)
+    }
+    fun updateUnknownList(id: Int){
+        val pokemonList = _pokedexState.value.fullPokemon.toMutableList()
+        val pokemon = pokemonList[id-1]
+        val pokemonUnknownList = _pokedexState.value.unknownPokemon.toMutableList()
+        pokemonUnknownList.remove(pokemon)
+        _pokedexState.value = _pokedexState.value.copy(unknownPokemon = pokemonUnknownList)
+    }
     fun getPokemonCount(viewed: Boolean = false, type: String = ""): Int {
         var countList =
             if (viewed) _pokedexState.value.viewedPokemon else _pokedexState.value.unknownPokemon
+
         return if (type != "") countList.count { it.type1 == type || it.type2 == type } else countList.count()
     }
 

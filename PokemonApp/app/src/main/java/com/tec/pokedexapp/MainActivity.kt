@@ -34,6 +34,7 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
 
                     val pokemonLocalRepository = PokemonLocalRepository(assetManager)
+
                     val pokedexVM : PokemonViewModel by viewModels{ PokemonViewModelFactory(pokemonLocalRepository) }
                     val perfilVM : PerfilViewModel by viewModels()
                     val gameVM : GameViewModel by viewModels{ GameViewModelFactory(pokedexVM) }
