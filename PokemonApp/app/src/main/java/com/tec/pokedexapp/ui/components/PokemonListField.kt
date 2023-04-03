@@ -5,10 +5,12 @@ import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,11 +37,14 @@ fun PokemonListField(pokemon: Pokemon, assetManager: AssetManager?, navControlle
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .padding(10.dp)
-            .background(Color.White).clickable { if(pokemon.discovered) {
-                navController?.navigate(Screens.PokemonScreen.passId(pokemon.id))
-            }
+            .background(color = MaterialTheme.colors.background)
+            .clickable {
+                if (pokemon.discovered) {
+                    navController?.navigate(Screens.PokemonScreen.passId(pokemon.id))
+                }
             },
     ){
         Text(text = pokemon.id.toString())
@@ -50,8 +55,9 @@ fun PokemonListField(pokemon: Pokemon, assetManager: AssetManager?, navControlle
 
 @Composable
 fun PokemonListFieldImage(modifier : Modifier,assetPath: String, assetManager: AssetManager?, color: Boolean){
+    val backgroundColor = if (isSystemInDarkTheme()) Color.White else Color.Black
     val bitmap = BitmapFactory.decodeStream(assetManager!!.open(assetPath))
     val painter = bitmap.asImageBitmap()
-    val filter = if(!color) ColorFilter.lighting(Color.Black, Color.Black) else null
+    val filter = if(!color) ColorFilter.lighting(backgroundColor, backgroundColor) else null
     Image(modifier = modifier, bitmap = painter, contentDescription = "Pokemon Image", colorFilter = filter)
 }

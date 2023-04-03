@@ -1,5 +1,6 @@
 package com.tec.pokedexapp.ui.game
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,6 +9,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -45,9 +47,12 @@ import com.tec.pokedexapp.ui.navigator.screens.BottomBarScreens
 fun ResultScreen(
     navController: NavHostController,
     globalProvider: GlobalProvider,
+    onBackPressed: () -> Unit,
     score: Int?,
     state: String?
 ){
+    val tries = globalProvider.perfilVM.tries.collectAsState()
+    BackHandler(onBack = onBackPressed)
     Column(modifier = Modifier
         .fillMaxSize()
         .background(BackgroundRed)
@@ -79,6 +84,7 @@ fun ResultScreen(
                 else{
                     Text(text = "Has completado el Pokedex!!...")
                     Text(text = "Por ahora! Espera a la siguiente generacion!")
+                    Text(text = "Intentos: ${tries.value}")
                     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally){
                         Image(
                             painter = painterResource(id = R.drawable.pokedex_completed),

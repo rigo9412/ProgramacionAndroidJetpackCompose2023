@@ -14,9 +14,7 @@ fun NavGraphBuilder.GameGraph(navController: NavHostController,globalProvider: G
         route = Graphs.GameGraph.route
     ){
         composable(route = Screens.GameScreen.route){
-            GameScreen(navController = navController,globalProvider) {
-                globalProvider.gameVM.stopGame()
-                navController.popBackStack()}
+            GameScreen(navController = navController,globalProvider) {}
         }
         
         composable(
@@ -31,8 +29,10 @@ fun NavGraphBuilder.GameGraph(navController: NavHostController,globalProvider: G
         ){
             ResultScreen(navController = navController,
                 globalProvider = globalProvider,
+                {},
                 it.arguments?.getInt("score"),
-                it.arguments?.getString("state"))
+                it.arguments?.getString("state"),
+            )
         }
     }
 

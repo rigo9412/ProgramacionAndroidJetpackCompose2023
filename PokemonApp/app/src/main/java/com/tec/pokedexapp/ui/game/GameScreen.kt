@@ -15,6 +15,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.tec.pokedexapp.data.model.Pokemon
 import com.tec.pokedexapp.ui.components.CustomButton
+import com.tec.pokedexapp.ui.components.CustomLifeCard
 import com.tec.pokedexapp.ui.components.PokemonListFieldImage
 import com.tec.pokedexapp.ui.global.GlobalProvider
 import com.tec.pokedexapp.ui.navigator.main.PerfilViewModel
@@ -51,6 +52,7 @@ fun game(gameViewModel: GameViewModel,
             gameViewModel.stopGame()
             gameViewModel.finished = true
             perfilViewModel.addScore(gameViewModel.tempScore)
+            perfilViewModel.addTry()
             navController!!.navigate(
                 Screens.ResultScreen.passScoreAndState(
                     gameViewModel.tempScore,
@@ -65,9 +67,8 @@ fun game(gameViewModel: GameViewModel,
         .fillMaxSize()
         .padding(15.dp)){
         Column(Modifier.fillMaxSize()) {
-            
-            Text("Score: ${score.value}")
-            Text("Lives: ${lives.value}")
+
+            CustomLifeCard(lives = lives.value, score = score.value)
 
             PokemonListFieldImage(modifier = Modifier
                 .fillMaxWidth()

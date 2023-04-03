@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -51,6 +52,7 @@ fun PerfilScreen(navController: NavController,globalProvider: GlobalProvider) {
                     Text(text = "Pokémon Desconocidos: ${pokedex.getPokemonCount(false)}")
                     Text(text = "Pkm Legendarios Vistos: ${pokedex.getLegendaryPokemonCount()}")
                     Text(text = "Medallas: ${if(pokedex.completedPokedex()) "\uD83C\uDFC5" else ""}")
+
                 }
                 //Caja imagen
                 Box(
