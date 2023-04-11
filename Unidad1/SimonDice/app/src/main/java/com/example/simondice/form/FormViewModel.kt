@@ -1,8 +1,11 @@
-package com.example.simondice.domain.models
+package com.example.simondice.form
 
+import androidx.lifecycle.ViewModel
+import com.example.simondice.domain.models.Action
+import com.example.simondice.domain.models.Player
 import kotlin.random.Random
 
-class Game() {
+class FormViewModel(): ViewModel() {
     private var INCREMENT_BY_LEVEL = 1
     private val INCREMENT_BY_SCORE = 10
     private var _maxSteps = 0
@@ -19,15 +22,13 @@ class Game() {
     val started get() = _listActions.isNotEmpty()
     val endSpeak get() = _listActions.isNotEmpty() && _listActions.lastIndex < _currentActionSimonIndex
     val currentActionSimonIndex get() = _currentActionSimonIndex
-    val currentActionPlayerIndex get() = _currentActionPlayerIndex
-    val lastActionIndex get() = _listActions.lastIndex
 
 
-    fun getCurrentAction(): Action{
+    fun getCurrentAction(): Action {
         return if(_listActions.isNotEmpty() && _currentActionSimonIndex >= 0 && _currentActionSimonIndex <= _listActions.lastIndex)  _listActions[_currentActionSimonIndex] else Action.NO_ACTION
     }
 
-    fun moveToNextAction(): Action{
+    fun moveToNextAction(): Action {
         if(_listActions.isEmpty() || _currentActionSimonIndex > _listActions.lastIndex) return Action.NO_ACTION
         if(_currentActionSimonIndex == _listActions.lastIndex){
             _currentActionSimonIndex++
@@ -38,7 +39,7 @@ class Game() {
 
     }
 
-    fun start() : Game{
+    fun start() : FormViewModel {
         _score  = 0
         _level = 1
         _maxSteps = 0
@@ -48,7 +49,7 @@ class Game() {
         return this
     }
 
-    fun end(mensaje: String): Player{
+    fun end(mensaje: String): Player {
         val player = Player(mensaje,_score,_level)
         _score = 0
         _level = 1

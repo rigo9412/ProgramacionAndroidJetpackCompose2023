@@ -1,5 +1,7 @@
 package com.example.registrocurp.curp.ui.nav
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.navigation.*
 import androidx.navigation.compose.composable
 import com.example.registrocurp.curp.ui.form.ui.FormScreen
@@ -9,6 +11,7 @@ import com.example.registrocurp.curp.ui.result.ui.ResultScreen
 class MainNavGraph {
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.MainNavGraph(formVM: FormViewModel){
 
     navigation(
