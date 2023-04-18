@@ -47,7 +47,7 @@ fun LoginScreen() {
                 )
             ) {
                 Text(
-                    text = "Jugar",
+                    text = "Entrar",
                     modifier = Modifier.padding(10.dp),
                     color = androidx.compose.ui.graphics.Color.White,
                     fontSize = 30.sp
