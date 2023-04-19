@@ -136,7 +136,7 @@
     "generation": 1,
     "legendary": "False"
   },
- 
+
   {
     "id": 10,
     "name": "Caterpie",
@@ -227,7 +227,7 @@
     "generation": 1,
     "legendary": "False"
   },
- 
+
   {
     "id": 16,
     "name": "Pidgey",
@@ -978,7 +978,7 @@
     "generation": 1,
     "legendary": "False"
   },
- 
+
   {
     "id": 66,
     "name": "Machop",
@@ -1204,7 +1204,7 @@
     "generation": 1,
     "legendary": "False"
   },
- 
+
   {
     "id": 81,
     "name": "Magnemite",
@@ -1415,7 +1415,7 @@
     "generation": 1,
     "legendary": "False"
   },
- 
+
   {
     "id": 95,
     "name": "Onix",
@@ -1731,7 +1731,7 @@
     "generation": 1,
     "legendary": "False"
   },
- 
+
   {
     "id": 116,
     "name": "Horsea",
@@ -1912,7 +1912,7 @@
     "generation": 1,
     "legendary": "False"
   },
-  
+
   {
     "id": 128,
     "name": "Tauros",
@@ -1958,7 +1958,7 @@
     "generation": 1,
     "legendary": "False"
   },
- 
+
   {
     "id": 131,
     "name": "Lapras",
@@ -2139,7 +2139,7 @@
     "generation": 1,
     "legendary": "False"
   },
-  
+
   {
     "id": 143,
     "name": "Snorlax",
@@ -2260,8 +2260,8 @@
     "generation": 1,
     "legendary": "True"
   },
- 
- 
+
+
   {
     "id": 151,
     "name": "Mew",
