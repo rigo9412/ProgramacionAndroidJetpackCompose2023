@@ -1,7 +1,5 @@
 package com.lanazirot.examen1.presentation.gato.components
 
-import com.lanazirot.examen1.models.Board
-
 data class GatoState(
     val gatoArray: Array<Array<String>> = arrayOf( arrayOf("","",""), arrayOf("","",""), arrayOf("","","")),
     val player: String = "X",
