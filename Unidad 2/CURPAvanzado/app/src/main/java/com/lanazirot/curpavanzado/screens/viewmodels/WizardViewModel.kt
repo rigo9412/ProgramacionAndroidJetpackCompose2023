@@ -91,9 +91,6 @@ class WizardViewModel @Inject constructor(
                     is ValidationResult.Valid -> WizardScreenState.ResultScreen(curpGenerator.generate(person), person.name, person.lastname)
                 }
             }
-            else -> {
-                WizardScreenState.Error("Error desconocido :(")
-            }
         }
     }
 

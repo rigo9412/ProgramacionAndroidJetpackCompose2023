@@ -1,13 +1,11 @@
 package com.lanazirot.testingcomposable
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.lanazirot.testingcomposable.ui.theme.TestingComposableTheme
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,6 +15,15 @@ class ComposableTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
+
+    private lateinit var count: MutableState<Int>
+
+    @Before
+    fun init(){
+        count = mutableStateOf(0)
+    }
+
+
     @Test
     fun text_should_be_placed_within_greeting_composable() {
         val text = "Android"
@@ -25,7 +32,7 @@ class ComposableTest {
                 Greeting(text)
             }
         }
-        composeTestRule.onNodeWithText("$text").assertIsDisplayed()
+        composeTestRule.onNodeWithText("$text 0").assertIsDisplayed()
     }
 
     @Test
@@ -44,11 +51,11 @@ class ComposableTest {
         val text = "Counter:"
         composeTestRule.setContent {
             TestingComposableTheme {
-                var count by remember { mutableStateOf(0) }
-                Greeting(text, counter = count, onAdd = {
-                    count+=it
+
+                Greeting(text, counter = count.value, onAdd = {
+                    count.value+=it
                 }, onSubtract = {
-                    count-=it
+                    count.value-=it
                 } )
             }
         }
@@ -66,15 +73,16 @@ class ComposableTest {
     fun text_should_be_updated_when_substract_button_is_pressed(){
         val text = "Counter:"
         composeTestRule.setContent {
+            count.value = 4
             TestingComposableTheme {
-                var count by remember { mutableStateOf(4) }
-                Greeting(text, counter = count, onAdd = {
-                    count+=it
+                Greeting(text, counter = count.value, onAdd = {
+                    count.value+=it
                 }, onSubtract = {
-                    count-=it
+                    count.value-=it
                 } )
             }
         }
+
 
         composeTestRule.onNodeWithTag("txt_name").assertExists("Didn't find txt_name tag")
         composeTestRule.onNodeWithTag("btn_subtract").performClick()
@@ -82,7 +90,6 @@ class ComposableTest {
         composeTestRule.onNodeWithTag("btn_subtract").performClick()
         composeTestRule.onAllNodesWithTag("btn_subtract")[0].performClick()
 
-        composeTestRule.onNodeWithTag("txt_name").assertIsDisplayed().assert(!hasText("$text 4"))
         composeTestRule.onNodeWithTag("txt_name").assertIsDisplayed().assert(hasText("$text 0"))
     }
 }
