@@ -1,5 +1,9 @@
 package com.lanazirot.testingcomposable
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -21,7 +25,7 @@ class ComposableTest {
                 Greeting(text)
             }
         }
-        composeTestRule.onNodeWithText("Hello $text!").assertIsDisplayed()
+        composeTestRule.onNodeWithText("$text").assertIsDisplayed()
     }
 
     @Test
@@ -33,5 +37,52 @@ class ComposableTest {
             }
         }
         composeTestRule.onNodeWithText("Hello World!").assertDoesNotExist()
+    }
+
+    @Test
+    fun text_should_be_updated_when_add_button_is_pressed(){
+        val text = "Counter:"
+        composeTestRule.setContent {
+            TestingComposableTheme {
+                var count by remember { mutableStateOf(0) }
+                Greeting(text, counter = count, onAdd = {
+                    count+=it
+                }, onSubtract = {
+                    count-=it
+                } )
+            }
+        }
+        composeTestRule.onNodeWithTag("txt_name").assertExists("Didn't find txt_name tag")
+        composeTestRule.onNodeWithTag("btn_add").performClick()
+        composeTestRule.onNodeWithTag("btn_add").performClick()
+        composeTestRule.onNodeWithTag("btn_add").performClick()
+        composeTestRule.onAllNodesWithTag("btn_add")[0].performClick()
+
+        composeTestRule.onNodeWithTag("txt_name").assertIsDisplayed().assert(!hasText("$text 6"))
+        composeTestRule.onNodeWithTag("txt_name").assertIsDisplayed().assert(hasText("$text 4"))
+    }
+
+    @Test
+    fun text_should_be_updated_when_substract_button_is_pressed(){
+        val text = "Counter:"
+        composeTestRule.setContent {
+            TestingComposableTheme {
+                var count by remember { mutableStateOf(4) }
+                Greeting(text, counter = count, onAdd = {
+                    count+=it
+                }, onSubtract = {
+                    count-=it
+                } )
+            }
+        }
+
+        composeTestRule.onNodeWithTag("txt_name").assertExists("Didn't find txt_name tag")
+        composeTestRule.onNodeWithTag("btn_subtract").performClick()
+        composeTestRule.onNodeWithTag("btn_subtract").performClick()
+        composeTestRule.onNodeWithTag("btn_subtract").performClick()
+        composeTestRule.onAllNodesWithTag("btn_subtract")[0].performClick()
+
+        composeTestRule.onNodeWithTag("txt_name").assertIsDisplayed().assert(!hasText("$text 4"))
+        composeTestRule.onNodeWithTag("txt_name").assertIsDisplayed().assert(hasText("$text 0"))
     }
 }
