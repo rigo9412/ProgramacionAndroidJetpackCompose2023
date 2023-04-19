@@ -3,8 +3,7 @@ package com.lanazirot.curpavanzado.services.implementation
 import com.lanazirot.curpavanzado.common.utils.unaccent
 import com.lanazirot.curpavanzado.domain.enums.blackListWords
 import com.lanazirot.curpavanzado.services.interfaces.ICURPGenerator
-import com.lanazirot.curpgenerator.domain.models.Person
-import javax.inject.Inject
+import com.lanazirot.curpavanzado.domain.models.Person
 import kotlin.math.abs
 
 class CURPGenerator : ICURPGenerator {

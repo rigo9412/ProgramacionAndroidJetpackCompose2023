@@ -8,7 +8,7 @@ import com.lanazirot.curpavanzado.domain.events.WizardScreenEvent
 import com.lanazirot.curpavanzado.screens.states.PersonState
 import com.lanazirot.curpavanzado.screens.states.WizardScreenState
 import com.lanazirot.curpavanzado.services.interfaces.ICURPGenerator
-import com.lanazirot.curpgenerator.domain.models.Person
+import com.lanazirot.curpavanzado.domain.models.Person
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

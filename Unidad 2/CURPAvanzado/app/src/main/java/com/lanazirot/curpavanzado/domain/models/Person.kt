@@ -1,4 +1,4 @@
-package com.lanazirot.curpgenerator.domain.models
+package com.lanazirot.curpavanzado.domain.models
 
 import com.lanazirot.curpavanzado.domain.enums.Gender
 import com.lanazirot.curpavanzado.domain.enums.State
