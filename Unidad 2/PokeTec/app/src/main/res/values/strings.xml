@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PokeTec</string>
+    <string name="puntos">Puntos: %d</string>
+    <string name="vidas">Vidas: %d</string>
+    <string name="pregunta">¿Quién es ese Pokemon?</string>
+    <string name="tiempo">Te quedan %d segundos</string>
+    <string name="mensaje">¡Juego terminado!</string>
+    <string name="tu_puntuacion">Tu puntuación fue de %d</string>
+    <string name="progreso">Progreso: %d de 151</string>
+</resources>
