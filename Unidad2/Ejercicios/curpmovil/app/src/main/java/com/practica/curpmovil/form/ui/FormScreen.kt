@@ -29,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -185,7 +186,10 @@ fun FormPaginaPrincipal(viewModel: FormViewModel) {
                 color = Color.Black,
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(10.dp)
+                modifier = Modifier
+                    .padding(10.dp)
+                    .testTag("texto_bienvenida")
+
             )
             Text(
                 text = "Presiona el botón para comenzar",
@@ -194,11 +198,17 @@ fun FormPaginaPrincipal(viewModel: FormViewModel) {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(10.dp)
             )
-            Button(onClick = { viewModel.toNameWizard() }) {
+            Button(
+                onClick = { viewModel.toNameWizard() },
+                modifier = Modifier.testTag("boton_comenzar_wizard")
+            ) {
                 Text(text = "Wizard Mode")
             }
             //otro boton pero para la forma completa
-            Button(onClick = { viewModel.toFormCompleta() }) {
+            Button(
+                onClick = { viewModel.toFormCompleta() },
+                modifier = Modifier.testTag("boton_comenzar_forma_completa")
+            ) {
                 Text(text = "Forma Completa")
             }
         }
@@ -431,7 +441,7 @@ fun FormComplete(viewModel: FormViewModel) {
                 value = data.birth,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp),
+                    .padding(10.dp).testTag("fecha_form_completo"),
                 focusManager = focusManager,
                 onValueChange = { viewModel.onChangeBirth(it) })
             DropdownStates(
