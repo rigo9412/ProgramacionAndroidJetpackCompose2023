@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">CURPproject</string>
+    <string name="name">Nombre(s)</string>
+    <string name="last_name_p">Primer apellido</string>
+    <string name="last_name_m">Segundo apellido</string>
+    <string name="birth_date">Fecha de nacimiento</string>
+    <string name="sex">Sexo</string>
+    <string name="state">Estado</string>
+    <string name="curp">CURP</string>
+
+    <string name="search">Buscar</string>
+    <string name="header">Consulta tu CURP</string>
+    <string name="generate">Generar CURP</string>
+    <string name="logo">Logo</string>
+    <string name="footer">Footer</string>
+    <string name="modo_wizard">Modo wizard</string>
+    <string name="modo_tradicional">Modo tradicional</string>
+    <string name="info_modo_uso">Selecciona el modo de uso en el que quieres generar tu CURP.</string>
+</resources>
