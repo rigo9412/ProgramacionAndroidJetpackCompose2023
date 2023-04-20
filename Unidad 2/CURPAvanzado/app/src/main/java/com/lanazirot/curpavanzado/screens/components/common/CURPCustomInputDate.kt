@@ -40,7 +40,7 @@ fun CustomInputDate(
         value = value,
         onValueChange = onValueChange,
         label = { Text(text = label) },
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clickable { dialog.show() },
         keyboardOptions = keyboardOptions,

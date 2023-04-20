@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -102,7 +103,7 @@ fun StepScreen(
                         onClick = { onNext()},
                         backgroundColor = BANNER_GOBIERNO_COLOR,
                         contentColor = Color.White,
-                        modifier = Modifier.size(100.dp)
+                        modifier = Modifier.size(100.dp).testTag("next_button")
                     ) {
                         Icon(
                             imageVector = if (isLast) Icons.Default.Done else Icons.Default.ArrowForward,

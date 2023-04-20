@@ -55,7 +55,7 @@ fun CustomInputDropdownStates(
         ) {
             values.forEach { state ->
                 DropdownMenuItem(
-                    modifier = Modifier.testTag("manual_mode_state_${state.stateName}"),
+                    modifier = modifier.testTag("manual_mode_state_${state.stateName}"),
                     onClick = {
                         selectedType = state
                         expanded = false
