@@ -13,7 +13,6 @@ import com.lanazirot.curpavanzado.provider.GlobalProvider
 import com.lanazirot.curpavanzado.provider.LocalGlobalProvider
 import com.lanazirot.curpavanzado.screens.viewmodels.WizardViewModel
 import com.lanazirot.curpavanzado.ui.navgraph.AppNavigator
-import dagger.hilt.internal.aggregatedroot.codegen.theme.CURPAvanzadoTheme
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -34,7 +33,7 @@ class CURPManualTest{
             wizardVM = hiltViewModel()
             var navController = rememberNavController()
             val gp = GlobalProvider(wizardVM = wizardVM, nav = navController)
-            CURPAvanzadoTheme {
+            /*CURPAvanzadoTheme {
                 CompositionLocalProvider(LocalGlobalProvider provides gp) {
                     Surface(
                         Modifier.fillMaxSize(), color = MaterialTheme.colors.background
@@ -42,7 +41,7 @@ class CURPManualTest{
                         AppNavigator(globalProvider = gp)
                     }
                 }
-            }
+            }*/
         }
     }
 

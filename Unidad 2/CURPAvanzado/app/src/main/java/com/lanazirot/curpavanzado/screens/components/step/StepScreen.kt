@@ -18,8 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lanazirot.curpavanzado.R
-import dagger.hilt.internal.aggregatedroot.codegen.theme.BANNER_GOBIERNO_COLOR
-import dagger.hilt.internal.aggregatedroot.codegen.theme.BANNER_GOBIERNO_COLOR_LIGHT
+import com.lanazirot.curpavanzado.ui.theme.BANNER_GOBIERNO_COLOR
+import com.lanazirot.curpavanzado.ui.theme.BANNER_GOBIERNO_COLOR_LIGHT
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

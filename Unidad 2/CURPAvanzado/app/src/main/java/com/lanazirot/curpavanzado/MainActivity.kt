@@ -15,7 +15,7 @@ import com.lanazirot.curpavanzado.provider.GlobalProvider
 import com.lanazirot.curpavanzado.provider.LocalGlobalProvider
 import com.lanazirot.curpavanzado.screens.viewmodels.WizardViewModel
 import com.lanazirot.curpavanzado.ui.navgraph.AppNavigator
-import dagger.hilt.internal.aggregatedroot.codegen.theme.CURPAvanzadoTheme
+import com.lanazirot.curpavanzado.ui.theme.CURPAvanzadoTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 
