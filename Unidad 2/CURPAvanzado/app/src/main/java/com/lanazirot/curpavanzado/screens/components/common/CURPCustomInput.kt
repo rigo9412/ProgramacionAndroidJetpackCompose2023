@@ -23,6 +23,7 @@ fun CustomInput(
     lastInput: Boolean = false,
     capitalization: KeyboardCapitalization = KeyboardCapitalization.None,
     isError : Boolean = false,
+    modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit
 ) {
     OutlinedTextField(

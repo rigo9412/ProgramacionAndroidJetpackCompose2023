@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -48,6 +49,7 @@ fun <T> CustomInputRadioButtonGroup(
         options.forEach { text ->
             CustomInputRadioButton(
                 text = text.toString(),
+                modifier = Modifier.testTag("manual_mode_gender_${selectedOption.toString()}"),
                 selected = text.toString() == selectedOption.toString(),
                 onClick = {
                     selectedOption = text

@@ -9,6 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
@@ -58,6 +59,7 @@ fun ManualScreen() {
                 label = stringResource(id = R.string.screen_personal_data_name),
                 focusManager = focusManager,
                 capitalization = KeyboardCapitalization.Characters,
+                modifier = Modifier.testTag("manual_mode_name"),
                 onValueChange = {
                     personViewModel.updatePerson(
                         state.person.copy(name = it)
@@ -69,6 +71,7 @@ fun ManualScreen() {
                 label = stringResource(id = R.string.screen_personal_data_surname),
                 focusManager = focusManager,
                 capitalization = KeyboardCapitalization.Characters,
+                modifier = Modifier.testTag("manual_mode_lastname"),
                 onValueChange = {
                     personViewModel.updatePerson(
                         state.person.copy(lastname = it)
@@ -81,6 +84,7 @@ fun ManualScreen() {
                 focusManager = focusManager,
                 lastInput = true,
                 capitalization = KeyboardCapitalization.Characters,
+                modifier = Modifier.testTag("manual_mode_surname"),
                 onValueChange = {
                     personViewModel.updatePerson(
                         state.person.copy(surname = it)
@@ -94,6 +98,7 @@ fun ManualScreen() {
                     Gender.NON_BINARY
                 ),
                 selectedOption = state.person.gender,
+                modifier = Modifier.testTag("manual_mode_gender"),
                 onOptionSelected = {
                     personViewModel.updatePerson(
                         state.person.copy(gender = it)
@@ -103,6 +108,7 @@ fun ManualScreen() {
             CustomInputDate(
                 value = state.person.birthDate,
                 label = stringResource(id = R.string.screen_birth_date_subtitle),
+                modifier = Modifier.testTag("manual_mode_birthdate"),
                 onValueChange = {
                     personViewModel.updatePerson(
                         state.person.copy(birthDate = it)
@@ -113,6 +119,7 @@ fun ManualScreen() {
 
             CustomInputDropdownStates(
                 label = stringResource(id = R.string.screen_birth_state_subtitle),
+                modifier = Modifier.testTag("manual_mode_surname"),
                 value = state.person.state,
                 onValueChange = { a ->
                     personViewModel.updatePerson(

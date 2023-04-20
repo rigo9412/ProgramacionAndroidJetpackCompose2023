@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.lanazirot.curpavanzado.R
@@ -16,7 +17,8 @@ fun CustomInputDropdownStates(
     value: State = State.values()[0],
     onValueChange: (State) -> Unit = {},
     values: List<State> = State.values().toList(),
-    label: String
+    label: String,
+    modifier: Modifier = Modifier,
 ) {
     var expanded by remember { mutableStateOf(false) }
     var selectedType by remember { mutableStateOf(values[0]) }
@@ -53,6 +55,7 @@ fun CustomInputDropdownStates(
         ) {
             values.forEach { state ->
                 DropdownMenuItem(
+                    modifier = Modifier.testTag("manual_mode_state_${state.stateName}"),
                     onClick = {
                         selectedType = state
                         expanded = false

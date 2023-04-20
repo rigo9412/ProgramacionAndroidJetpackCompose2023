@@ -22,6 +22,7 @@ fun CustomInputDate(
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     pattern: String = "yyyy-MM-dd",
+    modifier: Modifier = Modifier,
 ) {
     val formatter = DateTimeFormatter.ofPattern(pattern)
     val date = if (value.isNotBlank()) LocalDate.parse(value, formatter) else LocalDate.now()

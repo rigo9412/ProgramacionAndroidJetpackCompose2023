@@ -12,6 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -74,6 +75,7 @@ fun WelcomeScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)
+                .testTag("manual_button")
         ) {
             Text(text = stringResource(id = com.lanazirot.curpavanzado.R.string.welcome_screen_button_manual))
         }
