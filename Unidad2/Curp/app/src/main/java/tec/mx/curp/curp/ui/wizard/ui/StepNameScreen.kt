@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import tec.mx.curp.GlobalProvider
-import tec.mx.curp.components.CustomInput
+import tec.mx.curp.curp.components.CustomInput
 import tec.mx.curp.ui.wizard.ui.components.StepLayout
 import tec.mx.curp.R
 import tec.mx.curp.domain.nav.Screens

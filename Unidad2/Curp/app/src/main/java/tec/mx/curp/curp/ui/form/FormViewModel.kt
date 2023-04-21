@@ -3,8 +3,8 @@ package tec.mx.curp.form.ui
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import tec.mx.curp.data.estados
-import tec.mx.curp.data.generos
+import tec.mx.curp.curp.components.data.estados
+import tec.mx.curp.curp.components.data.generos
 import tec.mx.curp.domain.*
 import java.util.*
 import kotlin.collections.ArrayList

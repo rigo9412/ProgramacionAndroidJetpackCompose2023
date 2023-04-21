@@ -7,45 +7,41 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import tec.mx.curp.GlobalProvider
-import tec.mx.curp.components.DatePickerBirthDate
+import tec.mx.curp.curp.components.RadioButtonGroupSex
 import tec.mx.curp.domain.nav.Screens
 import tec.mx.curp.ui.wizard.ui.components.StepLayout
-import tec.mx.curp.R
+
 @Composable
-fun StepBitrhScreen(
+fun StepGenderScreen(
     onEvent: (WizardScreenEvent) -> Unit
 ) {
-    val focusManager = LocalFocusManager.current
     val data = GlobalProvider.current.wizardVM.uiStateData.collectAsState().value
     StepLayout(
-        title = "Fecha de Nacimiento",
-        subtitle = "Selecciona en el calendario tu fecha de nacimiento",
+        title = "Genero",
+        subtitle = "Agrega el genero con el que estas registrado",
         onBack = {
-            onEvent(WizardScreenEvent.Back(Screens.StepBirthScreen.route, Screens.StepNameScreen.route))
+            onEvent(WizardScreenEvent.Back(Screens.StepGenderScreen.route, Screens.StepBirthScreen.route))
         },
         onSubmit = {
-            onEvent(WizardScreenEvent.StepBirthSubmit)
+            onEvent(WizardScreenEvent.StepGenderSubmit)
         },
         content = {
             Column(
                 modifier = Modifier.fillMaxSize()
             ) {
-                DatePickerBirthDate(
-                    label = stringResource(R.string.birth),
-                    value = data.birth,
-                    onValueChange = {
-                        onEvent(WizardScreenEvent.BirthChanged(it))
-                    },
+                RadioButtonGroupSex(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
-                    focusManager = focusManager
-                )
+                    items = data.sexList,
+                    selection = data.gender.first,
+                    onItemClick = {
+                        onEvent(WizardScreenEvent.GenderChanged(it))
+                    }
 
+                )
             }
         }
     )

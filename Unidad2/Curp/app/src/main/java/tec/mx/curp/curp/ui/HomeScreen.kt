@@ -11,8 +11,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import tec.mx.curp.GlobalProvider
-import tec.mx.curp.components.Footer
-import tec.mx.curp.components.Header
+import tec.mx.curp.curp.components.Footer
+import tec.mx.curp.curp.components.Header
 import tec.mx.curp.domain.nav.Screens
 import tec.mx.curp.R
 

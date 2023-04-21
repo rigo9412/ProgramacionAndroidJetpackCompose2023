@@ -7,44 +7,45 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import tec.mx.curp.components.DropdownStates
 import tec.mx.curp.GlobalProvider
+import tec.mx.curp.curp.components.DatePickerBirthDate
 import tec.mx.curp.domain.nav.Screens
 import tec.mx.curp.ui.wizard.ui.components.StepLayout
 import tec.mx.curp.R
-
 @Composable
-fun StepStateScreen(onEvent: (WizardScreenEvent) -> Unit) {
-
+fun StepBitrhScreen(
+    onEvent: (WizardScreenEvent) -> Unit
+) {
+    val focusManager = LocalFocusManager.current
     val data = GlobalProvider.current.wizardVM.uiStateData.collectAsState().value
     StepLayout(
-        isLast = true,
-        title = "Estado",
-        subtitle = "Agrega el estado en el naciste",
+        title = "Fecha de Nacimiento",
+        subtitle = "Selecciona en el calendario tu fecha de nacimiento",
         onBack = {
-            onEvent(WizardScreenEvent.Back(Screens.StepStateScreen.route, Screens.StepGenderScreen.route))
+            onEvent(WizardScreenEvent.Back(Screens.StepBirthScreen.route, Screens.StepNameScreen.route))
         },
         onSubmit = {
-            onEvent(WizardScreenEvent.StepStateSubmit)
+            onEvent(WizardScreenEvent.StepBirthSubmit)
         },
         content = {
             Column(
                 modifier = Modifier.fillMaxSize()
             ) {
-                DropdownStates(
+                DatePickerBirthDate(
+                    label = stringResource(R.string.birth),
+                    value = data.birth,
+                    onValueChange = {
+                        onEvent(WizardScreenEvent.BirthChanged(it))
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp),
-                    selected = data.state,
-                    label = stringResource(R.string.state),
-                    listItems = data.statesList,
-                    onValueChange = {
-                        onEvent(WizardScreenEvent.StateChanged(it))
-                    }
-
+                    focusManager = focusManager
                 )
+
             }
         }
     )

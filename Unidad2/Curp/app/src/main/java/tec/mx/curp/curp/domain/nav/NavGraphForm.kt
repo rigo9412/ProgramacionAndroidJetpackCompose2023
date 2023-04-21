@@ -24,9 +24,9 @@ fun NavGraphBuilder.NavGraphForm(formVM: FormViewModel){
             )
         ) {
             val restart = it.arguments?.getBoolean("restart", false)!!
-//            if (restart) {
-//                formVM.initState()
-//            }
+            if (restart) {//
+                formVM.initState()//
+            }//
             FormScreen()
         }
 
