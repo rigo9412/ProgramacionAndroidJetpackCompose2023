@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -31,7 +32,7 @@ fun CustomInput(
         OutlinedTextField(
             value = value,
             onValueChange = onChangeValue,
-            modifier = modifier,
+            modifier = modifier.testTag("CustomInputTextField"),
 
             label = { Text(label) },
             isError = isError,

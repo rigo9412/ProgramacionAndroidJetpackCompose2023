@@ -4,6 +4,7 @@ import androidx.compose.material.*
 import androidx.compose.material.ExposedDropdownMenuDefaults.TrailingIcon
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -19,7 +20,8 @@ fun DropdownStates(
         expanded = open,
         onExpandedChange = {
             open = it
-        }
+        },
+        modifier = Modifier.testTag("menu despegable")
     ) {
 
         TextField(

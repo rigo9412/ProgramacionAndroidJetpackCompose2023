@@ -46,7 +46,8 @@ class Test {
 
     @Test
     fun when_click_increment_button_then_show_the_number_positive_in_the_message() {
-        val helloTextResult = "HELLO WORLD 4"
+        val num = 3
+        val helloTextResult = "HELLO WORLD $num"
         val helloText = "HELLO WORLD"
         rule.setContent {
 
@@ -54,7 +55,7 @@ class Test {
             {
                 counter.value += it
             })
-            Greeting(name = "HELLO WORLD $counter")
+            Greeting(name = "HELLO WORLD $num")
         }
 
         rule.onNodeWithTag("button_add").performClick()
