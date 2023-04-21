@@ -5,8 +5,9 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -17,8 +18,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.compose.rememberNavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.lanazirot.simonsays.domain.model.Score
+import com.lanazirot.simonsays.domain.services.interfaces.IGameManager
 import com.lanazirot.simonsays.presentation.pad.GameStatus
 import com.lanazirot.simonsays.presentation.pad.PadViewModel
+import com.lanazirot.simonsays.presentation.pad.components.CustomDialog
 import com.lanazirot.simonsays.presentation.providers.GameProvider
 import com.lanazirot.simonsays.presentation.providers.GlobalGameProvider
 import com.lanazirot.simonsays.presentation.providers.GlobalProvider
@@ -37,6 +40,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
+import javax.inject.Inject
 
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
@@ -207,21 +211,44 @@ class ExamenTests {
     @Test
     fun test_d_validar_insercion_usuario_exitosa() {
         //Abrimos el dialogo para agregar un nuevo elemento
+        composeTestRule.activity.setContent{
+            var name by remember { mutableStateOf("") }
+            val showDialog = remember { mutableStateOf(true) }
 
+            if (showDialog.value) {
+                CustomDialog(value = "", setShowDialog = {
+                    showDialog.value = it
+                }) {
+                    name = it
+                }
+            }
+        }
         //Ingresamos un nombre en el campo de texto
-
+        composeTestRule.onNodeWithTag("player_name").performTextInput("ALAN")
         //Damos click al boton de guardar, como el nombre no es blanco, to do ok
+        composeTestRule.onNodeWithTag("save_name").performClick()
+        //No tiene que existir "dialogo"
+        composeTestRule.onNodeWithTag("dialogo").assertDoesNotExist()
     }
 
     @Test
     fun test_e_validar_insercion_usuario_fallida() {
-        //Abrimos el dialogo para agregar un nuevo elemento, dejamos el nombre en blanco
+        composeTestRule.activity.setContent{
+            var name by remember { mutableStateOf("") }
+            val showDialog = remember { mutableStateOf(true) }
 
-        //Obtenemos el top 10 de scores antes de agregar el nuevo elemento
-
-        //Damos click al boton de guardar, como el nombre esta en blanco, deberia de fallar
-
-        //Cuando la insercion falla, debe de mostrar el mensaje de error
+            if (showDialog.value) {
+                CustomDialog(value = "", setShowDialog = {
+                    showDialog.value = it
+                }) {
+                    name = it
+                }
+            }
+        }
+        //Damos click al boton de guardar, como el nombre no es blanco, to do ok
+        composeTestRule.onNodeWithTag("save_name").performClick()
+        //No tiene que existir "dialogo"
+        composeTestRule.onNodeWithTag("dialogo").assertExists()
         composeTestRule.onNodeWithText("Necesitas ingresar un nombre").assertExists()
     }
 }
