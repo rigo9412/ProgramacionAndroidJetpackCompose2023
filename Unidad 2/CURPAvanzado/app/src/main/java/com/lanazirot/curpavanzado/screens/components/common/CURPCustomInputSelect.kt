@@ -30,7 +30,7 @@ fun CustomInputDropdownStates(
         modifier = Modifier.fillMaxWidth()
     ) {
         TextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().testTag("manual_mode_state"),
             readOnly = true,
             value = value.stateName,
             onValueChange = {
