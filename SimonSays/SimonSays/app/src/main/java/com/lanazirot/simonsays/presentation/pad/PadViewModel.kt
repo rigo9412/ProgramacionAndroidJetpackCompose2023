@@ -60,7 +60,6 @@ class PadViewModel @Inject constructor( private val gameManager: IGameManager) :
 
 
     fun setName(name: String){
-        gameManager.addToScoreLog(Score(score = _pad.value.player?.score ?: 0, name = name))
         this.addStepColorToSequence()
         _pad.value = PadState(
             player = _pad.value.player?.copy(
@@ -71,6 +70,7 @@ class PadViewModel @Inject constructor( private val gameManager: IGameManager) :
             gameStatus = GameStatus.PAD_YELLING,
             isGoingToScoreboard = false
         )
+        gameManager.addToScoreLog(Score(score = _pad.value.player?.score ?: 0, name = name))
     }
 
     fun compareStep(inputStep: StepColorAction) {

@@ -14,7 +14,7 @@ class GameManager :IGameManager {
     }
 
     override fun scoreIsGoingToBeInTheTopTen(score: Score): Boolean {
-        return score.score !=0 && (scoreLog.size < 2 || scoreLog.sortedByDescending { it.score }.last().score < score.score)
+        return score.score !=0 && (scoreLog.size < 10 || scoreLog.sortedByDescending { it.score }.last().score < score.score)
     }
 
     override fun printScoreLog(): String {
