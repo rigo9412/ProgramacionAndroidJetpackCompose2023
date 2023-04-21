@@ -78,6 +78,10 @@ fun CustomDialog(value: String, setShowDialog: (Boolean) -> Unit, setValue: (Str
 
                     Spacer(modifier = Modifier.height(20.dp))
 
+                    Text(text = txtFieldError.value, color = colorResource(id = R.color.holo_red_dark))
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
                     Box(modifier = Modifier.padding(40.dp, 0.dp, 40.dp, 0.dp)) {
                         Button(
                             onClick = {
