@@ -1,4 +1,4 @@
-package tec.mx.curp.components
+package tec.mx.curp.curp.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

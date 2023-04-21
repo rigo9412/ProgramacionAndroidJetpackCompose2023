@@ -12,11 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 
 import tec.mx.curp.form.ui.FormViewModel
-import tec.mx.curp.ui.global.GlobalProvider
-import tec.mx.curp.ui.global.GlobalStateScreenViewModel
-import tec.mx.curp.domain.nav.Navigator
+import tec.mx.curp.curp.ui.global.GlobalProvider
+import tec.mx.curp.curp.ui.global.GlobalStateScreenViewModel
+import tec.mx.curp.curp.domain.nav.Navigator
 import tec.mx.curp.ui.theme.CurpTheme
-import tec.mx.curp.ui.wizard.ui.WizardViewModel
+import tec.mx.curp.curp.ui.wizard.ui.WizardViewModel
 
 val GlobalProvider = compositionLocalOf<GlobalProvider> { error("No navigation host controller provided.") }
 class MainActivity : ComponentActivity() {

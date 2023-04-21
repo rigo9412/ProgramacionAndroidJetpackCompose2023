@@ -1,4 +1,4 @@
-package tec.mx.curp.ui.wizard.ui
+package tec.mx.curp.curp.ui.wizard.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,8 +12,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tec.mx.curp.GlobalProvider
-import tec.mx.curp.domain.nav.Screens
-import tec.mx.curp.ui.wizard.ui.components.StepLayout
+import tec.mx.curp.curp.domain.nav.Screens
+import tec.mx.curp.curp.ui.wizard.ui.components.StepLayout
 
 @Composable
 @Preview

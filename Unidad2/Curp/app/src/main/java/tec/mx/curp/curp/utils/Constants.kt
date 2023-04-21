@@ -1,4 +1,4 @@
-package tec.mx.curp.utils
+package tec.mx.curp.curp.utils
 
 import java.time.format.DateTimeFormatter
 

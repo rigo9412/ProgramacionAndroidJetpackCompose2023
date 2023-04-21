@@ -19,11 +19,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import tec.mx.curp.components.*
+import tec.mx.curp.curp.components.*
 import tec.mx.curp.R
 import tec.mx.curp.GlobalProvider
 import tec.mx.curp.curp.components.*
-import tec.mx.curp.domain.nav.Screens
+import tec.mx.curp.curp.domain.nav.Screens
 
 @Composable
 fun FormScreen() {

@@ -3,9 +3,9 @@ package tec.mx.curp.form.ui
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import tec.mx.curp.curp.components.data.estados
-import tec.mx.curp.curp.components.data.generos
-import tec.mx.curp.domain.*
+import tec.mx.curp.curp.data.estados
+import tec.mx.curp.curp.data.generos
+import tec.mx.curp.curp.domain.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.timerTask
@@ -20,8 +20,7 @@ class FormViewModel(
 
 ) : ViewModel() {
 
-    private val _uiState =
-        MutableStateFlow<FormCurpScreenState>(FormCurpScreenState.Init)
+    private val _uiState = MutableStateFlow<FormCurpScreenState>(FormCurpScreenState.Init)
     val uiState: StateFlow<FormCurpScreenState> = _uiState
 
     private val _uiStateData = MutableStateFlow<CurpFormModelState>(CurpFormModelState())

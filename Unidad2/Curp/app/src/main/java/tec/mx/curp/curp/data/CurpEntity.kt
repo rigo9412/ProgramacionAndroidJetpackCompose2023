@@ -1,4 +1,4 @@
-package tec.mx.curp.data
+package tec.mx.curp.curp.data
 
 data class CurpEntity(
     var name: String,

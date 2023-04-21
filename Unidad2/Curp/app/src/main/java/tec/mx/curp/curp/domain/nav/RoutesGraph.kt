@@ -1,4 +1,4 @@
-package tec.mx.curp.domain.nav
+package tec.mx.curp.curp.domain.nav
 
 enum class RoutesGraph {
     ROOT,

@@ -1,4 +1,4 @@
-package tec.mx.curp.domain.nav
+package tec.mx.curp.curp.domain.nav
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -7,7 +7,7 @@ import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import tec.mx.curp.form.ui.FormScreen
 import tec.mx.curp.form.ui.FormViewModel
-import tec.mx.curp.result.ResultScreen
+import tec.mx.curp.curp.ui.result.ResultScreen
 
 fun NavGraphBuilder.NavGraphForm(formVM: FormViewModel){
 

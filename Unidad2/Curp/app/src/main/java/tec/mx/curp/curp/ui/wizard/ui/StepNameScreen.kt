@@ -1,4 +1,4 @@
-package tec.mx.curp.ui.wizard.ui
+package tec.mx.curp.curp.ui.wizard.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,9 +15,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import tec.mx.curp.GlobalProvider
 import tec.mx.curp.curp.components.CustomInput
-import tec.mx.curp.ui.wizard.ui.components.StepLayout
+import tec.mx.curp.curp.ui.wizard.ui.components.StepLayout
 import tec.mx.curp.R
-import tec.mx.curp.domain.nav.Screens
+import tec.mx.curp.curp.domain.nav.Screens
 
 @Composable
 fun StepNameScreen(onEvent: (WizardScreenEvent) -> Unit) {

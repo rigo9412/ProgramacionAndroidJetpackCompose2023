@@ -1,5 +1,6 @@
-package tec.mx.curp.domain
+package tec.mx.curp.curp.domain
 
+import tec.mx.curp.curp.utils.*
 import tec.mx.curp.form.ui.CurpFormModelState
 import tec.mx.curp.utils.*
 import java.text.Normalizer
@@ -39,7 +40,7 @@ class GetCurpUseCase {
             curp += if (date.year < 2000) "0" else "A"
 
 
-            return  ResultCase.ResultSuccess("$curp${generateValidatorDigit(curp)}")
+            return ResultCase.ResultSuccess("$curp${generateValidatorDigit(curp)}")
 
 
 
@@ -47,7 +48,10 @@ class GetCurpUseCase {
         }
         catch(e: java.lang.Exception) {
 
-            return ResultCase.ResultError(  code = 500, error = "Ocurrio un problema al genera el CURP")
+            return ResultCase.ResultError(
+                code = 500,
+                error = "Ocurrio un problema al genera el CURP"
+            )
 
         }
     }

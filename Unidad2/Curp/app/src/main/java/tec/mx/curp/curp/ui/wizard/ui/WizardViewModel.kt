@@ -1,11 +1,11 @@
-package tec.mx.curp.ui.wizard.ui
+package tec.mx.curp.curp.ui.wizard.ui
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import tec.mx.curp.curp.components.data.estados
-import tec.mx.curp.curp.components.data.generos
-import tec.mx.curp.domain.*
+import tec.mx.curp.curp.data.estados
+import tec.mx.curp.curp.data.generos
+import tec.mx.curp.curp.domain.*
 import tec.mx.curp.form.ui.CurpFormModelState
 import java.util.*
 

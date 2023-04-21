@@ -1,10 +1,11 @@
-package tec.mx.curp.domain.nav
+package tec.mx.curp.curp.domain.nav
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import tec.mx.curp.curp.ui.wizard.ui.*
 import tec.mx.curp.ui.wizard.ui.*
 
 fun NavGraphBuilder.NavGraphWizard(wizardVM: WizardViewModel){

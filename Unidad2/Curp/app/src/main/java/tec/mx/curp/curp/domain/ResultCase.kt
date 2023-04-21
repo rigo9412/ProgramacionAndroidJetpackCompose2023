@@ -1,4 +1,4 @@
-package tec.mx.curp.domain
+package tec.mx.curp.curp.domain
 
 sealed class ResultCase(){
     object ResultValid: ResultCase()

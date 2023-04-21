@@ -1,6 +1,6 @@
-package tec.mx.curp.domain
+package tec.mx.curp.curp.domain
 
-import tec.mx.curp.utils.PATTERN_NAME
+import tec.mx.curp.curp.utils.PATTERN_NAME
 
 class AddNameUseCase {
 
@@ -14,12 +14,12 @@ class AddNameUseCase {
         }
 
         if (!name.matches(PATTERN_NAME)) {
-            return  ResultCase.ResultError(
+            return ResultCase.ResultError(
                 code = 2,
                 error = "El valor capturado  no es valido"
             );
         }
 
-        return  ResultCase.ResultValid;
+        return ResultCase.ResultValid;
     }
 }

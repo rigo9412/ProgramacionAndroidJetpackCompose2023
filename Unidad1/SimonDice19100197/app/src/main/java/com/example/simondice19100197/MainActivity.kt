@@ -129,14 +129,6 @@ class MainActivity : ComponentActivity() {
                             Text(text = "📈 Puntaje: "+estadoDeResultado!!.score.toString(),color = Color.White)
                             Text(text = "🐉 Nivel: "+estadoDeResultado!!.level.toString(),color = Color.White)
                         }
-                        //Boton de reinicio
-//                        Button(onClick = {
-//                            game.end("Perdiste!")
-//                            startGameState = game.started
-//                            currentActionSimonIndexState = game.currentActionSimonIndex
-//                        }) {
-//                            Text(text = "Reiniciar")
-//                        }
                     }
                 }
             }

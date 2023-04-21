@@ -1,4 +1,4 @@
-package tec.mx.curp.ui.wizard.ui
+package tec.mx.curp.curp.ui.wizard.ui
 
 sealed class WizardScreenState {
     object StepNone: WizardScreenState()

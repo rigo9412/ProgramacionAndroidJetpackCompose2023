@@ -1,4 +1,4 @@
-package tec.mx.curp.ui.global
+package tec.mx.curp.curp.ui.global
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

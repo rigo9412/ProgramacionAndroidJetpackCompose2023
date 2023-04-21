@@ -1,4 +1,4 @@
-package tec.mx.curp.result
+package tec.mx.curp.curp.ui.result
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tec.mx.curp.GlobalProvider
-import tec.mx.curp.domain.nav.Screens
+import tec.mx.curp.curp.domain.nav.Screens
 import tec.mx.curp.ui.theme.green
 import tec.mx.curp.ui.theme.greenDark
 

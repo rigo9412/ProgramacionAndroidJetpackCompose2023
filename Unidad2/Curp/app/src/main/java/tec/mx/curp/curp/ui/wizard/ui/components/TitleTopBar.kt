@@ -1,4 +1,4 @@
-package tec.mx.curp.ui.wizard.ui.components
+package tec.mx.curp.curp.ui.wizard.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
