@@ -2,7 +2,6 @@ package com.lanazirot.simonsays
 
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.PlayArrow
+import androidx.compose.material.icons.rounded.Score
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,8 +34,11 @@ import com.lanazirot.simonsays.presentation.pad.PadViewModel
 import com.lanazirot.simonsays.presentation.pad.components.CustomDialog
 import com.lanazirot.simonsays.presentation.pad.components.Pad
 import com.lanazirot.simonsays.presentation.pad_button.components.PadButton
+import com.lanazirot.simonsays.presentation.providers.GameProvider
+import com.lanazirot.simonsays.presentation.providers.GlobalGameProvider
 import com.lanazirot.simonsays.presentation.providers.GlobalProvider
 import com.lanazirot.simonsays.presentation.providers.LocalGlobalProvider
+import com.lanazirot.simonsays.presentation.scoreboard.components.ScoreboardViewModel
 import com.lanazirot.simonsays.ui.navgraph.AppNavGraph
 import com.lanazirot.simonsays.ui.theme.SimonSaysTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,17 +47,27 @@ import kotlinx.coroutines.delay
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val padViewModel: PadViewModel by viewModels()
+    private val gameViewModel: ScoreboardViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             var navController = rememberNavController()
             val gp = GlobalProvider(padViewModel = padViewModel, nav = navController)
+            val gameP = GameProvider(currentGame = gameViewModel)
+
             SimonSaysTheme {
                 CompositionLocalProvider(LocalGlobalProvider provides gp) {
                     Surface(
                         modifier = Modifier.fillMaxSize(), color = Color.Black
                     ) {
-                        AppNavGraph(globalProvider = gp)
+                        CompositionLocalProvider(GlobalGameProvider provides gameP) {
+                            Surface(
+                                modifier = Modifier.fillMaxSize(), color = Color.Black
+                            ) {
+                                AppNavGraph(globalProvider = gp)
+                            }
+                        }
                     }
                 }
             }
@@ -68,6 +81,7 @@ fun SimonSayGame() {
     val gp = LocalGlobalProvider.current
     val padViewModel = gp.padViewModel
 
+    val navController = gp.nav
 
     val showDialog = remember { mutableStateOf(false) }
 
@@ -310,6 +324,31 @@ fun SimonSayGame() {
                 Icon(Icons.Rounded.PlayArrow, contentDescription = "Localized description")
                 Text(
                     text = "Start Game",
+                    fontFamily = MaterialTheme.typography.h1.fontFamily,
+                    fontSize = 30.sp
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
+        ) {
+            Button(
+                modifier = Modifier
+                    .height(100.dp)
+                    .width(250.dp)
+                    .shadow(10.dp)
+                    .clip(RoundedCornerShape(50.dp, 50.dp, 50.dp, 50.dp))
+                    .testTag("btn_scoreboard"),
+                onClick = {
+                   navController.navigate("scoreboard")
+                }
+            ) {
+                Icon(Icons.Rounded.Score, contentDescription = "Localized description")
+                Text(
+                    text = "Scoreboard",
                     fontFamily = MaterialTheme.typography.h1.fontFamily,
                     fontSize = 30.sp
                 )

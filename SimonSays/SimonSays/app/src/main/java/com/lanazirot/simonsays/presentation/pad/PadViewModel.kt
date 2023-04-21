@@ -58,18 +58,19 @@ class PadViewModel @Inject constructor( private val gameManager: IGameManager) :
         _pad.value = PadState(gameStatus = GameStatus.GAME_OVER)
     }
 
-    fun keepPlaying(){
-        _pad.value = _pad.value.copy(isGoingToScoreboard = false)
-    }
-
-    fun addToScoreboard(){
-        gameManager.addToScoreLog(Score(score = _pad.value.player?.score ?: 0, name = _pad.value.player?.name ?: ""))
-    }
 
     fun setName(name: String){
-        _pad.value = _pad.value.copy(player = _pad.value.player?.copy(name = name))
+        gameManager.addToScoreLog(Score(score = _pad.value.player?.score ?: 0, name = name))
         this.addStepColorToSequence()
-        gameManager.addToScoreLog(Score(score = _pad.value.player?.score ?: 0, name = _pad.value.player?.name ?: ""))
+        _pad.value = PadState(
+            player = _pad.value.player?.copy(
+                score = _pad.value.player?.score?.plus(1) ?: 0
+            ),
+            currentStep = 1,
+            pad = _pad.value.pad,
+            gameStatus = GameStatus.PAD_YELLING,
+            isGoingToScoreboard = false
+        )
     }
 
     fun compareStep(inputStep: StepColorAction) {
@@ -80,7 +81,17 @@ class PadViewModel @Inject constructor( private val gameManager: IGameManager) :
         if (!isStepCorrect) this.gameOver() else if (stepNumber == _pad.value.pad?.colorSequence?.size) {
 
             if(gameManager.scoreIsGoingToBeInTheTopTen(Score(score = _pad.value.player?.score?.plus(1) ?: 0, name = ""))){
-                _pad.value = _pad.value.copy(isGoingToScoreboard = true)
+                _pad.value = PadState(
+                    player = _pad.value.player?.score?.let {
+                        _pad.value.player?.copy(
+                            score = it
+                        )
+                    },
+                    currentStep = 1,
+                    pad = _pad.value.pad,
+                    gameStatus = GameStatus.HOLD,
+                    isGoingToScoreboard = true
+                )
             }else{
                 this.addStepColorToSequence()
                 _pad.value = PadState(

@@ -72,9 +72,8 @@ fun CustomDialog(value: String, setShowDialog: (Boolean) -> Unit, setValue: (Str
                         ),
                         placeholder = { Text(text = "Ingresa nombre") },
                         value = txtField.value,
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         onValueChange = {
-                            txtField.value = it.take(10)
+                            txtField.value = it
                         })
 
                     Spacer(modifier = Modifier.height(20.dp))
