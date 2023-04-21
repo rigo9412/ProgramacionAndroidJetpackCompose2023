@@ -1,6 +1,7 @@
 Myriam Yazmin Patiño Segura #19100231 
 
 comandos: 
+cambiar de rama = git checkout "rama" 
 Clonar repositorio con git clone URLDelRepositorio
 Crear una rama con git checkout -b "nombre rama"
 Agregar el cambio git add .
