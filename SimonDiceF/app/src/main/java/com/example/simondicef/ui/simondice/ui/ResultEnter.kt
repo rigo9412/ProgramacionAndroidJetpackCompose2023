@@ -16,6 +16,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -35,6 +37,7 @@ fun resultView(viewModel: LeaderboardViewModel, score: Int){
     else{
         showLeaderboard(leaderboard = leaderboard)
         Button(onClick = {
+            viewModel.changeJustShow(false)
             viewModel.goBack(true)
         }) {
             Text(text = "Regresar")
@@ -45,16 +48,22 @@ fun resultView(viewModel: LeaderboardViewModel, score: Int){
 
 @Composable
 fun nameEntry(viewModel: LeaderboardViewModel, score: Int){
+    val focusRequester = remember { FocusRequester() }
     val inputState = remember { mutableStateOf("") }
     OutlinedTextField(
         value = inputState.value,
         onValueChange = { newValue ->
             inputState.value = newValue
-        },modifier = Modifier.testTag("name"),
+        },modifier = Modifier.testTag("name").focusRequester(focusRequester),
         maxLines = 1
     )
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
     Button(modifier = Modifier.testTag("entry"),onClick = {
-        viewModel.addScore(inputState.value,score)
+        if(inputState.value != "") {
+            viewModel.addScore(inputState.value, score)
+        }
     }) {
         Text(text = "AGREGAR PUNTAJE")
     }
@@ -67,7 +76,8 @@ fun showLeaderboard(leaderboard: List<Pair<String,Int>>){
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(20.dp))
-                .background(MaterialTheme.colors.background),
+                .background(MaterialTheme.colors.background)
+                .testTag("leaderboard"),
             contentPadding = PaddingValues(start = 0.dp, top = 0.dp, end = 0.dp, bottom = 60.dp)
         ) {
             items(leaderboard) {
@@ -97,7 +107,7 @@ fun ListField(pair : Pair<String,Int>){
             .background(color = MaterialTheme.colors.background)
             .testTag("field"),
     ){
-        Text(text = pair.first)
+        Text(text = pair.first, modifier = Modifier.testTag("player_name"))
         Text(text = pair.second.toString())
     }
 }
