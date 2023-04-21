@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.registrocurp.GlobalProvider
@@ -73,7 +74,8 @@ fun Form(viewModel: FormViewModel) {
                     onChangeValue = { viewModel.onEvent(CurpFormEvent.NameChanged(it)) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .testTag("Name"),
                     focusManager = focusManager
                 )
                 CustomInput(
@@ -85,7 +87,8 @@ fun Form(viewModel: FormViewModel) {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .testTag("Middle_name"),
                     focusManager = focusManager
                 )
                 CustomInput(
@@ -97,7 +100,8 @@ fun Form(viewModel: FormViewModel) {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .testTag("Lastname"),
                     focusManager = focusManager
                 )
                 DatePickerDate(
