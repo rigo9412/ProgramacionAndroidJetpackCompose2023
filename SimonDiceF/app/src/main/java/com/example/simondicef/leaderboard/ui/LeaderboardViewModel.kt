@@ -1,4 +1,6 @@
 package com.example.simondicef.leaderboard.ui
 
-class LeaderboardViewModel {
+import androidx.lifecycle.ViewModel
+
+class LeaderboardViewModel: ViewModel() {
 }
