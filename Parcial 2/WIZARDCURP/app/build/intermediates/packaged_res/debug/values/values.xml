@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">CURP</string>
+    <string name="birth">Fecha Nacimiento</string>
+    <string name="bitrh">Fecha de Nacimiento</string>
+    <string name="form_submit">GENERAR CURP</string>
+    <string name="form_title">CALCULADORA CURP</string>
+    <string name="help_text_home">Selecciona un modo para generar el CURP</string>
+    <string name="last_name">Segundo Apellido</string>
+    <string name="lastname">Segundo Apellido</string>
+    <string name="middle_lastname">Primer Apellido</string>
+    <string name="middle_name">Primer Apellido</string>
+    <string name="mode_fast">Modo Rapido</string>
+    <string name="mode_wizard">Modo Wizard</string>
+    <string name="name">Nombre(s)</string>
+    <string name="sexo">Sexo</string>
+    <string name="state">Estado</string>
+    <string name="states">Estados</string>
+    <string name="step_name">Nombre Completo</string>
+    <string name="step_name_subtitle">Completa los recuadros que se indican</string>
+    <string name="subtitle_home">Genera tu CURP agregando tus datos personales básicos</string>
+    <string name="title_home">Consulta tu CURP</string>
+    <style name="Theme.CURP" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/purple_700</item>
+    </style>
+</resources>

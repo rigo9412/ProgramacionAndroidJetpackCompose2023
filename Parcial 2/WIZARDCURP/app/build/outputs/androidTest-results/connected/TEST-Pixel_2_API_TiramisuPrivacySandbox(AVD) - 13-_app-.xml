@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.ezequiel.curp.Test" tests="1" failures="1" errors="0" skipped="0" time="3.718" timestamp="2023-04-21T22:43:18" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_2_API_TiramisuPrivacySandbox(AVD) - 13" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="radioButtonGroupSexTest" classname="com.ezequiel.curp.Test" time="3.154">
+    <failure>junit.framework.AssertionFailedError: expected:&lt;(H, Hombre)&gt; but was:&lt;(M, Mujer)&gt;
+at junit.framework.Assert.fail(Assert.java:50)
+at junit.framework.Assert.failNotEquals(Assert.java:287)
+at junit.framework.Assert.assertEquals(Assert.java:67)
+at junit.framework.Assert.assertEquals(Assert.java:74)
+at com.ezequiel.curp.Test.radioButtonGroupSexTest(Test.kt:35)</failure>
+  </testcase>
+</testsuite>

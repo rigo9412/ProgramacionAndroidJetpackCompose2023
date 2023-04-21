@@ -1,0 +1,235 @@
+04-21 22:26:48.549 25978 26011 I TestRunner: started: radioButtonGroupSexTest(com.ezequiel.curp.Test)
+04-21 22:26:48.782 25978 26011 W FileTestStorage: Output properties is not supported.
+04-21 22:26:48.783 25978 26011 I Tracing : Tracer added: class androidx.test.platform.tracing.AndroidXTracer
+04-21 22:26:48.814 25978 25978 D EventInjectionStrategy: Creating injection strategy with input manager.
+04-21 22:26:48.814 25978 25978 W m.ezequiel.curp: Accessing hidden method Landroid/hardware/input/InputManager;->getInstance()Landroid/hardware/input/InputManager; (unsupported, reflection, allowed)
+04-21 22:26:48.814 25978 25978 W m.ezequiel.curp: Accessing hidden method Landroid/hardware/input/InputManager;->injectInputEvent(Landroid/view/InputEvent;I)Z (unsupported, reflection, allowed)
+04-21 22:26:48.814 25978 25978 W m.ezequiel.curp: Accessing hidden field Landroid/hardware/input/InputManager;->INJECT_INPUT_EVENT_MODE_WAIT_FOR_FINISH:I (unsupported, reflection, allowed)
+04-21 22:26:48.831 25978 25978 W m.ezequiel.curp: Accessing hidden method Landroid/os/MessageQueue;->next()Landroid/os/Message; (unsupported, reflection, allowed)
+04-21 22:26:48.831 25978 25978 W m.ezequiel.curp: Accessing hidden field Landroid/os/MessageQueue;->mMessages:Landroid/os/Message; (unsupported, reflection, allowed)
+04-21 22:26:48.831 25978 25978 W m.ezequiel.curp: Accessing hidden method Landroid/os/Message;->recycleUnchecked()V (unsupported, reflection, allowed)
+04-21 22:26:48.833 25978 26011 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.junit4.EspressoLink@db83ed5]
+04-21 22:26:48.891 25978 26011 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+04-21 22:26:48.923   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f29c4000 0x3f31ad000]
+04-21 22:26:48.930   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f0000000 0x3f07e9000]
+04-21 22:26:48.934   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f07e9000 0x3f0fd2000]
+04-21 22:26:48.942   888  1063 W Parcel  : Expecting binder but got null!
+04-21 22:26:48.964 10869 10889 D EGL_emulation: app_time_stats: avg=3690.00ms min=3690.00ms max=3690.00ms count=1
+04-21 22:26:48.967 25978 26016 D libEGL  : loaded /vendor/lib64/egl/libEGL_emulation.so
+04-21 22:26:48.971 25978 26016 D libEGL  : loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+04-21 22:26:48.975 25978 26016 D libEGL  : loaded /vendor/lib64/egl/libGLESv2_emulation.so
+04-21 22:26:49.024  2901  2901 I GsaVoiceInteractionSrv: Handling ACTION_STOP_HOTWORD
+04-21 22:26:49.025  2901  3223 E HwDetectorWithState: a: 3
+04-21 22:26:49.029 25978 25978 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@4478745 in: PRE_ON_CREATE
+04-21 22:26:49.030 25978 25978 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+04-21 22:26:49.060   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f3d50000 0x3f3f4b000]
+04-21 22:26:49.064   648 18015 D HostConnection: createUnique: call
+04-21 22:26:49.065   648 18015 D HostConnection: HostConnection::get() New Host Connection established 0x71e6ada4a690, tid 18015
+04-21 22:26:49.070   648 18015 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 22:26:49.070   648 18015 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+04-21 22:26:49.070   648 18015 W OpenGLRenderer: Failed to initialize 101010-2 format, error = EGL_SUCCESS
+04-21 22:26:49.087   648 18015 D EGL_emulation: eglCreateContext: 0x71e6ada45590: maj 2 min 0 rcv 2
+04-21 22:26:49.093   648 18015 D EGL_emulation: eglMakeCurrent: 0x71e6ada45590: ver 2 0 (tinfo 0x71e8d08b2100) (first time)
+04-21 22:26:49.095   648   727 D HostConnection: createUnique: call
+04-21 22:26:49.095   648   727 D HostConnection: HostConnection::get() New Host Connection established 0x71e6ada46550, tid 727
+04-21 22:26:49.102   648   727 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 22:26:49.113 25978 25978 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@4478745 in: CREATED
+04-21 22:26:49.114 25978 25978 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=androidx.activity.ComponentActivity@4478745
+04-21 22:26:49.115 25978 25978 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@4478745 in: STARTED
+04-21 22:26:49.116 25978 25978 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=androidx.activity.ComponentActivity@4478745
+04-21 22:26:49.118 25978 25978 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@4478745 in: RESUMED
+04-21 22:26:49.118 25978 25978 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=androidx.activity.ComponentActivity@4478745
+04-21 22:26:49.156 25978 26013 D HostConnection: createUnique: call
+04-21 22:26:49.156 25978 26013 D HostConnection: HostConnection::get() New Host Connection established 0x71e6ada13b50, tid 26013
+04-21 22:26:49.160 25978 26013 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 22:26:49.165 25978 26013 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+04-21 22:26:49.165 25978 26013 W OpenGLRenderer: Failed to initialize 101010-2 format, error = EGL_SUCCESS
+04-21 22:26:49.169   888  1063 D EGL_emulation: app_time_stats: avg=4538.70ms min=23.15ms max=31493.63ms count=7
+04-21 22:26:49.182 25978 26013 D EGL_emulation: eglCreateContext: 0x71e6ada13910: maj 2 min 0 rcv 2
+04-21 22:26:49.186   888  1063 D EGL_emulation: app_time_stats: avg=10023.89ms min=34.88ms max=29937.85ms count=3
+04-21 22:26:49.187 25978 26013 D EGL_emulation: eglMakeCurrent: 0x71e6ada13910: ver 2 0 (tinfo 0x71e8d0401080) (first time)
+04-21 22:26:49.194   228   228 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+04-21 22:26:49.194 25978 26013 I Gralloc4: mapper 4.x is not supported
+04-21 22:26:49.196 25978 26013 D HostConnection: createUnique: call
+04-21 22:26:49.197 25978 26013 D HostConnection: HostConnection::get() New Host Connection established 0x71e6ada14810, tid 26013
+04-21 22:26:49.198 25978 26013 D goldfish-address-space: allocate: Ask for block of size 0x100
+04-21 22:26:49.198 25978 26013 D goldfish-address-space: allocate: ioctl allocate returned offset 0x3efffe000 size 0x2000
+04-21 22:26:49.200   228   228 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.allocator@4.0::IAllocator/default in either framework or device VINTF manifest.
+04-21 22:26:49.200   227   227 I servicemanager: Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+04-21 22:26:49.201 25978 26013 W Gralloc4: allocator 4.x is not supported
+04-21 22:26:49.202   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f0fd2000 0x3f17bb000]
+04-21 22:26:49.212 25978 26013 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 22:26:49.217   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f17bb000 0x3f1fa4000]
+04-21 22:26:49.227   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f66eb000 0x3f6ed4000]
+04-21 22:26:49.316 25978 26013 W Parcel  : Expecting binder but got null!
+04-21 22:26:49.323   648   671 W ziparchive: Unable to open '/data/app/~~QX0F8HIuscjpC4qi2sWtSA==/com.ezequiel.curp-qlP8QZfr_t0KT62Bzqndbg==/base.dm': No such file or directory
+04-21 22:26:49.326   648   671 I ActivityTaskManager: Displayed com.ezequiel.curp/androidx.activity.ComponentActivity: +424ms
+04-21 22:26:49.334 10869 10927 D OneSearchSuggestProvider: Shut down the binder channel
+04-21 22:26:49.336 10869 10882 I s.nexuslauncher: oneway function results for code 2 on binder at 0x71e63da661f0 will be dropped but finished with status UNKNOWN_TRANSACTION
+04-21 22:26:49.337  1498  1498 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3220
+04-21 22:26:49.339  1498  1498 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2114 repeatCheckTimes = 0, unlocked = true
+04-21 22:26:49.339  1498  1498 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1919 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=com.ezequiel.curp fieldId=-1 fieldName=null extras=null}, false)
+04-21 22:26:49.340  1498  1498 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2114 repeatCheckTimes = 2, unlocked = true
+04-21 22:26:49.671   648  2504 W InputManager-JNI: Input channel object '66942da Splash Screen com.ezequiel.curp (client)' was disposed without first being removed with the input manager!
+04-21 22:26:50.201   888  1063 D EGL_emulation: app_time_stats: avg=11.83ms min=1.22ms max=76.00ms count=43
+04-21 22:26:50.533 25978 25978 I Choreographer: Skipped 60 frames!  The application may be doing too much work on its main thread.
+04-21 22:26:50.798 25978 25992 I OpenGLRenderer: Davey! duration=1255ms; Flags=0, FrameTimelineVsyncId=78967, IntendedVsync=8459858999638, Vsync=8460858999598, InputEventId=0, HandleInputStart=8460864849520, AnimationStart=8460864888720, PerformTraversalsStart=8460938900220, DrawStart=8461051848720, FrameDeadline=8459875666304, FrameInterval=8460864636820, FrameStartTime=16666666, SyncQueued=8461061554320, SyncStart=8461061854020, IssueDrawCommandsStart=8461061923320, SwapBuffers=8461112664820, FrameCompleted=8461115189920, DequeueBufferDuration=32000, QueueBufferDuration=490200, GpuCompleted=8461115002520, SwapBuffersCompleted=8461115189920, DisplayPresentTime=0, CommandSubmissionCompleted=8461112664820,
+04-21 22:26:50.877 25978 25978 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@4478745 in: PAUSED
+04-21 22:26:50.878 25978 25978 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=androidx.activity.ComponentActivity@4478745
+04-21 22:26:50.891   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f29c4000 0x3f31ad000]
+04-21 22:26:50.905   373   373 D Zygote  : Forked child process 26025
+04-21 22:26:50.908   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f0000000 0x3f07e9000]
+04-21 22:26:50.910   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f07e9000 0x3f0fd2000]
+04-21 22:26:50.917   888  1063 W Parcel  : Expecting binder but got null!
+04-21 22:26:50.920 26025 26025 I quiel.curp.test: Late-enabling -Xcheck:jni
+04-21 22:26:50.925   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f31ad000 0x3f36bd000]
+04-21 22:26:50.955 26025 26025 W quiel.curp.test: Unexpected CPU variant for x86: x86_64.
+04-21 22:26:50.955 26025 26025 W quiel.curp.test: Known variants: atom, sandybridge, silvermont, kabylake, default
+04-21 22:26:50.969   470   488 I adbd    : jdwp connection from 26025
+04-21 22:26:51.011 26025 26025 D CompatibilityChangeReporter: Compat change id reported: 171979766; UID 10170; state: ENABLED
+04-21 22:26:51.020 26025 26025 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+04-21 22:26:51.022 26025 26025 D nativeloader: Configuring classloader-namespace for other apk /system/framework/android.test.mock.jar. target_sdk_version=33, uses_libraries=ALL, library_path=/data/app/~~Oh1nC2gikpiNGw_t9kl81w==/com.ezequiel.curp.test-RPxhLNkHFH9VZuWqtpQh5w==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.ezequiel.curp.test
+04-21 22:26:51.023 26025 26025 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+04-21 22:26:51.024 26025 26025 W quiel.curp.test: ClassLoaderContext shared library size mismatch. Expected=0, found=2 (PCL[] | PCL[]{PCL[/system/framework/android.test.base.jar*2344077247]#PCL[/system/framework/android.test.mock.jar*2749729129]})
+04-21 22:26:51.025 26025 26025 D nativeloader: Configuring classloader-namespace for other apk /system/framework/android.test.runner.jar. target_sdk_version=33, uses_libraries=ALL, library_path=/data/app/~~Oh1nC2gikpiNGw_t9kl81w==/com.ezequiel.curp.test-RPxhLNkHFH9VZuWqtpQh5w==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.ezequiel.curp.test
+04-21 22:26:51.027 26025 26025 W ziparchive: Unable to open '/data/app/~~Oh1nC2gikpiNGw_t9kl81w==/com.ezequiel.curp.test-RPxhLNkHFH9VZuWqtpQh5w==/base.dm': No such file or directory
+04-21 22:26:51.028 26025 26025 W ziparchive: Unable to open '/data/app/~~Oh1nC2gikpiNGw_t9kl81w==/com.ezequiel.curp.test-RPxhLNkHFH9VZuWqtpQh5w==/base.dm': No such file or directory
+04-21 22:26:51.057 26025 26025 D nativeloader: Configuring classloader-namespace for other apk /data/app/~~Oh1nC2gikpiNGw_t9kl81w==/com.ezequiel.curp.test-RPxhLNkHFH9VZuWqtpQh5w==/base.apk. target_sdk_version=33, uses_libraries=, library_path=/data/app/~~Oh1nC2gikpiNGw_t9kl81w==/com.ezequiel.curp.test-RPxhLNkHFH9VZuWqtpQh5w==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.ezequiel.curp.test
+04-21 22:26:51.067 26025 26025 V GraphicsEnvironment: ANGLE Developer option for 'com.ezequiel.curp.test' set to: 'default'
+04-21 22:26:51.068 26025 26025 V GraphicsEnvironment: ANGLE GameManagerService for com.ezequiel.curp.test: false
+04-21 22:26:51.068 26025 26025 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+04-21 22:26:51.073 26025 26025 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+04-21 22:26:51.075 26025 26025 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+04-21 22:26:51.148 26025 26051 D libEGL  : loaded /vendor/lib64/egl/libEGL_emulation.so
+04-21 22:26:51.150 26025 26051 D libEGL  : loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+04-21 22:26:51.152 26025 26051 D libEGL  : loaded /vendor/lib64/egl/libGLESv2_emulation.so
+04-21 22:26:51.204   888  1063 D EGL_emulation: app_time_stats: avg=16.88ms min=1.57ms max=74.55ms count=36
+04-21 22:26:51.226   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f6ed4000 0x3f73e4000]
+04-21 22:26:51.247 26025 26049 D HostConnection: createUnique: call
+04-21 22:26:51.249 26025 26049 D HostConnection: HostConnection::get() New Host Connection established 0x71e6ada136d0, tid 26049
+04-21 22:26:51.257 26025 26049 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 22:26:51.259 26025 26049 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+04-21 22:26:51.259 26025 26049 W OpenGLRenderer: Failed to initialize 101010-2 format, error = EGL_SUCCESS
+04-21 22:26:51.296 26025 26049 D EGL_emulation: eglCreateContext: 0x71e6ada13850: maj 2 min 0 rcv 2
+04-21 22:26:51.305 26025 26049 D EGL_emulation: eglMakeCurrent: 0x71e6ada13850: ver 2 0 (tinfo 0x71e8d0674080) (first time)
+04-21 22:26:51.313   228   228 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+04-21 22:26:51.313 26025 26049 I Gralloc4: mapper 4.x is not supported
+04-21 22:26:51.315 26025 26049 D HostConnection: createUnique: call
+04-21 22:26:51.316 26025 26049 D HostConnection: HostConnection::get() New Host Connection established 0x71e6ada14150, tid 26049
+04-21 22:26:51.318 26025 26049 D goldfish-address-space: allocate: Ask for block of size 0x100
+04-21 22:26:51.318 26025 26049 D goldfish-address-space: allocate: ioctl allocate returned offset 0x3efffe000 size 0x2000
+04-21 22:26:51.320   228   228 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.allocator@4.0::IAllocator/default in either framework or device VINTF manifest.
+04-21 22:26:51.321   227   227 I servicemanager: Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+04-21 22:26:51.321 26025 26049 W Gralloc4: allocator 4.x is not supported
+04-21 22:26:51.324   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f73e4000 0x3f7bcd000]
+04-21 22:26:51.331 26025 26049 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 22:26:51.337   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f4000000 0x3f47e9000]
+04-21 22:26:51.361   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f47e9000 0x3f4fd2000]
+04-21 22:26:51.455 26025 26049 W Parcel  : Expecting binder but got null!
+04-21 22:26:51.467 10869 10927 D OneSearchSuggestProvider: Created the binder channel successfully for end point service =com.google.android.apps.search.googleapp.search.suggest.plugins.onesearch.server.OneSearchSuggestService , mChannel=E2{delegate=w2{logId=65, target=directaddress:///AndroidComponentAddress%5BIntent%20%7B%20act=grpc.io.action.BIND%20cmp=com.google.android.googlequicksearchbox/com.google.android.apps.search.googleapp.search.suggest.plugins.onesearch.server.OneSearchSuggestService%20%7D%5D}} , mOneSearchConnection=Q1.d0@20f32d6
+04-21 22:26:51.470 10869 10893 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=workspace/0/[-1,-1]/[1,1]
+04-21 22:26:51.472 25978 25978 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@4478745 in: STOPPED
+04-21 22:26:51.472 25978 25978 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=androidx.activity.ComponentActivity@4478745
+04-21 22:26:51.490 25978 25978 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@4478745 in: DESTROYED
+04-21 22:26:51.490 25978 25978 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+04-21 22:26:51.497   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f17bb000 0x3f1fa4000]
+04-21 22:26:51.502   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f4fd2000 0x3f57bb000]
+04-21 22:26:51.515   648  2504 W InputManager-JNI: Input channel object '90d3330 com.ezequiel.curp/androidx.activity.ComponentActivity (client)' was disposed without first being removed with the input manager!
+04-21 22:26:51.515   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f57bb000 0x3f5fa4000]
+04-21 22:26:51.523   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3f5fa4000 0x3f678d000]
+04-21 22:26:51.555   395   442 D goldfish-address-space: claimShared: Ask to claim region [0x3fad55000 0x3fb53e000]
+04-21 22:26:51.581   395   425 D goldfish-address-space: claimShared: Ask to claim region [0x3fb53e000 0x3fbd27000]
+04-21 22:26:51.617  2901  2901 I GsaVoiceInteractionSrv: Handling ACTION_START_HOTWORD
+04-21 22:26:51.618  2901  3259 I GsaVoiceInteractionSrv: disregardVoiceMatch: false
+04-21 22:26:51.618  2901  3259 I GsaVoiceInteractionSrv: Cannot start hotword, hotword has been explicitly disabled.
+04-21 22:26:51.632  1771  1771 I A       : Created gRPC endpoint to "search" for service class com.google.android.apps.search.googleapp.search.suggest.plugins.onesearch.server.OneSearchSuggestService
+04-21 22:26:51.638  1771  1771 W A       : Can't get WAA status for Mavatar!
+04-21 22:26:51.638  1771  1771 W A       : java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Class java.lang.Object.getClass()' on a null object reference
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.apps.tiktok.dataservice.z.b(PG:1)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.apps.tiktok.dataservice.at.a(PG:1)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.apps.tiktok.tracing.ec.a(PG:2)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.common.util.concurrent.aj.a(PG:2)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.common.util.concurrent.ac.apply(PG:1)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.common.util.concurrent.h.e(PG:2)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.common.util.concurrent.j.run(PG:9)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.common.util.concurrent.bf.execute(PG:1)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.common.util.concurrent.d.i(PG:1)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.common.util.concurrent.d.l(PG:12)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.common.util.concurrent.d.n(PG:2)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.common.util.concurrent.i.f(PG:1)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.common.util.concurrent.j.run(PG:12)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.android.libraries.i.ae.run(PG:1)
+04-21 22:26:51.638  1771  1771 W A       : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1137)
+04-21 22:26:51.638  1771  1771 W A       : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:637)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.android.libraries.i.k.run(PG:2)
+04-21 22:26:51.638  1771  1771 W A       : 	at com.google.android.libraries.i.p.run(PG:4)
+04-21 22:26:51.638  1771  1771 W A       : 	at java.lang.Thread.run(Thread.java:1012)
+04-21 22:26:51.664 10869 26061 D OneSearchSuggestProvider: Convert suggest response to search results for query= time=8461996 mResponse list size=8
+04-21 22:26:51.685   888  1063 D EGL_emulation: app_time_stats: avg=246.63ms min=5.51ms max=2114.15ms count=10
+04-21 22:26:51.690 25978 26011 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.junit4.EspressoLink@db83ed5]
+04-21 22:26:51.694 25978 26011 E TestRunner: failed: radioButtonGroupSexTest(com.ezequiel.curp.Test)
+04-21 22:26:51.695 25978 26011 E TestRunner: ----- begin exception -----
+04-21 22:26:51.696 25978 26011 E TestRunner: junit.framework.AssertionFailedError: expected:<(H, Hombre)> but was:<(M, Mujer)>
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at junit.framework.Assert.fail(Assert.java:50)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at junit.framework.Assert.failNotEquals(Assert.java:287)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at junit.framework.Assert.assertEquals(Assert.java:67)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at junit.framework.Assert.assertEquals(Assert.java:74)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at com.ezequiel.curp.Test.radioButtonGroupSexTest(Test.kt:35)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:54)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(AndroidComposeTestRule.android.kt:148)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(AndroidComposeTestRule.android.kt:147)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.withDisposableContent(ComposeUiTest.android.kt:476)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1$1$1.invoke(ComposeUiTest.android.kt:294)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.withTextInputService(ComposeUiTest.android.kt:360)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.access$withTextInputService(ComposeUiTest.android.kt:217)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1$1.invoke(ComposeUiTest.android.kt:293)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.withComposeIdlingResource(ComposeUiTest.android.kt:347)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.access$withComposeIdlingResource(ComposeUiTest.android.kt:217)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invoke(ComposeUiTest.android.kt:292)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.withWindowRecomposer(ComposeUiTest.android.kt:321)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.access$withWindowRecomposer(ComposeUiTest.android.kt:217)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1.invoke(ComposeUiTest.android.kt:291)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.withTestCoroutines(ComposeUiTest.android.kt:334)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.access$withTestCoroutines(ComposeUiTest.android.kt:217)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1.invoke(ComposeUiTest.android.kt:290)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.junit4.EspressoLink.withStrategy(EspressoLink.android.kt:66)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invoke(ComposeUiTest.android.kt:289)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.junit4.IdlingResourceRegistry.withRegistry(IdlingResourceRegistry.jvm.kt:157)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1.invoke(ComposeUiTest.android.kt:288)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.junit4.ComposeRootRegistry.withRegistry(ComposeRootRegistry.android.kt:146)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.runTest(ComposeUiTest.android.kt:287)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1.evaluate(AndroidComposeTestRule.android.kt:147)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:67)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:58)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:446)
+04-21 22:26:51.696 25978 26011 E TestRunner: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2361)
+04-21 22:26:51.696 25978 26011 E TestRunner: ----- end exception -----
+04-21 22:26:51.702 25978 26011 I TestRunner: finished: radioButtonGroupSexTest(com.ezequiel.curp.Test)

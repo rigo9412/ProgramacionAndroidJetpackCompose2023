@@ -1,0 +1,90 @@
+[
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/raw_azul.mp3.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/raw/azul.mp3"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-anydpi-v33_ic_launcher.xml.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-anydpi-v33/ic_launcher.xml"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/raw_amarillo.mp3.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/raw/amarillo.mp3"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/raw_verde.mp3.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/raw/verde.mp3"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/raw_rojo.mp3.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/raw/rojo.mp3"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/raw_start.mp3.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/raw/start.mp3"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/xml_backup_rules.xml.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.ezequiel.simondice19100155.app-merged_res-34:/xml_data_extraction_rules.xml.flat",
+        "source": "com.ezequiel.simondice19100155.app-main-35:/xml/data_extraction_rules.xml"
+    }
+]

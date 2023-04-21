@@ -1,0 +1,48 @@
+INSTRUMENTATION_STATUS: class=com.ezequiel.curp.Test
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.ezequiel.curp.Test:
+INSTRUMENTATION_STATUS: test=radioButtonGroupSexTest
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.ezequiel.curp.Test
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=junit.framework.AssertionFailedError: expected:<(H, Hombre)> but was:<(M, Mujer)>
+at junit.framework.Assert.fail(Assert.java:50)
+at junit.framework.Assert.failNotEquals(Assert.java:287)
+at junit.framework.Assert.assertEquals(Assert.java:67)
+at junit.framework.Assert.assertEquals(Assert.java:74)
+at com.ezequiel.curp.Test.radioButtonGroupSexTest(Test.kt:35)
+
+INSTRUMENTATION_STATUS: stream=
+Error in radioButtonGroupSexTest(com.ezequiel.curp.Test):
+junit.framework.AssertionFailedError: expected:<(H, Hombre)> but was:<(M, Mujer)>
+at junit.framework.Assert.fail(Assert.java:50)
+at junit.framework.Assert.failNotEquals(Assert.java:287)
+at junit.framework.Assert.assertEquals(Assert.java:67)
+at junit.framework.Assert.assertEquals(Assert.java:74)
+at com.ezequiel.curp.Test.radioButtonGroupSexTest(Test.kt:35)
+
+INSTRUMENTATION_STATUS: test=radioButtonGroupSexTest
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 3.173
+There was 1 failure:
+1) radioButtonGroupSexTest(com.ezequiel.curp.Test)
+junit.framework.AssertionFailedError: expected:<(H, Hombre)> but was:<(M, Mujer)>
+at junit.framework.Assert.fail(Assert.java:50)
+at junit.framework.Assert.failNotEquals(Assert.java:287)
+at junit.framework.Assert.assertEquals(Assert.java:67)
+at junit.framework.Assert.assertEquals(Assert.java:74)
+at com.ezequiel.curp.Test.radioButtonGroupSexTest(Test.kt:35)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1
+
