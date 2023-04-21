@@ -10,12 +10,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.SemanticsProperties.ImeAction
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performTextInput
 import androidx.navigation.compose.rememberNavController
 import com.jordandiaz19100170.formulario.components.CustomInput
 import com.jordandiaz19100170.formulario.ui.form.ui.FormCurpScreenState
@@ -38,7 +37,6 @@ class CurpTest {
     var composeTestRule = createAndroidComposeRule<MainActivity>()
     val testLabel = "test label"
     val testValue = "jordan"
-    private val state = mutableStateOf<FormCurpScreenState>(FormCurpScreenState.Init)
     @Before
     fun init() {
         rule.setContent {
@@ -48,10 +46,27 @@ class CurpTest {
                 value = inputval,
                 error = "",
                 onChangeValue = { inputval = it },
-                modifier = Modifier,
+                modifier = Modifier.testTag("inputtest"),
                 onAction = { }
             )
+
         }
+
+    }
+
+    @Test
+    fun when_the_inputfield_value_change() {
+        rule.onNodeWithText(testLabel).performTextInput(testValue)
+        rule.onNodeWithText(testValue).assertExists()
+
+    }
+    @Test
+    fun if_the_inputfield_exist(){
+        rule.onNodeWithText(testLabel).assertExists()
+    }
+
+    @Test
+    fun test_if_the_formscreen_Inputs_exist(){
         composeTestRule.activity.setContent{
 
             val formVM = composeTestRule.activity.viewModels<FormViewModel>().value
@@ -73,22 +88,12 @@ class CurpTest {
                 }
             }
         }
-    }
 
-    @Test
-    fun when_the_inputfield_value_change() {
-        rule.onNodeWithText(testLabel).performTextInput(testValue)
-        rule.onNodeWithText(testValue).assertExists()
-    }
+        composeTestRule.onNodeWithTag("testname").assert(hasText(""))
 
-    @Test
-    fun test_if_the_formscreen_Inputs_exist(){
-        composeTestRule.onNodeWithTag("testname").performTextInput("jordan")
-        composeTestRule.onNodeWithTag("testname").assertExists()
-        composeTestRule.onNodeWithTag("testmidname").performTextInput("diaz")
-        composeTestRule.onNodeWithTag("testmidname").assertExists()
-        composeTestRule.onNodeWithTag("testlastname").performTextInput("del angel")
-        composeTestRule.onNodeWithTag("testlastmidname").assertExists()
+        composeTestRule.onNodeWithTag("testmidname").assert(hasText(""))
+
+        composeTestRule.onNodeWithTag("testlastmidname").assert(hasText(""))
     }
 
 }
