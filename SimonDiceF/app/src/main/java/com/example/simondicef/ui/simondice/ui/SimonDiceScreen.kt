@@ -34,12 +34,13 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.example.simondicef.leaderboard.ui.LeaderboardViewModel
 import kotlinx.coroutines.launch
 
-@Composable
-fun MyPreview(){
-    simonDiceScreen(viewModel = SimonDiceViewModel())
-}
+//@Composable
+//fun MyPreview(){
+//    simonDiceScreen(viewModel = SimonDiceViewModel())
+//}
 
 var b1Color = Color.Blue
 var b2Color = Color.Green
@@ -52,33 +53,56 @@ var b3ColorOn = Color(0xFFFFBEBE)
 var b4ColorOn = Color(0xFFFFF191)
 
 @Composable
-fun simonDiceScreen(viewModel: SimonDiceViewModel){
+fun simonDiceScreen(viewModel: SimonDiceViewModel,leaderboard: LeaderboardViewModel){
 
     Box(modifier = Modifier
         .fillMaxSize()
         .padding(16.dp)
     ){
-        simonDice(Modifier.align(Alignment.Center),viewModel)
+        simonDice(Modifier.align(Alignment.Center),viewModel, leaderboard = leaderboard)
     }
 }
 
 @Composable
-fun simonDice(modifier: Modifier, viewModel: SimonDiceViewModel) {
+fun simonDice(modifier: Modifier, viewModel: SimonDiceViewModel,leaderboard: LeaderboardViewModel) {
     val score : Int by viewModel.score.observeAsState(0)
+    val lastScore : Int by viewModel.lastScore.observeAsState(0)
     val started : Boolean by viewModel.started.observeAsState(false)
     val nivel : Int by viewModel.nivel.observeAsState(0)
+    val lost : Boolean by viewModel.lost.observeAsState(false)
 
+    var returnB = leaderboard.returnB.collectAsState(true)
+
+    Log.d("SCORE","$score")
+    Log.d("LASTSCORE","$lastScore")
     val coroutineScope = rememberCoroutineScope()
 
-    Column(modifier = modifier){
-        Text(text = "Simon Dice", textAlign = TextAlign.Center, color = Color.White, fontSize =40.sp, fontWeight= FontWeight.Bold,
-        modifier = Modifier.align(Alignment.CenterHorizontally))
-        HeaderNivel(nivel)
-        HeaderScore(score)
-        Spacer(modifier = Modifier.padding(4.dp))
-        simonDiceBlocks(Modifier.align(Alignment.CenterHorizontally),viewModel = viewModel)
-        Spacer(modifier = Modifier.padding(5.dp))
-        botonEmpezar(started) {coroutineScope.launch {viewModel.empezarJuego()}}
+    Column(modifier = modifier) {
+        if (!lost && returnB.value) {
+            Text(
+                text = "Simon Dice",
+                textAlign = TextAlign.Center,
+                color = Color.White,
+                fontSize = 40.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+            HeaderNivel(nivel)
+            HeaderScore(score)
+            Spacer(modifier = Modifier.padding(4.dp))
+            simonDiceBlocks(Modifier.align(Alignment.CenterHorizontally), viewModel = viewModel)
+            Spacer(modifier = Modifier.padding(5.dp))
+            botonEmpezar(started) { coroutineScope.launch { viewModel.empezarJuego() } }
+        }
+        else{
+            if(returnB.value){
+                leaderboard.goBack(false)
+            }
+            else{
+                viewModel.changeLost(false)
+            }
+            resultView(viewModel = leaderboard, score = lastScore)
+        }
     }
 }
 
@@ -125,8 +149,9 @@ fun simonDiceBlocks(modifier : Modifier, viewModel: SimonDiceViewModel){
     val b3Audio : MediaPlayer by remember{ mutableStateOf(MediaPlayer.create(context,R.raw.sfx3))}
     val b4Audio : MediaPlayer by remember{ mutableStateOf(MediaPlayer.create(context,R.raw.sfx4))}
 
-    Row(modifier = modifier.clip(RoundedCornerShape(10.dp))
-    .background(if(!isEnabled) Color(0xFF777777) else MaterialTheme.colors.background)){
+    Row(modifier = modifier
+        .clip(RoundedCornerShape(10.dp))
+        .background(if (!isEnabled) Color(0xFF777777) else MaterialTheme.colors.background)){
         Column() {
             ColorBlock(backColor = b1Color, b1ColorOn, text = "Azul",1, isSelected = isSelected1,isEnabled,b1Audio, viewModel, shape = QuarterCircleShape,0f)
             ColorBlock(backColor = b2Color, b2ColorOn,text = "Verde",2,isSelected = isSelected2,isEnabled,b2Audio, viewModel, shape = QuarterCircleShape,-90f)

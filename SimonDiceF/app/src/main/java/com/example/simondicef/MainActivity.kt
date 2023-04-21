@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.simondicef.leaderboard.ui.LeaderboardViewModel
 import com.example.simondicef.ui.simondice.ui.SimonDiceViewModel
 import com.example.simondicef.ui.simondice.ui.simonDiceScreen
 import com.example.simondicef.ui.theme.SimonDiceFTheme
@@ -27,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    simonDiceScreen(viewModel = SimonDiceViewModel())
+                    simonDiceScreen(viewModel = SimonDiceViewModel(), leaderboard = LeaderboardViewModel())
                 }
             }
         }
