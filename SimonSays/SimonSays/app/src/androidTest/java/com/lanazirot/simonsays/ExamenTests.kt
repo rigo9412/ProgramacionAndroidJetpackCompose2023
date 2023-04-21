@@ -12,6 +12,8 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.compose.rememberNavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.lanazirot.simonsays.domain.model.Score
@@ -27,6 +29,8 @@ import com.lanazirot.simonsays.ui.navgraph.AppNavGraph
 import com.lanazirot.simonsays.ui.theme.SimonSaysTheme
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.junit.Before
 import org.junit.FixMethodOrder
 import org.junit.Rule
@@ -149,18 +153,55 @@ class ExamenTests {
         val padViewModel = composeTestRule.activity.viewModels<PadViewModel>().value
         assert(padViewModel.pad.value.gameStatus == GameStatus.HOLD)
 
-        //Abrimos el dialogo para agregar un nuevo elemento, dejamos el nombre en blanco
+        //Damos click al boton de start para que me genere una secuencia
+        composeTestRule.onNodeWithTag("btn_start").performClick()
 
-        //Obtenemos el top 10 de scores antes de agregar el nuevo elemento
+        //Esperamos un segundo para que se genere la secuencia
+        padViewModel.viewModelScope.launch {
+            delay(2000)
+        }
 
-        //Damos click al boton de guardar, como el nombre esta en blanco, deberia de fallar
+        //Acertamos un color en el juego
+        val color = padViewModel.pad.value.pad?.colorSequence?.get(0)?.color?.name?.lowercase()
+        composeTestRule.onNodeWithTag("btn_$color").performClick()
+        assert(padViewModel.pad.value.gameStatus == GameStatus.PAD_YELLING)
 
-        //Obtenemos el top 10 de scores despues de agregar el nuevo elemento
+        var listaColores = mutableListOf<String>("yellow", "blue", "red", "green")
 
-        //Comparamos que el top 10 de scores antes y despues sea distinto (prueba fallida)
+        //quitar color de la lista
+        listaColores.remove(color)
+
+        composeTestRule.onNodeWithTag("btn_${listaColores[0]}").performClick()
+
+        //Esperamos un segundo para que se genere la secuencia
+        padViewModel.viewModelScope.launch {
+            delay(5000)
+
+            //Comprobamos que el dialogo este abierto (debe de estar el titulo..)
+            composeTestRule.onNodeWithText("Set value").assertExists()
+        }
 
 
-        //Cuando la insercion falla, debe de mostrar el mensaje de error
+        //Colocamos el nombre en el textfield
+        composeTestRule.onNodeWithTag("player_name").performTextInput("Test")
+
+        ////////////Obtenemos el top 10 de scores antes de agregar el nuevo elemento
+
+        //Damos click al boton de guardar, como si hay un nombre, debe agregarlo y cierra el dialogo
+        composeTestRule.onNodeWithTag("save_name").performClick()
+
+        //////////Obtenemos el top 10 de scores despues de agregar el nuevo elemento
+
+        padViewModel.viewModelScope.launch {
+            delay(5000)
+
+            //Nos movemos a la ventana de scores
+            composeTestRule.onNodeWithTag("btn_scoreboard").performClick()
+        }
+
+
+        //Comprobamos que el nuevo nombre se encuentre en la lista
+        composeTestRule.onNodeWithText("Test - 1 pts.").assertExists()
     }
 
     @Test
@@ -179,11 +220,6 @@ class ExamenTests {
         //Obtenemos el top 10 de scores antes de agregar el nuevo elemento
 
         //Damos click al boton de guardar, como el nombre esta en blanco, deberia de fallar
-
-        //Obtenemos el top 10 de scores despues de agregar el nuevo elemento
-
-        //Comparamos que el top 10 de scores antes y despues sea distinto (prueba fallida)
-
 
         //Cuando la insercion falla, debe de mostrar el mensaje de error
         composeTestRule.onNodeWithText("Necesitas ingresar un nombre").assertExists()
