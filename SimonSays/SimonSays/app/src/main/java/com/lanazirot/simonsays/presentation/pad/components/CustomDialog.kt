@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -30,7 +31,8 @@ fun CustomDialog(value: String, setShowDialog: (Boolean) -> Unit, setValue: (Str
     Dialog(onDismissRequest = { setShowDialog(false) }) {
         Surface(
             shape = RoundedCornerShape(16.dp),
-            color = Color.White
+            color = Color.White,
+            modifier = Modifier.testTag("dialogo")
         ) {
             Box(
                 contentAlignment = Alignment.Center
@@ -56,6 +58,7 @@ fun CustomDialog(value: String, setShowDialog: (Boolean) -> Unit, setValue: (Str
 
                     TextField(
                         modifier = Modifier
+                            .testTag("player_name")
                             .fillMaxWidth()
                             .border(
                                 BorderStroke(
@@ -93,6 +96,7 @@ fun CustomDialog(value: String, setShowDialog: (Boolean) -> Unit, setValue: (Str
                             },
                             shape = RoundedCornerShape(50.dp),
                             modifier = Modifier
+                                .testTag("save_name")
                                 .fillMaxWidth()
                                 .height(50.dp)
                         ) {
