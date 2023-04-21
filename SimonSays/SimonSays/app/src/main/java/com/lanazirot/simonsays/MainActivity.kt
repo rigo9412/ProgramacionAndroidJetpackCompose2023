@@ -32,8 +32,12 @@ import com.lanazirot.simonsays.presentation.pad.GameStatus.*
 import com.lanazirot.simonsays.presentation.pad.PadViewModel
 import com.lanazirot.simonsays.presentation.pad.components.Pad
 import com.lanazirot.simonsays.presentation.pad_button.components.PadButton
+import com.lanazirot.simonsays.presentation.providers.GameProvider
+import com.lanazirot.simonsays.presentation.providers.GlobalGameProvider
 import com.lanazirot.simonsays.presentation.providers.GlobalProvider
 import com.lanazirot.simonsays.presentation.providers.LocalGlobalProvider
+import com.lanazirot.simonsays.presentation.scoreboard.components.ScoreBoardScreen
+import com.lanazirot.simonsays.presentation.scoreboard.components.ScoreboardViewModel
 import com.lanazirot.simonsays.ui.theme.SimonSaysTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -41,17 +45,24 @@ import kotlinx.coroutines.delay
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val padViewModel: PadViewModel by viewModels()
+    private val gameViewModel: ScoreboardViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             var navController = rememberNavController()
             val gp = GlobalProvider(padViewModel = padViewModel, nav = navController)
+            val gameP = GameProvider(currentGame = gameViewModel)
+
             SimonSaysTheme {
                 CompositionLocalProvider(LocalGlobalProvider provides gp) {
-                    Surface(
-                        modifier = Modifier.fillMaxSize(), color = Color.Black
-                    ) {
-                        SimonSayGame()
+                    CompositionLocalProvider(GlobalGameProvider provides gameP) {
+                        Surface(
+                            modifier = Modifier.fillMaxSize(), color = Color.Black
+                        ) {
+//                            SimonSayGame()
+                            ScoreBoardScreen()
+                        }
                     }
                 }
             }
@@ -172,7 +183,9 @@ fun SimonSayGame() {
                         }) {
                         PadButton(
                             color = if (currentColorToFlash == SimonColorPad.GREEN) SimonColorPad.NONE else SimonColorPad.GREEN,
-                            modifier = Modifier.clip(RoundedCornerShape(topStart = 150.dp)).testTag("btn_green"),
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(topStart = 150.dp))
+                                .testTag("btn_green"),
                             enabled = gameStatus == PLAYING
                         ) {
                             playSound(greenAudio)
@@ -185,7 +198,9 @@ fun SimonSayGame() {
                         }
                         PadButton(
                             color = if (currentColorToFlash == SimonColorPad.RED) SimonColorPad.NONE else SimonColorPad.RED,
-                            modifier = Modifier.clip(RoundedCornerShape(topEnd = 150.dp)).testTag("btn_red"),
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(topEnd = 150.dp))
+                                .testTag("btn_red"),
                             enabled = gameStatus == PLAYING
                         ) {
                             playSound(redAudio)
@@ -204,7 +219,9 @@ fun SimonSayGame() {
                         }) {
                         PadButton(
                             color = if (currentColorToFlash == SimonColorPad.YELLOW) SimonColorPad.NONE else SimonColorPad.YELLOW,
-                            modifier = Modifier.clip(RoundedCornerShape(bottomStart = 150.dp)).testTag("btn_yellow"),
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(bottomStart = 150.dp))
+                                .testTag("btn_yellow"),
                             enabled = gameStatus == PLAYING
                         ) {
                             playSound(yellowAudio)
@@ -217,7 +234,9 @@ fun SimonSayGame() {
                         }
                         PadButton(
                             color = if (currentColorToFlash == SimonColorPad.BLUE) SimonColorPad.NONE else SimonColorPad.BLUE,
-                            modifier = Modifier.clip(RoundedCornerShape(bottomEnd = 150.dp)).testTag("btn_blue"),
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(bottomEnd = 150.dp))
+                                .testTag("btn_blue"),
                             enabled = gameStatus == PLAYING
                         ) {
                             playSound(blueAudio)
