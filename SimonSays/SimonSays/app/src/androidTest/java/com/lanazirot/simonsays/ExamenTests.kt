@@ -183,29 +183,23 @@ class ExamenTests {
 
             //Comprobamos que el dialogo este abierto (debe de estar el titulo..)
             composeTestRule.onNodeWithText("Set value").assertExists()
+
+            //Colocamos el nombre en el textfield
+            composeTestRule.onNodeWithTag("player_name").performTextInput("Test")
+
+            //Damos click al boton de guardar, como si hay un nombre, debe agregarlo y cierra el dialogo
+            composeTestRule.onNodeWithTag("save_name").performClick()
+
+            padViewModel.viewModelScope.launch {
+                delay(5000)
+
+                //Nos movemos a la ventana de scores
+                composeTestRule.onNodeWithTag("btn_scoreboard").performClick()
+
+                //Comprobamos que el nuevo nombre se encuentre en la lista
+                composeTestRule.onNodeWithText("Test - 1 pts.").assertExists()
+            }
         }
-
-
-        //Colocamos el nombre en el textfield
-        composeTestRule.onNodeWithTag("player_name").performTextInput("Test")
-
-        ////////////Obtenemos el top 10 de scores antes de agregar el nuevo elemento
-
-        //Damos click al boton de guardar, como si hay un nombre, debe agregarlo y cierra el dialogo
-        composeTestRule.onNodeWithTag("save_name").performClick()
-
-        //////////Obtenemos el top 10 de scores despues de agregar el nuevo elemento
-
-        padViewModel.viewModelScope.launch {
-            delay(5000)
-
-            //Nos movemos a la ventana de scores
-            composeTestRule.onNodeWithTag("btn_scoreboard").performClick()
-        }
-
-
-        //Comprobamos que el nuevo nombre se encuentre en la lista
-        composeTestRule.onNodeWithText("Test - 1 pts.").assertExists()
     }
 
     @Test
