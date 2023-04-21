@@ -5,7 +5,6 @@ import com.lanazirot.simonsays.domain.services.interfaces.IGameManager
 
 class GameManager :IGameManager {
     private val scoreLog = mutableListOf<Score>()
-
     override fun addToScoreLog(score: Score) {
         scoreLog.add(score)
     }
