@@ -16,6 +16,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -49,10 +50,10 @@ fun nameEntry(viewModel: LeaderboardViewModel, score: Int){
         value = inputState.value,
         onValueChange = { newValue ->
             inputState.value = newValue
-        },
+        },modifier = Modifier.testTag("name"),
         maxLines = 1
     )
-    Button(onClick = {
+    Button(modifier = Modifier.testTag("entry"),onClick = {
         viewModel.addScore(inputState.value,score)
     }) {
         Text(text = "AGREGAR PUNTAJE")
@@ -93,7 +94,8 @@ fun ListField(pair : Pair<String,Int>){
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)
-            .background(color = MaterialTheme.colors.background),
+            .background(color = MaterialTheme.colors.background)
+            .testTag("field"),
     ){
         Text(text = pair.first)
         Text(text = pair.second.toString())

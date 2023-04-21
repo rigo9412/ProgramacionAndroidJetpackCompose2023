@@ -18,6 +18,9 @@ class LeaderboardViewModel: ViewModel() {
     private val _return = MutableStateFlow(true)
     val returnB : StateFlow<Boolean> = _return
 
+    private val _justShow = MutableStateFlow(false)
+    val justShow : StateFlow<Boolean> = _justShow
+
     fun addScore(name: String, score: Int){
         var x = Pair(name,score)
         _top10.value.add(Pair(name,score))
@@ -29,6 +32,11 @@ class LeaderboardViewModel: ViewModel() {
     }
 
     fun checkIfTop(score: Int): Boolean{
+        if(_justShow.value){
+            _entry.value = false
+            return false
+        }
+
         if(_top10.value.size < 10){
             return true
         }
@@ -47,6 +55,11 @@ class LeaderboardViewModel: ViewModel() {
     }
     fun changeEntry(bool : Boolean){
         _entry.value = bool
+    }
+
+    fun changeJustShow(bool : Boolean){
+        _justShow.value = bool
+        _entry.value = !bool
     }
 
 }

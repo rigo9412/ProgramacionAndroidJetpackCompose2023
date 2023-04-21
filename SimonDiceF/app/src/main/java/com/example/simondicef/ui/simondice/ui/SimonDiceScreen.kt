@@ -93,6 +93,12 @@ fun simonDice(modifier: Modifier, viewModel: SimonDiceViewModel,leaderboard: Lea
             simonDiceBlocks(Modifier.align(Alignment.CenterHorizontally), viewModel = viewModel)
             Spacer(modifier = Modifier.padding(5.dp))
             botonEmpezar(started) { coroutineScope.launch { viewModel.empezarJuego() } }
+//            Button(onClick = {
+//                leaderboard.changeJustShow(true)
+//                viewModel.changeLost(true)
+//            }) {
+//                Text(text = "VER LEADERBOARD")
+//            }
         }
         else{
             if(returnB.value){
