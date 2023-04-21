@@ -43,9 +43,53 @@ class ExamenTests {
 
     @get:Rule(order = 2)
     val composeTestRule = createAndroidComposeRule<MainActivity>()
-    
-    @Before
-    fun init() {
+
+    @Test
+    fun test_a_mostrar_pantalla_tops() {
+        hiltRule.inject()
+
+        composeTestRule.activity.setContent {
+            val padViewModel = composeTestRule.activity.viewModels<PadViewModel>().value
+            val gameViewModel = composeTestRule.activity.viewModels<ScoreboardViewModel>().value
+
+            val navController = rememberNavController()
+            val gp = GlobalProvider(padViewModel = padViewModel, nav = navController)
+            val gameP = GameProvider(currentGame = gameViewModel)
+
+            SimonSaysTheme {
+                CompositionLocalProvider(LocalGlobalProvider provides gp) {
+                    CompositionLocalProvider(GlobalGameProvider provides gameP) {
+                        Surface(
+                            Modifier.fillMaxSize(), color = MaterialTheme.colors.background
+                        ) {
+                            AppNavGraph(globalProvider = gp)
+                        }
+                    }
+                }
+            }
+        }
+
+        val padViewModel = composeTestRule.activity.viewModels<PadViewModel>().value
+        assert(padViewModel.pad.value.gameStatus == GameStatus.HOLD)
+        val gameViewModel = composeTestRule.activity.viewModels<ScoreboardViewModel>().value
+        gameViewModel.addToScoreLog(Score(100, "Test")) //Agregamos por defecto un valor
+
+        //Nos movemos a la ventana de scores
+        composeTestRule.onNodeWithTag("btn_scoreboard").performClick()
+
+        //Verificar que se esta renderizando la pantalla
+        composeTestRule.onNodeWithText("Top 10 Scores").assertExists()
+
+        //Comprobar que se haya agregado el score
+        composeTestRule.onNodeWithText("Test - 100 pts.").assertExists()
+
+        //Cuando si tiene valores, este mensaje no debe estar mostrado
+        composeTestRule.onNodeWithText("No hay scores por el momento.").assertDoesNotExist()
+
+    }
+
+    @Test
+    fun test_b_mostrar_pantalla_sin_valores() {
         hiltRule.inject()
 
         composeTestRule.activity.setContent {
@@ -71,30 +115,6 @@ class ExamenTests {
         val padViewModel = composeTestRule.activity.viewModels<PadViewModel>().value
         assert(padViewModel.pad.value.gameStatus == GameStatus.HOLD)
 
-//        composeTestRule.onNodeWithTag("btn_start").performClick()
-    }
-
-    @Test
-    fun test_a_mostrar_pantalla_tops() {
-        val gameViewModel = composeTestRule.activity.viewModels<ScoreboardViewModel>().value
-        gameViewModel.addToScoreLog(Score(100, "Test")) //Agregamos por defecto un valor
-
-        //Nos movemos a la ventana de scores
-        composeTestRule.onNodeWithTag("btn_scoreboard").performClick()
-
-        //Verificar que se esta renderizando la pantalla
-        composeTestRule.onNodeWithText("Top 10 Scores").assertExists()
-
-        //Comprobar que se haya agregado el score
-        composeTestRule.onNodeWithText("Test - 100 pts.").assertExists()
-
-        //Cuando si tiene valores, este mensaje no debe estar mostrado
-        composeTestRule.onNodeWithText("No hay scores por el momento.").assertDoesNotExist()
-
-    }
-
-    @Test
-    fun test_b_mostrar_pantalla_sin_valores() {
         //Nos movemos a la ventana de scores
         composeTestRule.onNodeWithTag("btn_scoreboard").performClick()
 
@@ -104,31 +124,52 @@ class ExamenTests {
 
     @Test
     fun test_c_validar_insercion_de_registro() {
-        //Nos movemos a la ventana de scores
-        composeTestRule.onNodeWithTag("btn_scoreboard").performClick()
+        hiltRule.inject()
 
-        //Validar que
-        composeTestRule.onNodeWithText("No hay scores por el momento.").assertExists()
-    }
-
-    @Test
-    fun test_d_validar_insercion_usuario_exitosa() {
         composeTestRule.activity.setContent {
+            val padViewModel = composeTestRule.activity.viewModels<PadViewModel>().value
             val gameViewModel = composeTestRule.activity.viewModels<ScoreboardViewModel>().value
+
+            val navController = rememberNavController()
+            val gp = GlobalProvider(padViewModel = padViewModel, nav = navController)
             val gameP = GameProvider(currentGame = gameViewModel)
 
             SimonSaysTheme {
-                CompositionLocalProvider(GlobalGameProvider provides gameP) {
-                    Surface(
-                        Modifier.fillMaxSize(), color = MaterialTheme.colors.background
-                    ) {
-                        ScoreBoardScreen()
+                CompositionLocalProvider(LocalGlobalProvider provides gp) {
+                    CompositionLocalProvider(GlobalGameProvider provides gameP) {
+                        Surface(
+                            Modifier.fillMaxSize(), color = MaterialTheme.colors.background
+                        ) {
+                            AppNavGraph(globalProvider = gp)
+                        }
                     }
                 }
             }
         }
+        val padViewModel = composeTestRule.activity.viewModels<PadViewModel>().value
+        assert(padViewModel.pad.value.gameStatus == GameStatus.HOLD)
 
-        composeTestRule.onNodeWithText("No hay scores por el momento.").assertExists()
+        //Abrimos el dialogo para agregar un nuevo elemento, dejamos el nombre en blanco
+
+        //Obtenemos el top 10 de scores antes de agregar el nuevo elemento
+
+        //Damos click al boton de guardar, como el nombre esta en blanco, deberia de fallar
+
+        //Obtenemos el top 10 de scores despues de agregar el nuevo elemento
+
+        //Comparamos que el top 10 de scores antes y despues sea distinto (prueba fallida)
+
+
+        //Cuando la insercion falla, debe de mostrar el mensaje de error
+    }
+
+    @Test
+    fun test_d_validar_insercion_usuario_exitosa() {
+        //Abrimos el dialogo para agregar un nuevo elemento
+
+        //Ingresamos un nombre en el campo de texto
+
+        //Damos click al boton de guardar, como el nombre no es blanco, to do ok
     }
 
     @Test
