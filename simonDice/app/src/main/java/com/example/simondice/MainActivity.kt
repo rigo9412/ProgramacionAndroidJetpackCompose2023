@@ -1,13 +1,11 @@
 package com.example.simondice
 
+import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -25,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -254,10 +253,11 @@ fun SimonGame(
         }
 
     }
+
     if (isScoreModalOpen) {
         AlertDialog(
             onDismissRequest = { setIsScoreModalOpen(false) },
-            title = { Text("Puntuación actual") },
+            title = { Text("Top 10 Puntaje ") },
             text = {
 
                 Top10Scores(results,scoreMap)
@@ -274,8 +274,11 @@ fun SimonGame(
 }
 
 
+@SuppressLint("UnrememberedMutableState")
 @Composable
 fun Status(game: Game, results: Player?) {
+    val isDialogOpen = remember { mutableStateOf(true) }
+    var playername =  remember { mutableStateOf("") }
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -284,17 +287,68 @@ fun Status(game: Game, results: Player?) {
         TitleShadow()
         if (game.started && results == null) {
             Status(status = "JUEGO INICIADO")
+            isDialogOpen.value = true
         } else if (results != null) {
 
             Status(status = "JUEGO TERMINADO")
             numero= numero +1
-            val playername = "${results.name} ${numero}"
-            scoreMap.put(playername,results.score)
+
+           if(isDialogOpen.value){
+               AlertDialog(
+                   onDismissRequest = { isDialogOpen.value=false },
+                   title = { Text("Top 10 Puntaje ") },
+                   text = {
+
+                       RegistrarScore(results = results)
+                   },
+                   confirmButton = {
+                       Column {
+                           TextField(
+                               value =playername.value,
+                               onValueChange = {playername.value = it}
+                           )
+                           Button(
+                               onClick = {
+                                   scoreMap.put(playername.value,results.score)
+                                   isDialogOpen.value=false
+                               },
+                               modifier = Modifier
+                                   .padding(10.dp)
+                                   .height(60.dp)
+                           ) {
+                               Text(text = "Registrar")
+                           }
+                       }
+                   })
+           }
+
         }
     }
 }
 
+@Composable
+fun RegistrarScore(results: Player){
 
+    Column(
+        modifier = Modifier
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(19.dp, 15.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                "Registra tu score",
+                fontSize = 50.sp
+            )
+        }
+
+    }
+}
 @Composable
 fun Score(game: Game, player: Player?,) {
     //val scoreMap = mutableMapOf<String, Int>()
