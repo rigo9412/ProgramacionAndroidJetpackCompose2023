@@ -32,7 +32,6 @@ class FormViewModel(
         println("CURP-FORM-STATE INIT")
         _uiState.value = CurpFormScreenState.Loading("cargando...estamos trabajando...")
         _uiStateData.value = CurpFormModelState(
-            nombre = "Jaime",
             generoList = generos ,
             estadoList = estadosMexicanos,
         )

@@ -9,7 +9,7 @@ data class GlobalProvider (
     val formVM: FormViewModel,
     val wizardVM: WizardViewModel,
     val globalVM: GlobalStateScreenViewModel,
-    val nav: NavHostController
+    var nav: NavHostController
 )
 
 sealed class GlobalStateScreen(){

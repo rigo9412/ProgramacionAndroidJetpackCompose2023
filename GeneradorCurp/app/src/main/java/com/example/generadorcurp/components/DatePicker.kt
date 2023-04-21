@@ -47,7 +47,7 @@ fun DatePick(
         onValueChange = onValueChange,
         enabled = false,
         readOnly = true,
-        modifier = Modifier
+        modifier = modifier
             .clickable { dialog.show() }
             .fillMaxWidth(),
         keyboardOptions = KeyboardOptions.Default,

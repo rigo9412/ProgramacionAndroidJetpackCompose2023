@@ -17,8 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 
 import com.example.generadorcurp.GlobalProvider
 import com.example.generadorcurp.R
@@ -38,7 +41,7 @@ fun FormScreen() {
         is CurpFormScreenState.Error -> ErrorView(message = state.message) {
             viewModel.onEvent(CurpFormEvent.Hide)
         }
-        is CurpFormScreenState.Loaded -> Form(data){
+        is CurpFormScreenState.Loaded -> Form(data,navigationController){
             viewModel.onEvent(it)
         }
         is CurpFormScreenState.Loading -> LoadingView(message = state.message)
@@ -61,10 +64,9 @@ fun FormScreen() {
 @OptIn(ExperimentalComposeUiApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
+fun Form(data: CurpFormModelState, navigationController: NavHostController, onEvent: (CurpFormEvent) -> Unit) {
     val focusManager = LocalFocusManager.current
     val scaffoldState = rememberScaffoldState()
-    val navigationController = GlobalProvider.current.nav
     Scaffold(
         scaffoldState = scaffoldState,
         content = {
@@ -79,7 +81,8 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     onChangeValue = { onEvent(CurpFormEvent.NombreChanged(it)) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .testTag("nombre"),
                     onAction = {
                         focusManager.moveFocus(FocusDirection.Down)
                     }
@@ -93,7 +96,8 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .testTag("pApellido"),
                     onAction = {
                         focusManager.moveFocus(FocusDirection.Down)
                     }
@@ -107,7 +111,8 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .testTag("sApellido"),
                     onAction = {
                         focusManager.moveFocus(FocusDirection.Next)
                     }
@@ -120,7 +125,8 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .testTag("fecha"),
                     focusManager = focusManager
                 )
 
@@ -128,7 +134,8 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     label = stringResource(R.string.sexo),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .testTag("sexo"),
                     items = data.generoList,
                     selection = data.genero.first,
                     onItemClick = {
@@ -139,7 +146,8 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                 PairListDropdown(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .testTag("estados"),
                     selected = data.estado,
                     label = stringResource(R.string.estado),
                     listItems = data.estadoList,
