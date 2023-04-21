@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.jordandiaz19100170.formulario.GlobalProvider
@@ -81,7 +82,7 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     value = data.name,
                     error = data.nameError,
                     onChangeValue = { onEvent(CurpFormEvent.NameChanged(it)) },
-                    modifier = Modifier
+                    modifier = Modifier.testTag("testname")
                         .fillMaxWidth()
                         .padding(10.dp),
                     onAction = {
@@ -95,7 +96,7 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     onChangeValue = {
                         onEvent(CurpFormEvent.MiddleNameChanged(it))
                     },
-                    modifier = Modifier
+                    modifier = Modifier.testTag("testmidname")
                         .fillMaxWidth()
                         .padding(10.dp),
                     onAction = {
@@ -109,7 +110,7 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     onChangeValue = {
                         onEvent(CurpFormEvent.LastNameChanged(it))
                     },
-                    modifier = Modifier
+                    modifier = Modifier.testTag("testlastname")
                         .fillMaxWidth()
                         .padding(10.dp),
                     onAction = {
@@ -122,14 +123,14 @@ fun Form(data: CurpFormModelState, onEvent: (CurpFormEvent) -> Unit) {
                     onValueChange = {
                         onEvent(CurpFormEvent.BirthChanged(it))
                     },
-                    modifier = Modifier
+                    modifier = Modifier.testTag("testbirthday")
                         .fillMaxWidth()
                         .padding(10.dp),
                     focusManager = focusManager
                 )
 
                 RadioButtonGroupSex(
-                    modifier = Modifier
+                    modifier = Modifier.testTag("testgender")
                         .fillMaxWidth()
                         .padding(10.dp),
                     items = data.sexList,

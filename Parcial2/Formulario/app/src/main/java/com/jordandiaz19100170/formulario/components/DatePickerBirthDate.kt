@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -19,12 +20,12 @@ import java.util.*
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DatePickerBirthDate(
-    label: String,
+    label: String ="lblpicker",
     value: String,
     onValueChange: (String) -> Unit = {},
     pattern: String = "yyyy-MM-dd",
     modifier: Modifier,
-    focusManager: FocusManager
+   focusManager: FocusManager = LocalFocusManager.current
 ) {
     val formatter = DateTimeFormatter.ofPattern(pattern)
     val date = if (value.isNotBlank()) LocalDate.parse(value, formatter) else LocalDate.now()
