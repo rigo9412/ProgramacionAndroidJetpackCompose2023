@@ -1,0 +1,466 @@
+{
+  "name": "loggin",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "7GH0s3MBHnOi2eSi5bvVtp",
+    "node": "1:21",
+    "version": "3263585185",
+    "component-id": "19a34861512ceecabe969707ffd72a4caed74940"
+  },
+  "default": "loggin",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "image",
+        "id": "image 1"
+      },
+      {
+        "type": "group",
+        "id": "Main"
+      },
+      {
+        "type": "image",
+        "id": "image 2"
+      },
+      {
+        "type": "group",
+        "id": "Home Indicator/Light"
+      },
+      {
+        "type": "text",
+        "id": "Mi Pokedex"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 18"
+      },
+      {
+        "type": "text",
+        "id": "Entrenador"
+      },
+      {
+        "type": "group",
+        "id": "Rectangle 19"
+      },
+      {
+        "type": "group",
+        "id": "Rectangle 20"
+      },
+      {
+        "type": "vector",
+        "id": "Home Indicator"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 21"
+      },
+      {
+        "type": "text",
+        "id": "Pokedex"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 22"
+      },
+      {
+        "type": "text",
+        "id": "Jugar"
+      }
+    ],
+    "modes": {
+      "loggin": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "image 1",
+              "Main",
+              "image 2"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "image 1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "image_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "Main",
+            "is-structured": "false",
+            "children": [
+              "Home Indicator/Light",
+              "Mi Pokedex",
+              "Rectangle 18",
+              "Entrenador",
+              "Rectangle 19",
+              "Rectangle 20"
+            ],
+            "background-color": {
+              "alpha": "0.0",
+              "hue": "0.0",
+              "saturation": "1.0",
+              "value": "1.0"
+            }
+          },
+          {
+            "id": "image 2",
+            "margin": {
+              "left": "237.0",
+              "top": "98.0",
+              "right": "19.0",
+              "bottom": "634.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "image_2.png",
+            "scale": "cover"
+          },
+          {
+            "id": "Home Indicator/Light",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "812.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "390.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "32.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Home Indicator"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "355.21276595744683",
+              "saturation": "0.8623853211009174",
+              "value": "0.8549019607843137"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Mi Pokedex",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "44.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "146.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Mi Pokedex",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "30.0",
+            "letter-spacing": "0.6",
+            "line-height": "1.2102272033691406",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Rectangle 18",
+            "border-radius": "30.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "47.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "524.0"
+              }
+            },
+            "tap-handler": "$VerPerfil",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "300.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "36.0"
+              }
+            },
+            "vector-content": "rectangle_18.svg"
+          },
+          {
+            "id": "Entrenador",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "116.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "524.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "Entrenador",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "30.0",
+            "letter-spacing": "0.6",
+            "line-height": "1.2102272033691406",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Rectangle 19",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "77.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "446.0"
+              }
+            },
+            "tap-handler": "$VisualizarPokedex",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "236.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "36.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Rectangle 21",
+              "Pokedex"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Rectangle 20",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "105.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "368.0"
+              }
+            },
+            "tap-handler": "$EmpezarJuego",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "180.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "36.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Rectangle 22",
+              "Jugar"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Home Indicator",
+            "border-radius": "100.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "end",
+                "offset": "-8.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "134.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "5.0"
+              }
+            },
+            "vector-content": "home_indicator.svg"
+          },
+          {
+            "id": "Rectangle 21",
+            "border-radius": "30.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_19.svg"
+          },
+          {
+            "id": "Pokedex",
+            "margin": {
+              "left": "60.0",
+              "right": "42.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "Pokedex",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "30.0",
+            "letter-spacing": "0.6",
+            "line-height": "1.2102272033691406",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Rectangle 22",
+            "border-radius": "30.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_20.svg"
+          },
+          {
+            "id": "Jugar",
+            "margin": {
+              "left": "47.0",
+              "right": "50.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "Jugar",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "30.0",
+            "letter-spacing": "0.6",
+            "line-height": "1.2102272033691406",
+            "typeface": "Inter"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "VerPerfil": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "VisualizarPokedex": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "EmpezarJuego": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "loggin",
+      "size": {
+        "width": 390.0,
+        "height": 844.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
