@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">CurpRegistro</string>
+    <string name="name">Nombres(s)</string>
+    <string name="middle_lastname">Primer Apellido</string>
+    <string name="last_name">Segundo Apellido</string>
+    <string name="bitrh">Fecha de Nacimiento</string>
+    <string name="sexo">Sexo</string>
+    <string name="states">Estados</string>
+    <string name="mode_wizard">Modo Wizard</string>
+    <string name="mode_fast">Modo Rapido</string>
+    <string name="help_text_home">Selecciona un mode para generar el CURP</string>
+    <string name="title_home">Consulta tu CURP</string>
+    <string name="subtitle_home">Genera tu CURP agregando tus datos personales básicos</string>
+    <string name="middle_name">Primer Apellido</string>
+    <string name="lastname">Segundo Apellido</string>
+    <string name="birth">Fecha Nacimiento</string>
+    <string name="state">Estado</string>
+    <string name="form_title">Calculadora CURP</string>
+    <string name="form_submit">Generar CURP</string>
+    <string name="step_name">Nombre Completo</string>
+    <string name="step_name_subtitle">Completa los recuadros que se indican</string>
+</resources>
