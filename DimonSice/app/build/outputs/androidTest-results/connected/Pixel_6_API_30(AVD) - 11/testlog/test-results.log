@@ -1,0 +1,72 @@
+INSTRUMENTATION_STATUS: class=com.otop.SimonDice.TestLista
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.otop.SimonDice.TestLista:
+INSTRUMENTATION_STATUS: test=when_top_is_update
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.otop.SimonDice.TestLista
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.NullPointerException: Cannot run onActivity since Activity has been destroyed already
+at androidx.test.internal.util.Checks.checkNotNull(Checks.java:45)
+at androidx.test.core.app.ActivityScenario.lambda$onActivity$2$androidx-test-core-app-ActivityScenario(ActivityScenario.java:787)
+at androidx.test.core.app.ActivityScenario$$ExternalSyntheticLambda2.run(Unknown Source:4)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2223)
+at android.os.Handler.handleCallback(Handler.java:938)
+at android.os.Handler.dispatchMessage(Handler.java:99)
+at android.os.Looper.loop(Looper.java:223)
+at android.app.ActivityThread.main(ActivityThread.java:7656)
+at java.lang.reflect.Method.invoke(Native Method)
+at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:592)
+at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:947)
+
+INSTRUMENTATION_STATUS: stream=
+Error in when_top_is_update(com.otop.SimonDice.TestLista):
+java.lang.NullPointerException: Cannot run onActivity since Activity has been destroyed already
+at androidx.test.internal.util.Checks.checkNotNull(Checks.java:45)
+at androidx.test.core.app.ActivityScenario.lambda$onActivity$2$androidx-test-core-app-ActivityScenario(ActivityScenario.java:787)
+at androidx.test.core.app.ActivityScenario$$ExternalSyntheticLambda2.run(Unknown Source:4)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2223)
+at android.os.Handler.handleCallback(Handler.java:938)
+at android.os.Handler.dispatchMessage(Handler.java:99)
+at android.os.Looper.loop(Looper.java:223)
+at android.app.ActivityThread.main(ActivityThread.java:7656)
+at java.lang.reflect.Method.invoke(Native Method)
+at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:592)
+at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:947)
+
+INSTRUMENTATION_STATUS: test=when_top_is_update
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 4.198
+There was 1 failure:
+1) when_top_is_update(com.otop.SimonDice.TestLista)
+java.lang.NullPointerException: Cannot run onActivity since Activity has been destroyed already
+at androidx.test.internal.util.Checks.checkNotNull(Checks.java:45)
+at androidx.test.core.app.ActivityScenario.lambda$onActivity$2$androidx-test-core-app-ActivityScenario(ActivityScenario.java:787)
+at androidx.test.core.app.ActivityScenario$$ExternalSyntheticLambda2.run(Unknown Source:4)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2223)
+at android.os.Handler.handleCallback(Handler.java:938)
+at android.os.Handler.dispatchMessage(Handler.java:99)
+at android.os.Looper.loop(Looper.java:223)
+at android.app.ActivityThread.main(ActivityThread.java:7656)
+at java.lang.reflect.Method.invoke(Native Method)
+at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:592)
+at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:947)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1
+

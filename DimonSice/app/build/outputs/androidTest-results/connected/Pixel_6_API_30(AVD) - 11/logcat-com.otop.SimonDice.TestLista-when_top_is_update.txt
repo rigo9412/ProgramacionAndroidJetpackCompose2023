@@ -1,0 +1,232 @@
+04-21 11:46:27.339 23966 23990 I TestRunner: started: when_top_is_update(com.otop.SimonDice.TestLista)
+04-21 11:46:27.447 23966 23990 W FileTestStorage: Output properties is not supported.
+04-21 11:46:27.448 23966 23990 I Tracing : Tracer added: class androidx.test.platform.tracing.AndroidXTracer
+04-21 11:46:27.465 23966 23966 D EventInjectionStrategy: Creating injection strategy with input manager.
+04-21 11:46:27.465 23966 23966 W .otop.SimonDic: Accessing hidden method Landroid/hardware/input/InputManager;->getInstance()Landroid/hardware/input/InputManager; (greylist, reflection, allowed)
+04-21 11:46:27.465 23966 23966 W .otop.SimonDic: Accessing hidden method Landroid/hardware/input/InputManager;->injectInputEvent(Landroid/view/InputEvent;I)Z (greylist, reflection, allowed)
+04-21 11:46:27.465 23966 23966 W .otop.SimonDic: Accessing hidden field Landroid/hardware/input/InputManager;->INJECT_INPUT_EVENT_MODE_WAIT_FOR_FINISH:I (greylist, reflection, allowed)
+04-21 11:46:27.481 23966 23966 W .otop.SimonDic: Accessing hidden method Landroid/os/MessageQueue;->next()Landroid/os/Message; (greylist, reflection, allowed)
+04-21 11:46:27.481 23966 23966 W .otop.SimonDic: Accessing hidden field Landroid/os/MessageQueue;->mMessages:Landroid/os/Message; (greylist, reflection, allowed)
+04-21 11:46:27.481 23966 23966 W .otop.SimonDic: Accessing hidden method Landroid/os/Message;->recycleUnchecked()V (greylist, reflection, allowed)
+04-21 11:46:27.483 23966 23990 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.junit4.EspressoLink@e7a85e]
+04-21 11:46:27.537 23966 23990 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+04-21 11:46:27.544   552   574 D EventSequenceValidator: inc AccIntentStartedEvents to 3
+04-21 11:46:27.547   409   409 I perfetto: ing_service_impl.cc:758 Configured tracing session 469, #sources:1, duration:5000 ms, #buffers:1, total buffer size:4096 KB, total sessions:1, uid:1071 session name: ""
+04-21 11:46:27.548   406   406 I perfetto: probes_producer.cc:230  Ftrace setup (target_buf=469)
+04-21 11:46:27.557   552 15194 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.557   552 15194 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.557   552 15194 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.557   552 15194 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.557   552 15194 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.557   552 15194 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.557   552 15194 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.557   552 15194 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.557   552 15194 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.557   552 15194 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.557   552 15194 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.558   552 15194 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.558   552 15194 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.558   552 15194 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.558   552 15194 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.558   552 15194 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.558   552 15194 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.558   552 15194 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.558   552 15194 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.558   552 15194 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:27.570   406   406 I perfetto: ftrace_procfs.cc:176    enabled ftrace
+04-21 11:46:27.585   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f0000000 0x3f09e4000]
+04-21 11:46:27.585 23966 23998 D libEGL  : loaded /vendor/lib/egl/libEGL_emulation.so
+04-21 11:46:27.594 23966 23998 D libEGL  : loaded /vendor/lib/egl/libGLESv1_CM_emulation.so
+04-21 11:46:27.608 23966 23998 D libEGL  : loaded /vendor/lib/egl/libGLESv2_emulation.so
+04-21 11:46:27.642 23966 23966 D LifecycleMonitor: Lifecycle status change: com.otop.SimonDice.MainActivity@8ee15a4 in: PRE_ON_CREATE
+04-21 11:46:27.644 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+04-21 11:46:27.655  5503  5503 W DetectPable: type=1400 audit(0.0:199087): avc: denied { getattr } for path="/proc/dma" dev="proc" ino=4026532069 scontext=u:r:shell:s0 tcontext=u:object_r:proc:s0 tclass=file permissive=0
+04-21 11:46:27.683   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f3c21000 0x3f3e9a000]
+04-21 11:46:27.683  5503  5517 D StudioTransport: Running '/system/bin/cmd activity profile start --sampling 1000000 com.otop.SimonDice /data/local/tmp/profileable_reporter.tmp 2>/dev/null'
+04-21 11:46:27.690   552  9659 D HostConnection: HostConnection::get() New Host Connection established 0xbc9831f0, tid 9659
+04-21 11:46:27.694   552  9659 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 11:46:27.694   552  9659 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+04-21 11:46:27.701   552  9659 D EGL_emulation: eglCreateContext: 0xbc994130: maj 2 min 0 rcv 2
+04-21 11:46:27.715 23966 23966 D LifecycleMonitor: Lifecycle status change: com.otop.SimonDice.MainActivity@8ee15a4 in: CREATED
+04-21 11:46:27.716 23966 23966 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.otop.SimonDice.MainActivity@8ee15a4
+04-21 11:46:27.718 23966 23966 D LifecycleMonitor: Lifecycle status change: com.otop.SimonDice.MainActivity@8ee15a4 in: STARTED
+04-21 11:46:27.718 23966 23966 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.otop.SimonDice.MainActivity@8ee15a4
+04-21 11:46:27.719 23966 23966 D LifecycleMonitor: Lifecycle status change: com.otop.SimonDice.MainActivity@8ee15a4 in: RESUMED
+04-21 11:46:27.720 23966 23966 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.otop.SimonDice.MainActivity@8ee15a4
+04-21 11:46:27.727   552  9659 D EGL_emulation: eglMakeCurrent: 0xbc994130: ver 2 0 (tinfo 0xbb69ab50) (first time)
+04-21 11:46:27.728   552  5177 D HostConnection: HostConnection::get() New Host Connection established 0xbc996820, tid 5177
+04-21 11:46:27.734   552  5177 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 11:46:27.784  5503  5517 D StudioTransport: Running '/system/bin/cmd activity profile stop com.otop.SimonDice'
+04-21 11:46:27.796 24004 24006 I cmd     : oneway function results will be dropped but finished with status OK and parcel size 4
+04-21 11:46:28.347 23966 23966 W .otop.SimonDic: Class androidx.compose.runtime.snapshots.SnapshotStateList failed lock verification and will run slower.
+04-21 11:46:28.347 23966 23966 W .otop.SimonDic: Common causes for lock verification issues are non-optimized dex code
+04-21 11:46:28.347 23966 23966 W .otop.SimonDic: and incorrect proguard optimizations.
+04-21 11:46:28.626 23966 23997 D HostConnection: HostConnection::get() New Host Connection established 0xde615470, tid 23997
+04-21 11:46:28.642 23966 23997 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 11:46:28.646   173   173 I hwservicemanager: getTransport: Cannot find entry android.hardware.configstore@1.0::ISurfaceFlingerConfigs/default in either framework or device manifest.
+04-21 11:46:28.648 23966 23997 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+04-21 11:46:28.656 23966 23997 D EGL_emulation: eglCreateContext: 0xde614fa0: maj 2 min 0 rcv 2
+04-21 11:46:28.683 23966 23997 D EGL_emulation: eglMakeCurrent: 0xde614fa0: ver 2 0 (tinfo 0xde702eb0) (first time)
+04-21 11:46:28.693   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f1641000 0x3f2025000]
+04-21 11:46:28.696   173   173 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device manifest.
+04-21 11:46:28.696 23966 23997 I Gralloc4: mapper 4.x is not supported
+04-21 11:46:28.703 23966 23997 D HostConnection: createUnique: call
+04-21 11:46:28.704 23966 23997 D HostConnection: HostConnection::get() New Host Connection established 0xde616c80, tid 23997
+04-21 11:46:28.704 23966 23997 D goldfish-address-space: allocate: Ask for block of size 0x100
+04-21 11:46:28.704 23966 23997 D goldfish-address-space: allocate: ioctl allocate returned offset 0x3efffe000 size 0x2000
+04-21 11:46:28.719 23966 23997 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 11:46:28.722   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f2025000 0x3f2a09000]
+04-21 11:46:28.726   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f4000000 0x3f49e4000]
+04-21 11:46:28.795  5503  5503 W DetectPable: type=1400 audit(0.0:199116): avc: denied { getattr } for path="/proc/dma" dev="proc" ino=4026532069 scontext=u:r:shell:s0 tcontext=u:object_r:proc:s0 tclass=file permissive=0
+04-21 11:46:28.822 23966 23997 I OpenGLRenderer: Davey! duration=1075ms; Flags=1, IntendedVsync=84189595724042, Vsync=84189595724042, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=84189598056300, AnimationStart=84189598083300, PerformTraversalsStart=84189598125000, DrawStart=84190572520500, SyncQueued=84190609338400, SyncStart=84190610952400, IssueDrawCommandsStart=84190611179200, SwapBuffers=84190669556100, FrameCompleted=84190672923600, DequeueBufferDuration=116200, QueueBufferDuration=609500, GpuCompleted=0,
+04-21 11:46:28.824 23966 23966 I Choreographer: Skipped 63 frames!  The application may be doing too much work on its main thread.
+04-21 11:46:28.827   552   579 D ArtManagerInternalImpl: /data/misc/iorapd/com.otop.SimonDice/1/com.otop.SimonDice.MainActivity/compiled_traces/compiled_trace.pb doesn't exist
+04-21 11:46:28.828   552   579 I ActivityTaskManager: Displayed com.otop.SimonDice/.MainActivity: +1s282ms
+04-21 11:46:28.829   552   574 D EventSequenceValidator: dec AccIntentStartedEvents to 2
+04-21 11:46:28.795  5503  5503 W DetectPable: type=1400 audit(0.0:199119): avc: denied { getattr } for path="/proc/misc" dev="proc" ino=4026532007 scontext=u:r:shell:s0 tcontext=u:object_r:proc_misc:s0 tclass=file permissive=0
+04-21 11:46:29.680   480   480 E wifi_forwarder: qemu_pipe_open_ns:62: Could not connect to the 'pipe:qemud:wififorward' service: Invalid argument
+04-21 11:46:29.680   480   480 E wifi_forwarder: RemoteConnection failed to initialize: RemoteConnection failed to open pipe
+04-21 11:46:29.855  5503  5503 W DetectPable: type=1400 audit(0.0:199145): avc: denied { getattr } for path="/proc/dma" dev="proc" ino=4026532069 scontext=u:r:shell:s0 tcontext=u:object_r:proc:s0 tclass=file permissive=0
+04-21 11:46:30.523 23966 23990 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.junit4.EspressoLink@f13bb3c]
+04-21 11:46:30.524 23966 23966 E IdlingResourceRegistry: Attempted to register resource with same names: Compose-Espresso link. R1: androidx.compose.ui.test.junit4.EspressoLink@f13bb3c R2: androidx.compose.ui.test.junit4.EspressoLink@e7a85e.
+04-21 11:46:30.524 23966 23966 E IdlingResourceRegistry: Duplicate resource registration will be ignored.
+04-21 11:46:30.528 23966 23990 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+04-21 11:46:30.533   552   574 D EventSequenceValidator: inc AccIntentStartedEvents to 3
+04-21 11:46:30.535   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f0000000 0x3f09e4000]
+04-21 11:46:30.536   409   409 I perfetto: ing_service_impl.cc:758 Configured tracing session 470, #sources:1, duration:5000 ms, #buffers:1, total buffer size:4096 KB, total sessions:2, uid:1071 session name: ""
+04-21 11:46:30.537   406   406 I perfetto: probes_producer.cc:230  Ftrace setup (target_buf=470)
+04-21 11:46:30.548   552   574 D EventSequenceValidator: dec AccIntentStartedEvents to 2
+04-21 11:46:30.548   552  5166 D HostConnection: HostConnection::get() New Host Connection established 0xbc99dc80, tid 5166
+04-21 11:46:30.551 23966 23966 D LifecycleMonitor: Lifecycle status change: com.otop.SimonDice.MainActivity@8ee15a4 in: PAUSED
+04-21 11:46:30.551 23966 23966 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.otop.SimonDice.MainActivity@8ee15a4
+04-21 11:46:30.551 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the intent does not match. startActivityIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/androidx.activity.ComponentActivity }, activity.getIntent()=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/.MainActivity }, activity=com.otop.SimonDice.MainActivity@8ee15a4
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.557   552 15194 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:30.568 23966 23966 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@7ebb37d in: PRE_ON_CREATE
+04-21 11:46:30.569 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the intent does not match. startActivityIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/.MainActivity }, activity.getIntent()=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/androidx.activity.ComponentActivity }, activity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:30.569 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+04-21 11:46:30.575 23966 23966 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@7ebb37d in: CREATED
+04-21 11:46:30.576 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the intent does not match. startActivityIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/.MainActivity }, activity.getIntent()=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/androidx.activity.ComponentActivity }, activity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:30.576 23966 23966 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:30.584   552  5166 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 11:46:30.584   552  5166 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+04-21 11:46:30.586 23966 23966 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@7ebb37d in: STARTED
+04-21 11:46:30.586 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the intent does not match. startActivityIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/.MainActivity }, activity.getIntent()=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/androidx.activity.ComponentActivity }, activity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:30.587   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f09e4000 0x3f13c8000]
+04-21 11:46:30.587 23966 23966 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:30.588 23966 23966 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@7ebb37d in: RESUMED
+04-21 11:46:30.588 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the intent does not match. startActivityIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/.MainActivity }, activity.getIntent()=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/androidx.activity.ComponentActivity }, activity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:30.589 23966 23966 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:30.598   552  5166 D EGL_emulation: eglCreateContext: 0xbc9b0980: maj 2 min 0 rcv 2
+04-21 11:46:30.631   552  5166 D EGL_emulation: eglMakeCurrent: 0xbc9b0980: ver 2 0 (tinfo 0xc23d8d30) (first time)
+04-21 11:46:30.632   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f53c8000 0x3f5dac000]
+04-21 11:46:30.641   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f5dac000 0x3f6790000]
+04-21 11:46:30.643   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f6790000 0x3f7174000]
+04-21 11:46:30.688   552   579 I ActivityTaskManager: Displayed com.otop.SimonDice/androidx.activity.ComponentActivity: +154ms
+04-21 11:46:30.867  5503  5503 W DetectPable: type=1400 audit(0.0:199174): avc: denied { getattr } for path="/proc/dma" dev="proc" ino=4026532069 scontext=u:r:shell:s0 tcontext=u:object_r:proc:s0 tclass=file permissive=0
+04-21 11:46:31.122 23966 23966 D LifecycleMonitor: Lifecycle status change: com.otop.SimonDice.MainActivity@8ee15a4 in: STOPPED
+04-21 11:46:31.122 23966 23966 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.otop.SimonDice.MainActivity@8ee15a4
+04-21 11:46:31.124 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the intent does not match. startActivityIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/androidx.activity.ComponentActivity }, activity.getIntent()=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/.MainActivity }, activity=com.otop.SimonDice.MainActivity@8ee15a4
+04-21 11:46:31.153 23966 23966 D LifecycleMonitor: Lifecycle status change: com.otop.SimonDice.MainActivity@8ee15a4 in: DESTROYED
+04-21 11:46:31.153 23966 23966 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+04-21 11:46:31.153 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the intent does not match. startActivityIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/androidx.activity.ComponentActivity }, activity.getIntent()=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/.MainActivity }, activity=com.otop.SimonDice.MainActivity@8ee15a4
+04-21 11:46:31.172   552   574 D EventSequenceValidator: inc AccIntentStartedEvents to 3
+04-21 11:46:31.177   409   409 I perfetto: ing_service_impl.cc:758 Configured tracing session 471, #sources:1, duration:5000 ms, #buffers:1, total buffer size:4096 KB, total sessions:3, uid:1071 session name: ""
+04-21 11:46:31.184   406   406 I perfetto: probes_producer.cc:230  Ftrace setup (target_buf=471)
+04-21 11:46:31.185 23966 23966 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@7ebb37d in: PAUSED
+04-21 11:46:31.191 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the intent does not match. startActivityIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/.MainActivity }, activity.getIntent()=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/androidx.activity.ComponentActivity }, activity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:31.191 23966 23966 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:31.205   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f09e4000 0x3f13c8000]
+04-21 11:46:31.226   286   286 D Zygote  : Forked child process 24032
+04-21 11:46:31.232 24032 24032 I .SimonDice.tes: Late-enabling -Xcheck:jni
+04-21 11:46:31.244 24032 24032 I .SimonDice.tes: Unquickening 12 vdex files!
+04-21 11:46:31.245 24032 24032 W .SimonDice.tes: Unexpected CPU variant for X86 using defaults: x86
+04-21 11:46:31.258   395   417 I adbd    : jdwp connection from 24032
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_10 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_9 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_4 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_7 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_6 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_3 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_11 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_8 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_5 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.274   552  1204 W InputReader: Device virtio_input_multi_touch_2 is associated with display ADISPLAY_ID_NONE.
+04-21 11:46:31.287   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f13c8000 0x3f1dac000]
+04-21 11:46:31.308 24032 24032 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+04-21 11:46:31.308 24032 24032 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+04-21 11:46:31.309 24032 24032 I .SimonDice.tes: The ClassLoaderContext is a special shared library.
+04-21 11:46:31.311 24032 24032 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+04-21 11:46:31.312 24032 24032 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+04-21 11:46:31.315 24032 24032 I .SimonDice.tes: The ClassLoaderContext is a special shared library.
+04-21 11:46:31.350 24032 24032 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+04-21 11:46:31.350 24032 24032 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+04-21 11:46:31.362 24032 24057 D libEGL  : loaded /vendor/lib/egl/libEGL_emulation.so
+04-21 11:46:31.364 24032 24057 D libEGL  : loaded /vendor/lib/egl/libGLESv1_CM_emulation.so
+04-21 11:46:31.370 24032 24057 D libEGL  : loaded /vendor/lib/egl/libGLESv2_emulation.so
+04-21 11:46:31.423 23966 23966 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@7ebb37d in: STOPPED
+04-21 11:46:31.424 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the intent does not match. startActivityIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/.MainActivity }, activity.getIntent()=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/androidx.activity.ComponentActivity }, activity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:31.424 23966 23966 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:31.425 23966 23966 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@7ebb37d in: DESTROYED
+04-21 11:46:31.425 23966 23966 V ActivityScenario: Activity lifecycle changed event received but ignored because the intent does not match. startActivityIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/.MainActivity }, activity.getIntent()=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10008000 cmp=com.otop.SimonDice/androidx.activity.ComponentActivity }, activity=androidx.activity.ComponentActivity@7ebb37d
+04-21 11:46:31.425 23966 23966 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+04-21 11:46:31.434   311  1212 D goldfish-address-space: claimShared: Ask to claim region [0x3f1dac000 0x3f2790000]
+04-21 11:46:31.437 23966 23990 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.junit4.EspressoLink@f13bb3c]
+04-21 11:46:31.440   552  5166 D HostConnection: HostConnection::get() New Host Connection established 0xbc9ad030, tid 5166
+04-21 11:46:31.444   552  5166 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 11:46:31.444   552  5166 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+04-21 11:46:31.454   552  5166 D EGL_emulation: eglCreateContext: 0xbc986360: maj 2 min 0 rcv 2
+04-21 11:46:31.457   552   574 D EventSequenceValidator: dec AccIntentStartedEvents to 2
+04-21 11:46:31.461 24032 24055 D HostConnection: HostConnection::get() New Host Connection established 0xde6155c0, tid 24055
+04-21 11:46:31.466 24032 24055 D HostConnection: HostComposition ext ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_native_sync_v3 ANDROID_EMU_native_sync_v4 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_sync_buffer_data ANDROID_EMU_read_color_buffer_dma GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_2
+04-21 11:46:31.479   552  5166 D EGL_emulation: eglMakeCurrent: 0xbc986360: ver 2 0 (tinfo 0xc23d8d30) (first time)
+04-21 11:46:31.482   173   173 I hwservicemanager: getTransport: Cannot find entry android.hardware.configstore@1.0::ISurfaceFlingerConfigs/default in either framework or device manifest.
+04-21 11:46:31.482 23966 23990 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.junit4.EspressoLink@e7a85e]
+04-21 11:46:31.482 24032 24055 W OpenGLRenderer: Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+04-21 11:46:31.492 24032 24055 D EGL_emulation: eglCreateContext: 0xde614980: maj 2 min 0 rcv 2
+04-21 11:46:31.493 23966 23990 E TestRunner: failed: when_top_is_update(com.otop.SimonDice.TestLista)
+04-21 11:46:31.493 23966 23990 E TestRunner: ----- begin exception -----
+04-21 11:46:31.493 23966 23990 E TestRunner: java.lang.NullPointerException: Cannot run onActivity since Activity has been destroyed already
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at androidx.test.internal.util.Checks.checkNotNull(Checks.java:45)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at androidx.test.core.app.ActivityScenario.lambda$onActivity$2$androidx-test-core-app-ActivityScenario(ActivityScenario.java:787)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at androidx.test.core.app.ActivityScenario$$ExternalSyntheticLambda2.run(Unknown Source:4)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2223)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at android.os.Handler.handleCallback(Handler.java:938)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at android.os.Looper.loop(Looper.java:223)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at android.app.ActivityThread.main(ActivityThread.java:7656)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:592)
+04-21 11:46:31.493 23966 23990 E TestRunner: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:947)
+04-21 11:46:31.495 23966 23990 E TestRunner: ----- end exception -----
+04-21 11:46:31.504 23966 23990 I TestRunner: finished: when_top_is_update(com.otop.SimonDice.TestLista)
