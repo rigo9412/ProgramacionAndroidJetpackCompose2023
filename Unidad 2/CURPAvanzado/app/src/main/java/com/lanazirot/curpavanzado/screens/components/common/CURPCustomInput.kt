@@ -31,7 +31,7 @@ fun CustomInput(
         value = value,
         onValueChange = { onValueChange(it) },
         label = { Text(text = label) },
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().testTag("outlinedTextField"),
         maxLines = maxLines,
         keyboardOptions = KeyboardOptions(
             capitalization = capitalization,

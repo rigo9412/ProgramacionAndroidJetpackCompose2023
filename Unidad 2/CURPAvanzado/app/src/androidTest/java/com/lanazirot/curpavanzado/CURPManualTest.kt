@@ -44,8 +44,8 @@ class CURPManualTest{
         hiltRule.inject()
 
         composeTestRule.activity.setContent {
-            var wizardVM = composeTestRule.activity.viewModels<WizardViewModel>().value
-            var navController = rememberNavController()
+            val wizardVM = composeTestRule.activity.viewModels<WizardViewModel>().value
+            val navController = rememberNavController()
             val gp = GlobalProvider(wizardVM = wizardVM, nav = navController)
             CURPAvanzadoTheme {
                 CompositionLocalProvider(LocalGlobalProvider provides gp) {

@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -34,6 +35,7 @@ fun CustomInputDate(
         date.year,
         date.monthValue - 1,
         date.dayOfMonth,
+
     )
     dialog.datePicker.maxDate = System.currentTimeMillis()
     OutlinedTextField(
@@ -42,7 +44,8 @@ fun CustomInputDate(
         label = { Text(text = label) },
         modifier = modifier
             .fillMaxWidth()
-            .clickable { dialog.show() },
+            .clickable { dialog.show() }
+            .testTag("manual_mode_date_picker"),
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
         readOnly = true,
