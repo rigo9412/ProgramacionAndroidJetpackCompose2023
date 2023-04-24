@@ -1,7 +1,6 @@
-package com.rigo.simondice
+package com.rigo.simondice.ui.game
 
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path

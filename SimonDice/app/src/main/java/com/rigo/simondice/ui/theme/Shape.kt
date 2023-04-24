@@ -1,12 +1,9 @@
 package com.rigo.simondice.ui.theme
 
-import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.unit.dp
-import com.rigo.simondice.DonaShape
-import com.rigo.simondice.TrapeziumShape
+import com.rigo.simondice.ui.game.TrapeziumShape
 
 val Shapes = Shapes(
     small = RoundedCornerShape(4.dp),

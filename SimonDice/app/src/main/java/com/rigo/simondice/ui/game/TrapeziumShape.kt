@@ -1,7 +1,6 @@
-package com.rigo.simondice
+package com.rigo.simondice.ui.game
 
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
@@ -9,8 +8,6 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.dp
 
 class TrapeziumShape(private val topWidth: Dp, private val bottomWidth: Dp, private val height: Dp) :  Shape {
     override fun createOutline(
