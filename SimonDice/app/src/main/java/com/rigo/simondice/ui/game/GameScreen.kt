@@ -29,11 +29,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.rigo.simondice.R
-import com.rigo.simondice.domain.models.Action
+import com.rigo.simondice.domain.models.getresponsetop.Action
 import com.rigo.simondice.domain.models.Game
 import com.rigo.simondice.domain.models.Player
-import com.rigo.simondice.ui.components.TitleShadow
 import com.rigo.simondice.ui.theme.BlueOff
 import com.rigo.simondice.ui.theme.BlueOn
 import com.rigo.simondice.ui.theme.GreenOff
@@ -45,8 +45,9 @@ import com.rigo.simondice.ui.theme.YellowOn
 import com.rigo.simondice.ui.theme.buttonShape
 
 @Composable
-fun GameScreen(viewModel: GameViewModel) {
+fun GameScreen() {
     val context = LocalContext.current
+    val vm = hiltViewModel<GameViewModel>()
     val blueAudio: MediaPlayer by remember {
         mutableStateOf(
             MediaPlayer.create(
@@ -75,15 +76,15 @@ fun GameScreen(viewModel: GameViewModel) {
             )
         )
     }
-    val state = viewModel.uiState.collectAsState().value
-    val data = viewModel.uiStateData.collectAsState().value
+    val state = vm.uiState.collectAsState().value
+    val data = vm.uiStateData.collectAsState().value
 
     LaunchedEffect(data.currentActionSimonIndex) {
-        viewModel.GameSpeak(greenAudio,redAudio,yellowAudio,blueAudio)
+        vm.GameSpeak(greenAudio,redAudio,yellowAudio,blueAudio)
     }
 
     LaunchedEffect(data.actionPlayer) {
-        viewModel.PlayerPlays(data.actionPlayer,greenAudio,redAudio,yellowAudio,blueAudio)
+        vm.PlayerPlays(data.actionPlayer,greenAudio,redAudio,yellowAudio,blueAudio)
     }
 
     Column(
@@ -91,20 +92,18 @@ fun GameScreen(viewModel: GameViewModel) {
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-        Status("INICIADO")
+        Status("SIMON ORDENA")
         Score(data.score,data.level)
         Pad(
-            if (viewModel.endSpeak)
+            if (vm.endSpeak)
                 data.actionPlayer
             else
-                viewModel.getCurrentAction(),
+                vm.getCurrentAction(),
             data.currentActionOn,
-            enablePlay = viewModel.endSpeak,
+            enablePlay = vm.endSpeak,
 
         ){
-
-                viewModel.onEvent(GameEvent.PressButtonEvent(it))
-
+            vm.onEvent(GameEvent.PressButtonEvent(it))
         }
 
     }
@@ -262,7 +261,7 @@ fun Status(game: Game, results: Player?) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        TitleShadow()
+        //TitleShadow()
         if (game.started && results == null) {
             Status(status = "JUEGO INICIADO")
         } else if (results != null) {

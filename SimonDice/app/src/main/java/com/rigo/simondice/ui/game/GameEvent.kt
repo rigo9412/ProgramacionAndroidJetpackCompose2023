@@ -1,7 +1,6 @@
 package com.rigo.simondice.ui.game
 
-import android.media.MediaPlayer
-import com.rigo.simondice.domain.models.Action
+import com.rigo.simondice.domain.models.getresponsetop.Action
 
 sealed class GameEvent {
     object StartGame: GameEvent()

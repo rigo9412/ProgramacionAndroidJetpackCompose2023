@@ -1,41 +1,45 @@
 package com.rigo9412.poketest.data.model
 
-import com.google.gson.annotations.SerializedName
+import androidx.annotation.NonNull
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-/*
-*
-*   "id": 1,
-    "name": "Bulbasaur",
-    "type1": "Grass",
-    "type2": "Poison",
-    "total": 318,
-    "hp": 45,
-    "attack": 49,
-    "defense": 49,
-    "spAtk": 65,
-    "spDef": 65,
-    "speed": 45,
-    "generation": 1,
-    "legendary": "False"
-* */
+@Entity
 data class PokemonEntity(
-    @SerializedName("id")
-    val numberID: Int,
+    @PrimaryKey
+    val id: Int,
+    @NonNull
     val name: String,
+    @NonNull
+    @ColumnInfo(name = "type_1")
     val type1: String,
+    @ColumnInfo(name = "type_2")
     val type2: String,
+    @NonNull
     val total: Int,
+    @NonNull
     val hp: Int,
+    @NonNull
     val attack: Int,
+    @NonNull
     val defense: Int,
+    @NonNull
+    @ColumnInfo(name = "sp_atk")
     val spAtk: Int,
+    @NonNull
+    @ColumnInfo(name = "sp_def")
     val spDef: Int,
+    @NonNull
     val speed: Int,
+    @NonNull
     val generation: Int,
+    @NonNull
+    val legenday: String,
 )
 
 fun PokemonEntity.asExternalModel() = Pokemon(
-    numberID,
+    id,
     name,
     type1,
     type2,
@@ -48,3 +52,4 @@ fun PokemonEntity.asExternalModel() = Pokemon(
     speed,
     generation,
 )
+

@@ -1,16 +1,24 @@
 package com.rigo.simondice.domain.service.network
 
 
-import com.rigo.simondice.domain.models.TopResponse
+import com.rigo.simondice.domain.models.getresponsetop.GetResponseAllTop
+import com.rigo.simondice.domain.models.getresponsetop.GetResponseTop
+import com.rigo.simondice.domain.models.postrequesttop.PostRequestTop
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.POST
 
 interface IApiService {
     companion object {
         const val BASE_URL = "https://simon-game-api-production.up.railway.app/"
+        const val ACCESS_TOKEN = "800315f60c82bf583d60a7c57b54409695e8cf5d12e8e6a7c71d60256a2ce8bfa466e47f335467f2caeb657b058b2e8ca4be73b3830f400af18427bbf18337e14808d118ba58f11d03db0a873d72bf85eec16a150a002bb896e05e3f92763b8cdb40bba7a39e4f2312b1098a3df9ced2f02b37644acfa6cba516f0f7cbeabc74"
     }
-    @Headers("Authorization: Bearer b04f65b8835a9462961ebd04861b8be83c5314d81225ebe7c04e17ecb353d0f9d5dfbb6838a31004c2427ee417eb7dab838677f2417c20b9054b99f05792e5d09ce3e4cf0aed7d108c48f80ccf14e446fb19f514bbf930fefd6fff2c0708922aee47a403c4b47c84b0159a52a8789eec7cf47d55cb38e855424ad3932cb6b318")
-
+    @Headers("Authorization: Bearer $ACCESS_TOKEN")
     @GET("api/tops")
-    suspend fun getTop(): TopResponse
+    suspend fun getTop(): GetResponseAllTop
+
+    @Headers("Authorization: Bearer $ACCESS_TOKEN")
+    @POST("api/tops")
+    suspend fun postTop(@Body requestTop: PostRequestTop): GetResponseTop
 }

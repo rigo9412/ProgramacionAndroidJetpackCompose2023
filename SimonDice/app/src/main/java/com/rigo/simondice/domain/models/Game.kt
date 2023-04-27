@@ -1,5 +1,6 @@
 package com.rigo.simondice.domain.models
 
+import com.rigo.simondice.domain.models.getresponsetop.Action
 import kotlin.random.Random
 
 class Game() {
@@ -25,11 +26,11 @@ class Game() {
     val lastActionIndex get() = _listActions.lastIndex
 
 
-    fun getCurrentAction(): Action{
+    fun getCurrentAction(): Action {
         return if(_listActions.isNotEmpty() && _currentActionSimonIndex >= 0 && _currentActionSimonIndex <= _listActions.lastIndex)  _listActions[_currentActionSimonIndex] else Action.NO_ACTION
     }
 
-    fun moveToNextAction(): Action{
+    fun moveToNextAction(): Action {
         if(_listActions.isEmpty() || _currentActionSimonIndex > _listActions.lastIndex) return Action.NO_ACTION
         if(_currentActionSimonIndex == _listActions.lastIndex){
             _currentActionSimonIndex++
@@ -51,7 +52,7 @@ class Game() {
     }
 
     fun end(namePlayer: String): Player{
-        val player = Player(namePlayer,_score,_level)
+        val player = Player(null,namePlayer,_score,_level)
         _score = 0
         _level = 1
         _maxSteps = 1

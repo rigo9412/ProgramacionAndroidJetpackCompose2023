@@ -12,8 +12,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CustomButton(text: String, startGameState: Boolean, onClick: () -> Unit) {
-    TextButton(modifier = Modifier
+fun CustomButton(text: String,modifier: Modifier, startGameState: Boolean, onClick: () -> Unit) {
+    TextButton(modifier = modifier
         .padding(10.dp)
         .height(80.dp)
         .fillMaxWidth(),

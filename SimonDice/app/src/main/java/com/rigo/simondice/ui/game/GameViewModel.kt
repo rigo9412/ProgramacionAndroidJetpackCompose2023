@@ -2,20 +2,22 @@ package com.rigo.simondice.ui.game
 
 import android.media.MediaPlayer
 import androidx.lifecycle.ViewModel
-import com.rigo.simondice.domain.models.Action
-import com.rigo.simondice.domain.models.Game
+import com.rigo.simondice.domain.models.getresponsetop.Action
 import com.rigo.simondice.domain.models.Player
+import com.rigo.simondice.domain.repository.SimonGameRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
 import kotlin.random.Random
 
-class GameViewModel: ViewModel() {
+@HiltViewModel
+class GameViewModel @Inject constructor(val simonGameRepository: SimonGameRepository): ViewModel() {
     private val INCREMENT_BY_LEVEL = 1
     private val INCREMENT_BY_SCORE = 10
-    private val _uiState =
-        MutableStateFlow<GameScreenState>(GameScreenState.Init)
+    private val _uiState =  MutableStateFlow<GameScreenState>(GameScreenState.Init)
     val uiState: StateFlow<GameScreenState> = _uiState
 
     private val _uiStateData = MutableStateFlow<GameData>(GameData())
@@ -38,7 +40,7 @@ class GameViewModel: ViewModel() {
             _uiStateData.value.listActions[_uiStateData.value.currentActionSimonIndex] else Action.NO_ACTION
     }
 
-    suspend fun PlayerPlays(currentActionPlayer:Action,greenAudio: MediaPlayer,redAudio: MediaPlayer,yellowAudio: MediaPlayer,blueAudio: MediaPlayer){
+    suspend fun PlayerPlays(currentActionPlayer: Action, greenAudio: MediaPlayer, redAudio: MediaPlayer, yellowAudio: MediaPlayer, blueAudio: MediaPlayer){
         coroutineScope {
             if (endSpeak && currentActionPlayer != Action.NO_ACTION && !uiStateData.value.currentActionOn) {
                 when (currentActionPlayer) {
@@ -124,7 +126,7 @@ class GameViewModel: ViewModel() {
         }
     }
 
-    private fun moveToNextAction(): Action{
+    private fun moveToNextAction(): Action {
         if(_uiStateData.value.listActions.isEmpty() || _uiStateData.value.currentActionSimonIndex > _uiStateData.value.listActions.lastIndex) return Action.NO_ACTION
         if(_uiStateData.value.currentActionSimonIndex == _uiStateData.value.listActions.lastIndex){
             _uiStateData.value = _uiStateData.value.copy(currentActionOn = false,currentActionSimonIndex = _uiStateData.value.currentActionSimonIndex +1 )

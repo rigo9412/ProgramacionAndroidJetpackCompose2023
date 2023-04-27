@@ -2,6 +2,7 @@ buildscript {
     ext {
         compose_ui_version = '1.4.2'
         hilt_version = '2.44.2'
+        kotlin_version = '1.8.10'
     }
     repositories {
         // other repositories...
@@ -10,6 +11,7 @@ buildscript {
     dependencies {
         // other plugins...
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.45'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.

@@ -1,6 +1,6 @@
 package com.rigo.simondice.ui.game
 
-import com.rigo.simondice.domain.models.Action
+import com.rigo.simondice.domain.models.getresponsetop.Action
 
 data class GameData (
     val score: Int = 0,
