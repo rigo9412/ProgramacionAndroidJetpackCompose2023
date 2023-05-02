@@ -1,4 +1,6 @@
 package com.example.simondice.domain.models
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.simondice.models.TopViewModel
 import kotlin.random.Random
 
 class Game() {
@@ -48,7 +50,7 @@ class Game() {
     }
 
     fun end(namePlayer: String): Player{
-        val player = Player(namePlayer,_score,_level)
+        val player = Player(-1,namePlayer,_score,_level)
         _score = 0
         _level = 1
         _maxSteps = 1

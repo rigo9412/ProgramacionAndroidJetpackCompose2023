@@ -1,4 +1,4 @@
-package com.example.simondice.models
+/*package com.example.simondice.models
 
 import kotlin.random.Random
 
@@ -91,4 +91,4 @@ class Game() {
         _currentActionPlayerIndex = 0
         generateActions()
     }
-}
+}*/

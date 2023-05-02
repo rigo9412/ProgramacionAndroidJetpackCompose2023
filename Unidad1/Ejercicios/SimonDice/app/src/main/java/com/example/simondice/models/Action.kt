@@ -1,4 +1,4 @@
-package com.example.simondice.models
+/*package com.example.simondice.models
 
 enum class Action(val value: Int) {
     NO_ACTION(-1) ,
@@ -7,4 +7,4 @@ enum class Action(val value: Int) {
     PRESS_BLUE_BUTTON(2),
     PRESS_YELLOW_BUTTON(3),
     //PRESS_INICIO_BUTTON(4)
-}
+}*/

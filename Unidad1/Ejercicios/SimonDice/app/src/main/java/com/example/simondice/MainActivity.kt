@@ -18,6 +18,8 @@ import android.media.MediaPlayer
 import android.media.*
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
+
 import androidx.compose.foundation.border
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -34,17 +36,25 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
-import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
+
 import com.example.simondice.domain.models.*
+import com.example.simondice.models.TopViewModel
+import com.example.simondice.models.UiState
 import kotlinx.coroutines.delay
 
 import com.example.simondice.ui.theme.*
+import dagger.hilt.android.AndroidEntryPoint
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val game = Game()
+
+
+    private val viewModel : TopViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +93,7 @@ class MainActivity : ComponentActivity() {
             }
 
             var currentActionSimonIndexState by remember { mutableStateOf(game.currentActionSimonIndex) }
-            var resultsxState by remember { mutableStateOf<Player?>(null) }
+            var resultsxState by remember { mutableStateOf<Player?>(Player(0,"",0,0)) }
             var currentActionPlayer by remember { mutableStateOf(Action.NO_ACTION) }
             var currentActionOn by remember { mutableStateOf(false) }
             var startGameState by remember { mutableStateOf(game.started) }
@@ -95,6 +105,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    var topViewModel = hiltViewModel<TopViewModel>()
                     LaunchedEffect(currentActionSimonIndexState) {
                         val action = game.getCurrentAction()
                         println("${action.toString()} = ${game.currentActionSimonIndex}")
@@ -137,7 +148,8 @@ class MainActivity : ComponentActivity() {
 
                             if (!game.validateAction(currentActionPlayer)) {
                                 println("END GAME")
-                                resultsxState = game.end("dummy")
+                                resultsxState = game.end(resultsxState?.name!!)
+                                topViewModel.postTop(resultsxState!!)
                                 startGameState = game.started
                             }
                             var scoreact = game.level
@@ -150,7 +162,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
 
-                    Column() {
+                    Column {
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
                                 .fillMaxWidth()
@@ -171,6 +183,7 @@ class MainActivity : ComponentActivity() {
                                 fontStyle = FontStyle(2),
                                 color = Color.White
                             )
+                            Text(text = "Nombre: ${resultsxState?.name!!}", fontFamily = FontFamily.SansSerif, fontStyle = FontStyle(2), color = Color.White)
                         }
                         SimonGame(
                             startPlayState,
@@ -186,6 +199,13 @@ class MainActivity : ComponentActivity() {
                             .background(Color.Black)
                             .fillMaxSize(), verticalArrangement = Arrangement.SpaceBetween) {
 
+                            OutlinedTextField(value = resultsxState?.name!!, onValueChange = {
+                                resultsxState = resultsxState?.copy(name = it)
+                            }, label = { Text(text = "Nombre") }, modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp)
+                            )
 
                             StartButton(startGameState, onStart = {
                                 game.start()
@@ -193,6 +213,9 @@ class MainActivity : ComponentActivity() {
                                 startGameState = game.started
 
                             })
+
+                            ComposeDialogDemo()
+
 
                             //Text(text = "STATUS GAME $startGameState")
                             //Text(text = "STATUS PLAY GAME $startPlayState")
@@ -205,19 +228,26 @@ class MainActivity : ComponentActivity() {
                             //Text(text = "INDEX PLAYER ACTION ON/OFF ${game.currentActionPlayerIndex.toString()}")
                             //Text(text = "INDEX SIMON ON/OFF ${currentActionSimonIndexState.toString()}")
                             Button(modifier = Modifier.fillMaxWidth(), onClick = {
-                                game.end("dummy")
+                                var apost = game.end(resultsxState?.name!!)
                                 startGameState = game.started
                                 currentActionSimonIndexState = game.currentActionSimonIndex
+                                topViewModel.postTop(apost)
 
                             }) {
                                 Text(text = "RESET")
                             }
                         }
                         if (resultsxState != null) {
+                            Row(modifier = Modifier
+                                .background(Color.Black)
+                                .fillMaxSize(), horizontalArrangement = Arrangement.Center){
                             Text(text = "=======RESULTADOS=======")
                             Text(text = resultsxState!!.name)
                             Text(text = resultsxState!!.score.toString())
                             Text(text = resultsxState!!.level.toString())
+                            Text(text = "")}
+                            var pla : Player = Player(-1,resultsxState!!.name,resultsxState!!.score,resultsxState!!.level)
+
                         }
 
                     }

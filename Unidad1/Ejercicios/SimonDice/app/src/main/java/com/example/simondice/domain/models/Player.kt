@@ -1,6 +1,6 @@
 package com.example.simondice.domain.models
 
 
-class Player(val name: String,val score: Int, val level: Int) {
+data class Player(var id :Int? = 0,var name: String,var score: Int, var level: Int) {
 
 }
