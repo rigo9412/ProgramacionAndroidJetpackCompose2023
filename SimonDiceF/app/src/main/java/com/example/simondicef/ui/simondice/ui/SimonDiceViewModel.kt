@@ -19,8 +19,13 @@ class SimonDiceViewModel : ViewModel(){
     private val _nivel = MutableLiveData<Int>()
     val nivel : LiveData<Int> = _nivel
 
+    private val _lastScore = MutableLiveData<Int>()
+    val lastScore : LiveData<Int> = _lastScore
+
+    private val _lost = MutableLiveData<Boolean>(false)
+    val lost : LiveData<Boolean> = _lost
+
     var difficulty = 1
-    var lost = false
     var count = 0
     var scoreCounter = 0
 
@@ -61,7 +66,9 @@ class SimonDiceViewModel : ViewModel(){
     }
 
     suspend fun empezarTurno(){
-        if(!lost) {
+        _lastScore.value = scoreCounter
+        _lost.value = false
+        if(!_lost.value!!) {
             selectionSequence = List(difficulty) { Random.nextInt(1, 5) }
             selectionSequence += 1
             showSelection()
@@ -89,6 +96,7 @@ class SimonDiceViewModel : ViewModel(){
         if(selectionSequence.size == selectedSequence.size) {
             for (i in selectedSequence) {
                 if (i != selectionSequence[counter]) {
+                    _lost.value = true
                     ResetGame()
 
                     return
@@ -127,6 +135,10 @@ class SimonDiceViewModel : ViewModel(){
         _isSelected2.value = false
         _isSelected3.value = false
         _isSelected4.value = false
+    }
+
+    fun changeLost(boolean: Boolean){
+        _lost.value = boolean
     }
 
 }
