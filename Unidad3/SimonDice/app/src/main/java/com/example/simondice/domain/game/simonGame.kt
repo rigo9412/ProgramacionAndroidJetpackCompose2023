@@ -34,6 +34,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -82,6 +83,7 @@ fun playAudio(mp: MediaPlayer) {
 fun SimonGame(viewModel: FormViewModel){
     val context = LocalContext.current
     val topViewModel = hiltViewModel<TopViewModel>()
+    val (showDialog, setShowDialog) = remember { mutableStateOf(false) }
 
     val blueAudio: MediaPlayer by remember { mutableStateOf(MediaPlayer.create(context, R.raw.azul)) }
     val redAudio: MediaPlayer by remember { mutableStateOf(MediaPlayer.create(context, R.raw.rojo)) }
@@ -134,7 +136,7 @@ fun SimonGame(viewModel: FormViewModel){
             currentActionOn = false
 
             if(!viewModel.validateAction(currentActionPlayer)){
-                resultsxState = viewModel.end("19100212 Andrea Martinez")
+                resultsxState = viewModel.end("Prueba")
                 topViewModel.postTop(resultsxState!!)
                 startGameState = viewModel.started
             }
@@ -145,7 +147,7 @@ fun SimonGame(viewModel: FormViewModel){
         }
     }
 
-    Column() {
+    Column(modifier = Modifier.background(Color.Black),) {
         SimonGameColumn(
             viewModel.level,
             viewModel.score,
@@ -156,18 +158,6 @@ fun SimonGame(viewModel: FormViewModel){
         ) {
             currentActionPlayer = it
         }
-        val (showDialog, setShowDialog) = remember { mutableStateOf(false) }
-        Button(
-            onClick = {
-                setShowDialog(true)
-                topViewModel.toCardGetTrue()
-                topViewModel.getTop()
-
-            }) {
-            Text("Mostrar campeones")
-        }
-        // Create alert dialog, pass the showDialog state to this Composable
-        DialogDemo(showDialog = showDialog, setShowDialog = setShowDialog)
 
         StartButton(startGameState, onStart = {
             resultsxState = null
@@ -175,6 +165,25 @@ fun SimonGame(viewModel: FormViewModel){
             currentActionSimonIndexState = viewModel.currentActionSimonIndex
             startGameState = viewModel.started
         })
+
+        Spacer( modifier = Modifier.size(30.dp))
+
+        Row(
+            modifier = Modifier.fillMaxSize().background(Color.Black),
+            horizontalArrangement = Arrangement.Center
+        ){
+            Button(
+                modifier = Modifier.height(50.dp).width(150.dp),
+                onClick = {
+                    setShowDialog(true)
+                    topViewModel.toCardGetTrue()
+                    topViewModel.getTop()},
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)) {
+                Text(text = "Mostrar top",color = Color.Black,fontSize = 20.sp)
+            }
+            // Create alert dialog, pass the showDialog state to this Composable
+            DialogDemo(showDialog = showDialog, setShowDialog = setShowDialog)
+        }
 
         if(resultsxState != null)
         {
@@ -298,11 +307,11 @@ fun ButtonAction(
 @Composable
 fun StartButton(startGameState: Boolean, onStart: () -> Unit) {
     Row(
-        modifier = Modifier.fillMaxSize().background(Color.Black),
+        modifier = Modifier.fillMaxWidth().background(Color.Black),
         horizontalArrangement = Arrangement.Center
     ) {
         Button(
-            modifier = Modifier.height(70.dp).width(100.dp),
+            modifier = Modifier.height(50.dp).width(100.dp),
             enabled = !startGameState,
             onClick = { onStart() },
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)) {

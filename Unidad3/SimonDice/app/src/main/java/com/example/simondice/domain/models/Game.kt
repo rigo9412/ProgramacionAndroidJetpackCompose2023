@@ -7,7 +7,7 @@ class FormViewModel(): ViewModel() {
     private var INCREMENT_BY_LEVEL = 1
     private val INCREMENT_BY_SCORE = 10
     private var _maxSteps = 0
-    private var _score = 300
+    private var _score = 0
     private var _level = 1
     private var _currentActionSimonIndex = -1
     private var _currentActionPlayerIndex = 0
@@ -47,8 +47,8 @@ class FormViewModel(): ViewModel() {
         return this
     }
 
-    fun end(mensaje: String): Player {
-        val player = Player(null,mensaje,_score,_level)
+    fun end(name: String): Player {
+        val player = Player(null,name,_score,_level)
         _score = 0
         _level = 1
         _maxSteps = 0

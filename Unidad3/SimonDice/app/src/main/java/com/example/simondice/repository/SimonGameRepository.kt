@@ -60,7 +60,7 @@ class SimonGameRepository
         }
         result.sortByDescending { it.score }
         _data.value = result
-        emit(result)
+        emit(result.take(10))
     }.flowOn(Dispatchers.IO)
 
     fun postTop(player: Player): Flow<List<Player>> = flow {
