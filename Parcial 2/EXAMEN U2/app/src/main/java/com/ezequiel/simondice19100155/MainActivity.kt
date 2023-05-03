@@ -44,7 +44,6 @@ public var top10Pri = Top10()
 class MainActivity : ComponentActivity() {
     private val game = Game()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
