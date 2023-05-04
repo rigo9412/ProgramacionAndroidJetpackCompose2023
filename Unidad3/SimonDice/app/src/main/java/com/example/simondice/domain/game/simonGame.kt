@@ -136,7 +136,7 @@ fun SimonGame(viewModel: FormViewModel){
             currentActionOn = false
 
             if(!viewModel.validateAction(currentActionPlayer)){
-                resultsxState = viewModel.end("Prueba")
+                resultsxState = viewModel.end("Andrea esta checando el postman")
                 topViewModel.postTop(resultsxState!!)
                 startGameState = viewModel.started
             }
