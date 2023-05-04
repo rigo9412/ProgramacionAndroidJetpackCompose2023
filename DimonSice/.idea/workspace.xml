@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0519e2d7-2276-4942-ba21-ef5b7da0d1c3" name="Changes" comment="" />
+    <list default="true" id="0519e2d7-2276-4942-ba21-ef5b7da0d1c3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../CURPGenerator Recargado/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CURPGenerator Recargado/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CURPGenerator Recargado/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../CURPGenerator Recargado/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CURPGenerator Recargado/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../CURPGenerator Recargado/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CURPGenerator Recargado/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../CURPGenerator Recargado/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,10 +41,14 @@
     <option name="KEY_STORE_PATH" value="C:\Users\revis\Desktop\AndoridKosas\DimonSice.jks" />
     <option name="KEY_ALIAS" value="keyDimonSice" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2MYZb4LO5gvrgI8HGO4EzrjIxL6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -121,9 +130,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
+      <method v="2" />
     </configuration>
     <configuration name="when_top_is_update()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="DimonSice.app.androidTest" />
@@ -174,9 +181,7 @@
         <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
@@ -194,5 +199,16 @@
       <updated>1677946544729</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
