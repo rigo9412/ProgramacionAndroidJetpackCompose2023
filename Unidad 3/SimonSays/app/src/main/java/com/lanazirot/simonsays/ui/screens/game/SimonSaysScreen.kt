@@ -328,7 +328,7 @@ fun SimonSayGame() {
                     .clip(RoundedCornerShape(50.dp, 50.dp, 50.dp, 50.dp))
                     .testTag("btn_new_score"),
                 onClick = {
-                    padViewModel.postScore(Score(100, "Pedro Infante"))
+                    padViewModel.postScore(Score(1000, "Alan Peña 19100234"))
                 }
             ) {
                 Icon(Icons.Rounded.Add, contentDescription = "Localized description")
