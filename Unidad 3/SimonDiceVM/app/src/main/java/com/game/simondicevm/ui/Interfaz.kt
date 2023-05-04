@@ -6,6 +6,7 @@ import android.content.Context
 import android.media.MediaPlayer
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -13,6 +14,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
@@ -21,11 +23,13 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.game.simondicevm.R
+import com.game.simondicevm.ui.theme.colorboton
 import com.game.simondicevm.ui.topstate.TopScreen
 import com.game.simondicevm.ui.topstate.TopViewModel
 import com.rigo.simondice.domain.models.Player
@@ -65,49 +69,64 @@ fun InicioScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         Text(text = "Simon dice", fontSize = 35.sp)
-        Text(text = "Record: Nivel ${data.record}", fontSize = 20.sp, modifier = Modifier.padding(10.dp))
-        Row(horizontalArrangement = Arrangement.Center) {
-            Button(
-                onClick = { viewModel.MostrarTop()},
-                modifier = Modifier
-                    .padding(20.dp)
-                    .width(150.dp)
-                    .height(50.dp)
-            ) {
-                Text(text = "Leaderboard")
-            }
-        }
+        Text(text = "Tu record: Nivel ${data.record}", fontSize = 20.sp, modifier = Modifier.padding(10.dp))
 
         Row(horizontalArrangement = Arrangement.Center) {
-            Button(
-                modifier = Modifier
-                    .padding(20.dp)
-                    .width(150.dp)
-                    .height(50.dp),
-                onClick = {  topViewModel.postTopFake(Player(null,"test",5,1)) }
-            ) {
-                Text(text = "Post request")
-            }
-        }
-
-        Row(horizontalArrangement = Arrangement.SpaceEvenly) {
-            OutlinedButton(
-                onClick = { activity?.finish() },
-                modifier = Modifier
-                    .padding(20.dp)
-                    .width(150.dp)
-                    .height(50.dp)
-            ) {
-                Text(text = "Salir")
-            }
             Button(
                 onClick = { viewModel.PrepararBotones() },
                 modifier = Modifier
-                    .padding(20.dp)
-                    .width(150.dp)
-                    .height(50.dp)
+                    .padding(15.dp)
+                    .width(180.dp)
+                    .height(55.dp)
+                    .clip(RoundedCornerShape(20.dp)),
+                colors = ButtonDefaults.buttonColors(colorboton)
             ) {
-                Text(text = "Jugar")
+                Text(text = "Jugar", fontWeight = FontWeight.Normal, color = Color.White)
+            }
+        }
+
+        Row(horizontalArrangement = Arrangement.Center) {
+            Button(
+                onClick = {
+                    topViewModel.getTop()
+                    viewModel.MostrarTop()
+                          },
+                modifier = Modifier
+                    .padding(15.dp)
+                    .width(180.dp)
+                    .height(55.dp)
+                    .clip(RoundedCornerShape(20.dp)),
+                colors = ButtonDefaults.buttonColors(colorboton)
+            ) {
+                Text("Leaderboard", fontWeight = FontWeight.Normal, color = Color.White)
+            }
+        }
+
+        Row(horizontalArrangement = Arrangement.Center) {
+            Button(
+                modifier = Modifier
+                    .padding(15.dp)
+                    .width(180.dp)
+                    .height(55.dp)
+                    .clip(RoundedCornerShape(20.dp)),
+                colors = ButtonDefaults.buttonColors(colorboton),
+                onClick = {  topViewModel.postTopFake(Player(null,"test7",5,1)) }
+            ) {
+                Text(text = "Post request", fontWeight = FontWeight.Normal, color = Color.White)
+            }
+        }
+
+        Row(horizontalArrangement = Arrangement.Center) {
+            Button(
+                onClick = { activity?.finish() },
+                modifier = Modifier
+                    .padding(15.dp)
+                    .width(180.dp)
+                    .height(55.dp)
+                    .clip(RoundedCornerShape(20.dp)),
+                colors = ButtonDefaults.buttonColors(colorboton)
+            ) {
+                Text(text = "Salir", fontWeight = FontWeight.Normal, color = Color.White)
             }
         }
     }

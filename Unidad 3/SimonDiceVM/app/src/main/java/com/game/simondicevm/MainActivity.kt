@@ -12,7 +12,9 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -31,10 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.game.simondicevm.ui.GameScreen
 import com.game.simondicevm.ui.SimonViewModel
 import com.game.simondicevm.ui.theme.SimonDiceVMTheme
-import com.game.simondicevm.ui.topstate.NotificationState
-import com.game.simondicevm.ui.topstate.ScreenReady
-import com.game.simondicevm.ui.topstate.TopScreen
-import com.game.simondicevm.ui.topstate.TopViewModel
+import com.game.simondicevm.ui.topstate.*
 import com.rigo.simondice.domain.models.Player
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -57,8 +56,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    //viewModel2.postTopFake(Player(null,"test7",15,1))
                     GameScreen(viewModel = viewModel, viewModel2 = viewModel2)
-                    //viewModel2.postTopFake(Player(null,"test",5,1))
                     //TopScreen(viewModel = viewModel2)
                 }
             }

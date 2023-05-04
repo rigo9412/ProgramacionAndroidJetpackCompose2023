@@ -20,3 +20,5 @@ val gray = Color(0xFFDFDFDF)
 val goldenDark = Color(0xFFC59D25)
 val silverDark = Color(0xFF969393)
 val bronzeDark = Color(0xFF8D3F27)
+
+val colorboton = Color(0xFF3949AB)

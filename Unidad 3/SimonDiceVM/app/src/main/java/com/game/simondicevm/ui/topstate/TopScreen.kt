@@ -1,5 +1,6 @@
 package com.game.simondicevm.ui.topstate
 
+import android.service.autofill.OnClickAction
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -171,7 +172,24 @@ fun ScreenLoading(
     }
 }
 
-
+/*@Composable
+fun CustomButton(
+    btnColor: Color,
+    lblTexto: String,
+    onClick : () -> Unit
+){
+    Button(
+        onClick = { onClick },
+        modifier = Modifier
+            .padding(20.dp)
+            .width(160.dp)
+            .height(50.dp)
+            .clip(RoundedCornerShape(20.dp)),
+        colors = ButtonDefaults.buttonColors(btnColor)
+    ) {
+        Text(lblTexto, fontWeight = FontWeight.Light, color = Color.White)
+    }
+}*/
 
 @Preview(showBackground = true)
 @Composable
