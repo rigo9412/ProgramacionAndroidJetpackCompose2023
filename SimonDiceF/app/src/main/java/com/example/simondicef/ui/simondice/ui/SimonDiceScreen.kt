@@ -34,7 +34,11 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import com.example.simondicef.domain.models.User
 import com.example.simondicef.leaderboard.ui.LeaderboardViewModel
+import com.example.simondicef.leaderboard.ui.NotificationState
 import com.example.simondicef.leaderboard.ui.UserViewModel
 import kotlinx.coroutines.launch
 
@@ -53,13 +57,32 @@ var b2ColorOn = Color(0xFFC7FFBD)
 var b3ColorOn = Color(0xFFFFBEBE)
 var b4ColorOn = Color(0xFFFFF191)
 
+fun createNotification(context: Context, user: User) {
+    // Create the notification
+    val builder = NotificationCompat.Builder(context, "TOP")
+        .setSmallIcon(R.mipmap.ic_launcher)
+        .setContentTitle("Nuevo jugador entro al Top 10")
+        .setContentText("Jugador ${user.name} entro al Top 10")
+
+    // Show the notification
+    val notificationManager = NotificationManagerCompat.from(context)
+    notificationManager.notify(NOTIFICATION_ID, builder.build())
+}
+
+val NOTIFICATION_ID = System.currentTimeMillis().toInt()
+
 @Composable
 fun simonDiceScreen(viewModel: SimonDiceViewModel,leaderboard: LeaderboardViewModel,userViewModel: UserViewModel){
-
+    val showNotif = userViewModel.notificationState.collectAsState().value
+    if(showNotif.show){
+        createNotification(LocalContext.current,showNotif.user)
+        userViewModel.hideNotif()
+    }
     Box(modifier = Modifier
         .fillMaxSize()
         .padding(16.dp)
     ){
+
         simonDice(Modifier.align(Alignment.Center),viewModel, leaderboard = leaderboard,userViewModel)
     }
 }
@@ -203,51 +226,6 @@ fun ColorBlock(backColor : Color,
         ) {
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewColorBlocks(){
-    Row(){
-        Column() {
-            PreviewColorBlock(backColor = b1Color, text = "Azul", QuarterCircleShape,0f)
-            PreviewColorBlock(backColor = b2Color, text = "Verde", QuarterCircleShape,-90f)
-        }
-        Column() {
-            PreviewColorBlock(backColor = b3Color, text = "Rojo", QuarterCircleShape,90f)
-            PreviewColorBlock(backColor = b4Color, text = "Amarillo", QuarterCircleShape,180f)
-        }
-    }
-}
-
-@Composable
-fun PreviewColorBlock(backColor : Color,
-               text : String, shape : Shape,rotation : Float){
-    Box(modifier = Modifier.rotate(rotation)) {
-        Box(
-            modifier = Modifier
-                .padding(10.dp)
-                .clip(shape)
-                .background(backColor)
-                .size(150.dp)
-                .clickable {
-                },
-            contentAlignment = Alignment.Center
-        ) {
-        }
-    }
-}
-
-
-private val TriangleShape = GenericShape {size, _ ->
-    // 1)
-    moveTo(size.width , 0f)
-
-    // 2)
-    lineTo(size.width, size.height)
-
-    // 3)
-    lineTo(0f, size.height)
 }
 
 private val QuarterCircleShape = GenericShape { size, _ ->
