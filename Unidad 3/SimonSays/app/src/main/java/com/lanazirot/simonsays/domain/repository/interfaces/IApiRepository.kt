@@ -17,7 +17,7 @@ interface IApiRepository {
     }
 
     @Headers("Authorization: Bearer $TOKEN")
-    @GET("tops")
+    @GET("tops?sort[0]=value:desc")
     suspend fun getTopTenScores(): ApiResponse
 
     @Headers("Authorization: Bearer $TOKEN")

@@ -15,7 +15,7 @@ class ApiService(private val apiRepository: IApiRepository) : IApiService {
         val scores = mutableListOf<Score>()
         if (apiResponse != null) {
             apiResponse.data.forEach {
-                scores.add(Score(it.attributes.value, it.attributes.name))
+                scores.add(Score(it.attributes.value?:0 , it.attributes.name!!))
             }
         }
         return flow { emit(scores) }

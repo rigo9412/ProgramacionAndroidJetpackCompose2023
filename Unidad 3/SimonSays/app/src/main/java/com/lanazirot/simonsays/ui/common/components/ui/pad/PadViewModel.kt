@@ -13,25 +13,33 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.random.Random
 import com.lanazirot.simonsays.domain.model.api.post.Data
+import com.lanazirot.simonsays.domain.model.enums.AppStatus
+import com.lanazirot.simonsays.domain.model.enums.SimonColorPad
 import com.lanazirot.simonsays.domain.services.implementation.CustomSocketHandler
-import java.util.logging.SocketHandler
+import com.lanazirot.simonsays.ui.screens.game.AppState
+import kotlinx.coroutines.delay
 
 
 @HiltViewModel
-class PadViewModel @Inject constructor(
-    private val gameManager: IGameManager,
-    private val apiService: IApiService
-) : ViewModel() {
+class PadViewModel @Inject constructor(private val gameManager: IGameManager, private val apiService: IApiService) : ViewModel() {
     private val _pad = MutableStateFlow(PadState())
     val pad = _pad.asStateFlow()
     private val colorList = SimonColorPad.values().filter { it != SimonColorPad.NONE }
 
+    private val _appStatus: MutableStateFlow<AppStatus> = MutableStateFlow(AppStatus.RUNNING)
+    val appStatus = _appStatus
+
+
     init {
         _pad.value = PadState(gameStatus = GameStatus.HOLD)
-        //Listen to the socket
         CustomSocketHandler.getInstance().on("notification.top") {
-            println("New score received")
-            println(it)
+            val data = it as Array<Any>
+            viewModelScope.launch {
+                _appStatus.value = AppStatus.NOTIFICATION(data[0].toString())
+                delay(1000)
+                _appStatus.value = AppStatus.RUNNING
+            }
+
         }
     }
 
@@ -55,8 +63,8 @@ class PadViewModel @Inject constructor(
         )
     }
 
-    fun postScore(score: Score) {
-        val newDataPost = DataPost(name = score.name, value = score.score, level = 1)
+    private fun postScore(score: Score) {
+        val newDataPost = DataPost(name = score.name, value = score.score, level = score.score)
         viewModelScope.launch {
             val post = apiService.postScore(Data(data = newDataPost))
             newDataPost.id = post.data.id
@@ -102,7 +110,8 @@ class PadViewModel @Inject constructor(
     }
 
 
-    fun setName(name: String) {
+    fun setPlayerToScoreboard(name: String) {
+        _pad.value.player?.score?.let { postScore(Score(it, name)) }
         gameManager.addToScoreLog(Score(score = _pad.value.player?.score ?: 0, name = name))
         _pad.value = PadState(gameStatus = GameStatus.GAME_OVER, isGoingToScoreboard = false)
     }

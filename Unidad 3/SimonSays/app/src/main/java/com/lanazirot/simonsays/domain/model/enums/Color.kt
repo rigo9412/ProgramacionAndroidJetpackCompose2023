@@ -1,4 +1,4 @@
-package com.lanazirot.simonsays.domain.model
+package com.lanazirot.simonsays.domain.model.enums
 
 import androidx.compose.ui.graphics.Color
 

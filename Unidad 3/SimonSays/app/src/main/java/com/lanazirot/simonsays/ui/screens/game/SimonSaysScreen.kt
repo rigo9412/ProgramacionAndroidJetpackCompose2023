@@ -1,6 +1,13 @@
 package com.lanazirot.simonsays.ui.screens.game
 
+import android.Manifest
+import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.content.pm.PackageManager
 import android.media.MediaPlayer
+import android.os.Build
 import android.widget.Toast
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
@@ -11,7 +18,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Score
 import androidx.compose.runtime.*
@@ -25,15 +31,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.lanazirot.simonsays.R
 import com.lanazirot.simonsays.domain.model.Player
-import com.lanazirot.simonsays.domain.model.Score
-import com.lanazirot.simonsays.domain.model.SimonColorPad
 import com.lanazirot.simonsays.domain.model.StepColorAction
-import com.lanazirot.simonsays.ui.common.components.ui.pad.GameStatus
+import com.lanazirot.simonsays.domain.model.enums.AppStatus
+import com.lanazirot.simonsays.domain.model.enums.SimonColorPad
 import com.lanazirot.simonsays.presentation.pad.components.CustomDialog
-import com.lanazirot.simonsays.ui.common.components.ui.pad.Pad
 import com.lanazirot.simonsays.presentation.pad_button.components.PadButton
+import com.lanazirot.simonsays.ui.common.components.ui.pad.GameStatus
+import com.lanazirot.simonsays.ui.common.components.ui.pad.Pad
 import com.lanazirot.simonsays.ui.providers.LocalGlobalProvider
 import kotlinx.coroutines.delay
 
@@ -44,20 +53,35 @@ fun SimonSayGame() {
     val padViewModel = gp.padViewModel
 
     val navController = gp.nav
-
     val showDialog = remember { mutableStateOf(false) }
+
+
+    LaunchedEffect(Unit) {
+        createNotificationChannel(ctx);
+    }
+
+    val appStatus = padViewModel.appStatus.collectAsState()
+
+    LaunchedEffect(appStatus.value) {
+        when (appStatus.value) {
+            is AppStatus.RUNNING -> {}
+            is AppStatus.NOTIFICATION -> {
+                //Get data from notification
+                val data = (appStatus.value as AppStatus.NOTIFICATION).value
+                showSimpleNotification(ctx, "SIMON_SAYS", 1, "New Top!", data as String)
+            }
+        }
+    }
+
 
     if (showDialog.value) {
         CustomDialog(value = "", setShowDialog = {
             showDialog.value = it
         }) {
-            padViewModel.setName(it)
+            padViewModel.setPlayerToScoreboard(it)
         }
     }
-
     val padState = padViewModel.pad.collectAsState()
-
-
     LaunchedEffect(padState.value.isGoingToScoreboard) {
         if (padState.value.isGoingToScoreboard) {
             showDialog.value = true
@@ -316,29 +340,6 @@ fun SimonSayGame() {
                 )
             }
         }
-
-        Row(
-            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
-        ) {
-            Button(
-                modifier = Modifier
-                    .height(100.dp)
-                    .width(250.dp)
-                    .shadow(10.dp)
-                    .clip(RoundedCornerShape(50.dp, 50.dp, 50.dp, 50.dp))
-                    .testTag("btn_new_score"),
-                onClick = {
-                    padViewModel.postScore(Score(1000, "Alan Peña 19100234"))
-                }
-            ) {
-                Icon(Icons.Rounded.Add, contentDescription = "Localized description")
-                Text(
-                    text = "Post Score",
-                    fontFamily = MaterialTheme.typography.h1.fontFamily,
-                    fontSize = 30.sp
-                )
-            }
-        }
     }
 }
 
@@ -349,5 +350,51 @@ fun playSound(mediaPlayer: MediaPlayer) {
         mediaPlayer.pause()
         mediaPlayer.seekTo(0)
         mediaPlayer.start()
+    }
+}
+
+fun createNotificationChannel(context: Context) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val name = "Simon Says"
+        val descriptionText = "Simon Says Game"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel("SIMON_SAYS", name, importance).apply {
+            description = descriptionText
+        }
+        val notificationManager: NotificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        notificationManager.createNotificationChannel(channel)
+    }
+}
+
+fun showSimpleNotification(
+    context: Context,
+    channelId: String,
+    notificationId: Int,
+    textTitle: String,
+    textContent: String,
+    priority: Int = NotificationCompat.PRIORITY_DEFAULT
+) {
+    val builder = NotificationCompat.Builder(context, channelId)
+        .setSmallIcon(androidx.core.R.drawable.notification_bg)
+        .setContentTitle(textTitle)
+        .setContentText(textContent)
+        .setPriority(priority)
+
+    with(NotificationManagerCompat.from(context)) {
+        if (ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                context as Activity,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                1
+            )
+            return
+        }
+        notify(notificationId, builder.build())
     }
 }

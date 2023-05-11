@@ -9,7 +9,11 @@ class CustomSocketHandler {
     private val socket: Socket = IO.socket(IApiRepository.URL_SOCKET)
 
     init {
-        socket.connect()
+        try{
+            socket.connect()
+        }catch (e: Exception){
+            println(e)
+        }
     }
 
     companion object {
