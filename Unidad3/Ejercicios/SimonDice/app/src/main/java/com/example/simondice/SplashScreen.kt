@@ -9,6 +9,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 
@@ -179,7 +180,10 @@ fun Tops(players: List<Player>) {
                                     Text(text = player.name, modifier = Modifier.padding(10.dp))
                                 }
                                 Column {
-                                    Text(text = player.score.toString(), modifier = Modifier.padding(10.dp))
+                                    Text(
+                                        text = player.score.toString(),
+                                        modifier = Modifier.padding(10.dp)
+                                    )
                                 }
                             }
                         }
@@ -194,6 +198,7 @@ fun Tops(players: List<Player>) {
                     }, modifier = Modifier
 
                         .verticalScroll(rememberScrollState())
+                        .horizontalScroll(rememberScrollState())
                 )
 
             }

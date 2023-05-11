@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
@@ -30,6 +31,8 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
     init {
 
         getTop()
+        listenNewTopPlayer()
+
     }
 
     fun getTop() =
@@ -41,6 +44,7 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
             }.collect {
                 _uiState.value = UiState.Ready(it)
                 toCardGet.value = true
+
             }
         }
 
@@ -65,5 +69,15 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
             }
         }
     }
+
+    private fun listenNewTopPlayer(){
+        viewModelScope.launch {
+            simonGameRepository.listenNewTopPlayer().collect()  {
+              getTop()
+            }
+        }
+    }
+
+
 
 }
