@@ -52,8 +52,6 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.simondice.ComposeDialogDemo
 import com.example.simondice.DialogDemo
 import com.example.simondice.R
 import com.example.simondice.domain.models.Player
@@ -136,7 +134,7 @@ fun SimonGame(viewModel: FormViewModel){
             currentActionOn = false
 
             if(!viewModel.validateAction(currentActionPlayer)){
-                resultsxState = viewModel.end("Andrea esta checando el postman")
+                resultsxState = viewModel.end("Andrea Martinez")
                 topViewModel.postTop(resultsxState!!)
                 startGameState = viewModel.started
             }

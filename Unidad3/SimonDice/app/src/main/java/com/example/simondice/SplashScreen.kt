@@ -63,24 +63,6 @@ fun SplashScreenPreview() {
 }
 
 @Composable
-fun ComposeDialogDemo() {
-    val topViewModel = hiltViewModel<TopViewModel>()
-    val (showDialog, setShowDialog) = remember { mutableStateOf(false) }
-    Button(
-        onClick = {
-
-            setShowDialog(true)
-            topViewModel.toCardGetTrue()
-            topViewModel.getTop()
-
-        }) {
-        Text("Mostrar campeones")
-    }
-    // Create alert dialog, pass the showDialog state to this Composable
-    DialogDemo(showDialog = showDialog, setShowDialog = setShowDialog)
-}
-
-@Composable
 fun DialogDemo(
     showDialog: Boolean, setShowDialog: (Boolean) -> Unit, content: @Composable () -> Unit = {}
 ) {

@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import org.json.JSONObject
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -52,6 +53,7 @@ class SimonGameRepository
         awaitClose()
     }
 
+
     fun getTop(): Flow<List<Player>> = flow {
         val result = mutableListOf<Player>()
         val response = apiService.getTop()
@@ -71,14 +73,13 @@ class SimonGameRepository
             score = player.score,
             level = player.level,
         )
-        //_tops.value.add(player)
         val socket = SocketHandler.getSocket()
         socket.emit("newTop",playerToJson(player))
         emit(_data.value)
     }.flowOn(Dispatchers.IO)
 
     private fun playerToJson(player: Player): String{
-        val jsonAdapter: JsonAdapter<Player> = moshi.adapter<Player>(Player::class.java)
+        val jsonAdapter: JsonAdapter<Player> = moshi.adapter(Player::class.java)
         return  jsonAdapter.toJson(player)
     }
 
