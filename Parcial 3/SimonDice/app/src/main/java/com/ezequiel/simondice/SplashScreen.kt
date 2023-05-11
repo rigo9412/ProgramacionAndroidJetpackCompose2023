@@ -13,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -26,10 +25,6 @@ import com.ezequiel.simondice.domain.modelo.Player
 import com.ezequiel.simondice.modelo.TopViewModel
 import com.ezequiel.simondice.models.UiState
 
-@Composable
-fun SplashScreen() {
-    Splash()
-}
 
 @Composable
 fun Splash() {
@@ -88,13 +83,13 @@ fun ComposeDialogDemo() {
             }) {
             Text("Mejores puntajes")
         }
-        // Create alert dialog, pass the showDialog state to this Composable
-        DialogDemo(showDialog = showDialog, setShowDialog = setShowDialog)
+
+        Dialog(showDialog = showDialog, setShowDialog = setShowDialog)
     }
 }
 
 @Composable
-fun DialogDemo(
+fun Dialog(
     showDialog: Boolean, setShowDialog: (Boolean) -> Unit, content: @Composable () -> Unit = {}
 ) {
 

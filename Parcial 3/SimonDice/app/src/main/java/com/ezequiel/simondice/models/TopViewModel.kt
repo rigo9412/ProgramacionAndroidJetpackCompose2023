@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import java.util.logging.SocketHandler
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,6 +26,7 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
     init {
 
         getTop()
+        listenTop()
     }
 
     fun getTop() =
@@ -60,5 +62,11 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
             }
         }
     }
-
+    private fun listenTop() {
+        viewModelScope.launch {
+            simonGameRepository.listenNewTopPlayer().collect() {
+                getTop()
+            }
+        }
+    }
 }
