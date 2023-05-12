@@ -46,7 +46,7 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
     private fun listenNewTopPlayer(){
         viewModelScope.launch {
             simonGameRepository.listenNewTopPlayer().collect()  {
-                //_notificationState.value = NotificationState.ShowNotification(it)
+                _notificationState.value = NotificationState.ShowNotification(it)
                 Log.d("NewTopPlayer", "Nuevo jugador añadido: ${it.name}, Nivel:  ${it.level}, Puntuación: ${it.score}")
             }
         }

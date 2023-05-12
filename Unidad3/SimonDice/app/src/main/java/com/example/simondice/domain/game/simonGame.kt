@@ -95,6 +95,10 @@ fun SimonGame(viewModel: FormViewModel){
     var startGameState by remember { mutableStateOf(viewModel.started) }
     var startPlayState by remember { mutableStateOf(viewModel.endSpeak) }
 
+    createNotificationChannel(LocalContext.current)
+    RequestPermissionNotification(LocalContext.current)
+    NotificationListener()
+
     LaunchedEffect(currentActionSimonIndexState) {
         val action = viewModel.getCurrentAction()
         if (startGameState && !currentActionOn && !viewModel.endSpeak) {
