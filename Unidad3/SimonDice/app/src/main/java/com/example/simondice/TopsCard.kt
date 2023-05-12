@@ -11,7 +11,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.simondice.domain.models.Player
@@ -69,51 +72,63 @@ fun Tops(players: List<Player>) {
                     .fillMaxWidth()
                     .fillMaxHeight(),
                 shape = RoundedCornerShape(10.dp),
-                elevation = 10.dp
+                elevation = 50.dp
             ) {
                 Column(
                     content = {
-                        Row() {
-                            Column {
-                                Text(text = "Nombre", modifier = Modifier.padding(10.dp))
-                            }
-                            Column {
-                                Text(text = "Puntaje", modifier = Modifier.padding(10.dp))
-                            }
+                        Text(
+                            text = "Top Puntajes",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp),
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 20.sp
+                        )
+                        Row(modifier = Modifier.fillMaxWidth()) {
+                            Text(
+                                text = "Nombre",
+                                modifier = Modifier.weight(1f).padding(10.dp),
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "Puntaje",
+                                modifier = Modifier.weight(1f).padding(10.dp),
+                                fontWeight = FontWeight.Bold
+                            )
                         }
                         for (player in players) {
-                            Row() {
-                                Column {
-                                    Text(text = player.name, modifier = Modifier
-                                        .padding(10.dp)
-                                    )
-                                }
-                                Column {
-                                    Text(text = player.score.toString(), modifier = Modifier.padding(50.dp,0.dp,0.dp,0.dp))
-                                }
+                            Row(modifier = Modifier.fillMaxWidth()) {
+                                Text(
+                                    text = player.name,
+                                    modifier = Modifier.weight(1f).padding(10.dp)
+                                )
+                                Text(
+                                    text = player.score.toString(),
+                                    modifier = Modifier.weight(1f).padding(10.dp),
+                                    textAlign = TextAlign.End
+                                )
                             }
                         }
-                        Button(onClick = { topViewModel.toCardGetFalse()
-                            return@Button } ,
+                        Button(
+                            onClick = {
+                                topViewModel.toCardGetFalse()
+                                return@Button
+                            },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(15.dp),
-                            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue))
-                        {
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
+                        ) {
                             Text(text = "Cerrar")
                         }
-                    }, modifier = Modifier
-
-                        .verticalScroll(rememberScrollState())
+                    },
+                    modifier = Modifier.verticalScroll(rememberScrollState())
                 )
-
             }
         }
     }
 }
-
-
-
 
 
 
