@@ -77,7 +77,7 @@ fun Tops(players: List<Player>) {
                 Column(
                     content = {
                         Text(
-                            text = "Top Puntajes",
+                            text = "Top Puntajes 🎖",
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(10.dp),
@@ -120,7 +120,7 @@ fun Tops(players: List<Player>) {
                                 .padding(15.dp),
                             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
                         ) {
-                            Text(text = "Cerrar")
+                            Text(text = "Cerrar", color = Color.White)
                         }
                     },
                     modifier = Modifier.verticalScroll(rememberScrollState())

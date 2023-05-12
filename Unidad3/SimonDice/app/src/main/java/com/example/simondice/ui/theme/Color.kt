@@ -7,15 +7,15 @@ val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
-val GreenOn = Color(0xFF6DBD72)
+val GreenOn = Color(0xFF16801D)
 val GreenOff = Color(0xFF29F838)
 
-val RedOn = Color(0xFFD17979)
+val RedOn = Color(0xFF9C1111)
 val RedOff = Color(0xFFF81818)
 
-val YellowOn = Color(0xFFDDD8AD)
+val YellowOn = Color(0xFFA5971A)
 val YellowOff = Color(0xFFFFE927)
 
-val BlueOn = Color(0xFF95B3DB)
+val BlueOn = Color(0xFF1950A5)
 val BlueOff = Color(0xFF3685FF)
 

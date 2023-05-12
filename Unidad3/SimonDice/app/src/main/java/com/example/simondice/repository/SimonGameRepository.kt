@@ -83,7 +83,7 @@ class SimonGameRepository
     }
 
     private fun jsonToPlayer(player: String): Player?{
-        val jsonAdapter: JsonAdapter<Player> = moshi.adapter<Player>(Player::class.java)
+        val jsonAdapter: JsonAdapter<Player> = moshi.adapter(Player::class.java)
         return  jsonAdapter.fromJson(player)
     }
 }
