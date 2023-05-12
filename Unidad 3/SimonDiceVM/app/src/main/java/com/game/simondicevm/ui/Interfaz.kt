@@ -110,7 +110,7 @@ fun InicioScreen(
                     .height(55.dp)
                     .clip(RoundedCornerShape(20.dp)),
                 colors = ButtonDefaults.buttonColors(colorboton),
-                onClick = {  topViewModel.postTopFake(Player(null,"test7",5,1)) }
+                onClick = {  topViewModel.postTopFake(Player(null,"19100165 Claudio de la Rosa",100,1)) }
             ) {
                 Text(text = "Post request", fontWeight = FontWeight.Normal, color = Color.White)
             }

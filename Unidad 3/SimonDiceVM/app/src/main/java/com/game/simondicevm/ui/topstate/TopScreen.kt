@@ -65,6 +65,11 @@ fun ScreenReady(
             )
         }
 
+        //boton para hacer post en la misma pantalla del top a ver si actualiza
+        Button(onClick = { viewModel.postTopFake(Player(null, "testsocket", 0,1)) }){
+            Text(text = "post")
+        }
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()

@@ -28,7 +28,7 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
     init {
         getTop()
         listenNewTopPlayer()
-        //listerTops()
+        listerTops()
     }
 
     fun getTop() =
@@ -64,7 +64,9 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
     private fun listenNewTopPlayer() {
         viewModelScope.launch {
             simonGameRepository.listenNewTopPlayer()
-                .collect {
+                .catch{
+                    _uiState.value= TopScreenState.Error(it.message ?: "Error al intentar escuchar nuevo post :/")
+                }.collect {
                     _notificationState.value = NotificationState.ShowNotification(it)
                 }
         }

@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
             val viewModel: SimonViewModel by viewModels()
             val viewModel2: TopViewModel by viewModels()
 
-            //estos metodos son para el socket, aun no funciona :c
+            //estos metodos para las notificaciones aun no funcionan :c
             //createNotificationChannel(LocalContext.current)
             //RequestPermissionNotification(LocalContext.current)
             //NotificationListener()

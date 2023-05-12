@@ -28,9 +28,10 @@ class SimonGameRepository @Inject constructor( val apiService: IApiService, val 
         val result = mutableListOf<Player>()
         val response = apiService.getTop()
         response.data.map {
-            result.add(Player(it.id, it.attributes?.name ?: "?????",it.attributes?.value ?: 0,1))
+            result.add(Player(/*it.id*/null, it.attributes?.name ?: "?????",it.attributes?.value ?: 0,1))
         }
         result.sortedByDescending { it.score }
+        _data.value = result
         emit(result)
     }.flowOn(Dispatchers.IO)
 
