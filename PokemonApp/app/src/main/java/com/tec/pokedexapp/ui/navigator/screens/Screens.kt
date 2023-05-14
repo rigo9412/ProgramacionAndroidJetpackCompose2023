@@ -8,6 +8,7 @@ const val ARGUMENT_STATE = "state"
 sealed class Screens(val route: String){
     object HomeScreen: Screens("HomeScreen")
     object PerfilScreen: Screens("PerfilScreen")
+    object LeaderBoardScreen: Screens("LeadboardScreen")
     object GameScreen: Screens("GameScreen")
     object ResultScreen: Screens("ResultScreen/{$ARGUMENT_SCORE}/{$ARGUMENT_STATE}"){
         fun passScoreAndState(score : Int,gameState: String): String{

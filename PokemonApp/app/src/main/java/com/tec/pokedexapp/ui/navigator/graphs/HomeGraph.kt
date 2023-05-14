@@ -8,8 +8,10 @@ import androidx.navigation.compose.composable
 import com.tec.pokedexapp.ui.global.GlobalProvider
 import com.tec.pokedexapp.ui.navigator.main.HomeScreen
 import com.tec.pokedexapp.ui.navigator.main.PerfilScreen
+import com.tec.pokedexapp.ui.navigator.main.leaderboard.LeaderboardScreen
 import com.tec.pokedexapp.ui.navigator.screens.BottomBarScreens
 import com.tec.pokedexapp.ui.navigator.screens.Graphs
+import com.tec.pokedexapp.ui.navigator.screens.Screens
 import com.tec.pokedexapp.ui.pokemon.PokemonListScreen
 
 @Composable
@@ -30,6 +32,11 @@ fun HomeGraph(navController: NavHostController,globalProvider: GlobalProvider){
         composable(route = BottomBarScreens.Pokedex.route){
             PokemonListScreen(navController, globalProvider)
         }
+
+        composable(route = Screens.LeaderBoardScreen.route){
+            LeaderboardScreen(navController, globalProvider)
+        }
+
 
         PokeGraph(navController,globalProvider)
         GameGraph(navController,globalProvider)

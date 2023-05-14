@@ -21,6 +21,7 @@ import com.tec.pokedexapp.data.constants.BackgroundRed
 import com.tec.pokedexapp.R
 import com.tec.pokedexapp.ui.game.Header
 import com.tec.pokedexapp.ui.global.GlobalProvider
+import com.tec.pokedexapp.ui.navigator.screens.Screens
 
 //@Composable
 //fun PerfilScreenPLACEHOLDER(navController: NavController){
@@ -52,6 +53,11 @@ fun PerfilScreen(navController: NavController,globalProvider: GlobalProvider) {
                     Text(text = "Pokémon Desconocidos: ${pokedex.getPokemonCount(false)}")
                     Text(text = "Pkm Legendarios Vistos: ${pokedex.getLegendaryPokemonCount()}")
                     Text(text = "Medallas: ${if(pokedex.completedPokedex()) "\uD83C\uDFC5" else ""}")
+
+                    //NAV A LEADERBOARD
+                    Button(onClick = {navController?.navigate(Screens.LeaderBoardScreen.route)}){
+                        Text("Ver leaderboard")
+                    }
 
                 }
                 //Caja imagen
