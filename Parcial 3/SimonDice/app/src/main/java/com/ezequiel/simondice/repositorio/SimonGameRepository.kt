@@ -2,6 +2,7 @@ package com.ezequiel.simondice.repositorio
 
 import android.util.Log
 import com.ezequiel.simondice.domain.SocketHandler
+import com.ezequiel.simondice.domain.dao.PlayerDao
 import com.ezequiel.simondice.domain.modelo.Player
 import com.ezequiel.simondice.domain.service.network.IApiService
 import com.ezequiel.simondice.domain.modelo.postTop.Data
@@ -22,7 +23,7 @@ import javax.inject.Singleton
 
 @Singleton
 class SimonGameRepository
-@Inject constructor(val apiService: IApiService, val moshi: Moshi) {
+@Inject constructor(val apiService: IApiService, val moshi: Moshi, val db: PlayerDao) {
     private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(listOf())
     val data: StateFlow<List<Player>> = _data.asStateFlow()
 
@@ -45,6 +46,7 @@ class SimonGameRepository
                     mutableList.add(player)
                     mutableList.sortByDescending { it.score }
                     _data.value = mutableList
+                    db.insert(player)
                     trySend(player)
                 }
             }
@@ -60,6 +62,7 @@ class SimonGameRepository
         }
         result.sortByDescending { it.score }
         _data.value = result
+        db.insertAll(result)
         emit(result.take(10))
     }.flowOn(Dispatchers.IO)
 
@@ -71,7 +74,8 @@ class SimonGameRepository
             score = player.score,
             level = player.level,
         )
-        //_tops.value.add(player)
+
+        db.insert(player)
         val socket = SocketHandler.getSocket()
         socket.emit("newTop",playerToJson(player))
         emit(_data.value)
