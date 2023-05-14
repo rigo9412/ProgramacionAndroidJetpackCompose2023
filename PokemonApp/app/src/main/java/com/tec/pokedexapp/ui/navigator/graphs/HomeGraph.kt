@@ -33,7 +33,7 @@ fun HomeGraph(navController: NavHostController,globalProvider: GlobalProvider){
             PokemonListScreen(navController, globalProvider)
         }
 
-        composable(route = Screens.LeaderBoardScreen.route){
+        composable(route = BottomBarScreens.LeaderBoard.route){
             LeaderboardScreen(navController, globalProvider)
         }
 

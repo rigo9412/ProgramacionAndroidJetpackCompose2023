@@ -54,10 +54,10 @@ fun PerfilScreen(navController: NavController,globalProvider: GlobalProvider) {
                     Text(text = "Pkm Legendarios Vistos: ${pokedex.getLegendaryPokemonCount()}")
                     Text(text = "Medallas: ${if(pokedex.completedPokedex()) "\uD83C\uDFC5" else ""}")
 
-                    //NAV A LEADERBOARD
-                    Button(onClick = {navController?.navigate(Screens.LeaderBoardScreen.route)}){
-                        Text("Ver leaderboard")
-                    }
+//                    //NAV A LEADERBOARD
+//                    Button(onClick = {navController?.navigate(Screens.LeaderBoardScreen.route)}){
+//                        Text("Ver leaderboard")
+//                    }
 
                 }
                 //Caja imagen

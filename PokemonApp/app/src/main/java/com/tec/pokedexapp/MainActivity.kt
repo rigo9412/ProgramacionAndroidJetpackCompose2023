@@ -25,9 +25,11 @@ import com.tec.pokedexapp.ui.pokemon.GameViewModelFactory
 import com.tec.pokedexapp.ui.pokemon.PokemonViewModel
 import com.tec.pokedexapp.ui.pokemon.PokemonViewModelFactory
 import com.tec.pokedexapp.ui.theme.PokedexAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

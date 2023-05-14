@@ -4,6 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.List
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class BottomBarScreens(
@@ -27,5 +28,11 @@ sealed class BottomBarScreens(
         route = "PERFIL",
         title = "PERFIL",
         icon = Icons.Default.Face
+    )
+
+    object LeaderBoard: BottomBarScreens(
+        route = "LEADERBOARD",
+        title = "TOP",
+        icon = Icons.Default.List
     )
 }
