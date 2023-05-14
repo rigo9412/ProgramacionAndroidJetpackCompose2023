@@ -1,6 +1,7 @@
 package com.tec.pokedexapp.ui.pokemon
 
 import android.content.res.AssetManager
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,6 +12,7 @@ import com.tec.pokedexapp.data.source.PokemonLocalAPI
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
@@ -23,19 +25,56 @@ class PokemonViewModel(
     private val _pokedexState = MutableStateFlow<PokemonModelState>(PokemonModelState())
     var pokedexState: StateFlow<PokemonModelState> = _pokedexState
 
-    init{
+    init {
+        Log.d("INIT", "TEST")
         viewModelScope.launch {
-            pokemonLocalRepository.getPokemons().collect { pokemons ->
+            var pokemons = pokemonLocalRepository.getPokemons().first()
+
+            Log.d("INVMSCOPE", "TEST")
+            Log.d("INIT", pokemons.toString())
+
+            if (pokemons.isEmpty()) {
+                val initialPokemons = pokemonLocalRepository.initialize()
+
+                Log.d("TEST2","IS EMPTY")
+                Log.d("INITIAL",initialPokemons.toString())
+
+                pokemonLocalRepository.insertAll(initialPokemons)
+                pokemons = pokemonLocalRepository.getPokemons().first()
                 _pokedexState.value = pokedexState.value.copy(fullPokemon = pokemons, unknownPokemon = pokemons)
+            } else {
+                Log.d("TEST2","NOT EMPTY")
+                _pokedexState.value = pokedexState.value.copy(fullPokemon = pokemons, unknownPokemon = pokemons)
+            }
+
+            updateLists()
+        }
+    }
+
+    private fun updateLists(){
+        for(pokemon in _pokedexState.value.fullPokemon){
+            if(pokemon.discovered) {
+                updateViewedList(pokemon.id)
+                updatePokemon(pokemon.id)
+                updateUnknownList(pokemon.id)
             }
         }
     }
+
+//    init{
+//        viewModelScope.launch {
+//            pokemonLocalRepository.getPokemons().collect { pokemons ->
+//                _pokedexState.value = pokedexState.value.copy(fullPokemon = pokemons, unknownPokemon = pokemons)
+//            }
+//        }
+//    }
 
     fun getPokemonByID(id: Int): Pokemon{
         return _pokedexState.value.fullPokemon[id - 1]
     }
 
     fun addViewedPokemon(id: Int){
+        viewModelScope.launch { pokemonLocalRepository.updateDiscoveredPokemon(id) }
         updateUnknownList(id)
         updatePokemon(id)
         updateViewedList(id)

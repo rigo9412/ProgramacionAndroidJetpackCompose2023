@@ -1,5 +1,6 @@
 package com.tec.pokedexapp
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,6 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.tec.pokedexapp.data.PokemonLocalRepository
+import com.tec.pokedexapp.data.model.Pokemon
+import com.tec.pokedexapp.data.model.PokemonEntity
+import com.tec.pokedexapp.domain.dao.AppDatabase
+import com.tec.pokedexapp.domain.dao.PokemonDao
+import com.tec.pokedexapp.domain.dao.PokemonDao_Impl
 import com.tec.pokedexapp.ui.game.GameViewModel
 import com.tec.pokedexapp.ui.global.GlobalProvider
 import com.tec.pokedexapp.ui.navigator.graphs.RootGraph
@@ -19,6 +25,8 @@ import com.tec.pokedexapp.ui.pokemon.GameViewModelFactory
 import com.tec.pokedexapp.ui.pokemon.PokemonViewModel
 import com.tec.pokedexapp.ui.pokemon.PokemonViewModelFactory
 import com.tec.pokedexapp.ui.theme.PokedexAppTheme
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.Flow
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +40,10 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val assetManager = assets
                     val navController = rememberNavController()
+                    val context: Context = this
+                    val testDao = AppDatabase.getDatabase(context)
 
-                    val pokemonLocalRepository = PokemonLocalRepository(assetManager)
+                    val pokemonLocalRepository = PokemonLocalRepository(assetManager =  assetManager,pokemonDao = testDao.pokemonDao())
 
                     val pokedexVM : PokemonViewModel by viewModels{ PokemonViewModelFactory(pokemonLocalRepository) }
                     val perfilVM : PerfilViewModel by viewModels()

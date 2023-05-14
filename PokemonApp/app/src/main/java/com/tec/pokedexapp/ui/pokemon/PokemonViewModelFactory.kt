@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.tec.pokedexapp.data.PokemonLocalRepository
+import com.tec.pokedexapp.domain.dao.PokemonDao
 import com.tec.pokedexapp.ui.game.GameViewModel
 
 class PokemonViewModelFactory(

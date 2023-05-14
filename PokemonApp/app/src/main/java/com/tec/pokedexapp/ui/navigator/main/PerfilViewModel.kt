@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class PerfilViewModel(
-    private val savedStateHandle: SavedStateHandle
-) : ViewModel() {
+class PerfilViewModel() : ViewModel() {
     private val _topScores = MutableStateFlow<List<Int>>(listOf(0,0,0))
     val topScores: StateFlow<List<Int>> = _topScores
 
