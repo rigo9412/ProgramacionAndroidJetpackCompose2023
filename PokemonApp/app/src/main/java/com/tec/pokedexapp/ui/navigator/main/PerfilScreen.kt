@@ -33,6 +33,8 @@ fun PerfilScreen(navController: NavController,globalProvider: GlobalProvider) {
     val pokedex = globalProvider.pokemonVM
     val perfil = globalProvider.perfilVM
     val user = perfil.user.collectAsState().value
+    val pokemonlists = pokedex.pokedexState.collectAsState().value
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -49,10 +51,17 @@ fun PerfilScreen(navController: NavController,globalProvider: GlobalProvider) {
                 Column(modifier = Modifier.padding(16.dp))
                 {
                     Text(text = "Datos del Entrenador", fontWeight = FontWeight.Bold)
-                    Text(text = "Pokémon Vistos: ${pokedex.getPokemonCount(true)}")
-                    Text(text = "Pokémon Desconocidos: ${pokedex.getPokemonCount(false)}")
+                    Text(text = "Pokémon Vistos: ${pokemonlists.viewedPokemon.size}")
+                    Text(text = "Pokémon Desconocidos: ${pokemonlists.unknownPokemon.size}")
                     Text(text = "Pkm Legendarios Vistos: ${pokedex.getLegendaryPokemonCount()}")
                     Text(text = "Medallas: ${if(pokedex.completedPokedex()) "\uD83C\uDFC5" else ""}")
+
+                    Button(onClick = {
+                        perfil.reiniciarProgreso()
+                        pokedex.resetPokedex()
+                    }){
+                        Text("Reiniciar progreso")
+                    }
 
 //                    //NAV A LEADERBOARD
 //                    Button(onClick = {navController?.navigate(Screens.LeaderBoardScreen.route)}){

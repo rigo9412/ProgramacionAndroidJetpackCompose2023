@@ -17,4 +17,7 @@ interface PokemonDao {
 
     @Query("UPDATE pokemon SET discovered = 1 WHERE id = :id")
     suspend fun updateDiscoveredPokemon(id: Int)
+
+    @Query("DELETE FROM pokemon")
+    suspend fun deletePokemons()
 }

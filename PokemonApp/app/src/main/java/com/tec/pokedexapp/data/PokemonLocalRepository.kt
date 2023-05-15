@@ -37,6 +37,11 @@ class PokemonLocalRepository(
         Log.d("UPDATE","$id")
     }
 
+    suspend fun deletePokemons() {
+        pokemonDao.deletePokemons()
+        Log.d("Deleted","DeletedPokemons")
+    }
+
     fun getUsers(): Flow<List<User>>{
         val users =  userDao.getAllUsers()
         Log.d("USER GET",users.toString())

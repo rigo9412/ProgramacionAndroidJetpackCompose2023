@@ -30,28 +30,26 @@ class PokemonViewModel(
         viewModelScope.launch {
             var pokemons = pokemonLocalRepository.getPokemons().first()
 
-            Log.d("INVMSCOPE", "TEST")
-            Log.d("INIT", pokemons.toString())
-
             if (pokemons.isEmpty()) {
-                val initialPokemons = pokemonLocalRepository.initialize()
-
-                Log.d("TEST2","IS EMPTY")
-                Log.d("INITIAL",initialPokemons.toString())
-
-                pokemonLocalRepository.insertAll(initialPokemons)
-                pokemons = pokemonLocalRepository.getPokemons().first()
-                _pokedexState.value = pokedexState.value.copy(fullPokemon = pokemons, unknownPokemon = pokemons)
+                initializePokemons()
             } else {
-                Log.d("TEST2","NOT EMPTY")
                 _pokedexState.value = pokedexState.value.copy(fullPokemon = pokemons, unknownPokemon = pokemons)
+                updateLists()
             }
-
-            updateLists()
         }
     }
 
+    private suspend fun initializePokemons(){
+        val initialPokemons = pokemonLocalRepository.initialize()
+        pokemonLocalRepository.insertAll(initialPokemons)
+        val pokemons = pokemonLocalRepository.getPokemons().first()
+        Log.d("POKEMONS",pokemons.toString())
+        _pokedexState.value = pokedexState.value.copy(fullPokemon = pokemons, unknownPokemon = pokemons)
+        updateLists()
+    }
+
     private fun updateLists(){
+        _pokedexState.value = _pokedexState.value.copy(viewedPokemon = listOf())
         for(pokemon in _pokedexState.value.fullPokemon){
             if(pokemon.discovered) {
                 updateViewedList(pokemon.id)
@@ -127,6 +125,13 @@ class PokemonViewModel(
         val pokemonList = _pokedexState.value.fullPokemon.toMutableList()
         pokemonList.removeIf { it.id == id }
         return pokemonList.shuffled().take(size)
+    }
+
+    fun resetPokedex(){
+        viewModelScope.launch {
+            pokemonLocalRepository.deletePokemons()
+            initializePokemons()
+        }
     }
 }
 

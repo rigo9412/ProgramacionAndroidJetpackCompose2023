@@ -57,8 +57,6 @@ fun ResultScreen(
     Log.d("COUNTRY", countries[0].toString())
     val user = globalProvider.perfilVM.user.collectAsState().value
     val finished = globalProvider.perfilVM.finished.collectAsState().value
-    var name by remember{mutableStateOf("")}
-    val selectedCountryCode = remember { mutableStateOf("") }
     val expanded = remember { mutableStateOf(false) }
 
     BackHandler(onBack = onBackPressed)
@@ -106,8 +104,8 @@ fun ResultScreen(
                     if(!finished) {
                         Text("Nombre:")
                         TextField(
-                            value = name,
-                            onValueChange = { name = it },
+                            value = user.name,
+                            onValueChange = { globalProvider.perfilVM.setName(it) },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(50.dp),
@@ -115,7 +113,7 @@ fun ResultScreen(
                         )
                         Text("Pais:")
                         TextField(
-                            value = Locale("", selectedCountryCode.value).displayCountry,
+                            value = Locale("", user.country).displayCountry,
                             onValueChange = {},
                             enabled = false,
                             modifier = Modifier
@@ -131,7 +129,7 @@ fun ResultScreen(
                                 val country = Locale("", countryCode)
                                 DropdownMenuItem(
                                     onClick = {
-                                        selectedCountryCode.value = countryCode
+                                        globalProvider.perfilVM.setCountry(countryCode)
                                         expanded.value = false
                                     }
                                 ) {
@@ -151,10 +149,10 @@ fun ResultScreen(
                     enabled = true,
                     onClick = {
                         if(state != "LOST" && !finished) {
-                            if(name != "" && selectedCountryCode.value != "") {
-                                globalProvider.perfilVM.setName(name)
-                                globalProvider.perfilVM.setCountry(selectedCountryCode.value)
+                            if(user.name != "" && user.country != "") {
+                                globalProvider.perfilVM.updateUser()
                                 globalProvider.perfilVM.finish(true)
+                                globalProvider.leaderboardVM.postUser(user)
                                 navController.navigate(BottomBarScreens.Home.route) {
                                     popUpTo(BottomBarScreens.Home.route) { inclusive = true }
                                 }
@@ -169,42 +167,4 @@ fun ResultScreen(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun test(){
-    Box(modifier = Modifier.fillMaxSize()){
-        var expanded by remember { mutableStateOf(false) }
-        var selectedCountryCode by remember { mutableStateOf("") }
-
-        Column {
-            TextField(
-                value = Locale("", selectedCountryCode).displayCountry,
-                onValueChange = {},
-                enabled = false,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { expanded = true }
-            )
-            DropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                for (countryCode in countries) {
-                    val country = Locale("", countryCode)
-                    DropdownMenuItem(
-                        onClick = {
-                            selectedCountryCode = countryCode
-                            expanded = false
-                        }
-                    ) {
-                        Text(text = country.displayCountry)
-                    }
-                }
-            }
-        }
-    }
-
 }
