@@ -25,11 +25,6 @@ class PerfilViewModel(
     private val _finished = MutableStateFlow(false )
     val finished : StateFlow<Boolean> = _finished
 
-//    private val _topScores = MutableStateFlow<List<Int>>(listOf(0,0,0))
-//    val topScores: StateFlow<List<Int>> = _topScores
-//    private val _tries = MutableStateFlow(0)
-//    val tries: StateFlow<Int> = _tries
-
     private var tryStartTime = LocalDateTime.now()
     private var tryFinishTime = LocalDateTime.now()
 
@@ -103,20 +98,23 @@ class PerfilViewModel(
     }
 
     fun addTime(){
-        Log.d("MINUTES",Duration.between(tryStartTime,tryFinishTime).toMinutes().toString())
-        val minutes = Duration.between(tryStartTime,tryFinishTime).toMinutes().toInt()
-        Log.d("MINUTES",minutes.toString())
-        _user.value = _user.value.copy(minutesToFinish = _user.value.minutesToFinish + minutes)
+        val seconds = Duration.between(tryStartTime,tryFinishTime).seconds.toInt()
+        Log.d("Seconds",seconds.toString())
+        _user.value = _user.value.copy(minutesToFinish = _user.value.minutesToFinish + seconds)
     }
 
     fun setName(name: String){
         _user.value = _user.value.copy(name = name)
-        updateDBUser(_user.value)
     }
 
     fun setCountry(country: String){
         _user.value = _user.value.copy(country = country)
-        updateDBUser(_user.value)
+    }
+
+    fun updateUser(){
+        viewModelScope.launch {
+            pokemonLocalRepository.updateUser(_user.value)
+        }
     }
 
     fun finish(finished: Boolean){
@@ -126,5 +124,11 @@ class PerfilViewModel(
         viewModelScope.launch {
             pokemonLocalRepository.updateUser(user)
         }
+    }
+
+    fun reiniciarProgreso(){
+        _user.value = User(-1)
+        _finished.value = false
+        updateDBUser(_user.value)
     }
 }

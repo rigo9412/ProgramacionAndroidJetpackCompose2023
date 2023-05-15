@@ -5,8 +5,10 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,105 +24,19 @@ import com.tec.pokedexapp.ui.global.GlobalProvider
 import java.util.Locale
 
 @Composable
-fun LeaderboardScreen(navController: NavHostController, globalProvider: GlobalProvider) {
-    val tops = listOf(
-        User(
-            id = 1,
-            name = "Ana",
-            country = "México",
-            startDate = "2022-01-01",
-            finishDate = "2022-01-10",
-            topScore1 = 50,
-            topScore2 = 75,
-            topScore3 = 90,
-            triesToFinish = 3,
-            minutesToFinish = 120
-        ),
-        User(
-            id = 2,
-            name = "Juan",
-            country = "España",
-            startDate = "2022-01-01",
-            finishDate = "2022-01-10",
-            topScore1 = 50,
-            topScore2 = 75,
-            topScore3 = 90,
-            triesToFinish = 2,
-            minutesToFinish = 122
-        ),
-        User(id = 3,
-            name = "Maria",
-            country = "Estados Unidos",
-            startDate = "2022-01-01",
-            finishDate = "2022-01-10",
-            topScore1 = 50,
-            topScore2 = 75,
-            topScore3 = 90,
-            triesToFinish = 4,
-            minutesToFinish = 140
-        ),
-        User(
-            id = 4,
-            name = "Carlos",
-            country = "México",
-            startDate = "2022-01-01",
-            finishDate = "2022-01-10",
-            topScore1 = 50,
-            topScore2 = 75,
-            topScore3 = 90,
-            triesToFinish = 7,
-            minutesToFinish = 180
-        ),
-        User(
-            id = 5,
-            name = "Andrea",
-            country = "México",
-            startDate = "2022-01-01",
-            finishDate = "2022-01-10",
-            topScore1 = 50,
-            topScore2 = 75,
-            topScore3 = 90,
-            triesToFinish = 7,
-            minutesToFinish = 180
-        ),
-        User(
-            id = 6,
-            name = "Daniel",
-            country = "México",
-            startDate = "2022-01-01",
-            finishDate = "2022-01-10",
-            topScore1 = 50,
-            topScore2 = 75,
-            topScore3 = 90,
-            triesToFinish = 7,
-            minutesToFinish = 180
-        ),
-        User(
-            id = 4,
-            name = "Jaime",
-            country = "México",
-            startDate = "2022-01-01",
-            finishDate = "2022-01-10",
-            topScore1 = 50,
-            topScore2 = 75,
-            topScore3 = 90,
-            triesToFinish = 7,
-            minutesToFinish = 180
-        ),
-        User(
-            id = 7,
-            name = "Gael",
-            country = "México",
-            startDate = "2022-01-01",
-            finishDate = "2022-01-10",
-            topScore1 = 50,
-            topScore2 = 75,
-            topScore3 = 90,
-            triesToFinish = 7,
-            minutesToFinish = 180
-        )
-    )
+fun LeaderboardScreen(globalProvider: GlobalProvider, navController: NavHostController){
+    val leaderboard = globalProvider.leaderboardVM.top10.collectAsState().value
+    val loaded = globalProvider.leaderboardVM.loaded.collectAsState().value
+    if(loaded) {
+        Leaderboard(tops = leaderboard)
+    }
+    else{
+        LoadingScreen()
+    }
+}
 
+@Composable
+fun Leaderboard(tops: List<User>) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -263,12 +179,23 @@ fun LeaderboardScreen(navController: NavHostController, globalProvider: GlobalPr
     }
 }
 
-fun getFlagEmoji(country: String): String { //Nota: el pais tiene que esta en español
-    val countryCode = Locale.getISOCountries()
-        .firstOrNull { Locale("", it).displayCountry.equals(country, ignoreCase = true) }
-    return countryCode?.let {
-        val firstLetterCodePoint = Character.codePointAt(it, 0) - Character.codePointAt("A", 0) + 0x1F1E6
-        val secondLetterCodePoint = Character.codePointAt(it, 1) - Character.codePointAt("A", 0) + 0x1F1E6
-        String(Character.toChars(firstLetterCodePoint)) + String(Character.toChars(secondLetterCodePoint))
-    } ?: ""
+@Composable
+fun LoadingScreen() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        CircularProgressIndicator(
+            color = Color.Blue,
+            strokeWidth = 5.dp,
+            modifier = Modifier.size(50.dp)
+        )
+    }
+}
+
+fun getFlagEmoji(countryCode: String): String { //Nota: el pais tiene que esta en español
+    val countryCodeUpperCase = countryCode.uppercase()
+    val firstLetter = Character.codePointAt(countryCodeUpperCase, 0) - 0x41 + 0x1F1E6
+    val secondLetter = Character.codePointAt(countryCodeUpperCase, 1) - 0x41 + 0x1F1E6
+    return String(Character.toChars(firstLetter)) + String(Character.toChars(secondLetter))
 }

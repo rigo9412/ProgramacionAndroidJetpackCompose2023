@@ -34,7 +34,7 @@ fun HomeGraph(navController: NavHostController,globalProvider: GlobalProvider){
         }
 
         composable(route = BottomBarScreens.LeaderBoard.route){
-            LeaderboardScreen(navController, globalProvider)
+            LeaderboardScreen(globalProvider, navController)
         }
 
 

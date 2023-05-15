@@ -8,34 +8,45 @@ import com.tec.pokedexapp.domain.source.RestDataSource
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
+import kotlin.math.ceil
 
 interface UserRespository {
     suspend fun getUsers(): List<User>
-    suspend fun postUser(user: User): User
+    suspend fun getTop10(): List<User>
+    suspend fun postUser(user: User)
 }
 
 class UserRepositoryImp @Inject constructor(
     private val dataSource: RestDataSource,
 ) : UserRespository{
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
     //NOTA, EL FORMATO DE FECHA A ENVIAR ES YMD en string
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
     override suspend fun getUsers(): List<User> {
         val result = mutableListOf<User>()
         val response =  dataSource.getResponse()
         response.map {
-            result.add(User(it.id,it.name,it.country, it.startDate, it.finishDate,triesToFinish = it.triesToFinish,minutesToFinish = it.minutesToFisnish))
+            result.add(User(it.id,it.name,it.country, it.startDate, it.finishDate,triesToFinish = it.triesToFinish,minutesToFinish = it.minutesToFinish))
         }
         return result
     }
 
-    override suspend fun postUser(user: User): User {
-        val data = ApiPostItem(user.country,user.finishDate,user.minutesToFinish,user.name,user.startDate,user.triesToFinish)
-        return dataSource.postTop(data)
+    override suspend fun getTop10(): List<User> {
+        val result = mutableListOf<User>()
+        val response =  dataSource.getTop10()
+        response.map {
+            result.add(User(it.id,it.name,it.country, it.startDate, it.finishDate,triesToFinish = it.triesToFinish,minutesToFinish = it.minutesToFinish))
+        }
+        return result
+    }
+
+    override suspend fun postUser(user: User){
+        val data = ApiPostItem(user.country,user.finishDate,ceil(user.minutesToFinish.toDouble()/60).toInt(),user.name,user.startDate,user.triesToFinish)
+        dataSource.postTop(data)
     }
     fun userToJSON(user: User): String{
         val json = Gson().toJson(user)
-        Log.d("JSON",json)
         return json
     }
 

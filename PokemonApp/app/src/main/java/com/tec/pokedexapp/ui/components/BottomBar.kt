@@ -13,10 +13,11 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.tec.pokedexapp.data.constants.DarkRed
+import com.tec.pokedexapp.ui.global.GlobalProvider
 import com.tec.pokedexapp.ui.navigator.screens.BottomBarScreens
 
 @Composable
-fun BottomBar(navController: NavHostController){
+fun BottomBar(navController: NavHostController,globalProvider: GlobalProvider){
     val screens = listOf(
         BottomBarScreens.Home,
         BottomBarScreens.Pokedex,
@@ -34,7 +35,8 @@ fun BottomBar(navController: NavHostController){
                 AddItem(
                     screen = screen,
                     currentDestination = currentDestination,
-                    navController = navController
+                    navController = navController,
+                    globalProvider
                 )
             }
         }
@@ -45,7 +47,8 @@ fun BottomBar(navController: NavHostController){
 fun RowScope.AddItem(
     screen: BottomBarScreens,
     currentDestination: NavDestination?,
-    navController: NavHostController
+    navController: NavHostController,
+    globalProvider: GlobalProvider
 ){
 
     BottomNavigationItem(
@@ -56,6 +59,9 @@ fun RowScope.AddItem(
         } == true,
         unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
         onClick = {
+            if(screen.title==BottomBarScreens.LeaderBoard.title){
+                globalProvider.leaderboardVM.updateTop10()
+            }
             navController.navigate(screen.route) {
                 popUpTo(navController.graph.findStartDestination().id)
                 launchSingleTop = true

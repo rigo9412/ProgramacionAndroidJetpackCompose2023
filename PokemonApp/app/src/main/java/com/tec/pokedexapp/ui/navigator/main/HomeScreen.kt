@@ -33,7 +33,7 @@ import com.tec.pokedexapp.ui.navigator.screens.Screens
 @Composable
 fun HomeScreenContainer(navController: NavHostController = rememberNavController(),globalProvider: GlobalProvider){
     Scaffold(
-        bottomBar = { BottomBar(navController = navController)}
+        bottomBar = { BottomBar(navController = navController,globalProvider)}
     ) {
         HomeGraph(navController = navController,globalProvider)
     }
