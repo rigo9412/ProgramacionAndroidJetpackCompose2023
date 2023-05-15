@@ -16,7 +16,7 @@ class DataSourceModule {
     @Singleton
     @Provides
     @Named("BaseURL")
-    fun provideBaseURL() = "https://pokedextop-8451f-default-rtdb.firebaseio.com/"
+    fun provideBaseURL() = "https://civrjdozcuhhgpsnprhl.supabase.co/"
 
     @Singleton
     @Provides

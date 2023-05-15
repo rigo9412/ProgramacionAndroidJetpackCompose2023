@@ -32,7 +32,7 @@ import com.tec.pokedexapp.ui.navigator.screens.Screens
 fun PerfilScreen(navController: NavController,globalProvider: GlobalProvider) {
     val pokedex = globalProvider.pokemonVM
     val perfil = globalProvider.perfilVM
-    val scores = perfil.topScores.collectAsState()
+    val user = perfil.user.collectAsState().value
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -87,15 +87,15 @@ fun PerfilScreen(navController: NavController,globalProvider: GlobalProvider) {
                 modifier = Modifier.padding(16.dp)
             ) {
                 Text(text = "Top 3 Puntajes Recientes", fontWeight = FontWeight.Bold)
-                Text(text = "Primer puntaje 🥇: ${scores.value[0]}")
-                Text(text = "Segundo puntaje 🥈:${scores.value[1]}")
-                Text(text = "Tercer puntaje 🥉: ${scores.value[2]}")
+                Text(text = "Primer puntaje 🥇: ${user.topScore1}")
+                Text(text = "Segundo puntaje 🥈:${user.topScore2}")
+                Text(text = "Tercer puntaje 🥉: ${user.topScore3}")
             }
         }
 
         Card(
             modifier = Modifier
-                .padding(16.dp,16.dp,16.dp, bottom = 65.dp)
+                .padding(16.dp, 16.dp, 16.dp, bottom = 65.dp)
                 .fillMaxWidth(),
             elevation = 8.dp,
             shape = RoundedCornerShape(16.dp)

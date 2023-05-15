@@ -22,6 +22,7 @@ import com.tec.pokedexapp.ui.global.GlobalProvider
 import com.tec.pokedexapp.ui.navigator.graphs.RootGraph
 import com.tec.pokedexapp.ui.navigator.main.PerfilViewModel
 import com.tec.pokedexapp.ui.pokemon.GameViewModelFactory
+import com.tec.pokedexapp.ui.pokemon.PerfilViewModelFactory
 import com.tec.pokedexapp.ui.pokemon.PokemonViewModel
 import com.tec.pokedexapp.ui.pokemon.PokemonViewModelFactory
 import com.tec.pokedexapp.ui.theme.PokedexAppTheme
@@ -45,10 +46,10 @@ class MainActivity : ComponentActivity() {
                     val context: Context = this
                     val testDao = AppDatabase.getDatabase(context)
 
-                    val pokemonLocalRepository = PokemonLocalRepository(assetManager =  assetManager,pokemonDao = testDao.pokemonDao())
+                    val pokemonLocalRepository = PokemonLocalRepository(assetManager =  assetManager,pokemonDao = testDao.pokemonDao(), userDao = testDao.userDao())
 
                     val pokedexVM : PokemonViewModel by viewModels{ PokemonViewModelFactory(pokemonLocalRepository) }
-                    val perfilVM : PerfilViewModel by viewModels()
+                    val perfilVM : PerfilViewModel by viewModels { PerfilViewModelFactory(pokemonLocalRepository) }
                     val gameVM : GameViewModel by viewModels{ GameViewModelFactory(pokedexVM) }
 
                     val gp = GlobalProvider(

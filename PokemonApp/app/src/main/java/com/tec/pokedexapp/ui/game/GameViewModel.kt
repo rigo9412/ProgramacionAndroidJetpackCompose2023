@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tec.pokedexapp.data.PokemonLocalRepository
 import com.tec.pokedexapp.data.model.Pokemon
+import com.tec.pokedexapp.ui.navigator.main.PerfilViewModel
 import com.tec.pokedexapp.ui.pokemon.PokemonViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow

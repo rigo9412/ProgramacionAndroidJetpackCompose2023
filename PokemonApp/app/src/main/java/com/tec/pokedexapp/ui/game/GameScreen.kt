@@ -36,7 +36,14 @@ fun game(gameViewModel: GameViewModel,
          assetManager : AssetManager,
          navController: NavHostController?){
 
+    val user = perfilViewModel.user.collectAsState().value
+
     if(!gameViewModel.started){
+        if(user.startDate == ""){
+            perfilViewModel.setStartDate()
+        }
+        perfilViewModel.startTry()
+
         gameViewModel.started = true
         gameViewModel.startRound()
     }
@@ -51,8 +58,9 @@ fun game(gameViewModel: GameViewModel,
         if(!gameViewModel.finished) {
             gameViewModel.stopGame()
             gameViewModel.finished = true
+
             perfilViewModel.addScore(gameViewModel.tempScore)
-            perfilViewModel.addTry()
+            perfilViewModel.finishTry()
             navController!!.navigate(
                 Screens.ResultScreen.passScoreAndState(
                     gameViewModel.tempScore,
