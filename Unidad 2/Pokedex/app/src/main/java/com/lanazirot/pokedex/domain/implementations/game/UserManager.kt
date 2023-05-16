@@ -1,13 +1,15 @@
-package com.lanazirot.pokedex.domain.implementations
+package com.lanazirot.pokedex.domain.implementations.game
 
 import com.lanazirot.pokedex.domain.constants.GameConstants
-import com.lanazirot.pokedex.domain.interfaces.IPokemonLocalRepository
-import com.lanazirot.pokedex.domain.interfaces.IUserManager
-import com.lanazirot.pokedex.domain.models.*
+import com.lanazirot.pokedex.domain.interfaces.game.IPokemonLocalRepository
+import com.lanazirot.pokedex.domain.interfaces.game.IUserManager
+import com.lanazirot.pokedex.domain.models.game.*
+import com.lanazirot.pokedex.domain.models.user.User
 import java.util.*
 import javax.inject.Inject
 
-class UserManager @Inject constructor(private val pokemonLocalRepository: IPokemonLocalRepository) : IUserManager {
+class UserManager @Inject constructor(private val pokemonLocalRepository: IPokemonLocalRepository) :
+    IUserManager {
     private val totalPokemon = GameConstants.TOTAL_POKEMON
     private var currentUser: User? = null
 

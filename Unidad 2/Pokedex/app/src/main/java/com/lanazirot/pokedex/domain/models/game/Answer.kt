@@ -1,4 +1,4 @@
-package com.lanazirot.pokedex.domain.models
+package com.lanazirot.pokedex.domain.models.game
 
 data class Answer(
     val pokemon: Pokemon,

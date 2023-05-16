@@ -28,7 +28,7 @@ class ScoreboardViewModel @Inject constructor(private val apiService: IApiServic
             }.catch {
                 _scoreboardState.value = ScoreboardState(error = it.message!!)
             }.collect {
-                _scoreboardState.value = ScoreboardState(scores = it)
+                _scoreboardState.value = ScoreboardState(players = it)
             }
         }
     }

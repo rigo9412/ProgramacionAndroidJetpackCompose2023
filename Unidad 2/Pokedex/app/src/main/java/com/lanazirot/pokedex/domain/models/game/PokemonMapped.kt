@@ -1,4 +1,4 @@
-package com.lanazirot.pokedex.domain.models
+package com.lanazirot.pokedex.domain.models.game
 
 import com.google.gson.annotations.SerializedName
 

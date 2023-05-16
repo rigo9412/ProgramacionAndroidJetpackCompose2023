@@ -1,4 +1,4 @@
-package com.lanazirot.pokedex.domain.models
+package com.lanazirot.pokedex.domain.models.game
 
 import android.net.Uri
 import com.google.gson.Gson

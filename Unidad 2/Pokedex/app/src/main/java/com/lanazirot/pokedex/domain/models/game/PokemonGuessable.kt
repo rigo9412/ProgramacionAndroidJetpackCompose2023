@@ -1,4 +1,4 @@
-package com.lanazirot.pokedex.domain.models
+package com.lanazirot.pokedex.domain.models.game
 
 data class PokemonGuessable(val answers: List<Answer> = listOf()){
     override fun equals(other: Any?): Boolean {

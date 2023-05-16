@@ -1,9 +1,9 @@
-package com.lanazirot.pokedex.domain.interfaces
+package com.lanazirot.pokedex.domain.interfaces.game
 
-import com.lanazirot.pokedex.domain.models.Pokemon
-import com.lanazirot.pokedex.domain.models.Score
-import com.lanazirot.pokedex.domain.models.PokemonGuessable
-import com.lanazirot.pokedex.domain.models.User
+import com.lanazirot.pokedex.domain.models.game.Pokemon
+import com.lanazirot.pokedex.domain.models.game.Score
+import com.lanazirot.pokedex.domain.models.game.PokemonGuessable
+import com.lanazirot.pokedex.domain.models.user.User
 
 interface IUserManager {
     suspend fun getRandomUnseenPokemon(): PokemonGuessable

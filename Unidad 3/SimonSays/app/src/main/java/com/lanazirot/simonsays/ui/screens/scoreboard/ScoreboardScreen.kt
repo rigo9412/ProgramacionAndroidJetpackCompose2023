@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.lanazirot.simonsays.domain.model.Player
 import com.lanazirot.simonsays.domain.model.Score
 
 
@@ -40,7 +41,7 @@ fun ScoreBoardScreen() {
                         )
                     }
 
-                    if (state.value.scores.isEmpty()) {
+                    if (state.value.players.isEmpty()) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.Center
@@ -54,23 +55,24 @@ fun ScoreBoardScreen() {
                         }
                     }
                 }
-                items(state.value.scores) { score ->
-                    ScoreText(score)
+                items(state.value.players) { player ->
+                    ScoreText(player)
                 }
+
             }
         )
     }
 }
 
 @Composable
-fun ScoreText(score: Score) {
+fun ScoreText(player: Player) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
         Text(
-            text = score.name + " - " + score.score.toString() + " pts.",
+            text = player.name + " - " + player.score.toString() + " pts.",
             fontWeight = FontWeight.Bold,
             fontSize = 15.sp,
             color = Color.White

@@ -1,7 +1,6 @@
-package com.lanazirot.pokedex.domain.interfaces
+package com.lanazirot.pokedex.domain.interfaces.game
 
-import android.content.Context
-import com.lanazirot.pokedex.domain.models.PokemonMapped
+import com.lanazirot.pokedex.domain.models.game.PokemonMapped
 
 interface IPokemonRepository {
     suspend fun getPokemonList(): List<PokemonMapped>

@@ -20,6 +20,16 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        javaCompileOptions{
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "room.incremental": "true",
+                        "room.expandProjection": "true"
+                ]
+            }
+        }
     }
 
     buildTypes {
@@ -51,6 +61,11 @@ android {
 dependencies {
 
     def nav_version = "2.5.3"
+    def room_version = "2.5.0"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt "androidx.room:room-compiler:$room_version"
 
     implementation "androidx.compose.material:material-icons-extended:$compose_ui_version"
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"

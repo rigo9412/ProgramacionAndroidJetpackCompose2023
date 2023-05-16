@@ -1,4 +1,4 @@
-package com.lanazirot.pokedex.domain.models
+package com.lanazirot.pokedex.domain.models.game
 
 data class Pokemon(
     val attack: Int = 0,

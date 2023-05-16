@@ -1,6 +1,7 @@
 package com.lanazirot.simonsays.domain.services.implementation
 
-import com.lanazirot.simonsays.domain.model.Score
+import com.lanazirot.simonsays.domain.dao.IPlayerDAO
+import com.lanazirot.simonsays.domain.model.Player
 import com.lanazirot.simonsays.domain.model.api.post.Data
 import com.lanazirot.simonsays.domain.model.api.post.response.ResponsePost
 import com.lanazirot.simonsays.domain.repository.interfaces.IApiRepository
@@ -9,19 +10,30 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 
-class ApiService(private val apiRepository: IApiRepository) : IApiService {
-    override suspend fun getTopTenScores(): Flow<List<Score>> {
+class ApiService(private val apiRepository: IApiRepository, private val playerDAO: IPlayerDAO) :
+    IApiService {
+    override suspend fun getTopTenScores(): Flow<List<Player>> {
         val apiResponse = apiRepository.getTopTenScores()
-        val scores = mutableListOf<Score>()
+        val players = mutableListOf<Player>()
         if (apiResponse != null) {
             apiResponse.data.forEach {
-                scores.add(Score(it.attributes.value?:0 , it.attributes.name!!))
+                players.add(
+                    Player(
+                        it.id,
+                        it.attributes.name,
+                        it.attributes.value ?: 0,
+                        it.attributes.level
+                    )
+                )
             }
+            playerDAO.insertAll(players)
         }
-        return flow { emit(scores) }
+        return flow { emit(players) }
     }
 
     override suspend fun postScore(score: Data): ResponsePost {
-        return  apiRepository.postScore(score)
+        val player = Player(score.data.id, score.data.name, score.data.value, score.data.level)
+        playerDAO.insert(player)
+        return apiRepository.postScore(score)
     }
 }

@@ -1,11 +1,9 @@
-package com.lanazirot.pokedex.domain.implementations
+package com.lanazirot.pokedex.domain.implementations.game
 
-import android.content.Context
-import androidx.compose.ui.platform.LocalContext
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.lanazirot.pokedex.domain.interfaces.IPokemonRepository
-import com.lanazirot.pokedex.domain.models.PokemonMapped
+import com.lanazirot.pokedex.domain.interfaces.game.IPokemonRepository
+import com.lanazirot.pokedex.domain.models.game.PokemonMapped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

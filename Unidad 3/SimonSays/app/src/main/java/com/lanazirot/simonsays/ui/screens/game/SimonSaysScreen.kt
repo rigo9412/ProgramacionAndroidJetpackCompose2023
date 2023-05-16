@@ -304,7 +304,7 @@ fun SimonSayGame() {
                     .clip(RoundedCornerShape(50.dp, 50.dp, 50.dp, 50.dp))
                     .testTag("btn_start"),
                 onClick = {
-                    padViewModel.gameStart(Player("Alan"))
+                    padViewModel.gameStart(Player())
                 }, enabled = gameStatus == GameStatus.HOLD || gameStatus == GameStatus.GAME_OVER
             ) {
                 Icon(Icons.Rounded.PlayArrow, contentDescription = "Localized description")
