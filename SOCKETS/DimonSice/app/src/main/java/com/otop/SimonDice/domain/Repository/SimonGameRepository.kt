@@ -1,6 +1,8 @@
 package com.otop.SimonDice.domain.Repository
 import android.util.Log
 import com.otop.SimonDice.domain.SocketHandler
+import com.otop.SimonDice.domain.dao.PlayerDao
+import com.otop.SimonDice.domain.dao.SimonDB
 import com.otop.SimonDice.domain.models.Player
 import com.otop.SimonDice.domain.models.post.Data
 import com.otop.SimonDice.domain.models.post.PostRequestTop
@@ -23,7 +25,7 @@ import javax.inject.Singleton
 
 @Singleton
 class SimonGameRepository
-@Inject constructor(val apiService: IApiService,val moshi: Moshi) {
+@Inject constructor(val apiService: IApiService,val moshi: Moshi, val db: PlayerDao) {
 
     private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(listOf())
     val data: StateFlow<List<Player>> = _data.asStateFlow()
