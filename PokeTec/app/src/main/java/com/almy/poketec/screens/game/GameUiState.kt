@@ -2,6 +2,7 @@ package com.game.guesspoke.screens.game
 
 
 import com.almy.poketec.data.listaPokemon
+import com.almy.poketec.data.records.Player
 import com.almy.poketec.screens.pokedex.Pokemon
 import java.io.Serializable
 
@@ -24,6 +25,15 @@ data class GameUiState(
 
 sealed class ScreenUiState {
     object Init : ScreenUiState()
+    object Inicio: ScreenUiState()
+    class SeleccionarJugador(
+        val players: List<Player> = listOf()
+    ): ScreenUiState()
+    class TopMaestrosPokemon(
+        val listaTop: List<Player> = listOf()
+    ): ScreenUiState()
+
+    object Jugar: ScreenUiState()
     object CargarPokemon: ScreenUiState()
     class MostrarPokemon(
         val id: Int, val cuatroPokemons: List<Pokemon>, val vida: Int, val pts: Int
@@ -38,6 +48,8 @@ sealed class ScreenUiState {
         val seAgotoElTiempo: MutableList<Boolean>
     ) : ScreenUiState()
     object PokedexCompletada : ScreenUiState()
+
+    object DatosMaestroPokemon: ScreenUiState()
 }
 
 data class Quadruple<A,B,C,D>(var first: A, var second: B, var third: C, var fourth: D):
@@ -45,7 +57,7 @@ data class Quadruple<A,B,C,D>(var first: A, var second: B, var third: C, var fou
     override fun toString(): String = "($first, $second, $third, $fourth)"
 }
 
-var listaPokedex: MutableList<Pokemon> = mutableListOf()
+var listaPokedex: MutableList<Pokemon> = /*listaPokemon.take(150).toMutableList()*/mutableListOf()
 var listaPuntuaciones: MutableList<Int> = mutableListOf()
 var totalDeIntentos: Int = 0
 

@@ -1,17 +1,14 @@
 package com.almy.poketec.screens.game
 
-import android.annotation.SuppressLint
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.almy.poketec.data.listaPokemon
+import com.almy.poketec.data.records.Player
+import com.almy.poketec.data.records.currentPlayer
+import com.almy.poketec.data.records.players
 import com.almy.poketec.screens.pokedex.Pokemon
 import com.game.guesspoke.screens.game.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import java.util.*
 import kotlin.concurrent.timerTask
 
@@ -26,15 +23,93 @@ class GameViewModel : ViewModel() {
 
     //constructor
     init {
-        loadPokemon()
+        //loadPokemon()
+        Inicio()
+    }
+
+    fun Inicio()
+    {
+        _uiState.value = ScreenUiState.Inicio
+    }
+
+    fun CargarEntrenadores()
+    {
+        _uiState.value = ScreenUiState.SeleccionarJugador(players)
+    }
+
+    fun CrearNuevoEntrenador()
+    {
+        var player = Player()
+        var n = 0
+        players.forEach {
+            if (it.name.contains("Slot"))
+            {
+                n++
+            }
+        }
+        n++
+
+        player.id = players.size + 1
+        player.name = "Slot $n"
+        //player.pokedex = listaPokemon as MutableList<Pokemon>
+        player.pokedex.forEach {
+            if(it.id < 150)
+            {
+                it.discover = true
+            }
+        }
+        players.add(player)
+
+        currentPlayer = player
+        _uiState.value = ScreenUiState.Jugar
+    }
+
+    fun SeleccionarEntrenador(id: Int)
+    {
+        currentPlayer = players[id-1]
+        _uiState.value = ScreenUiState.Jugar
+    }
+
+    fun MostrarTop()
+    {
+        _uiState.value = ScreenUiState.TopMaestrosPokemon(players)
+    }
+
+    fun Jugar()
+    {
+        _uiState.value = ScreenUiState.Jugar
+    }
+
+    fun CargandoPokemones()
+    {
+        _uiState.value = ScreenUiState.CargarPokemon
+        Timer().schedule(timerTask {
+            loadPokemon()
+        }, 3000)
     }
 
     fun loadPokemon() {
         _uiState.value = ScreenUiState.CargarPokemon
-        if (listaPokedex == null) {
+
+        //primero llenar la pokedex de acuerdo a como la tiene el jugador
+        listaPokedex = (currentPlayer?.pokedex as MutableList<Pokemon>?)!!
+
+        //comprobar si son 0 o cuantos lleva
+        var n = 0
+        listaPokedex.forEach {
+            if(it.discover == true)
+            {
+                n++
+            }
+        }
+
+        //checar si no hay pokemon descubiertos
+        //if (listaPokedex == null) {
+        if(n == 0)
+        {
             pickearPrimerPokemonCorrecto()
             pickearPrimerosCuatroPokemons()
-        } else if(listaPokedex.size == 151){
+        } else if(n == 151){
             _uiState.value = ScreenUiState.PokedexCompletada
             return
         } else {
@@ -59,7 +134,7 @@ class GameViewModel : ViewModel() {
         var pokemon: Pokemon
         do {
             pokemon = listaPokemon.random()
-        } while (listaPokedex.contains(pokemon))
+        } while ( (listaPokedex.find{ it.id == pokemon.id})?.discover  == true )//listaPokedex.contains(pokemon))
 
         var vidas = _uiStateData.value.vidas
         if (vidas == 0) {
@@ -95,14 +170,21 @@ class GameViewModel : ViewModel() {
         var cuatroPokemon: MutableList<Pokemon> = mutableListOf(_uiStateData.value.pokemonActual)
 
         //hay que comprobar si ya llego a 148 la lista, entonces vamos a mostrar menos de 4 respuestas
-        var i = if (listaPokedex.size == 148) 2
-        else if (listaPokedex.size == 149) 1 else if(listaPokedex.size == 150) 0 else 3
+        var n = 0
+        listaPokedex.forEach {
+            if(it.discover == true)
+            {
+                n++
+            }
+        }
+        var i = if (n == 148) 2
+        else if (n == 149) 1 else if(n == 150) 0 else 3
 
         while (i != 0) {
             var pokemon: Pokemon
             do {
                 pokemon = listaPokemon.random()
-            } while (listaPokedex.contains(pokemon))
+            } while ((listaPokedex.find{ it.id == pokemon.id})?.discover  == true )
 
             //no va a permitir respuestas repetidas
             if (cuatroPokemon.contains(pokemon)) {
@@ -126,15 +208,23 @@ class GameViewModel : ViewModel() {
     }
 
     //evalua la respuesta del usuario, se usa parametro para saber si respondio a tiempo o no
-    fun Evaluar(seAgotoElTiempo: Boolean) {
-        _uiState.value = ScreenUiState.Evaluar(
+    fun Evaluar(seAgotoElTiempo: Boolean, tiempo: Int) {
+        /*_uiState.value = ScreenUiState.Evaluar(
             opcionElegida = _uiStateData.value.respuestaElegida,
             idOpcionCorrecta = _uiStateData.value.pokemonActual.id
-        )
+        )*/
+
+        //guardar el tiempo que se tardo el jugador
+        currentPlayer?.time = currentPlayer?.time?.plus(tiempo)!!
+        players.forEachIndexed{ index, player ->
+            if(player.id == currentPlayer!!.id)
+            {
+                players[index] = currentPlayer!!
+            }
+        }
 
         var listaBln: MutableList<Boolean> = _uiStateData.value.seAgotoElTiempo
         listaBln.add(seAgotoElTiempo)
-
         //con "n" guardamos la respuesta elegida del usuario
         var n = _uiStateData.value.respuestaElegida
 
@@ -161,7 +251,20 @@ class GameViewModel : ViewModel() {
             )
 
             //registrarlo en la pokedex
-            listaPokedex.add(_uiStateData.value.pokemonActual)
+            //listaPokedex.add(_uiStateData.value.pokemonActual)
+            currentPlayer?.pokedex?.forEach {
+                if(it.id == _uiStateData.value.pokemonActual.id)
+                {
+                    it.discover = true
+                }
+            }
+
+            players.forEachIndexed { index, player->
+                if(player.id == currentPlayer?.id)
+                {
+                    players[index] = currentPlayer!!
+                }
+            }
 
         } else {
             _uiStateData.value = _uiStateData.value.copy(
@@ -182,8 +285,17 @@ class GameViewModel : ViewModel() {
         Timer().schedule(
             timerTask {
                 if (_uiStateData.value.esCorrecto) {
-                    if (listaPokedex.size == 151) {
-                        _uiState.value = ScreenUiState.PokedexCompletada
+                    //if (listaPokedex.size == 151) {
+                    var size = 0
+                    currentPlayer?.pokedex?.forEach {
+                        if(it.discover == true)
+                        {
+                            size++
+                        }
+                    }
+                    if(size == 151)
+                    {
+                        _uiState.value = ScreenUiState.DatosMaestroPokemon
                     } else {
                         //_uiState.value = ScreenUiState.CargarPokemon
                         loadPokemon()
@@ -204,6 +316,16 @@ class GameViewModel : ViewModel() {
                         //sumar intentos
                         totalDeIntentos.plus(1)
                         var intentos = _uiStateData.value.intentos + 1
+
+                        //guardar intentos del jugador
+                        currentPlayer?.attemps = currentPlayer?.attemps!! + 1
+                        players.forEachIndexed{index, player ->
+                            if(player.id == currentPlayer!!.id)
+                            {
+                                players[index] = currentPlayer!!
+                            }
+                        }
+
                         _uiStateData.value =
                             _uiStateData.value.copy(
                                 puntos = 0,
@@ -253,6 +375,24 @@ class GameViewModel : ViewModel() {
             listaPokemonCorrecto = listaPokemonCorrecto,
             listaRespuestaElegida = listaRespuestaElegida
         )
+    }
+
+    fun GuardarDatosEntrenador(
+        name: String,
+        country: String
+    ){
+        currentPlayer?.name = name
+        currentPlayer?.country = country
+
+        var n = 0
+        players.forEach {
+            if (it.id == currentPlayer?.id)
+            {
+                players[n] = currentPlayer!!
+            }
+            n++
+        }
+        _uiState.value = ScreenUiState.PokedexCompletada
     }
 }
 

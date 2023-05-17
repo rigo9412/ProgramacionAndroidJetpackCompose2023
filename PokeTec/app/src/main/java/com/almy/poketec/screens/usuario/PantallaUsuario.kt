@@ -70,7 +70,7 @@ fun Usuario(Listaxd: List<Pokemon>,
                 )
             }
             Row {
-                InformacionDelUsuario(Listaxd = com.almy.poketec.data.listaPokemon,darkMode = darkMode)
+                InformacionDelUsuario(Listaxd = Listaxd,darkMode = darkMode)
 
             }
 

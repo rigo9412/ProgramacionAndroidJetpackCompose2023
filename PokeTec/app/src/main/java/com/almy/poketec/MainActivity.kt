@@ -5,15 +5,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -29,15 +27,15 @@ import androidx.navigation.compose.rememberNavController
 import com.almy.poketec.data.BottomNavItem
 import com.almy.poketec.data.ListaPokemon
 import com.almy.poketec.data.listaPokemon
+import com.almy.poketec.data.records.Player
+import com.almy.poketec.data.records.currentPlayer
+import com.almy.poketec.data.records.players
 import com.almy.poketec.screens.game.GameScreen1
 import com.almy.poketec.screens.game.GameViewModel
 import com.almy.poketec.screens.pokedex.FormScreenPokedex
 import com.almy.poketec.screens.pokedex.PokedexViewModel
 import com.almy.poketec.screens.usuario.PantallaUsuario.Usuario
-import com.almy.poketec.screens.usuario.PantallaUsuario.Usuario
 import com.almy.poketec.ui.theme.PokeTecTheme
-import com.almy.poketec.ui.theme.navBar
-import com.game.guesspoke.screens.game.listaPokedex
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,18 +45,97 @@ class MainActivity : ComponentActivity() {
             listaPokemon = ListaPokemon(applicationContext)
             val viewModel: GameViewModel by viewModels()
             val pokedexViewModel: PokedexViewModel by viewModels()
+
+
             PokeTecTheme(darkTheme = darkMode.value){
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    //GameScreen1(viewModel = viewModel)
+
+                    //esto es solo para llenar la pokedex
+                    /*listaPokemon.forEach{
+                        if(it.id != 151){
+                            it.discover = true
+                        }
+                    }*/
+                    CreatePlayers()
                     MainScreenView(viewModel = viewModel, pokedexViewModel = pokedexViewModel,darkMode)
                 }
             }
         }
     }
+}
+
+fun CreatePlayers()
+{
+    var player1: Player = Player()
+    player1.name = "Claudio"
+    player1.country = "Mexico"
+    player1.id = 1
+    player1.time = 70
+    player1.attemps = 14
+    //player1.pokedex = listaPokemon
+    player1.pokedex.forEach {
+            it.discover = true
+    }
+    player1.score = CalculateScore(player1)
+
+    var player2: Player = Player()
+    player2.name = "Myriam"
+    player2.country = "Mexico"
+    player2.id = 2
+    player2.time = 61
+    player2.attemps = 17
+    //player2.pokedex = listaPokemon as MutableList<Pokemon>
+    player2.pokedex.forEach {
+            it.discover = true
+    }
+    player2.score = CalculateScore(player2)
+
+    var player3: Player = Player()
+    player3.name = "Aldo"
+    player3.country = "Mexico"
+    player3.id = 3
+    player3.time = 63
+    player3.attemps = 11
+    //player3.pokedex = listaPokemon as MutableList<Pokemon>
+    player3.pokedex.forEach {
+            it.discover = true
+    }
+    player3.score = CalculateScore(player3)
+
+    var player4: Player = Player()
+    player4.name = "Gema"
+    player4.country = "Mexico"
+    player4.id = 4
+    player4.time = 68
+    player4.attemps = 14
+    //player4.pokedex = listaPokemon as MutableList<Pokemon>
+    player4.pokedex.forEach {
+        it.discover = true
+    }
+    player4.score = CalculateScore(player4)
+
+    players.add(player1)
+    players.add(player2)
+    players.add(player3)
+    players.add(player4)
+}
+
+fun CalculateScore(player: Player): Int
+{
+    var score = 0
+    player.pokedex.forEach {
+        if(it.discover == true)
+        {
+            score++
+        }
+    }
+    score = score * 15
+    score = score - player.attemps - player.time
+    return score
 }
 
 @Composable
@@ -89,10 +166,25 @@ fun NavigationGraph(
             GameScreen1(viewModel = gameViewModel)
         }
         composable("statistics") {
-            Usuario(Listaxd = listaPokemon)
+            if(currentPlayer == null)
+            {
+                Mensaje()
+            }
+            else{
+                currentPlayer?.pokedex?.let { it1 -> Usuario(Listaxd = it1) }
+            }
         }
         composable("pokedex") {
-            FormScreenPokedex(pokemones = listaPokemon, viewModel = pokedexViewModel)
+            if(currentPlayer == null)
+            {
+                Mensaje()
+            }
+            else{
+                currentPlayer?.let { it1 ->
+                    FormScreenPokedex(pokemones = it1.pokedex,
+                        viewModel = pokedexViewModel)
+                }
+            }
         }
     }
 }
@@ -153,6 +245,21 @@ fun MainScreenView(viewModel: GameViewModel, pokedexViewModel: PokedexViewModel,
 
             NavigationGraph(navController = navController, gameViewModel = viewModel, pokedexViewModel = pokedexViewModel)
         }
+    }
+}
+
+@Composable
+fun Mensaje()
+{
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .padding(10.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        Text("Necesito saber quien eres :)")
     }
 }
 

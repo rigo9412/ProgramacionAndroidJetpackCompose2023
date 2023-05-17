@@ -20,11 +20,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-
+import com.almy.poketec.screens.game.GameViewModel
 
 
 @Composable
-fun FormScreenPokedexCompleted(){
+fun FormScreenPokedexCompleted(viewModel: GameViewModel){
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -34,7 +34,7 @@ fun FormScreenPokedexCompleted(){
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            FelicidadesScreen()
+            FelicidadesScreen(viewModel)
         }
     }
 }
@@ -42,7 +42,7 @@ fun FormScreenPokedexCompleted(){
 
 
 @Composable
-fun FelicidadesScreen() {
+fun FelicidadesScreen(viewModel: GameViewModel) {
     Text(
         text = "¡FELICIDADES!",
         style = TextStyle(
@@ -64,7 +64,7 @@ fun FelicidadesScreen() {
 
     Spacer(modifier = Modifier.height(260.dp))
     ClickableText(
-        text = AnnotatedString("Volver a jugar"),
+        text = AnnotatedString("Volver a inicio"),
         style = TextStyle(
             fontSize = 20.sp,
             color = Color.White,
@@ -72,8 +72,7 @@ fun FelicidadesScreen() {
             textAlign = TextAlign.Center
         ),
         onClick = {
-            //TODO
-            /*AQUI MANDO A LLAMAR A LA PANTALLA PRINCIPAL DE JUEGOOOOO*/
+            viewModel.Inicio()
         }
     )
 }
