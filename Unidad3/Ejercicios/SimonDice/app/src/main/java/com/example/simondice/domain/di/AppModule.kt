@@ -3,6 +3,10 @@ package com.example.simondice.domain.di
 
 
 import android.adservices.common.AdData
+import android.content.Context
+import androidx.room.Room
+import com.example.simondice.domain.dao.PlayerDao
+import com.example.simondice.domain.dao.SimonDB
 import com.example.simondice.domain.service.network.IApiService
 import com.example.simondice.repository.SimonGameRepository
 import com.squareup.moshi.Moshi
@@ -10,6 +14,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit.*
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -38,10 +43,26 @@ object AppModule {
     @Singleton
     fun provideSimonGameRepository(
         apiService: IApiService,
-        moshi: Moshi
+        moshi: Moshi,
+        playerDao: PlayerDao
     ): SimonGameRepository = SimonGameRepository(
         apiService = apiService,
-        moshi = moshi
+        moshi = moshi,
+        db = playerDao
     )
 
+    @Provides
+    @Singleton
+    fun provide(@ApplicationContext context : Context) = Room.databaseBuilder(
+        context,SimonDB::class.java,"SIMON-DB")
+        .allowMainThreadQueries()
+        .fallbackToDestructiveMigration()
+        .build()
+
+
+    @Singleton
+    @Provides
+    fun providePlayerDao(demoDatabase:SimonDB):PlayerDao{
+        return demoDatabase.playerDao()
+    }
 }

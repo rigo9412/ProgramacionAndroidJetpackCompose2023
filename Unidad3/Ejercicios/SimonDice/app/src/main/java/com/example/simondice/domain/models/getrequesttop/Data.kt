@@ -1,4 +1,4 @@
-package com.rigo.simondice.domain.models.getresponsetop
+package com.example.simondice.domain.models.getrequesttop
 
 data class Data(
     val attributes: Attributes,

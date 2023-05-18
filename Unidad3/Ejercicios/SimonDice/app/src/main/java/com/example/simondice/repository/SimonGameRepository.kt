@@ -2,10 +2,12 @@ package com.example.simondice.repository
 
 import android.util.Log
 import com.example.simondice.domain.SocketHandler
+import com.example.simondice.domain.dao.PlayerDao
+import com.example.simondice.domain.dao.SimonDB
 import com.example.simondice.domain.models.Player
+import com.example.simondice.domain.models.postrequesttop.Data
+import com.example.simondice.domain.models.postrequesttop.PostRequestTop
 import com.example.simondice.domain.service.network.IApiService
-import com.rigo.simondice.domain.models.postrequesttop.Data
-import com.rigo.simondice.domain.models.postrequesttop.PostRequestTop
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
@@ -23,8 +25,8 @@ import javax.inject.Singleton
 
 @Singleton
 class SimonGameRepository
-@Inject constructor(val apiService: IApiService, val moshi: Moshi) {
-    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(listOf())
+@Inject constructor(val apiService: IApiService, val moshi: Moshi, val db : PlayerDao) {
+    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(db.getAll())
     val data: StateFlow<List<Player>> = _data.asStateFlow()
 
 
@@ -48,6 +50,7 @@ class SimonGameRepository
                     mutableList.add(player)
                     mutableList.sortByDescending { it.score }
                     _data.value = mutableList
+                    db.insert(player)
                     trySend(player)
                 }
             }
@@ -63,6 +66,7 @@ class SimonGameRepository
         }
         result.sortByDescending { it.score }
         _data.value = result
+        db.insertAll(result)
         emit(result)
     }.flowOn(Dispatchers.IO)
 
@@ -78,9 +82,13 @@ class SimonGameRepository
             score = player.score,
             level = player.level,
         )
+        db.insert(player)
+
         //_tops.value.add(player)
         val socket = SocketHandler.getSocket()
         socket.emit("newTop",playerToJson(player))
+
+
         emit(_data.value)
     }.flowOn(Dispatchers.IO)
 

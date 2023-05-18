@@ -1,7 +1,6 @@
 package com.example.simondice.domain.models
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.simondice.models.TopViewModel
-import com.rigo.simondice.domain.models.getresponsetop.Action
+import com.example.simondice.domain.models.getrequesttop.Action
 import kotlin.random.Random
 
 class Game() {

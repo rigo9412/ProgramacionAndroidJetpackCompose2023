@@ -39,12 +39,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 
 import com.example.simondice.domain.models.*
+import com.example.simondice.domain.models.getrequesttop.Action
 import com.example.simondice.models.TopViewModel
 import com.example.simondice.models.UiState
 import kotlinx.coroutines.delay
 
 import com.example.simondice.ui.theme.*
-import com.rigo.simondice.domain.models.getresponsetop.Action
 import dagger.hilt.android.AndroidEntryPoint
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 

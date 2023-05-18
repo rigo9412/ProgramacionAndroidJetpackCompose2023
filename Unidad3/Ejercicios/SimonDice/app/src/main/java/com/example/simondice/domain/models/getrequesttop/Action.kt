@@ -1,4 +1,4 @@
-package com.rigo.simondice.domain.models.getresponsetop
+package com.example.simondice.domain.models.getrequesttop
 
 enum class Action(val value: Int) {
     NO_ACTION(-1) ,

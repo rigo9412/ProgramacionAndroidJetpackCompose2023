@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Guessmon</string>
+    <string name="desconocido">Desconocido..</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="firebase_web_client_id">866657722835-1jued83l5mm620e5qedpcpgkkic5iob4.apps.googleusercontent.com</string>
+</resources>

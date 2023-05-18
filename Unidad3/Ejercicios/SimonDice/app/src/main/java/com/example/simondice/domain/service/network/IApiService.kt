@@ -1,8 +1,8 @@
 package com.example.simondice.domain.service.network
 
-import com.rigo.simondice.domain.models.getresponsetop.GetResponseAllTop
-import com.rigo.simondice.domain.models.getresponsetop.GetResponseTop
-import com.rigo.simondice.domain.models.postrequesttop.PostRequestTop
+import com.example.simondice.domain.models.getrequesttop.GetResponseAllTop
+import com.example.simondice.domain.models.getrequesttop.GetResponseTop
+import com.example.simondice.domain.models.postrequesttop.PostRequestTop
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
