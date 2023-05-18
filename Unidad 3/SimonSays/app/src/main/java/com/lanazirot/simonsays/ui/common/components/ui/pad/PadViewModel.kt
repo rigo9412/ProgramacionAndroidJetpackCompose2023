@@ -2,26 +2,35 @@ package com.lanazirot.simonsays.ui.common.components.ui.pad
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lanazirot.simonsays.domain.model.*
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.lanazirot.simonsays.domain.model.Pad
+import com.lanazirot.simonsays.domain.model.Player
+import com.lanazirot.simonsays.domain.model.Score
+import com.lanazirot.simonsays.domain.model.StepColorAction
+import com.lanazirot.simonsays.domain.model.api.post.Data
 import com.lanazirot.simonsays.domain.model.api.post.DataPost
+import com.lanazirot.simonsays.domain.model.enums.AppStatus
+import com.lanazirot.simonsays.domain.model.enums.SimonColorPad
+import com.lanazirot.simonsays.domain.repository.interfaces.IGameUIManagerRepository
+import com.lanazirot.simonsays.domain.services.implementation.CustomSocketHandler
 import com.lanazirot.simonsays.domain.services.interfaces.IApiService
 import com.lanazirot.simonsays.domain.services.interfaces.IGameManager
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.random.Random
-import com.lanazirot.simonsays.domain.model.api.post.Data
-import com.lanazirot.simonsays.domain.model.enums.AppStatus
-import com.lanazirot.simonsays.domain.model.enums.SimonColorPad
-import com.lanazirot.simonsays.domain.services.implementation.CustomSocketHandler
-import com.lanazirot.simonsays.ui.screens.game.AppState
-import kotlinx.coroutines.delay
 
 
 @HiltViewModel
-class PadViewModel @Inject constructor(private val gameManager: IGameManager, private val apiService: IApiService) : ViewModel() {
+class PadViewModel @Inject constructor(
+    private val gameManager: IGameManager, private val apiService: IApiService,
+    private val gameUIManagerRepository: IGameUIManagerRepository
+) : ViewModel() {
     private val _pad = MutableStateFlow(PadState())
     val pad = _pad.asStateFlow()
     private val colorList = SimonColorPad.values().filter { it != SimonColorPad.NONE }
@@ -29,6 +38,8 @@ class PadViewModel @Inject constructor(private val gameManager: IGameManager, pr
     private val _appStatus: MutableStateFlow<AppStatus> = MutableStateFlow(AppStatus.RUNNING)
     val appStatus = _appStatus
 
+    private val _uiTheme = MutableStateFlow(true)
+    val uiTheme = _uiTheme.asStateFlow()
 
     init {
         _pad.value = PadState(gameStatus = GameStatus.HOLD)
@@ -40,6 +51,21 @@ class PadViewModel @Inject constructor(private val gameManager: IGameManager, pr
                 _appStatus.value = AppStatus.RUNNING
             }
 
+        }
+        loadThemeValue()
+    }
+
+    private fun loadThemeValue() {
+        viewModelScope.launch(Dispatchers.IO) {
+            gameUIManagerRepository.isDarkTheme().collect {
+                _uiTheme.value = it
+            }
+        }
+    }
+
+    fun setDarkTheme(isDarkTheme: Boolean) {
+        viewModelScope.launch(Dispatchers.IO) {
+            gameUIManagerRepository.setDarkTheme(isDarkTheme)
         }
     }
 

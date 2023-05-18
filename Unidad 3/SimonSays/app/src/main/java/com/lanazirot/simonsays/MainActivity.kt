@@ -7,8 +7,10 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.lanazirot.simonsays.ui.common.components.ui.pad.PadViewModel
 import com.lanazirot.simonsays.ui.providers.GameProvider
@@ -32,7 +34,10 @@ class MainActivity : ComponentActivity() {
             val gp = GlobalProvider(padViewModel = padViewModel, nav = navController)
             val gameP = GameProvider(currentGame = gameViewModel)
 
-            SimonSaysTheme {
+            val gamePadViewModel = hiltViewModel<PadViewModel>()
+            val isDarkTheme = gamePadViewModel.uiTheme.collectAsState().value
+
+            SimonSaysTheme(darkTheme = isDarkTheme){
                 CompositionLocalProvider(LocalGlobalProvider provides gp) {
                     Surface(
                         modifier = Modifier.fillMaxSize(), color = Color.Black

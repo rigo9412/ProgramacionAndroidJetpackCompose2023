@@ -3,10 +3,14 @@ package com.lanazirot.simonsays.di
 import android.content.Context
 import androidx.room.Room
 import com.lanazirot.simonsays.domain.dao.IPlayerDAO
+import com.lanazirot.simonsays.domain.repository.implementation.GameUIManagerRepository
 import com.lanazirot.simonsays.domain.repository.interfaces.IApiRepository
+import com.lanazirot.simonsays.domain.repository.interfaces.IGameUIManagerRepository
 import com.lanazirot.simonsays.domain.services.implementation.ApiService
+import com.lanazirot.simonsays.domain.services.implementation.DataStoreManager
 import com.lanazirot.simonsays.domain.services.implementation.GameManager
 import com.lanazirot.simonsays.domain.services.interfaces.IApiService
+import com.lanazirot.simonsays.domain.services.interfaces.IDataStoreManager
 import com.lanazirot.simonsays.domain.services.interfaces.IGameManager
 import com.lanazirot.simonsays.localdb.PlayerDB
 import com.squareup.moshi.Moshi
@@ -50,12 +54,23 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideApiService(apiRepository: IApiRepository, playerDAO: IPlayerDAO): IApiService = ApiService(apiRepository, playerDAO)
+    fun provideApiService(apiRepository: IApiRepository, playerDAO: IPlayerDAO): IApiService =
+        ApiService(apiRepository, playerDAO)
 
     @Provides
     @Singleton
     fun providePlayerDao(playerDB: PlayerDB) = playerDB.playerDao()
 
+    @Provides
+    @Singleton
+    fun provideDataStoreManager(@ApplicationContext context: Context): IDataStoreManager =  DataStoreManager(context)
 
+    @Provides
+    @Singleton
+    fun provideGameUIManager(
+        dataStoreManager: IDataStoreManager
+    ): IGameUIManagerRepository = GameUIManagerRepository(
+        dataStoreManager
+    )
 
 }

@@ -16,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Switch
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.PlayArrow
@@ -55,6 +56,7 @@ fun SimonSayGame() {
     val navController = gp.nav
     val showDialog = remember { mutableStateOf(false) }
 
+    val isDarkTheme = padViewModel.uiTheme.collectAsState().value
 
     LaunchedEffect(Unit) {
         createNotificationChannel(ctx);
@@ -340,6 +342,15 @@ fun SimonSayGame() {
                 )
             }
         }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
+        ) {
+            Switch(checked = isDarkTheme, onCheckedChange = {
+                padViewModel.setDarkTheme(it)
+            })
+        }
+
     }
 }
 
