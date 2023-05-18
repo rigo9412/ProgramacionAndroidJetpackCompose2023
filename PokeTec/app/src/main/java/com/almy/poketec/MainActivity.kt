@@ -46,6 +46,7 @@ class MainActivity : ComponentActivity() {
             val viewModel: GameViewModel by viewModels()
             val pokedexViewModel: PokedexViewModel by viewModels()
 
+            val createPlayers = remember{ mutableStateOf(true) }
 
             PokeTecTheme(darkTheme = darkMode.value){
                 // A surface container using the 'background' color from the theme
@@ -60,7 +61,6 @@ class MainActivity : ComponentActivity() {
                             it.discover = true
                         }
                     }*/
-                    CreatePlayers()
                     MainScreenView(viewModel = viewModel, pokedexViewModel = pokedexViewModel,darkMode)
                 }
             }
@@ -72,7 +72,7 @@ fun CreatePlayers()
 {
     var player1: Player = Player()
     player1.name = "Claudio"
-    player1.country = "Mexico"
+    player1.country = "México"
     player1.id = 1
     player1.time = 70
     player1.attemps = 14
@@ -84,7 +84,7 @@ fun CreatePlayers()
 
     var player2: Player = Player()
     player2.name = "Myriam"
-    player2.country = "Mexico"
+    player2.country = "México"
     player2.id = 2
     player2.time = 61
     player2.attemps = 17
@@ -96,7 +96,7 @@ fun CreatePlayers()
 
     var player3: Player = Player()
     player3.name = "Aldo"
-    player3.country = "Mexico"
+    player3.country = "México"
     player3.id = 3
     player3.time = 63
     player3.attemps = 11
@@ -108,7 +108,7 @@ fun CreatePlayers()
 
     var player4: Player = Player()
     player4.name = "Gema"
-    player4.country = "Mexico"
+    player4.country = "México"
     player4.id = 4
     player4.time = 68
     player4.attemps = 14
@@ -159,11 +159,12 @@ fun MyFAB(
 fun NavigationGraph(
     navController: NavHostController,
     gameViewModel: GameViewModel,
-    pokedexViewModel: PokedexViewModel
+    pokedexViewModel: PokedexViewModel,
+    darkMode: MutableState<Boolean>
 ) {
     NavHost(navController, startDestination = "game") {
         composable("game") {
-            GameScreen1(viewModel = gameViewModel)
+            GameScreen1(viewModel = gameViewModel, darkMode)
         }
         composable("statistics") {
             if(currentPlayer == null)
@@ -243,7 +244,7 @@ fun MainScreenView(viewModel: GameViewModel, pokedexViewModel: PokedexViewModel,
 // Apply the padding globally to the whole BottomNavScreensController
         Box(modifier = Modifier.padding(innerPadding)) {
 
-            NavigationGraph(navController = navController, gameViewModel = viewModel, pokedexViewModel = pokedexViewModel)
+            NavigationGraph(navController = navController, gameViewModel = viewModel, pokedexViewModel = pokedexViewModel, darkMode)
         }
     }
 }

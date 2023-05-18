@@ -33,6 +33,7 @@ import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.compose.rememberNavController
 import com.almy.poketec.R
+import com.almy.poketec.data.records.currentPlayer
 import com.almy.poketec.screens.pokedex.Pokemon
 import com.almy.poketec.ui.theme.naranja
 import com.game.guesspoke.screens.game.listaPokedex
@@ -260,7 +261,7 @@ fun Titulo(
                         .fillMaxWidth()
                         .padding(start = 5.dp)) {
                     // Encabezado
-                    Text(text = "Estadisticas del usuario", fontSize = 30.sp, fontFamily = fontFamily,color = Color(
+                    Text(text = "Estadísticas de ${currentPlayer?.name}", fontSize = 30.sp, fontFamily = fontFamily,color = Color(
                         0xFFFFFFFF
                     )
                     )
@@ -304,9 +305,11 @@ fun TipoPokemon(datos:String) {
     Card(modifier = Modifier
         .padding(20.dp)
         .background(gradient)) {
-        Column(modifier = Modifier
+        Column(modifier = Modifier.fillMaxWidth()
             .animateContentSize()
-            .background(gradient)) {
+            .background(gradient),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Box(
                 Modifier
                     .fillMaxWidth()
@@ -339,7 +342,7 @@ fun TipoPokemon(datos:String) {
                 text = "${datos}",
                 modifier = Modifier
                     .height(if (expanded) 500.dp else 0.dp)
-                    .padding(5.dp), textAlign = TextAlign.Center,color=Color.Black
+                    .padding(5.dp), textAlign = TextAlign.Center,color=Color.White
             )
         }
     }

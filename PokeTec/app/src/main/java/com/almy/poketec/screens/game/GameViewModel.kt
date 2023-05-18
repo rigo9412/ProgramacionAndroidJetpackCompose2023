@@ -53,7 +53,7 @@ class GameViewModel : ViewModel() {
         player.name = "Slot $n"
         //player.pokedex = listaPokemon as MutableList<Pokemon>
         player.pokedex.forEach {
-            if(it.id < 150)
+            if(it.id < 147)
             {
                 it.discover = true
             }
@@ -73,6 +73,11 @@ class GameViewModel : ViewModel() {
     fun MostrarTop()
     {
         _uiState.value = ScreenUiState.TopMaestrosPokemon(players)
+    }
+
+    fun MostrarDatosPlayer(player: Player)
+    {
+        _uiState.value = ScreenUiState.MostrarDatos(player)
     }
 
     fun Jugar()

@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.almy.poketec.CalculateScore
+import com.almy.poketec.CreatePlayers
 import com.almy.poketec.R
 import com.almy.poketec.countrys.countryList
 import com.almy.poketec.data.listaPokemon
@@ -45,13 +46,15 @@ import com.almy.poketec.ui.theme.*
 import com.game.guesspoke.screens.game.*
 
 @Composable
-fun GameScreen1(viewModel: GameViewModel) {
+fun GameScreen1(viewModel: GameViewModel, darkMode: MutableState<Boolean>) {
     val state = viewModel.uiState.collectAsState().value
     when (state) {
         is ScreenUiState.Inicio -> {
-            HomeScreen(viewModel = viewModel)
+            HomeScreen(viewModel = viewModel, darkMode)
         }
-        is ScreenUiState.TopMaestrosPokemon -> { ScreenReady(top1 = players, viewModel = viewModel)}
+        is ScreenUiState.TopMaestrosPokemon -> {
+            ScreenReady(top1 = players, viewModel = viewModel)
+        }
         is ScreenUiState.SeleccionarJugador -> {
             SelectTrainer(viewModel = viewModel, players = players)
         }
@@ -83,7 +86,10 @@ fun GameScreen1(viewModel: GameViewModel) {
         is ScreenUiState.PokedexCompletada -> {
             FormScreenPokedexCompleted(viewModel)
         }
-        is ScreenUiState.DatosMaestroPokemon -> { PedirDatosDelEntrenador(viewModel = viewModel) }
+        is ScreenUiState.DatosMaestroPokemon -> {
+            PedirDatosDelEntrenador(viewModel = viewModel)
+        }
+        is ScreenUiState.MostrarDatos -> { FinalScoreDialog(viewModel = viewModel, player = state.player)}
         else -> {
 
         }
@@ -92,9 +98,26 @@ fun GameScreen1(viewModel: GameViewModel) {
 
 @Composable
 fun HomeScreen(
-    viewModel: GameViewModel
+    viewModel: GameViewModel,
+    darkMode: MutableState<Boolean>
 ) {
-    ImageFondo("fondoDia.jpg", true)
+    if (players.isEmpty()) {
+        CreatePlayers()
+    }
+    val fondo = if (darkMode.value) {
+        "fondoNoche.jpg"
+
+    } else {
+        "fondoDia.jpg"
+    }
+    //ImageFondo("fondoDia.jpg", true)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black)
+    ) {
+        ImageFondo(fondo, true)
+    }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -176,7 +199,12 @@ fun SelectTrainer(
                 .height(35.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Purple700)
         ) {
-            Text("Regresar", fontSize = 15.sp, fontWeight = FontWeight.ExtraLight, color = Color.White)
+            Text(
+                "Regresar",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.ExtraLight,
+                color = Color.White
+            )
         }
         Button(
             onClick = { viewModel.CrearNuevoEntrenador() },
@@ -187,7 +215,12 @@ fun SelectTrainer(
                 .clip(RoundedCornerShape(20.dp)),
             colors = ButtonDefaults.buttonColors(backgroundColor = Purple500)
         ) {
-            Text("Nueva partida", fontSize = 20.sp, fontWeight = FontWeight.ExtraLight, color = Color.White)
+            Text(
+                "Nueva partida",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.ExtraLight,
+                color = Color.White
+            )
         }
         players.forEach {
             Button(
@@ -232,7 +265,12 @@ fun PlayScreen(
                 .height(35.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Purple700)
         ) {
-            Text("Regresar", fontSize = 15.sp, fontWeight = FontWeight.ExtraLight, color = Color.White)
+            Text(
+                "Regresar",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.ExtraLight,
+                color = Color.White
+            )
         }
         Text(
             "¡Adivina todos los pokemones para completar la pokedex!",
@@ -321,7 +359,7 @@ fun MostrarPokemonScreen(
                 textAlign = TextAlign.Center,
             )
         }
-        MostrarRespuestas(viewModel = gameViewModel, tiempo = 5 - (timeData.value.toInt()/1000))
+        MostrarRespuestas(viewModel = gameViewModel, tiempo = 5 - (timeData.value.toInt() / 1000))
     }
 }
 
@@ -717,12 +755,15 @@ fun MostrarImagenSilueta2(ruta: String, modifier: Modifier = Modifier) {
 
 @Composable
 private fun FinalScoreDialog(
-    gameViewModel: GameViewModel,
-    puntos: Int,
+    viewModel: GameViewModel,
+    player: Player,
     modifier: Modifier = Modifier
 ) {
-    val data = gameViewModel.uiStateData.collectAsState().value
-    val activity = (LocalContext.current as Activity)
+    //val activity = (LocalContext.current as Activity)
+    var datos = ""
+
+    datos = "Name: ${player.name}\n Score: ${player.score}\n Country: ${player.country}\n " +
+            "Time: ${player.time}\n Attemps: ${player.attemps}"
 
     AlertDialog(
         onDismissRequest = {
@@ -730,10 +771,10 @@ private fun FinalScoreDialog(
             // button. If you want to disable that functionality, simply use an empty
             // onCloseRequest.
         },
-        title = { Text(stringResource(R.string.mensaje)) },
-        text = { Text(stringResource(R.string.tu_puntuacion, puntos)) },
+        title = { stringResource(R.string.mensaje_datos)},
+        text = { datos },
         modifier = modifier,
-        dismissButton = {
+        /*dismissButton = {
             TextButton(
                 onClick = {
                     activity.finish()
@@ -741,12 +782,12 @@ private fun FinalScoreDialog(
             ) {
                 Text(text = "Salir")
             }
-        },
+        }*/
         confirmButton = {
             TextButton(
-                onClick = { gameViewModel.loadPokemon() }
+                onClick = { viewModel.MostrarTop() }
             ) {
-                Text(text = "Jugar de nuevo")
+                Text(text = "Okay")
             }
         }
     )
@@ -1056,8 +1097,7 @@ fun MostrarRespuestas3(
 @Composable
 fun PedirDatosDelEntrenador(
     viewModel: GameViewModel
-)
-{
+) {
     ImageFondo("fondoAtardecer.jpg", true)
     var name by remember { mutableStateOf("") }
     var country by remember { mutableStateOf("") }
@@ -1068,10 +1108,14 @@ fun PedirDatosDelEntrenador(
             .padding(10.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         Text(
             text = "Ingresa tus datos para registrarte en el Top",
-            style = TextStyle(fontSize = 30.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center),
+            style = TextStyle(
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
+            ),
             modifier = Modifier.padding(bottom = 16.dp)
         )
         OutlinedTextField(
@@ -1093,7 +1137,7 @@ fun PedirDatosDelEntrenador(
             onClick = {
                 viewModel.GuardarDatosEntrenador(name, country)
                 currentPlayer?.score = currentPlayer?.let { CalculateScore(it) }!!
-                      },
+            },
             modifier = Modifier.padding(10.dp)
         ) {
             Text("Guardar")
@@ -1109,16 +1153,16 @@ fun Dropdown(
     label: String,
     listItems: List<String>,
     onValueChange: (String) -> Unit
-){
-    var open by remember{ mutableStateOf(false) }
+) {
+    var open by remember { mutableStateOf(false) }
     ExposedDropdownMenuBox(
         expanded = open,
-        onExpandedChange = { open = it}
+        onExpandedChange = { open = it }
     ) {
         TextField(
             value = selected,
-            label = { Text(text = label)},
-            onValueChange = { onValueChange(selected)},
+            label = { Text(text = label) },
+            onValueChange = { onValueChange(selected) },
             modifier = modifier,
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = open)
@@ -1126,12 +1170,12 @@ fun Dropdown(
             colors = ExposedDropdownMenuDefaults.textFieldColors(),
             readOnly = true
         )
-        if(listItems.isNotEmpty()){
+        if (listItems.isNotEmpty()) {
             ExposedDropdownMenu(
                 expanded = open,
-                onDismissRequest = { open = false}
+                onDismissRequest = { open = false }
             ) {
-                listItems.forEach{ selectedOption ->
+                listItems.forEach { selectedOption ->
                     DropdownMenuItem(
                         onClick = {
                             onValueChange(selectedOption)
@@ -1150,18 +1194,18 @@ fun Dropdown(
 fun ScreenReady(
     top1: List<Player>,
     viewModel: GameViewModel,
-){
+) {
+    ImageFondo("fondoDia.jpg", true)
+
     var top: MutableList<Player> = mutableListOf()
     top1.forEach {
         var n = 0
         it.pokedex.forEach {
-            if(it.discover == true)
-            {
+            if (it.discover == true) {
                 n++
             }
         }
-        if(n == 151)
-        {
+        if (n == 151) {
             top.add(it)
         }
     }
@@ -1170,7 +1214,7 @@ fun ScreenReady(
             .verticalScroll(rememberScrollState())
             .fillMaxWidth()
             .padding(20.dp)
-    ){
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -1181,7 +1225,8 @@ fun ScreenReady(
         ) {
             Text(
                 "Top Maestros Pokemon",
-                fontSize = 30.sp
+                fontSize = 30.sp,
+                color = Color.White
             )
         }
 
@@ -1192,15 +1237,18 @@ fun ScreenReady(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            OutlinedButton(onClick = { viewModel.Inicio() }) {
-                Text(text = "Regresar")
+            Button(
+                onClick = { viewModel.Inicio() },
+                colors = ButtonDefaults.buttonColors(Purple500)
+            ) {
+                Text(text = "Regresar", color = Color.White)
             }
         }
 
         var n = 0
         top.sortedByDescending { it.score }.forEach {
             Row(modifier = Modifier.padding(bottom = 10.dp)) {
-                Caja(it.name, it.country, it.score, n)
+                Caja(viewModel, n, it)
             }
             n++
         }
@@ -1214,23 +1262,24 @@ var coloresIcono: List<Color> = listOf(goldenDark, silver, bronzeDark)
 
 @Composable
 fun Caja(
-    name: String,
+    /*name: String,
     country: String,
-    score: Int,
-    n: Int
-)
-{
+    score: Int,*/
+    viewModel: GameViewModel,
+    n: Int,
+    player: Player
+) {
     Box(
         Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
             .background(if (n < 3) colores[n] else gray)
             .padding(20.dp)
+            //.clickable { viewModel.MostrarDatosPlayer(player) }
     ) {
         Column() {
-            Row(verticalAlignment = Alignment.CenterVertically){
-                if(n<3)
-                {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                if (n < 3) {
                     Icon(
                         Icons.Default.WorkspacePremium,
                         modifier = Modifier
@@ -1241,31 +1290,59 @@ fun Caja(
                     )
                 }
                 Text(
-                    text = (n+1).toString(),
-                    fontSize = if(n<3) 30.sp else 17.sp,
-                    fontWeight = if(n<3) FontWeight.Bold else FontWeight.Normal,
-                    color = if (n<3) coloresIcono[n] else Color.Gray
+                    text = (n + 1).toString(),
+                    fontSize = if (n < 3) 30.sp else 17.sp,
+                    fontWeight = if (n < 3) FontWeight.Bold else FontWeight.Normal,
+                    color = if (n < 3) coloresIcono[n] else Color.Gray
                 )
                 Column(modifier = Modifier.padding(start = 20.dp)) {
                     Row(modifier = Modifier.padding(bottom = 5.dp)) {
-                        Text(name, color = if (n<3) coloresIcono[n] else Color.Gray, fontWeight = FontWeight.SemiBold)
+                        Text(
+                            player.name,
+                            color = if (n < 3) coloresIcono[n] else Color.Gray,
+                            fontWeight = FontWeight.SemiBold
+                        )
                     }
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
                     )
                     {
-                        Text(text = "Country: $country", color = if (n<3) coloresIcono[n] else Color.Gray, fontWeight = FontWeight.Medium)
-                        //Text(text = "Score: $score", color = if (n<3) coloresIcono[n] else Color.Gray, fontWeight = FontWeight.Medium)
+                        Text(
+                            text = "Country: ${player.country}",
+                            color = if (n < 3) coloresIcono[n] else Color.Gray,
+                            fontWeight = FontWeight.Medium
+                        )
+                        ImageCountry(ruta = "banderas/${player.country}.png")
+
                     }
-                    Row(modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween){
-                        Text(text = "Score: $score", color = if (n<3) coloresIcono[n] else Color.Gray, fontWeight = FontWeight.Medium)
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Score: ${player.score}",
+                            color = if (n < 3) coloresIcono[n] else Color.Gray,
+                            fontWeight = FontWeight.Medium
+                        )
                     }
                 }
             }
         }
     }
+}
+
+@Composable
+fun ImageCountry(ruta: String, modifier: Modifier = Modifier) {
+    val bitmap = getAssetBitmap(LocalContext.current, ruta)
+    val painter = BitmapPainter(bitmap.asImageBitmap())
+
+    Image(
+        painter = painter,
+        contentDescription = "country",
+        modifier = Modifier.size(40.dp),
+        //alignment = Alignment.Center
+    )
 }
 
 @Preview(showBackground = true)

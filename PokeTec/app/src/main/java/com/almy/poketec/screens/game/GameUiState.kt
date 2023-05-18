@@ -50,6 +50,9 @@ sealed class ScreenUiState {
     object PokedexCompletada : ScreenUiState()
 
     object DatosMaestroPokemon: ScreenUiState()
+    class MostrarDatos(
+        val player: Player
+    ): ScreenUiState()
 }
 
 data class Quadruple<A,B,C,D>(var first: A, var second: B, var third: C, var fourth: D):
