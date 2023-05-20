@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.almy.simondice.domain.models.Player
 import com.almy.simondice.domain.repository.SimonGameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,6 +22,10 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
 
     private val _notificationState =
         MutableStateFlow<NotificationState>(NotificationState.HideBotification)
+
+    private val _uiStateTheme = MutableStateFlow<Boolean>(false)
+    val uiStateTheme: StateFlow<Boolean> = _uiStateTheme
+
 
     val notificationState: StateFlow<NotificationState> = _notificationState
 
@@ -59,7 +64,19 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
             }
         }
     }
-
+fun setTheme(darkTheme:Boolean){
+    viewModelScope.launch(Dispatchers.IO){
+        simonGameRepository.saveTheme(darkTheme)
+    }
+}
+    private fun getTheme()
+    {
+        viewModelScope.launch (Dispatchers.IO){
+            simonGameRepository.getTheme().collect {
+                _uiStateTheme.value = it
+            }
+        }
+    }
     private fun listenNewTopPlayer() {
         viewModelScope.launch {
             simonGameRepository.listenNewTopPlayer()

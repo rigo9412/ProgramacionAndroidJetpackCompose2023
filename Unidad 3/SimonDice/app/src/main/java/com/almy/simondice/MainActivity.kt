@@ -43,9 +43,9 @@ class MainActivity : ComponentActivity() {
             val simonDiceViewModel: SimonDiceViewModel by viewModels()
             val viewModel2: TopViewModel by viewModels()
 
-            /*createNotificationChannel(LocalContext.current)
+            createNotificationChannel(LocalContext.current)
             RequestPermissionNotification(LocalContext.current)
-            NotificationListener()*/
+          //  NotificationListener()
 
             SimonDiceTheme {
                 // A surface container using the 'background' color from the theme
@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
                     //GatoScreen(simonDiceViewModel)
 
                     //GameScreen(viewModel = viewModel, viewModel2 = viewModel2)
-                    //viewModel2.postTopFake(Player(null,"myriam",5,1))
+                    viewModel2.postTopFake(Player(null," pruebaM",78,1))
                     TopScreen(viewModel = viewModel2)
                 }
             }
@@ -86,8 +86,8 @@ private fun createNotificationChannel(context: Context) {
 
 }
 
-/*@Composable
-private fun NotificationListener(/*topViewModel: TopViewModel*/){
+@Composable
+private fun NotificationListener(topViewModel: TopViewModel){
     val topViewModel = hiltViewModel<TopViewModel>()
     val stateM = topViewModel.notificationState.collectAsState().value
     val context = LocalContext.current
@@ -114,7 +114,7 @@ private fun NotificationListener(/*topViewModel: TopViewModel*/){
 
         }
     }
-}*/
+}
 
 @Composable
 private fun RequestPermissionNotification(context: Context) {
@@ -142,4 +142,6 @@ private fun RequestPermissionNotification(context: Context) {
 
     }
 }
+
+
 

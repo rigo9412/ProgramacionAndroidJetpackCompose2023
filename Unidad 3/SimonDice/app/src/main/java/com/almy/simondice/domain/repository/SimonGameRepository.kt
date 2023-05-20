@@ -13,9 +13,9 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
-class SimonGameRepository @Inject constructor(val apiService: IApiService, val moshi: Moshi) {
+class SimonGameRepository @Inject constructor(val apiService: IApiService, val moshi: Moshi, val db: PlayerDao) {
 
-    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(listOf())
+    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(db.getAll()/*listOf()*/)
     val data: StateFlow<List<Player>> = _data.asStateFlow()
 
     init {
@@ -74,6 +74,10 @@ class SimonGameRepository @Inject constructor(val apiService: IApiService, val m
         return  jsonAdapter.toJson(player)
     }
 
+    fun getTheme() = simonStore.getThemeConfig
+    suspend fun saveTheme(darkTheme: Boolean){
+        simonStore.saveThemeConfig(darkTheme)
+    }
     private fun jsonToPlayer(player: String): Player?{
         val jsonAdapter: JsonAdapter<Player> = moshi.adapter<Player>(Player::class.java)
         return  jsonAdapter.fromJson(player)
