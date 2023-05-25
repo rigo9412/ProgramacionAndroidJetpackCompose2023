@@ -2,6 +2,7 @@ package com.ezequiel.simondice.domain.di
 
 import android.content.Context
 import androidx.room.Room
+import com.ezequiel.simondice.domain.SimonStore
 import com.ezequiel.simondice.domain.dao.PlayerDao
 import com.ezequiel.simondice.domain.dao.SimonDB
 import com.ezequiel.simondice.domain.service.network.IApiService
@@ -40,29 +41,37 @@ object AppModule {
     fun provideSimonGameRepository(
         apiService: IApiService,
         moshi: Moshi,
-        playerDao: PlayerDao
+        playerDao: PlayerDao,
+        store: SimonStore
     ): SimonGameRepository = SimonGameRepository(
         apiService = apiService,
         moshi = moshi,
-        db = playerDao
+        db = playerDao,
+        store = store
     )
 
     @Provides
     @Singleton
-    fun providePlayerDao(playerDB: SimonDB) = playerDB.playerDao()
+    fun provide(@ApplicationContext context : Context) = Room.databaseBuilder(
+        context,SimonDB::class.java,"SIMON-DB")
+        .allowMainThreadQueries()
+        .fallbackToDestructiveMigration()
+        .build()
 
+    @Singleton
+    @Provides
+    fun providePlayerDao(demoDatabase:SimonDB):PlayerDao{
+        return demoDatabase.playerDao()
+    }
 
     @Provides
     @Singleton
-    fun provide(@ApplicationContext context : Context) = Room.databaseBuilder(
-        context, SimonDB::class.java, "SIMON-DB")
-            .allowMainThreadQueries()
-            .fallbackToDestructiveMigration()
-            .build()
+    fun provideStore(@ApplicationContext context : Context) = SimonStore(context)
 
-//    @Provides
-//    @Singleton
-//    fun providePlayerDao(demoDatabase:SimonDB):PlayerDao {
-//        return demoDatabase.playerDao()
-//    }
+    @Singleton
+    @Provides
+    fun providesPlayerDao(demoDatabase: SimonDB): PlayerDao {
+        return demoDatabase.playerDao()
+    }
+
 }

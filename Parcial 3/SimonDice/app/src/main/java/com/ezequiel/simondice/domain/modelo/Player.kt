@@ -5,21 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import javax.annotation.Nonnull
 
-@Entity(tableName = "player")
-class Player(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var id: Int?,
-
-    @Nonnull
-    @ColumnInfo(name = "name")
-    var name: String,
-
-    @ColumnInfo(name = "score")
-    var score: Int,
-
-    @ColumnInfo(name = "level")
-    var level: Int
-) {
-
-}
+@Entity("Player")
+data class Player(
+    @PrimaryKey
+    var id :Int? = 0,
+    var name: String = "???",
+    var score: Int = 0,
+    var level: Int = 0)

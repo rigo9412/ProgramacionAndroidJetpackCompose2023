@@ -12,11 +12,11 @@ interface PlayerDao {
     @Query("SELECT * FROM Player")
     fun getAll(): List<Player>
 
-    @Query("SELECT * FROM Player WHERE id IN ('userId')")
+    @Query("SELECT * FROM Player WHERE id in (:userIds)")
     fun getAllByIds(userIds: IntArray): List<Player>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(players:List<Player>)
+    fun insertAll(players: List<Player>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(player: Player)

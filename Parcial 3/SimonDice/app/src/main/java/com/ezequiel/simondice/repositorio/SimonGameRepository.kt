@@ -1,6 +1,7 @@
 package com.ezequiel.simondice.repositorio
 
 import android.util.Log
+import com.ezequiel.simondice.domain.SimonStore
 import com.ezequiel.simondice.domain.SocketHandler
 import com.ezequiel.simondice.domain.dao.PlayerDao
 import com.ezequiel.simondice.domain.modelo.Player
@@ -23,8 +24,8 @@ import javax.inject.Singleton
 
 @Singleton
 class SimonGameRepository
-@Inject constructor(val apiService: IApiService, val moshi: Moshi, val db: PlayerDao) {
-    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(listOf())
+@Inject constructor(val apiService: IApiService, val moshi: Moshi, val db : PlayerDao, val store : SimonStore) {
+    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(db.getAll())
     val data: StateFlow<List<Player>> = _data.asStateFlow()
 
     init {
@@ -63,7 +64,7 @@ class SimonGameRepository
         result.sortByDescending { it.score }
         _data.value = result
         db.insertAll(result)
-        emit(result.take(10))
+        emit(result)
     }.flowOn(Dispatchers.IO)
 
     fun postTop(player: Player): Flow<List<Player>> = flow {
@@ -74,10 +75,13 @@ class SimonGameRepository
             score = player.score,
             level = player.level,
         )
-
         db.insert(player)
+
+        //_tops.value.add(player)
         val socket = SocketHandler.getSocket()
         socket.emit("newTop",playerToJson(player))
+
+
         emit(_data.value)
     }.flowOn(Dispatchers.IO)
 
@@ -86,8 +90,16 @@ class SimonGameRepository
         return  jsonAdapter.toJson(player)
     }
 
+
     private fun jsonToPlayer(player: String): Player?{
         val jsonAdapter: JsonAdapter<Player> = moshi.adapter<Player>(Player::class.java)
         return  jsonAdapter.fromJson(player)
+    }
+
+
+    fun getTheme() = store.getThemeConfig
+
+    suspend fun saveTheme(darkTheme : Boolean){
+        store.saveThemeConfig(darkTheme)
     }
 }

@@ -6,6 +6,7 @@ import com.ezequiel.simondice.models.UiState
 import com.ezequiel.simondice.domain.modelo.Player
 import com.ezequiel.simondice.repositorio.SimonGameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -20,13 +21,17 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
     private var _uiState = MutableStateFlow<UiState>(UiState.Loading)
     var uiState: StateFlow<UiState> = _uiState
 
+    private var _uiStateTheme = MutableStateFlow<Boolean>(false)
+    var uiStateTheme: StateFlow<Boolean> = _uiStateTheme
+
     private var toCardGet = MutableStateFlow<Boolean>(false)
     var toCardGetState: StateFlow<Boolean> = toCardGet
 
     init {
 
         getTop()
-        listenTop()
+        listenNewTopPlayer()
+
     }
 
     fun getTop() =
@@ -38,6 +43,7 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
             }.collect {
                 _uiState.value = UiState.Ready(it)
                 toCardGet.value = true
+
             }
         }
 
@@ -62,11 +68,27 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
             }
         }
     }
-    private fun listenTop() {
+
+    private fun listenNewTopPlayer(){
         viewModelScope.launch {
-            simonGameRepository.listenNewTopPlayer().collect() {
+            simonGameRepository.listenNewTopPlayer().collect()  {
                 getTop()
             }
         }
     }
+
+    fun setTheme(darkTheme : Boolean){
+        viewModelScope.launch(Dispatchers.IO) {
+            simonGameRepository.saveTheme(darkTheme)
+        }
+    }
+
+    private fun getTheme(){
+        viewModelScope.launch(Dispatchers.IO){
+            simonGameRepository.getTheme().collect{
+                _uiStateTheme.value = it
+            }
+        }
+    }
+
 }
