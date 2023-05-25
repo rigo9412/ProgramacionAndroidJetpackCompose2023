@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db72f947-9a39-48c8-9fe0-16cd3e808c43" name="Changes" comment="Pokemon" />
+    <list default="true" id="db72f947-9a39-48c8-9fe0-16cd3e808c43" name="Changes" comment="Pokemon">
+      <change beforePath="$PROJECT_DIR$/Parcial 3/PokedexGuessmon/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/Parcial 3/PokedexGuessmon/app/google-services.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +32,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true"
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "C:/Users/Ezequ/OneDrive/Documents/ProgramacionAndroidJetpackCompose2023/Parcial 3/SimonDice"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

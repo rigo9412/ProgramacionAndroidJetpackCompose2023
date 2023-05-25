@@ -1,11 +1,9 @@
 package com.ezequiel.simondice.domain.di
 
 import android.content.Context
-import androidx.room.Database
 import androidx.room.Room
 import com.ezequiel.simondice.domain.dao.PlayerDao
 import com.ezequiel.simondice.domain.dao.SimonDB
-import com.ezequiel.simondice.domain.modelo.Player
 import com.ezequiel.simondice.domain.service.network.IApiService
 import com.ezequiel.simondice.repositorio.SimonGameRepository
 import com.squareup.moshi.Moshi
@@ -51,15 +49,20 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun providePlayerDao(playerDB: SimonDB) = playerDB.playerDao()
+
+
+    @Provides
+    @Singleton
     fun provide(@ApplicationContext context : Context) = Room.databaseBuilder(
         context, SimonDB::class.java, "SIMON-DB")
             .allowMainThreadQueries()
             .fallbackToDestructiveMigration()
             .build()
 
-    @Provides
-    @Singleton
-    fun providePlayerDao(demoDatabase:SimonDB):PlayerDao {
-        return demoDatabase.playerDao()
-    }
+//    @Provides
+//    @Singleton
+//    fun providePlayerDao(demoDatabase:SimonDB):PlayerDao {
+//        return demoDatabase.playerDao()
+//    }
 }
