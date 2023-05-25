@@ -14,6 +14,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
 import retrofit2.Retrofit.*
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -29,7 +30,7 @@ object AppModule {
     @Provides
     @Singleton
     fun providesApiService(moshi: Moshi): IApiService =
-        Builder()
+        Retrofit.Builder()
             .run {
                 baseUrl(IApiService.BASE_URL)
                     .addConverterFactory(MoshiConverterFactory.create(moshi))
@@ -52,7 +53,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provide(@ApplicationContext context : Context) = Room.databaseBuilder(
+    fun provideSimonDB(@ApplicationContext context : Context) = Room.databaseBuilder(
         context,SimonDB::class.java,"SIMON-DB")
         .allowMainThreadQueries()
         .fallbackToDestructiveMigration()
@@ -60,18 +61,11 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providePlayerDao(demoDatabase:SimonDB):PlayerDao{
+    fun providePlayerDao(demoDatabase: SimonDB): PlayerDao {
         return demoDatabase.playerDao()
     }
 
     @Provides
     @Singleton
     fun provideStore(@ApplicationContext context : Context) = SimonStore(context)
-
-    @Singleton
-    @Provides
-    fun providesPlayerDao(demoDatabase: SimonDB): PlayerDao {
-        return demoDatabase.playerDao()
-    }
-
 }
