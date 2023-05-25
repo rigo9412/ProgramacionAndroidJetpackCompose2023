@@ -2,6 +2,7 @@ package com.example.simondice.models
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.simondice.domain.models.Player
 import com.example.simondice.repository.SimonGameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,6 +25,9 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
 
     private var _uiState = MutableStateFlow<UiState>(UiState.Loading)
     var uiState: StateFlow<UiState> = _uiState
+
+    private var _uiStateTheme = MutableStateFlow<Boolean>(false)
+    var uiStateTheme: StateFlow<Boolean> = _uiStateTheme
 
     private var toCardGet = MutableStateFlow<Boolean>(false)
     var toCardGetState: StateFlow<Boolean> = toCardGet
@@ -78,6 +82,18 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
         }
     }
 
+    fun setTheme(darkTheme : Boolean){
+        viewModelScope.launch(Dispatchers.IO) {
+            simonGameRepository.saveTheme(darkTheme)
+        }
+    }
 
+    private fun getTheme(){
+        viewModelScope.launch(Dispatchers.IO){
+            simonGameRepository.getTheme().collect{
+                _uiStateTheme.value = it
+            }
+        }
+    }
 
 }

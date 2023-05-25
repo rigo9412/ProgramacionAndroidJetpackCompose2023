@@ -217,6 +217,11 @@ class MainActivity : ComponentActivity() {
 
                             ComposeDialogDemo()
 
+                            var dark by remember { mutableStateOf(topViewModel.uiStateTheme.value) }
+
+                            Switch(checked = dark, onCheckedChange = {
+                                topViewModel.setTheme(it)
+                            })
 
                             //Text(text = "STATUS GAME $startGameState")
                             //Text(text = "STATUS PLAY GAME $startPlayState")

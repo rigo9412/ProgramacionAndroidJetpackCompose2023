@@ -5,6 +5,7 @@ package com.example.simondice.domain.di
 import android.adservices.common.AdData
 import android.content.Context
 import androidx.room.Room
+import com.example.simondice.domain.SimonStore
 import com.example.simondice.domain.dao.PlayerDao
 import com.example.simondice.domain.dao.SimonDB
 import com.example.simondice.domain.service.network.IApiService
@@ -44,11 +45,13 @@ object AppModule {
     fun provideSimonGameRepository(
         apiService: IApiService,
         moshi: Moshi,
-        playerDao: PlayerDao
+        playerDao: PlayerDao,
+        store: SimonStore
     ): SimonGameRepository = SimonGameRepository(
         apiService = apiService,
         moshi = moshi,
-        db = playerDao
+        db = playerDao,
+        store = store
     )
 
     @Provides
@@ -65,4 +68,16 @@ object AppModule {
     fun providePlayerDao(demoDatabase:SimonDB):PlayerDao{
         return demoDatabase.playerDao()
     }
+
+    @Provides
+    @Singleton
+    fun provideStore(@ApplicationContext context : Context) = SimonStore(context)
+
+    @Singleton
+    @Provides
+    fun providesPlayerDao(demoDatabase: SimonDB): PlayerDao {
+        return demoDatabase.playerDao()
+    }
+
+
 }
