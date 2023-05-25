@@ -19,7 +19,6 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
-
         compileSdkPreview = "UpsideDownCake"
 
         javaCompileOptions{
@@ -80,7 +79,6 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
-
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     implementation 'androidx.activity:activity-compose:1.7.1'
@@ -108,9 +106,12 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
-    implementation "androidx.room:room-runtime:2.4.2"
-    implementation "androidx.room:room-ktx:2.4.2"
-    implementation "androidx.compose.runtime:runtime-livedata:1.1.1"
-    annotationProcessor "androidx.room:room-compiler:2.4.2"
-    kapt "androidx.room:room-compiler:2.4.2"
+    implementation "androidx.room:room-runtime:2.5.1"
+    annotationProcessor "androidx.room:room-compiler:2.5.1"
+    kapt "androidx.room:room-compiler:2.5.1"
+    testImplementation "androidx.room:room-testing:2.5.1"
+
+    //data store
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
+    implementation "androidx.datastore:datastore-preferences-rxjava2:1.0.0"
 }

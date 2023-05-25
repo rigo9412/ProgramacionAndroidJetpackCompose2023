@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.simondice.domain.models.Player
 import com.example.simondice.repository.SimonGameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -15,6 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TopViewModel @Inject constructor(val simonGameRepository: SimonGameRepository) : ViewModel() {
+    private var _uiStateTheme = MutableStateFlow<Boolean>(true)
+    var uiStateTheme: StateFlow<Boolean> = _uiStateTheme
 
     private var _uiState = MutableStateFlow<UiState>(UiState.Loading)
     var uiState: StateFlow<UiState> = _uiState
@@ -70,6 +73,20 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
                 _uiState.value = UiState.Error(it.message ?: "Error")
             }.collect {
                 _uiState.value = UiState.Ready(it)
+            }
+        }
+    }
+
+    fun setTheme(darkTheme : Boolean){
+        viewModelScope.launch(Dispatchers.IO) {
+            simonGameRepository.saveTheme(darkTheme)
+        }
+    }
+
+    private fun getTheme(){
+        viewModelScope.launch(Dispatchers.IO){
+            simonGameRepository.getTheme().collect{
+                _uiStateTheme.value = it
             }
         }
     }

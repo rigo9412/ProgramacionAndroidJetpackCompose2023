@@ -95,6 +95,8 @@ fun SimonGame(viewModel: FormViewModel){
     var startGameState by remember { mutableStateOf(viewModel.started) }
     var startPlayState by remember { mutableStateOf(viewModel.endSpeak) }
 
+    var dark by remember { mutableStateOf(topViewModel.uiStateTheme.value) }
+
     createNotificationChannel(LocalContext.current)
     RequestPermissionNotification(LocalContext.current)
     NotificationListener()
@@ -167,6 +169,17 @@ fun SimonGame(viewModel: FormViewModel){
             currentActionSimonIndexState = viewModel.currentActionSimonIndex
             startGameState = viewModel.started
         })
+
+        Spacer( modifier = Modifier.size(30.dp))
+
+        Row(
+            modifier = Modifier.background(Color.Black),
+            horizontalArrangement = Arrangement.Center
+        ){
+            Switch(checked = dark, onCheckedChange = {
+                topViewModel.setTheme(it)
+            })
+        }
 
         Spacer( modifier = Modifier.size(30.dp))
 

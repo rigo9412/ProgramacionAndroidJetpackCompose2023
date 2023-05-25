@@ -1,6 +1,8 @@
 package com.example.simondice.repository
 
 import android.util.Log
+import com.example.simondice.dao.PlayerDao
+import com.example.simondice.domain.SimonStore
 import com.example.simondice.domain.SocketHandler
 import com.example.simondice.domain.models.Player
 import com.example.simondice.domain.service.network.IApiService
@@ -23,14 +25,16 @@ import javax.inject.Singleton
 
 @Singleton
 class SimonGameRepository
-@Inject constructor(val apiService: IApiService, val moshi: Moshi) {
-    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(listOf())
+@Inject constructor(val apiService: IApiService, val moshi: Moshi, val db : PlayerDao, val store : SimonStore) {
+    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(db.getAll())
     val data: StateFlow<List<Player>> = _data.asStateFlow()
+
 
     init {
         SocketHandler.setSocket()
         SocketHandler.establishConnection()
     }
+
 
     fun listenNewTopPlayer(): Flow<Player> = channelFlow {
         val socket = SocketHandler.getSocket()
@@ -46,13 +50,13 @@ class SimonGameRepository
                     mutableList.add(player)
                     mutableList.sortByDescending { it.score }
                     _data.value = mutableList
+                    db.insert(player)
                     trySend(player)
                 }
             }
         }
         awaitClose()
     }
-
 
     fun getTop(): Flow<List<Player>> = flow {
         val result = mutableListOf<Player>()
@@ -62,8 +66,13 @@ class SimonGameRepository
         }
         result.sortByDescending { it.score }
         _data.value = result
-        emit(result.take(10))
+        db.insertAll(result)
+        emit(result)
     }.flowOn(Dispatchers.IO)
+
+
+
+
 
     fun postTop(player: Player): Flow<List<Player>> = flow {
         val response = apiService.postTop(PostRequestTop(Data(level = player.level,name = player.name, value = player.score)))
@@ -73,18 +82,31 @@ class SimonGameRepository
             score = player.score,
             level = player.level,
         )
+        db.insert(player)
+
+        //_tops.value.add(player)
         val socket = SocketHandler.getSocket()
         socket.emit("newTop",playerToJson(player))
+
+
         emit(_data.value)
     }.flowOn(Dispatchers.IO)
 
     private fun playerToJson(player: Player): String{
-        val jsonAdapter: JsonAdapter<Player> = moshi.adapter(Player::class.java)
+        val jsonAdapter: JsonAdapter<Player> = moshi.adapter<Player>(Player::class.java)
         return  jsonAdapter.toJson(player)
     }
+
 
     private fun jsonToPlayer(player: String): Player?{
         val jsonAdapter: JsonAdapter<Player> = moshi.adapter<Player>(Player::class.java)
         return  jsonAdapter.fromJson(player)
+    }
+
+
+    fun getTheme() = store.getThemeConfig
+
+    suspend fun saveTheme(darkTheme : Boolean){
+        store.saveThemeConfig(darkTheme)
     }
 }
