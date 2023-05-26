@@ -11,7 +11,7 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.Priority
-import com.lanazirot.gpsdemo.domain.interfaces.location.ILocationClient
+import com.lanazirot.gpsdemo.domain.interfaces.location.ILocationService
 import com.lanazirot.gpsdemo.ui.permissions.hasLocationPermission
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -21,12 +21,12 @@ import kotlinx.coroutines.launch
 class LocationClient(
     private val context: Context,
     private val client: FusedLocationProviderClient
-) : ILocationClient {
+) : ILocationService {
     @SuppressLint("MissingPermission")
     override fun getLocationUpdates(interval: Long): Flow<Location> {
         return callbackFlow {
             if (!context.hasLocationPermission()) {
-                throw ILocationClient.LocationException("Missing location permission")
+                throw ILocationService.LocationException("Missing location permission")
             }
 
             val locationManager =
@@ -37,8 +37,8 @@ class LocationClient(
 
 
             //Check for gps and network, if they are disabled throw an exception
-            if (!isGpsEnabled) throw ILocationClient.GPSDisabledException("GPS is disabled")
-            if (!isNetworkEnabled) throw ILocationClient.NetworkDisabledException("Network is disabled")
+            if (!isGpsEnabled) throw ILocationService.GPSDisabledException("GPS is disabled")
+            if (!isNetworkEnabled) throw ILocationService.NetworkDisabledException("Network is disabled")
 
             val request =
                 LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, interval)
@@ -53,7 +53,7 @@ class LocationClient(
                     result.locations.lastOrNull().let { location ->
                         when {
                             location != null -> launch { send(location) }
-                            else -> throw ILocationClient.LocationException("Can't find location!")
+                            else -> throw ILocationService.LocationException("Can't find location!")
                         }
                     }
                 }

@@ -3,7 +3,7 @@ package com.lanazirot.gpsdemo.domain.interfaces.location
 import android.location.Location
 import kotlinx.coroutines.flow.Flow
 
-interface ILocationClient {
+interface ILocationService {
     /*
     *  A flow to get the last known location given an interval
     *

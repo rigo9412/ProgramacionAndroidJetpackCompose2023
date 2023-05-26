@@ -3,7 +3,7 @@ package com.lanazirot.gpsdemo.di
 import android.content.Context
 import com.google.android.gms.location.LocationServices
 import com.lanazirot.gpsdemo.application.implementation.location.LocationClient
-import com.lanazirot.gpsdemo.domain.interfaces.location.ILocationClient
+import com.lanazirot.gpsdemo.domain.interfaces.location.ILocationService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +16,8 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideLocationClient(@ApplicationContext context: Context): ILocationClient = LocationClient(
-        context, LocationServices.getFusedLocationProviderClient(context)
-    )
+    fun provideLocationClient(@ApplicationContext context: Context): ILocationService =
+        LocationClient(
+            context, LocationServices.getFusedLocationProviderClient(context)
+        )
 }

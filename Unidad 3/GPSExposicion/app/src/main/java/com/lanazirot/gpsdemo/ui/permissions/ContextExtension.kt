@@ -9,10 +9,9 @@ import androidx.core.content.ContextCompat
 *  Checks if the app has location permission
 * */
 fun Context.hasLocationPermission(): Boolean = ContextCompat.checkSelfPermission(
-    this,
-    Manifest.permission.ACCESS_COARSE_LOCATION
-) == PackageManager.PERMISSION_GRANTED &&
-        ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
+    this, Manifest.permission.ACCESS_COARSE_LOCATION
+) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+    this, Manifest.permission.ACCESS_FINE_LOCATION
+) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+    this, Manifest.permission.ACCESS_BACKGROUND_LOCATION
+) == PackageManager.PERMISSION_GRANTED
