@@ -36,22 +36,76 @@ class UserViewModel @Inject constructor(
     private val userRepositoryImp: UserRespository
 ): ViewModel() {
 
+    private val _currentUser = MutableStateFlow(User())
+    val currentUser: StateFlow<User> = _currentUser
+
     val data: Flow<List<User>> = userRepositoryImp.data
 
     private val _notificationState =
         MutableStateFlow<NotificationState>(NotificationState())
     val notificationState: StateFlow<NotificationState> = _notificationState
 
+    private val _connectionError = MutableStateFlow(false)
+    val connectionError: StateFlow<Boolean> = _connectionError
+
     init{
         listeNewTop()
+
+        viewModelScope.launch(Dispatchers.IO) {
+            val users = userRepositoryImp.getLocalUsers()
+            if(users.isEmpty()){
+                Log.d("DB","INSERTED")
+                _currentUser.value = User()
+                insertLocalUser(_currentUser.value)
+            }
+            else{
+                Log.d("DB","RECOVERED")
+                _currentUser.value = users[0]
+            }
+        }
+    }
+
+    fun updateHighScore(score: Int){
+        if(score > _currentUser.value.score){
+            _currentUser.value = _currentUser.value.copy(score = score)
+            updateLocalUser(_currentUser.value)
+        }
+    }
+
+    fun insertLocalUser(user: User){
+        viewModelScope.launch(Dispatchers.IO) {
+            _currentUser.value = _currentUser.value.copy(id = userRepositoryImp.insertLocalUser(user))
+        }
+    }
+
+    fun updateLocalUser(user: User){
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepositoryImp.updateLocalUser(user)
+        }
     }
 
     suspend fun getUsers(): List<User> = withContext(Dispatchers.IO) {
-        userRepositoryImp.getUsers()
+        try {
+            userRepositoryImp.getUsers()
+        }
+        catch(e: Exception){
+            _connectionError.value = true
+            return@withContext listOf(User())
+        }
     }
 
     suspend fun postUser(user: User): User = withContext(Dispatchers.IO){
-        userRepositoryImp.postUser(user)
+        try {
+            userRepositoryImp.postUser(user)
+        }
+        catch(e: Exception){
+            _connectionError.value = true
+            return@withContext user
+        }
+    }
+
+    fun notifiedError(){
+        _connectionError.value = false
     }
 
     private fun listeNewTop(){
