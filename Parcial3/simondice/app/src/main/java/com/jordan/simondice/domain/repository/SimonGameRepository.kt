@@ -1,6 +1,8 @@
 package com.jordan.simondice.domain.repository
 
 import android.util.Log
+import com.jordan.simondice.domain.DAO.PlayerDao
+import com.jordan.simondice.domain.SimonStore
 import com.jordan.simondice.domain.SocketHandler
 import com.jordan.simondice.domain.models.Player
 import com.jordan.simondice.domain.models.postrequesttop.Data
@@ -16,9 +18,8 @@ import javax.inject.Singleton
 
 @Singleton
 class SimonGameRepository
-@Inject constructor(val apiService: IApiService, val moshi: Moshi) {
-
-    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(listOf())
+@Inject constructor(val apiService: IApiService, val moshi: Moshi, val db : PlayerDao, val store : SimonStore) {
+    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(db.getAll())
     val data: StateFlow<List<Player>> = _data.asStateFlow()
 
 
@@ -42,6 +43,7 @@ class SimonGameRepository
                     mutableList.add(player)
                     mutableList.sortByDescending { it.score }
                     _data.value = mutableList
+                    db.insert(player)
                     trySend(player)
                 }
             }
@@ -57,8 +59,12 @@ class SimonGameRepository
         }
         result.sortByDescending { it.score }
         _data.value = result
+        db.insertAll(result)
         emit(result)
     }.flowOn(Dispatchers.IO)
+
+
+
 
 
     fun postTop(player: Player): Flow<List<Player>> = flow {
@@ -69,9 +75,13 @@ class SimonGameRepository
             score = player.score,
             level = player.level,
         )
+        db.insert(player)
+
         //_tops.value.add(player)
         val socket = SocketHandler.getSocket()
         socket.emit("newTop",playerToJson(player))
+
+
         emit(_data.value)
     }.flowOn(Dispatchers.IO)
 
@@ -94,4 +104,9 @@ class SimonGameRepository
     }
 
 
+    fun getTheme() = store.getThemeConfig
+
+    suspend fun saveTheme(darkTheme : Boolean){
+        store.saveThemeConfig(darkTheme)
+    }
 }
