@@ -31,6 +31,9 @@ object AppModule {
         .fallbackToDestructiveMigration()
         .build()
 
+
+
+
     @Singleton
     @Provides
     fun providesPlayerDao(demoDatabase: SimonDB): PlayerDao{
@@ -65,5 +68,10 @@ object AppModule {
         db = playerDao
     )
 
+    @Singleton
+    @Provides
+    fun providesPlayerDao(demoDatabase: SimonDB): PlayerDao{
+        return demoDatabase.playerDao()
+    }
 
 }
