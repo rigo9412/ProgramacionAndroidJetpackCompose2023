@@ -1,6 +1,8 @@
 package com.example.simondice.repository
 
 import android.util.Log
+import com.example.simondice.dao.PlayerDao
+import com.example.simondice.domain.SimonStore
 import com.example.simondice.domain.SocketHandler
 import com.example.simondice.domain.models.Player
 import com.example.simondice.domain.service.network.IApiService
@@ -22,8 +24,8 @@ import javax.inject.Singleton
 
 @Singleton
 class SimonGameRepository
-@Inject constructor(val apiService: IApiService, val moshi: Moshi) {
-    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(listOf())
+@Inject constructor(val apiService: IApiService, val moshi: Moshi, val db : PlayerDao, val store : SimonStore) {
+    private val _data: MutableStateFlow<List<Player>> = MutableStateFlow(db.getAll())
     val data: StateFlow<List<Player>> = _data.asStateFlow()
 
     init {
@@ -85,5 +87,11 @@ class SimonGameRepository
     private fun jsonToPlayer(player: String): Player?{
         val jsonAdapter: JsonAdapter<Player> = moshi.adapter(Player::class.java)
         return  jsonAdapter.fromJson(player)
+    }
+
+    fun getTheme() = store.getThemeConfig
+
+    suspend fun saveTheme(darkTheme : Boolean){
+        store.saveThemeConfig(darkTheme)
     }
 }

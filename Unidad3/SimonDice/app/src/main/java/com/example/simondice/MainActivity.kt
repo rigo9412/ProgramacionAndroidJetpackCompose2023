@@ -24,7 +24,6 @@ import com.example.simondice.ui.theme.*
 import com.example.simondice.domain.models.getrequesttop.Action
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.simondice.domain.game.*
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 

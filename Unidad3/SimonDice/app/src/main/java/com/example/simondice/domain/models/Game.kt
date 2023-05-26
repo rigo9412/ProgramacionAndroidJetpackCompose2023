@@ -1,4 +1,5 @@
 package com.example.simondice.domain.models
+
 import androidx.lifecycle.ViewModel
 import com.example.simondice.domain.models.getrequesttop.Action
 import kotlin.random.Random

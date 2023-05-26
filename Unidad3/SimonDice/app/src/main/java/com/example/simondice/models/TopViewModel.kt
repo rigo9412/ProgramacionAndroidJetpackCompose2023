@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.simondice.domain.models.Player
 import com.example.simondice.repository.SimonGameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -33,8 +34,7 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
         listenNewTopPlayer()
     }
 
-    fun getTop() =
-        viewModelScope.launch {
+    fun getTop() = viewModelScope.launch {
             simonGameRepository.getTop().onStart {
                 _uiState.value = UiState.Loading
             }.catch {
@@ -43,7 +43,9 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
                 _uiState.value = UiState.Ready(it)
                 toCardGet.value = true
             }
-        }
+    }
+
+
 
     fun toLoading(){
         _uiState.value = UiState.Loading
@@ -64,6 +66,12 @@ class TopViewModel @Inject constructor(val simonGameRepository: SimonGameReposit
             }.collect {
                 _uiState.value = UiState.Ready(it)
             }
+        }
+    }
+
+    fun setTheme(darkTheme : Boolean){
+        viewModelScope.launch(Dispatchers.IO) {
+            simonGameRepository.saveTheme(darkTheme)
         }
     }
 
