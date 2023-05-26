@@ -51,8 +51,8 @@ class MapScreenViewModel @Inject constructor(
 
     //region Location
     fun startLocationServices() {
-       // Log.d("LocationClient", "Starting location services")
-        /*locationClient.getLocationUpdates(1500).catch {
+       /* Log.d("LocationClient", "Starting location services")
+        locationClient.getLocationUpdates(1500).catch {
             Log.e("LocationClient", "Error: ${it.message}")
         }.onEach {
             Log.d("LocationClient", "Location: ${it.latitude} ${it.longitude} - ${Date()}}")
