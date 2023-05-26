@@ -9,7 +9,7 @@ import com.practica.notificaciones.notification.NotificationService
 class NotificationBroadcastReceiver  : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
         val notificationService: INotificationService = NotificationService(context)
-        val randomNumber = (0..100).random()
-        notificationService.sendNotification(message = "Your random number is: $randomNumber")
+        val randomNumber = (0..753).random()
+        notificationService.sendNotification(message = "Welcome master, there are $randomNumber troops in our army. Ready to fight?", title = "Army status")
     }
 }

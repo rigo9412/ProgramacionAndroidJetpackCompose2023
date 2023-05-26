@@ -20,7 +20,7 @@ fun ExampleScreen(exampleViewModel: ExampleViewModel = hiltViewModel()) {
         Button(onClick = {
             exampleViewModel.sendNotification()
         }) {
-            Text(text = "Send notification")
+            Text(text = "Know our forces, master")
         }
     }
 }

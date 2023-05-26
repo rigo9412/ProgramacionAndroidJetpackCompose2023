@@ -3,8 +3,8 @@ package com.practica.notificaciones.notification
 
 interface INotificationService {
     fun sendNotification(
-        title: String = "Random number",
-        message: String = "Your random number is: ${(0..100).random()}",
+        title: String = "Army status",
+        message: String = "Welcome master, there are ${(0..753).random()} troops in our army. Ready to fight?",
     )
 
     companion object {

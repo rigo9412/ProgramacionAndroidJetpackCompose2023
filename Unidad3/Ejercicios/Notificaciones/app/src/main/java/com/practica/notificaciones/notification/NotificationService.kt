@@ -37,7 +37,7 @@ class NotificationService @Inject constructor(private val context: Context) : IN
             .setContentIntent(activityPendingIntent)
             .addAction(
                 R.drawable.ic_launcher_background,
-                "Get another number",
+                "Rebuild army",
                 incrementIntent
             )
             .build()
