@@ -26,6 +26,7 @@ class CurpTests {
         composeTestRule.onNodeWithTag("texto_bienvenida").assertExists()
         composeTestRule.onNodeWithTag("boton_comenzar_forma_completa").assertExists()
         composeTestRule.onNodeWithTag("boton_comenzar_wizard").assertExists()
+
     }
 
     @Test
