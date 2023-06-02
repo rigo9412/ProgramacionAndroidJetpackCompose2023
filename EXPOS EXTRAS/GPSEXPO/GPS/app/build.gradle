@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.lanazirot.gpsdemo'
+    namespace 'com.gps.gpsdemo'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.lanazirot.gpsdemo"
+        applicationId "com.gps.gpsdemo"
         minSdk 26
         targetSdk 33
         versionCode 1
