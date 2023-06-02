@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">MochiApp</string>
+
+    textos en pantalla login
+    <string name="login1">Datos de la cuenta</string>
+    <string name="login2">Nombre de usuario</string>
+    <string name="login3">Contraseña</string>
+    <string name="login4">Iniciar sesión</string>
+    <string name="login5">Creación de cuenta</string>
+    <string name="login6">Crear cuenta</string>
+    <string name="login7">Ingresa tu huella</string>
+    <string name="login8">¡Huella detectada!</string>
+    <string name="login9">Regresar</string>
+
+    Textos en main
+    <string name="main1">!Hola </string>
+    <string name="main2">Tarea </string>
+    <string name="main3">Mostrar tarea </string>
+    <string name="main4">Eliminar tarea</string>
+    <string name="main5">Usuario </string>
+    <string name="main6">Ponte al corriente con tus pendientes :)</string>
+    <string name="main7">Tarea creada por:</string>
+    <string name="main8">¿Seguro que deseas eliminar la tarea</string>
+    <string name="main9">Claro que sí</string>
+    <string name="main10">Déjame pensarlo</string>
+    <string name="main11">Mostrar</string>
+    <string name="main12">Eliminar</string>
+
+    Textos al crear una tarea
+    <string name="crearTarea1">Creación de tarea nueva</string>
+    <string name="crearTarea2">Nombre de la tarea</string>
+    <string name="crearTarea3">Actividades por realizar</string>
+    <string name="crearTarea4">Añadir usuarios</string>
+    <string name="crearTarea5">Crear tarea</string>
+    <string name="crearTarea6">Lista de tareas</string>
+    <string name="crearTarea7">Lista de usuarios</string>
+    <string name="crearTarea8">Agregar actividad</string>
+    <string name="crearTarea9">Este usuario ya ha sido agregado ...</string>
+    <string name="crearTarea10">Cargando...</string>
+    <string name="crearTarea11">Agregar tarea</string>
+
+    Textos para mostrar detalle de la tarea
+    <string name="detallesTarea1">actividades por realizar</string>
+    <string name="detalleTarea2">Avance de las actividades</string>
+    <string name="detalleTarea3">Integrantes</string>
+    <string name="detalleTarea4">Agregar nota</string>
+    <string name="detalleTarea5">Notas</string>
+    <string name="detalleTarea6">Guardar</string>
+
+    textos en el sidebar
+    <string name="lateral1">Cerrar Sesion</string>
+    <string name="lateral2">Tareas completadas</string>
+    <string name="lateral3">Inicio</string>
+
+    <string name="tareaCompletada1">Individuales</string>
+    <string name="tareaCompletada2">Grupales</string>
+
+</resources>

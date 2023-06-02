@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MochiApp</string>
+
+    textos en pantalla login
+    <string name="login1">Account data</string>
+    <string name="login2">Username</string>
+    <string name="login3">Password</string>
+    <string name="login4">Log in</string>
+    <string name="login5">Sign in</string>
+    <string name="login6">Create account</string>
+    <string name="login7">Enter your fingerprint</string>
+    <string name="login8">¡Fingerprint detected!</string>
+    <string name="login9">Return</string>
+
+    textos en main
+    <string name="main1">!Hi</string>
+    <string name="main2">Task </string>
+    <string name="main3">Show task </string>
+    <string name="main4">Delete task </string>
+    <string name="main5">User </string>
+    <string name="main6">Catch up on your earrings :)</string>
+    <string name="main7">Task created by:</string>
+    <string name="main8">Are you sure you want to delete the task?</string>
+    <string name="main9">Of course it is</string>
+    <string name="main10">Let me think about it</string>
+    <string name="main11">Show</string>
+    <string name="main12">Delete</string>
+    <string name="crearTarea11">Add task</string>
+
+    textos que se muestran al crear una tarea
+    <string name="crearTarea1">new task creation</string>
+    <string name="crearTarea2">task name</string>
+    <string name="crearTarea3">tasks to be done</string>
+    <string name="crearTarea4">add users</string>
+    <string name="crearTarea5">create task</string>
+    <string name="crearTarea6">things to do</string>
+    <string name="crearTarea7">user list</string>
+    <string name="crearTarea8">add activity</string>
+    <string name="crearTarea9">This user has already been added...</string>
+    <string name="crearTarea10">Loading ...</string>
+
+    Textos en el detalle de la tarea
+    <string name="detallesTarea1">activities to be carried out</string>
+    <string name="detalleTarea2">Progress of activities</string>
+    <string name="detalleTarea3">members</string>
+    <string name="detalleTarea4">Add note</string>
+    <string name="detalleTarea5">Notes</string>
+    <string name="detalleTarea6">Save</string>
+
+    Textos en el sidebar
+    <string name="lateral1">log out</string>
+    <string name="lateral2">completed tasks</string>
+    <string name="lateral3">Home</string>
+
+    <string name="tareaCompletada1">Singles</string>
+    <string name="tareaCompletada2">Groups</string>
+</resources>
