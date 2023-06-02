@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "201331097186",
+    "project_id": "mochiapp-889ff",
+    "storage_bucket": "mochiapp-889ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201331097186:android:7c637276da038ab34d5b3b",
+        "android_client_info": {
+          "package_name": "com.almy.mochiapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201331097186-fl53i5c3aaotqcpdqkups2q0riqd4s21.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiUGUghy_Ijc--zbnQtH7e5YG_UxKnjQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201331097186-fl53i5c3aaotqcpdqkups2q0riqd4s21.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
