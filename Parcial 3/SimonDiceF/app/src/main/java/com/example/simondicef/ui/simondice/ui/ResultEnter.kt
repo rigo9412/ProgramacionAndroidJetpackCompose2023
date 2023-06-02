@@ -1,6 +1,7 @@
 package com.example.simondicef.ui.simondice.ui
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -33,10 +35,12 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun resultView(viewModel: LeaderboardViewModel, score: Int, userViewModel: UserViewModel){
+    userViewModel.updateHighScore(score)
     val leaderboard = viewModel.top10.collectAsState().value
     var nameEntry = viewModel.entry.collectAsState().value
     var isLeaderboardUpdated by remember { mutableStateOf(false)}
     val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     if(viewModel.checkIfTop(score) && nameEntry){
         nameEntry(viewModel = viewModel,score,userViewModel)
@@ -46,7 +50,6 @@ fun resultView(viewModel: LeaderboardViewModel, score: Int, userViewModel: UserV
             val users = coroutineScope.async(Dispatchers.IO) {
                 userViewModel.getUsers()
             }.await()
-            viewModel.getLeaderBoard(users)
             isLeaderboardUpdated = true
         }
         if(isLeaderboardUpdated) {
@@ -65,6 +68,7 @@ fun resultView(viewModel: LeaderboardViewModel, score: Int, userViewModel: UserV
 @Composable
 fun nameEntry(viewModel: LeaderboardViewModel, score: Int,userViewModel: UserViewModel){
     val focusRequester = remember { FocusRequester() }
+    val context = LocalContext.current
     val inputState = remember { mutableStateOf("") }
 
     OutlinedTextField(
@@ -83,8 +87,13 @@ fun nameEntry(viewModel: LeaderboardViewModel, score: Int,userViewModel: UserVie
         if(inputState.value != "") {
             viewModel.addScore(inputState.value, score)
             viewModel.viewModelScope.launch {
-                val user = userViewModel.postUser(User(inputState.value,score))
-                Log.d("POST RESPONSE",user.name)
+                try {
+                    val user = userViewModel.postUser(User(inputState.value, score))
+                    Log.d("POST RESPONSE", user.name)
+                }
+                catch(e: Exception){
+                    Toast.makeText(context,"Error de conexion",Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }) {

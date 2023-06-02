@@ -2,6 +2,7 @@ package com.example.simondicef.domain.repository
 
 import android.util.Log
 import com.example.simondicef.domain.SocketHandler
+import com.example.simondicef.domain.dao.UserDao
 import com.example.simondicef.domain.models.PostResponse
 import com.example.simondicef.domain.models.User
 import com.example.simondicef.domain.models.top.Data
@@ -17,10 +18,15 @@ interface UserRespository {
     suspend fun getUsers(): List<User>
     suspend fun postUser(user: User): User
     fun listenNewTop(): Flow<User>
+    suspend fun insertLocalUser(user:User): Int
+    suspend fun updateLocalUser(user:User)
+    suspend fun deleteLocalUser(user:User)
+    suspend fun getLocalUsers(): List<User>
 }
 
 class UserRepositoryImp @Inject constructor(
     private val dataSource: RestDataSource,
+    private val userDao: UserDao
 ) : UserRespository{
 
     private val _data: MutableStateFlow<List<User>> = MutableStateFlow(listOf())
@@ -70,6 +76,22 @@ class UserRepositoryImp @Inject constructor(
             }
         }
         awaitClose()
+    }
+
+    override suspend fun insertLocalUser(user: User): Int {
+        return userDao.insertUser(user).toInt()
+    }
+
+    override suspend fun updateLocalUser(user: User) {
+        userDao.updateUser(user)
+    }
+
+    override suspend fun deleteLocalUser(user: User) {
+        userDao.deleteUser(user)
+    }
+
+    override suspend fun getLocalUsers(): List<User> {
+        return userDao.getUsers()
     }
 
     fun userToJSON(user: User): String{

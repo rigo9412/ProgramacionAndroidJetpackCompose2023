@@ -7,6 +7,8 @@ import android.media.MediaPlayer
 import android.media.SoundPool
 import android.provider.MediaStore.Audio.Media
 import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -36,6 +38,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.simondicef.data.UserStore
 import com.example.simondicef.domain.models.User
 import com.example.simondicef.leaderboard.ui.LeaderboardViewModel
 import com.example.simondicef.leaderboard.ui.NotificationState
@@ -72,17 +75,31 @@ fun createNotification(context: Context, user: User) {
 val NOTIFICATION_ID = System.currentTimeMillis().toInt()
 
 @Composable
-fun simonDiceScreen(viewModel: SimonDiceViewModel,leaderboard: LeaderboardViewModel,userViewModel: UserViewModel){
+fun simonDiceScreen(viewModel: SimonDiceViewModel,
+                    leaderboard: LeaderboardViewModel,
+                    userViewModel: UserViewModel,
+                    onDarkModeChange: (Boolean) -> Unit,
+                    darkMode: Boolean
+){
     val showNotif = userViewModel.notificationState.collectAsState().value
+    val user = userViewModel.currentUser.collectAsState().value
+
+
     if(showNotif.show){
         createNotification(LocalContext.current,showNotif.user)
         userViewModel.hideNotif()
     }
+
     Box(modifier = Modifier
         .fillMaxSize()
         .padding(16.dp)
     ){
-
+        Column() {
+            DarkMode(darkMode = darkMode, onDarkModeChange = {
+                onDarkModeChange(it)
+            })
+            PersonalBest(score = user.score)
+        }
         simonDice(Modifier.align(Alignment.Center),viewModel, leaderboard = leaderboard,userViewModel)
     }
 }
@@ -94,11 +111,15 @@ fun simonDice(modifier: Modifier, viewModel: SimonDiceViewModel,leaderboard: Lea
     val started : Boolean by viewModel.started.observeAsState(false)
     val nivel : Int by viewModel.nivel.observeAsState(0)
     val lost : Boolean by viewModel.lost.observeAsState(false)
+    val connectionError = userViewModel.connectionError.collectAsState(false).value
 
     var returnB = leaderboard.returnB.collectAsState(true)
 
-    Log.d("SCORE","$score")
-    Log.d("LASTSCORE","$lastScore")
+    if(connectionError){
+        Toast.makeText(LocalContext.current,"Error de conexion",Toast.LENGTH_SHORT).show()
+        userViewModel.notifiedError()
+    }
+
     val coroutineScope = rememberCoroutineScope()
 
     Column(modifier = modifier) {
@@ -248,5 +269,18 @@ fun playSFX(mp : MediaPlayer){
         mp.pause()
         mp.seekTo(0)
         mp.start()
+    }
+}
+
+@Composable
+fun PersonalBest(score: Int){
+    Text("Highscore: $score")
+}
+
+@Composable
+fun DarkMode(darkMode: Boolean, onDarkModeChange: (Boolean) -> Unit){
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Start, verticalAlignment = Alignment.CenterVertically) {
+        Text(text = "Modo Oscuro: ")
+        Switch(checked = darkMode, onCheckedChange = { onDarkModeChange(it) })
     }
 }

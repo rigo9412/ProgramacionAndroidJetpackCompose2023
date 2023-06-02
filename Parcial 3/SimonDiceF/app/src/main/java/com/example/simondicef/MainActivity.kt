@@ -16,11 +16,15 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.simondicef.data.UserStore
 import com.example.simondicef.domain.models.User
 import com.example.simondicef.leaderboard.ui.LeaderboardViewModel
 import com.example.simondicef.leaderboard.ui.UserViewModel
@@ -28,6 +32,7 @@ import com.example.simondicef.ui.simondice.ui.SimonDiceViewModel
 import com.example.simondicef.ui.simondice.ui.simonDiceScreen
 import com.example.simondicef.ui.theme.SimonDiceFTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -35,7 +40,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SimonDiceFTheme {
+            val store = UserStore(LocalContext.current)
+            val darkmode = store.getDarkModeValue.collectAsState(initial = false).value
+            val coroutineScope = rememberCoroutineScope()
+
+            SimonDiceFTheme(darkTheme = darkmode) {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -45,7 +54,15 @@ class MainActivity : ComponentActivity() {
                     createNotificationChannel(context)
                     var userVM : UserViewModel = hiltViewModel()
 
-                    simonDiceScreen(viewModel = SimonDiceViewModel(), leaderboard = LeaderboardViewModel(),userVM)
+                    simonDiceScreen(
+                        viewModel = SimonDiceViewModel(),
+                        leaderboard = LeaderboardViewModel(),
+                        userViewModel =  userVM,
+                        darkMode = darkmode, onDarkModeChange = {
+                            coroutineScope.launch{
+                                store.saveDarkModeValue(it)
+                            }
+                        })
                     //testVM()
                 }
             }
