@@ -1,33 +1,42 @@
 package com.almy.memorama
 
 
+import android.app.Application
 import android.content.Context
 import android.media.MediaPlayer
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.almy.gato.DataStoreManager
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import com.almy.gato.R
+import com.almy.gato.SumaDao
+import com.almy.gato.SumaRoomDatabase
+import com.almy.gato.suma
 import com.almy.gato.ui.theme.rojoClaro
 import com.almy.gato.ui.theme.verdeClaro
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlin.random.Random
 
 
 
-class SumaViewModel(private val context: Context,private val dataStoreManager: DataStoreManager): ViewModel(){
+class SumaViewModel(private val context: Context,private val dataStoreManager: DataStoreManager,application: Application): ViewModel(){
     private val _uiStateJuego= MutableStateFlow<Suma>(Suma())
     val uiStateJuego: StateFlow<Suma> = _uiStateJuego
+
+    private val _currentSuma = MutableStateFlow<suma>(suma())
+    val currentSuma: StateFlow<suma> = _currentSuma
+
+    val sumaDB = SumaRoomDatabase.getInstance(application)
+    val sumaDao = sumaDB.sumaDao()
 
     init {
         getData()
     }
-
 
     fun onSumaJugadorChanged(suma: String) {
         _uiStateJuego.value = _uiStateJuego.value.copy(sumaJugador = suma)
@@ -57,6 +66,11 @@ class SumaViewModel(private val context: Context,private val dataStoreManager: D
              for (i in 0..N) {
 
                  if (i == N){
+
+                     //Agregamos en base de datos local
+                     _currentSuma.value.valor = _uiStateJuego.value.Suma
+                     sumaDao.addSuma(_currentSuma.value)
+
                      _uiStateJuego.value = _uiStateJuego.value.copy(MostrarSuma = true)
                      _uiStateJuego.value = _uiStateJuego.value.copy(MostrarBoton = true)
                      _uiStateJuego.value = _uiStateJuego.value.copy(MostrarInput = true)
@@ -69,7 +83,6 @@ class SumaViewModel(private val context: Context,private val dataStoreManager: D
                          _uiStateJuego.value = _uiStateJuego.value.copy(colorPantalla = verdeClaro)
                          delay(2000)
                          Reiniciar()
-
                      }
                      else{
                          _uiStateJuego.value = _uiStateJuego.value.copy(colorPantalla = rojoClaro)
@@ -88,30 +101,40 @@ class SumaViewModel(private val context: Context,private val dataStoreManager: D
 
                  val MediaPlayer = MediaPlayer.create(context,R.raw.pig)
                  MediaPlayer.start()
+
                  _uiStateJuego.value = _uiStateJuego.value.copy(NumeroAleatorio = numeroAleatorio)
                  _uiStateJuego.value = _uiStateJuego.value.copy(Suma = _uiStateJuego.value.Suma + numeroAleatorio)
+
                  delay(500)
 
              }
          }
+
+
+
      }
+
+    fun agregarDatos(){
+        viewModelScope.launch(Dispatchers.IO){
+            _uiStateJuego.value = _uiStateJuego.value.copy(baseDatos = sumaDao.getAllSumas())
+        }
+    }
 
     fun Reiniciar(){
         _uiStateJuego.value = _uiStateJuego.value.copy(Reinicio = true)
 
         _uiStateJuego.value = _uiStateJuego.value.copy(
             Suma = 0,
-             NumeroAleatorio = 0,
-             MostrarSuma= false,
-             MostrarBoton = true,
+            NumeroAleatorio = 0,
+            MostrarSuma= false,
+            MostrarBoton = true,
             N = 0,
             Reinicio= false,
             sumaJugador = "0",
-             esCorrectaSuma = false,
+            esCorrectaSuma = false,
             MostrarInput = false,
             colorPantalla = Color.Gray,
             MostrarInputN = true
-
         )
 
     }
@@ -159,7 +182,9 @@ data class Suma(
 
     var colorPantalla: Color = Color.Gray,
 
-    var MostrarInputN: Boolean = true
+    var MostrarInputN: Boolean = true,
+
+    var baseDatos: List<suma> = listOf()
 
 )
 

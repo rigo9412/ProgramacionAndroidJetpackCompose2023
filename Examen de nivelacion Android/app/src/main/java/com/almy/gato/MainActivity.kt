@@ -1,5 +1,6 @@
 package com.almy.gato
 
+import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import com.almy.gato.ui.theme.GatoTheme
 import com.almy.memorama.SumaViewModel
 
@@ -26,8 +28,9 @@ class MainActivity : ComponentActivity() {
                 ) {
                     JuegoSumaScreen(
                         SumaViewModel(
-                        context = applicationContext,
-                            dataStoreManager = DataStoreManager(applicationContext)
+                            context = applicationContext,
+                            dataStoreManager = DataStoreManager(applicationContext),
+                            application = LocalContext.current.applicationContext as Application
                     )
                     )
                 }

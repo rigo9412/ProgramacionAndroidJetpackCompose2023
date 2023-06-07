@@ -3,7 +3,7 @@ package com.almy.gato
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.R
+import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -16,9 +16,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.almy.gato.components.*
 import com.almy.gato.ui.theme.*
 import com.almy.memorama.SumaViewModel
@@ -110,6 +111,24 @@ fun JuegoSumaScreen(viewModel: SumaViewModel) {
                     viewModel.AsignarN(textValue.text)
                     viewModel.IniciarSuma()
                 }
+            }
+
+
+            IniciarButton(
+                text = "BD LOCAL",
+                Modifier
+                    .size(200.dp, 60.dp)
+                    .padding(10.dp)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                viewModel.agregarDatos()
+            }
+
+            state.baseDatos.forEach(){
+                Text(
+                    text = it.valor.toString(),
+                    fontWeight = FontWeight.Bold,
+                )
             }
         }
     }
