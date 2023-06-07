@@ -23,7 +23,7 @@ class SumaViewModel(private val context: Context): ViewModel(){
 
         viewModelScope.launch {
             var numeroAleatorio: Int = 0
-            var rango = Random.nextInt(1, 10)
+            var rango = Random.nextInt(1, 100)
             _uiStateSuma.value = _uiStateSuma.value.copy(esconderBoton = false)//rango de numeros del 1 al 100
 
             for (i in 0..rango) { // para generar los numeros aleatorios que se van a sumar
@@ -31,6 +31,7 @@ class SumaViewModel(private val context: Context): ViewModel(){
 
                     _uiStateSuma.value = _uiStateSuma.value.copy(SumaFin = true)
                     _uiStateSuma.value = _uiStateSuma.value.copy(esconderBoton = true)// se muestra la suma de los numeroshb
+                    delay(2000)
                     Reiniciar()
                     break;
                 }

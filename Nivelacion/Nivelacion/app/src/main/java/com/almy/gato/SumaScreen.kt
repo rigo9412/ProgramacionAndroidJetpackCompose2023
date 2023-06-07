@@ -31,7 +31,7 @@ fun NumeroScreen(viewModel: SumaViewModel) {
 
 
             if (state.SumaFin) {
-                CustomText(text = "Suma de numeros: " + state.Suma,Modifier.padding(5.dp).align(Alignment.CenterHorizontally))
+                CustomText(text = "Suma: " + state.Suma,Modifier.padding(5.dp).align(Alignment.CenterHorizontally))
             }
             Spacer(modifier = Modifier.height(10.dp))
 

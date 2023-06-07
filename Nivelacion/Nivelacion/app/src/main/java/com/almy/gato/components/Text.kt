@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 fun CustomText(text: String, modifier: Modifier){
     Text(
         text = text,
-        fontSize = 300.sp,
+        fontSize = 100.sp,
         fontWeight = FontWeight.Normal,
         modifier = modifier
     )
